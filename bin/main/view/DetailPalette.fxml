@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox fx:id="detailPalette" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="144.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.DetailPaletteController">
+   <children>
+      <VBox fx:id="positionSection" prefHeight="82.0" prefWidth="124.0">
+         <children>
+            <Label text="Position">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Separator prefHeight="0.0" prefWidth="600.0" />
+            <HBox alignment="CENTER" prefHeight="39.0" prefWidth="124.0" fx:id="xPos">
+               <children>
+                  <Label prefHeight="60.0" prefWidth="50.0" text="X:" />
+                  <TextField alignment="CENTER_RIGHT" onAction="#onXPosChange" prefHeight="31.0" prefWidth="87.0" fx:id="xPosText" />
+               </children>
+            </HBox>
+            <HBox fx:id="yPos" alignment="CENTER" prefHeight="39.0" prefWidth="124.0">
+               <children>
+                  <Label prefHeight="60.0" prefWidth="50.0" text="Y:" />
+                  <TextField fx:id="yPosText" alignment="CENTER_RIGHT" onAction="#onYPosChange" prefHeight="31.0" prefWidth="87.0" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+      <VBox fx:id="dimensionSection" prefHeight="82.0" prefWidth="124.0">
+         <children>
+            <Label text="Dimensions:">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Separator prefHeight="0.0" prefWidth="600.0" />
+            <HBox fx:id="width" alignment="CENTER" prefHeight="60.0" prefWidth="124.0">
+               <children>
+                  <Label prefHeight="60.0" prefWidth="50.0" text="Width:" />
+                  <TextField fx:id="widthText" alignment="TOP_LEFT" centerShape="false" onAction="#onWidthChange" prefHeight="31.0" prefWidth="87.0" HBox.hgrow="NEVER" />
+               </children>
+            </HBox>
+            <HBox fx:id="height" alignment="CENTER" prefHeight="60.0" prefWidth="124.0">
+               <children>
+                  <Label prefHeight="60.0" prefWidth="50.0" text="Height:" />
+                  <TextField fx:id="heightText" alignment="CENTER_RIGHT" onAction="#onHeightChange" prefHeight="31.0" prefWidth="87.0" HBox.hgrow="NEVER" />
+               </children>
+            </HBox>
+            <HBox fx:id="radius" alignment="CENTER" prefHeight="60.0" prefWidth="124.0">
+               <children>
+                  <Label prefHeight="60.0" prefWidth="50.0" text="Radius:" />
+                  <TextField fx:id="radiusText" alignment="CENTER_RIGHT" onAction="#onRadiusChange" prefHeight="31.0" prefWidth="87.0" HBox.hgrow="NEVER" />
+               </children>
+            </HBox>
+            <HBox fx:id="length" alignment="CENTER" prefHeight="60.0" prefWidth="124.0">
+               <children>
+                  <Label prefHeight="60.0" prefWidth="50.0" text="Length:" />
+                  <TextField fx:id="lengthText" alignment="CENTER_RIGHT" onAction="#onLengthChange" prefHeight="31.0" prefWidth="87.0" HBox.hgrow="NEVER" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+      <VBox fx:id="angleSection" prefHeight="82.0" prefWidth="124.0">
+         <children>
+            <Label text="Rotation:">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Separator prefHeight="0.0" prefWidth="600.0" />
+            <HBox fx:id="angle" alignment="CENTER" prefHeight="60.0" prefWidth="124.0">
+               <children>
+                  <Label prefHeight="60.0" prefWidth="50.0" text="Angle" />
+                  <TextField fx:id="angleText" alignment="TOP_LEFT" centerShape="false" onAction="#onRotateChange" prefHeight="31.0" prefWidth="87.0" HBox.hgrow="NEVER" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</VBox>
