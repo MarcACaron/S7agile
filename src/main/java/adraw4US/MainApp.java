@@ -2,6 +2,11 @@ package adraw4US;
 
 import java.io.IOException;
 
+import controller.DetailPaletteController;
+import controller.DrawingZoneController;
+import controller.MenuController;
+import controller.PaletteCouleurController;
+import controller.PaletteFormeController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -10,11 +15,6 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import view.DetailPaletteController;
-import view.DrawingZoneController;
-import view.MenuController;
-import view.PaletteCouleurController;
-import view.PaletteFormeController;
 
 public class MainApp extends Application {
 

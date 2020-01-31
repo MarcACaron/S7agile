@@ -1,9 +1,8 @@
-package view;
+package controller;
 
 
 
 import adraw4US.MainApp;
-import adraw4US.SelectionTool;
 import adraw4US.Tool;
 import javafx.fxml.FXML;
 import javafx.geometry.Point2D;
@@ -12,6 +11,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Shape;
 import javafx.scene.transform.Scale;
+import models.SelectionTool;
 
 public class DrawingZoneController {
 	

@@ -2,9 +2,9 @@ package adraw4US;
 
 import java.util.function.Function;
 
+import controller.DetailPaletteController;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Shape;
-import view.DetailPaletteController;
 
 public abstract class Tool {
 	public static Paint fill;

@@ -1,10 +1,10 @@
-package adraw4US;
+package models;
 
 import java.util.function.Function;
 
+import controller.DetailPaletteController;
+import adraw4US.Tool;
 import javafx.scene.shape.Shape;
-import models.CustomRectangle;
-import view.DetailPaletteController;
 
 public class RectangleTool extends Tool {
 

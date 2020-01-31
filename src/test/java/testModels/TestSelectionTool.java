@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 import org.junit.jupiter.api.Test;
 
-import adraw4US.SelectionTool;
+import models.SelectionTool;
 
 
 public class TestSelectionTool {

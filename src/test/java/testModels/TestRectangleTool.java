@@ -5,8 +5,8 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.*;
 import org.junit.jupiter.api.Test;
 
-import adraw4US.RectangleTool;
 import models.CustomRectangle;
+import models.RectangleTool;
 
 
 public class TestRectangleTool {

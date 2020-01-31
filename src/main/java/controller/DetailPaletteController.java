@@ -1,4 +1,4 @@
-package view;
+package controller;
 
 import adraw4US.MainApp;
 import javafx.fxml.FXML;
@@ -99,7 +99,7 @@ public class DetailPaletteController {
 		setWidthText(String.valueOf(Math.floor(width * 100) / 100));
 		setHeightText(String.valueOf(Math.floor(height * 100) / 100));
 		setRadiusText(String.valueOf(Math.floor(radius * 100) / 100));
-		settLengthText(String.valueOf(Math.floor(length * 100) / 100));
+		setLengthText(String.valueOf(Math.floor(length * 100) / 100));
 		setAngleText(String.valueOf(Math.floor(angle * 100) / 100));
 		
 	}
@@ -116,7 +116,7 @@ public class DetailPaletteController {
 	public String getHeightText() {return heightText.getText();}
 	public void setRadiusText(String inputText) {radiusText.setText(inputText);}
 	public String getRadiusText() {return radiusText.getText();}
-	public void settLengthText(String inputText) {lengthText.setText(inputText);}
+	public void setLengthText(String inputText) {lengthText.setText(inputText);}
 	public String getLengthText() {return lengthText.getText();}
 	public void setAngleText(String inputText) {angleText.setText(inputText);}
 	public String getAngleText() {return angleText.getText();}

@@ -1,7 +1,6 @@
-package adraw4US;
+package models;
 
 import javafx.scene.shape.Shape;
-import models.CustomRectangle;
 
 public interface Drawable {
 	

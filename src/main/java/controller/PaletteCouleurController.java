@@ -1,4 +1,4 @@
-package view;
+package controller;
 
 import adraw4US.MainApp;
 import adraw4US.Tool;
