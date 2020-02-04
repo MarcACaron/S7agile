@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 import org.junit.jupiter.api.Test;
 
+import adraw4us.Tool;
 import models.CustomLine;
 import models.LineTool;;
 
@@ -14,11 +15,11 @@ public class TestLineTool {
 	
 	@Test
 	public void testToolReset() {
-		lineTool.tool.setAccessibleHelp("test");
+		lineTool.getTool().setAccessibleHelp("test");
 		
 		lineTool.reset();
 		
-		assertNotEquals("test", lineTool.tool.getAccessibleHelp());
+		assertNotEquals("test", lineTool.getTool().getAccessibleHelp());
 	}
 	
 	@Test
@@ -26,10 +27,10 @@ public class TestLineTool {
 		
 		lineTool.ajustOnDrag(2.0, 2.0, 4.0, 4.0);
 		
-		double startX = ((CustomLine)lineTool.tool).getStartX();
-		double startY = ((CustomLine)lineTool.tool).getStartY();
-		double endX = ((CustomLine)lineTool.tool).getEndX();
-		double endY = ((CustomLine)lineTool.tool).getEndY();
+		double startX = ((CustomLine)lineTool.getTool()).getStartX();
+		double startY = ((CustomLine)lineTool.getTool()).getStartY();
+		double endX = ((CustomLine)lineTool.getTool()).getEndX();
+		double endY = ((CustomLine)lineTool.getTool()).getEndY();
 		
 		assertEquals(2.0, startX);
 		assertEquals(2.0, startY);
@@ -41,13 +42,13 @@ public class TestLineTool {
 	@Test
 	public void testAdjustOnDrag2() {
 		
-		lineTool.startFromCenter = true;
+		Tool.setStartFromCenter(true);
 		lineTool.ajustOnDrag(2.0, 2.0, 4.0, 4.0);
 		
-		double startX = ((CustomLine)lineTool.tool).getStartX();
-		double startY = ((CustomLine)lineTool.tool).getStartY();
-		double endX = ((CustomLine)lineTool.tool).getEndX();
-		double endY = ((CustomLine)lineTool.tool).getEndY();
+		double startX = ((CustomLine)lineTool.getTool()).getStartX();
+		double startY = ((CustomLine)lineTool.getTool()).getStartY();
+		double endX = ((CustomLine)lineTool.getTool()).getEndX();
+		double endY = ((CustomLine)lineTool.getTool()).getEndY();
 		
 		assertEquals(4.0, startX);
 		assertEquals(4.0, startY);

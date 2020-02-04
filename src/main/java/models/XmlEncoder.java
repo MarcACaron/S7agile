@@ -14,7 +14,6 @@ import org.w3c.dom.Element;
 
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
-import javafx.scene.paint.Color;
 
 
 public class XmlEncoder extends XmlStrings {

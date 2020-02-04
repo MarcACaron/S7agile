@@ -70,10 +70,10 @@ public class PaletteFormeController {
 	private void choosePtDepart() {
 		if(ptDepart.isSelected()) {
 			ptDepartImage.setImage(new Image("images/corner.png"));
-			Tool.startFromCenter=false;
+			Tool.setStartFromCenter(false);
 		}else {
 			ptDepartImage.setImage(new Image("images/center.png"));
-			Tool.startFromCenter=true;
+			Tool.setStartFromCenter(true);
 		}
 	}
 	
@@ -88,6 +88,6 @@ public class PaletteFormeController {
 	public void setMainApp(MainApp mainApp) {
         this.mainApp = mainApp;
 		this.mainApp.setTool(new SelectionTool());
-		Tool.startFromCenter = true;
+		Tool.setStartFromCenter(true);
     }
 }

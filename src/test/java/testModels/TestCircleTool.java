@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 import org.junit.jupiter.api.Test;
 
+import adraw4us.Tool;
 import models.CircleTool;
 import models.CustomCircle;
 
@@ -16,11 +17,11 @@ public class TestCircleTool {
 	
 	@Test
 	public void testToolReset() {
-		circTool.tool.setAccessibleHelp("test");
+		circTool.getTool().setAccessibleHelp("test");
 		
 		circTool.reset();
 		
-		assertNotEquals("test", circTool.tool.getAccessibleHelp());
+		assertNotEquals("test", circTool.getTool().getAccessibleHelp());
 	}
 	
 	@Test
@@ -28,9 +29,9 @@ public class TestCircleTool {
 		
 		circTool.ajustOnDrag(2.0, 2.0, 4.0, 4.0);
 		
-		double centerX = ((CustomCircle)circTool.tool).getCenterX();
-		double centerY = ((CustomCircle)circTool.tool).getCenterY();
-		double radius = ((CustomCircle)circTool.tool).getRadius();
+		double centerX = ((CustomCircle)circTool.getTool()).getCenterX();
+		double centerY = ((CustomCircle)circTool.getTool()).getCenterY();
+		double radius = ((CustomCircle)circTool.getTool()).getRadius();
 		
 		assertEquals(2.0, centerX);
 		assertEquals(2.0, centerY);
@@ -41,12 +42,12 @@ public class TestCircleTool {
 	@Test
 	public void testAdjustOnDrag2() {
 		
-		circTool.startFromCenter = false;
+		Tool.setStartFromCenter(false);
 		circTool.ajustOnDrag(2.0, 2.0, 4.0, 4.0);
 		
-		double centerX = ((CustomCircle)circTool.tool).getCenterX();
-		double centerY = ((CustomCircle)circTool.tool).getCenterY();
-		double radius = ((CustomCircle)circTool.tool).getRadius();
+		double centerX = ((CustomCircle)circTool.getTool()).getCenterX();
+		double centerY = ((CustomCircle)circTool.getTool()).getCenterY();
+		double radius = ((CustomCircle)circTool.getTool()).getRadius();
 		
 		assertEquals(3.0, centerX);
 		assertEquals(3.0, centerY);

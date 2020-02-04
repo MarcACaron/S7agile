@@ -62,14 +62,14 @@ public class PaletteCouleurController {
 	private void fillShape(String value) {
 		if(!value.equals("")) {
 			if(value.equals("rouge")) {
-			    Tool.fill = Color.RED;
+			    Tool.setFill(Color.RED);
 			}else {
 				String imagePath = "images/" + value + ".png";
 				Image image = new Image(imagePath); 
 			    ImagePattern radialGradient = new ImagePattern(image, 50, 50, 200, 200, false);
-			    Tool.fill = radialGradient;
+			    Tool.setFill(radialGradient);
 			}
-		    Tool.fillName = value;
+		    Tool.setFillName(value);
 			if(this.mainApp.getTool().getTool()!=null) {
 				
 			    this.mainApp.getTool().fillShape();
@@ -91,7 +91,7 @@ public class PaletteCouleurController {
 		if(this.mainApp.getTool().getTool()!=null) {
 			this.mainApp.getTool().getTool().setStroke(stroke.getValue());
 		}
-		Tool.stroke = stroke.getValue();
+		Tool.setStroke(stroke.getValue());
 	}
 	
 	@FXML
@@ -99,7 +99,7 @@ public class PaletteCouleurController {
 		if(this.mainApp.getTool().getTool()!=null) {
 			this.mainApp.getTool().getTool().setStrokeWidth(lineWidth.getValue().doubleValue());
 		}
-		Tool.lineWidth = lineWidth.getValue().doubleValue();
+		Tool.setLineWidth(lineWidth.getValue().doubleValue());
 	}
 	
 	@FXML
@@ -111,7 +111,7 @@ public class PaletteCouleurController {
 	public void setMainApp(MainApp mainApp) {
         this.mainApp = mainApp;
 		stroke.setValue(Color.BLACK);
-		Tool.stroke = Color.BLACK;
+		Tool.setStroke(Color.BLACK);
 		lineWidth.setValue(1.0);
 		this.fillShape("ananas");
 		this.fillAnanas.setBackground(new Background(new BackgroundFill(new ImagePattern(new Image("images/ananas.png"), 45, 55, 100, 100, false), null, null)));

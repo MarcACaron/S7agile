@@ -3,9 +3,7 @@ package testModels;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
 
-import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.ImagePattern;
 import models.CustomCircle;
 import models.PatternApplier;
 
