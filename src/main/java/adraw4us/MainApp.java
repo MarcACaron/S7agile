@@ -20,16 +20,28 @@ public class MainApp extends Application {
 
     private Stage primaryStage;
     private BorderPane rootLayout;
-    public MenuController menuController;
-    public DrawingZoneController drawingZoneController;
-    public PaletteCouleurController paletteCouleurController;
-    public DetailPaletteController paletteDetailController;
+    private MenuController menuController;
+    private DrawingZoneController drawingZoneController;
+    private PaletteCouleurController paletteCouleurController;
+    private DetailPaletteController paletteDetailController;
     private Tool Tool;
     
     public MainApp() {
     	this.Tool = null;
 	}
-    public Tool getTool() {
+    public MenuController getMenuController() {
+		return menuController;
+	}
+	public DrawingZoneController getDrawingZoneController() {
+		return drawingZoneController;
+	}
+	public PaletteCouleurController getPaletteCouleurController() {
+		return paletteCouleurController;
+	}
+	public DetailPaletteController getPaletteDetailController() {
+		return paletteDetailController;
+	}
+	public Tool getTool() {
 		return Tool;
 	}
 	public void setTool(Tool tool) {

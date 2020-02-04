@@ -37,7 +37,7 @@ public class DrawingZoneController {
     private void initialize() {
 		pane.setOnMousePressed(t -> {
 			if(this.mainApp.getTool().getClass()==SelectionTool.class){// Mode selection	
-				this.mainApp.getTool().fillDetails(this.mainApp.paletteDetailController, null).apply(null);
+				this.mainApp.getTool().fillDetails(this.mainApp.getPaletteDetailController(), null).apply(null);
 				this.mainApp.getTool().reset();
 			}else {
 				this.mainApp.getTool().reset();
@@ -63,10 +63,10 @@ public class DrawingZoneController {
 				sh.setOnMouseClicked(t2 -> {
 					if(this.mainApp.getTool().getClass()==SelectionTool.class) {
 						this.mainApp.getTool().setTool(sh);
-						this.mainApp.paletteCouleurController.setLineWidth(sh.getStrokeWidth());
-						this.mainApp.paletteCouleurController.setStroke((Color) (sh.getStroke()));
+						this.mainApp.getPaletteCouleurController().setLineWidth(sh.getStrokeWidth());
+						this.mainApp.getPaletteCouleurController().setStroke((Color) (sh.getStroke()));
 						
-						tool.fillDetails(this.mainApp.paletteDetailController, sh).apply(null);
+						tool.fillDetails(this.mainApp.getPaletteDetailController(), sh).apply(null);
 					}
 				});
 			}
@@ -76,6 +76,6 @@ public class DrawingZoneController {
 	
 	public void setMainApp(MainApp mainApp) {
         this.mainApp = mainApp;
-        this.mainApp.menuController.setPane(pane);
+        this.mainApp.getMenuController().setPane(pane);
     }
 }

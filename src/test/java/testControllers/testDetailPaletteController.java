@@ -88,20 +88,20 @@ public class testDetailPaletteController extends testApplicationUI{
 		
 		String testValue = "100";
 		
-		mainApp.paletteDetailController.setXPosText(testValue);
-		assertEquals(mainApp.paletteDetailController.getXPosText().compareTo(testValue),0);
-		mainApp.paletteDetailController.setYPosText(testValue);
-		assertEquals(mainApp.paletteDetailController.getYPosText().compareTo(testValue),0);
-		mainApp.paletteDetailController.setWidthText(testValue);
-		assertEquals(mainApp.paletteDetailController.getWidthText().compareTo(testValue),0);
-		mainApp.paletteDetailController.setHeightText(testValue);
-		assertEquals(mainApp.paletteDetailController.getHeightText().compareTo(testValue),0);
-		mainApp.paletteDetailController.setRadiusText(testValue);
-		assertEquals(mainApp.paletteDetailController.getRadiusText().compareTo(testValue),0);
-		mainApp.paletteDetailController.setLengthText(testValue);
-		assertEquals(mainApp.paletteDetailController.getLengthText().compareTo(testValue),0);
-		mainApp.paletteDetailController.setAngleText(testValue);
-		assertEquals(mainApp.paletteDetailController.getAngleText().compareTo(testValue),0);
+		mainApp.getPaletteDetailController().setXPosText(testValue);
+		assertEquals(mainApp.getPaletteDetailController().getXPosText().compareTo(testValue),0);
+		mainApp.getPaletteDetailController().setYPosText(testValue);
+		assertEquals(mainApp.getPaletteDetailController().getYPosText().compareTo(testValue),0);
+		mainApp.getPaletteDetailController().setWidthText(testValue);
+		assertEquals(mainApp.getPaletteDetailController().getWidthText().compareTo(testValue),0);
+		mainApp.getPaletteDetailController().setHeightText(testValue);
+		assertEquals(mainApp.getPaletteDetailController().getHeightText().compareTo(testValue),0);
+		mainApp.getPaletteDetailController().setRadiusText(testValue);
+		assertEquals(mainApp.getPaletteDetailController().getRadiusText().compareTo(testValue),0);
+		mainApp.getPaletteDetailController().setLengthText(testValue);
+		assertEquals(mainApp.getPaletteDetailController().getLengthText().compareTo(testValue),0);
+		mainApp.getPaletteDetailController().setAngleText(testValue);
+		assertEquals(mainApp.getPaletteDetailController().getAngleText().compareTo(testValue),0);
 
 	}
 	

@@ -38,11 +38,11 @@ public class PaletteCouleurController {
 	
 	@FXML
 	private void zoomIn() {
-		this.mainApp.drawingZoneController.zoomIn(1.1);
+		this.mainApp.getDrawingZoneController().zoomIn(1.1);
 	}
 	@FXML
 	private void zoomOut() {
-		this.mainApp.drawingZoneController.zoomOut(1.1);
+		this.mainApp.getDrawingZoneController().zoomOut(1.1);
 	}
 	@FXML
 	private void ananas() {
