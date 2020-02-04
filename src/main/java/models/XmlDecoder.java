@@ -48,32 +48,32 @@ public class XmlDecoder extends XmlStrings {
 
 		    		 for (int j = 0; j < nodeMap.getLength(); ++j) {
 		    			 
-		    			 if (nodeMap.item(j).getNodeName() == fill) {
+		    			 if (nodeMap.item(j).getNodeName() == FILL) {
 		    				 
 		    				 rectangle.setAccessibleText(nodeMap.item(j).getNodeValue());
 		    				 rectangle = (CustomRectangle)(patternApplier.setFill(rectangle));
 		    				 
-		    			 } else if (nodeMap.item(j).getNodeName() == height) {
+		    			 } else if (nodeMap.item(j).getNodeName() == HEIGHT) {
 		    				 
 		    				 rectangle.setHeight(Double.valueOf(nodeMap.item(j).getNodeValue()));
 		    				 
-		    			 } else if (nodeMap.item(j).getNodeName() == width) {
+		    			 } else if (nodeMap.item(j).getNodeName() == WIDTH) {
 		    				 
 		    				 rectangle.setWidth(Double.valueOf(nodeMap.item(j).getNodeValue()));
 		    				 
-		    			 } else if (nodeMap.item(j).getNodeName() == posX) {
+		    			 } else if (nodeMap.item(j).getNodeName() == POSX) {
 		    				 
 		    				 rectangle.setX(Double.valueOf(nodeMap.item(j).getNodeValue()));
 		    				 
-		    			 } else if (nodeMap.item(j).getNodeName() == posY) {
+		    			 } else if (nodeMap.item(j).getNodeName() == POSY) {
 		    				 
 		    				 rectangle.setY(Double.valueOf(nodeMap.item(j).getNodeValue()));
 		    				 
-		    			 } else if (nodeMap.item(j).getNodeName() == strokeColor) {
+		    			 } else if (nodeMap.item(j).getNodeName() == STROKECOLOR) {
 		    				 
 		    				 rectangle.setStroke(Color.web(nodeMap.item(j).getNodeValue()));
 		    				 
-		    			 } else if (nodeMap.item(j).getNodeName() == strokeWidth) {
+		    			 } else if (nodeMap.item(j).getNodeName() == STROKEWIDTH) {
 		    				 
 		    				 rectangle.setStrokeWidth(Double.valueOf(nodeMap.item(j).getNodeValue()));
 		    				 
@@ -94,28 +94,28 @@ public class XmlDecoder extends XmlStrings {
 
 		    		 for (int j = 0; j < nodeMap.getLength(); ++j) {
 		    			 
-		    			 if (nodeMap.item(j).getNodeName() == fill) {
+		    			 if (nodeMap.item(j).getNodeName() == FILL) {
 		    				 
 		    				 circle.setAccessibleText(nodeMap.item(j).getNodeValue());
 		    				 circle = (CustomCircle)(patternApplier.setFill(circle));
 		    				 
-		    			 } else if (nodeMap.item(j).getNodeName() == radius) {
+		    			 } else if (nodeMap.item(j).getNodeName() == RADIUS) {
 		    				 
 		    				 circle.setRadius(Double.valueOf(nodeMap.item(j).getNodeValue()));
 		    				 
-		    			 } else if (nodeMap.item(j).getNodeName() == posX) {
+		    			 } else if (nodeMap.item(j).getNodeName() == POSX) {
 		    				 
 		    				 circle.setCenterX(Double.valueOf(nodeMap.item(j).getNodeValue()));
 		    				 
-		    			 } else if (nodeMap.item(j).getNodeName() == posY) {
+		    			 } else if (nodeMap.item(j).getNodeName() == POSY) {
 		    				 
 		    				 circle.setCenterY(Double.valueOf(nodeMap.item(j).getNodeValue()));
 		    				 
-		    			 } else if (nodeMap.item(j).getNodeName() == strokeColor) {
+		    			 } else if (nodeMap.item(j).getNodeName() == STROKECOLOR) {
 		    				 
 		    				 circle.setStroke(Color.web(nodeMap.item(j).getNodeValue()));
 		    				 
-		    			 } else if (nodeMap.item(j).getNodeName() == strokeWidth) {
+		    			 } else if (nodeMap.item(j).getNodeName() == STROKEWIDTH) {
 		    				 
 		    				 circle.setStrokeWidth(Double.valueOf(nodeMap.item(j).getNodeValue()));
 		    				 
@@ -136,27 +136,27 @@ public class XmlDecoder extends XmlStrings {
 
 		    		 for (int j = 0; j < nodeMap.getLength(); ++j) {
 		    			 
-		    			 if (nodeMap.item(j).getNodeName() == startPosX) {
+		    			 if (nodeMap.item(j).getNodeName() == STARTPOSX) {
 		    				 
 		    				 line.setStartX(Double.valueOf(nodeMap.item(j).getNodeValue()));
 		    				 
-		    			 } else if (nodeMap.item(j).getNodeName() == startPosY) {
+		    			 } else if (nodeMap.item(j).getNodeName() == STARTPOSY) {
 		    				 
 		    				 line.setStartY(Double.valueOf(nodeMap.item(j).getNodeValue()));
 		    				 
-		    			 } else if (nodeMap.item(j).getNodeName() == endPosX) {
+		    			 } else if (nodeMap.item(j).getNodeName() == ENDPOSX) {
 		    				 
 		    				 line.setEndX(Double.valueOf(nodeMap.item(j).getNodeValue()));
 		    				 
-		    			 } else if (nodeMap.item(j).getNodeName() == endPosY) {
+		    			 } else if (nodeMap.item(j).getNodeName() == ENDPOSY) {
 		    				 
 		    				 line.setEndY(Double.valueOf(nodeMap.item(j).getNodeValue()));
 		    				 
-		    			 } else if (nodeMap.item(j).getNodeName() == strokeColor) {
+		    			 } else if (nodeMap.item(j).getNodeName() == STROKECOLOR) {
 		    				 
 		    				 line.setStroke(Color.web(nodeMap.item(j).getNodeValue()));
 		    				 
-		    			 } else if (nodeMap.item(j).getNodeName() == strokeWidth) {
+		    			 } else if (nodeMap.item(j).getNodeName() == STROKEWIDTH) {
 		    				 
 		    				 line.setStrokeWidth(Double.valueOf(nodeMap.item(j).getNodeValue()));
 		    				 
