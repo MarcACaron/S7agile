@@ -43,13 +43,13 @@ public class XmlEncoder extends XmlStrings {
 
 					Element rectangle = doc.createElement("rectangle");
 					
-					rectangle.setAttribute(posX, String.valueOf(rectShape.getX()));
-					rectangle.setAttribute(posY, String.valueOf(rectShape.getY()));
-					rectangle.setAttribute(width, String.valueOf(rectShape.getWidth()));
-					rectangle.setAttribute(height, String.valueOf(rectShape.getHeight()));
-					rectangle.setAttribute(strokeWidth, String.valueOf(rectShape.getStrokeWidth()));
-					rectangle.setAttribute(strokeColor, String.valueOf(rectShape.getStroke()));
-					rectangle.setAttribute(fill, rectShape.getAccessibleText());
+					rectangle.setAttribute(POSX, String.valueOf(rectShape.getX()));
+					rectangle.setAttribute(POSY, String.valueOf(rectShape.getY()));
+					rectangle.setAttribute(WIDTH, String.valueOf(rectShape.getWidth()));
+					rectangle.setAttribute(HEIGHT, String.valueOf(rectShape.getHeight()));
+					rectangle.setAttribute(STROKEWIDTH, String.valueOf(rectShape.getStrokeWidth()));
+					rectangle.setAttribute(STROKECOLOR, String.valueOf(rectShape.getStroke()));
+					rectangle.setAttribute(FILL, rectShape.getAccessibleText());
 					
 					root.appendChild(rectangle);
 
@@ -60,12 +60,12 @@ public class XmlEncoder extends XmlStrings {
 
 					Element circle = doc.createElement("circle");
 					
-					circle.setAttribute(posX, String.valueOf(circShape.getCenterX()));
-					circle.setAttribute(posY, String.valueOf(circShape.getCenterY()));
-					circle.setAttribute(radius, String.valueOf(circShape.getRadius()));
-					circle.setAttribute(strokeWidth, String.valueOf(circShape.getStrokeWidth()));
-					circle.setAttribute(strokeColor, String.valueOf(circShape.getStroke()));
-					circle.setAttribute(fill, circShape.getAccessibleText());
+					circle.setAttribute(POSX, String.valueOf(circShape.getCenterX()));
+					circle.setAttribute(POSY, String.valueOf(circShape.getCenterY()));
+					circle.setAttribute(RADIUS, String.valueOf(circShape.getRadius()));
+					circle.setAttribute(STROKEWIDTH, String.valueOf(circShape.getStrokeWidth()));
+					circle.setAttribute(STROKECOLOR, String.valueOf(circShape.getStroke()));
+					circle.setAttribute(FILL, circShape.getAccessibleText());
 					
 					root.appendChild(circle);
 
@@ -77,12 +77,12 @@ public class XmlEncoder extends XmlStrings {
 
 					Element line = doc.createElement("line");
 					
-					line.setAttribute(startPosX, String.valueOf(lineShape.getStartX()));
-					line.setAttribute(startPosY, String.valueOf(lineShape.getStartY()));
-					line.setAttribute(endPosX, String.valueOf(lineShape.getEndX()));
-					line.setAttribute(endPosY, String.valueOf(lineShape.getEndY()));
-					line.setAttribute(strokeWidth, String.valueOf(lineShape.getStrokeWidth()));
-					line.setAttribute(strokeColor, String.valueOf(lineShape.getStroke()));
+					line.setAttribute(STARTPOSX, String.valueOf(lineShape.getStartX()));
+					line.setAttribute(STARTPOSY, String.valueOf(lineShape.getStartY()));
+					line.setAttribute(ENDPOSX, String.valueOf(lineShape.getEndX()));
+					line.setAttribute(ENDPOSY, String.valueOf(lineShape.getEndY()));
+					line.setAttribute(STROKEWIDTH, String.valueOf(lineShape.getStrokeWidth()));
+					line.setAttribute(STROKECOLOR, String.valueOf(lineShape.getStroke()));
 					
 					root.appendChild(line);
 
