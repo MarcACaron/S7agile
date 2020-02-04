@@ -1,7 +1,7 @@
 package controller;
 
-import adraw4US.MainApp;
-import adraw4US.Tool;
+import adraw4us.MainApp;
+import adraw4us.Tool;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -35,8 +35,6 @@ public class PaletteCouleurController {
 	
 	private MainApp mainApp;
 		
-	public PaletteCouleurController() {
-	}
 	
 	@FXML
 	private void zoomIn() {
@@ -62,8 +60,8 @@ public class PaletteCouleurController {
 	}
 	
 	private void fillShape(String value) {
-		if(value!="") {
-			if(value=="rouge") {
+		if(!value.equals("")) {
+			if(value.equals("rouge")) {
 			    Tool.fill = Color.RED;
 			}else {
 				String imagePath = "images/" + value + ".png";
@@ -107,9 +105,7 @@ public class PaletteCouleurController {
 	@FXML
     private void initialize() {
 		lineWidth.setItems(FXCollections.observableArrayList(1.0,3.0, 5.0, 7.0, 9.0));
-		lineWidth.setOnAction((t)->{
-			changeLineWidth();
-		});
+		lineWidth.setOnAction(t-> changeLineWidth());
     }
 	
 	public void setMainApp(MainApp mainApp) {
@@ -120,6 +116,6 @@ public class PaletteCouleurController {
 		this.fillShape("ananas");
 		this.fillAnanas.setBackground(new Background(new BackgroundFill(new ImagePattern(new Image("images/ananas.png"), 45, 55, 100, 100, false), null, null)));
 		this.fillDirt.setBackground(new Background(new BackgroundFill(new ImagePattern(new Image("images/dirt.png"), 0, 0, 200, 200, false), null, null)));
-		this.fillRed.setBackground(new Background(new BackgroundFill(Color.RED, null, null)));//new ImageView(new ImagePattern(new Image("images/dirt.png"), 50, 50, 200, 200, false)));
+		this.fillRed.setBackground(new Background(new BackgroundFill(Color.RED, null, null)));
     }
 }

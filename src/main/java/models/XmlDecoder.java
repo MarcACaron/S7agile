@@ -38,7 +38,7 @@ public class XmlDecoder extends XmlStrings {
 		     
 		     for (int i = 0; i<a.getLength(); ++i) {
 		    	 
-		    	 if (a.item(i).getNodeName() == "rectangle") {
+		    	 if (a.item(i).getNodeName().equals("rectangle")) {
 		    		 
 		    		 //// RECTANGLE
 		    		 
@@ -84,7 +84,7 @@ public class XmlDecoder extends XmlStrings {
 		    		 pane.getChildren().add(rectangle);
 		    	 } // end rectangle
 		    	 
-		    	 else if (a.item(i).getNodeName() == "circle") {
+		    	 else if (a.item(i).getNodeName().equals("circle")) {
 		    		 
 		    		 //// CIRCLE
 		    		 
@@ -126,7 +126,7 @@ public class XmlDecoder extends XmlStrings {
 		    		 pane.getChildren().add(circle);
 		    	 } // end circle
 		    	 
-		    	 else if (a.item(i).getNodeName() == "line") {
+		    	 else if (a.item(i).getNodeName().equals("line")) {
 		    		 
 		    		 //// LINE
 		    		 

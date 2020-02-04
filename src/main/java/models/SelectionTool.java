@@ -2,8 +2,8 @@ package models;
 
 import java.util.function.Function;
 
+import adraw4us.Tool;
 import controller.DetailPaletteController;
-import adraw4US.Tool;
 import javafx.scene.shape.Shape;
 
 public class SelectionTool extends Tool {

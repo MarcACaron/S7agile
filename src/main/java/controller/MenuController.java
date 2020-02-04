@@ -1,13 +1,7 @@
 package controller;
 
-import java.util.Optional;
-
-import adraw4US.MainApp;
+import adraw4us.MainApp;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.ButtonBar.ButtonData;
-import javafx.scene.control.ButtonType;
 
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
@@ -29,8 +23,6 @@ public class MenuController {
 	
 	@FXML private MenuItem menuItemOpen;
 	
-	private FileController fileController;
-	
 	@FXML
 	private void clear() {
 		pane.getChildren().clear();
@@ -38,15 +30,11 @@ public class MenuController {
 	
 	private MainApp mainApp;
 	
-	public MenuController() {
-		// TODO Auto-generated constructor stub
-	
-	}
 	
 	@FXML
     private void initialize() {	
 		
-		fileController = FileController.getInstance();
+		FileController fileController = FileController.getInstance();
 		
 		menuItemNew.setOnAction(e -> {
 
@@ -68,10 +56,9 @@ public class MenuController {
 		
 		menuItemSave.setOnAction(e -> {
 			
-			if (fileController.getCurrentFile() == null) {
-				if (fileController.askForFile(mainApp.getPrimaryStage())) {
-					fileController.saveDrawing(pane);
-				}
+			if (fileController.getCurrentFile() == null && fileController.askForFile(mainApp.getPrimaryStage())) {
+				
+				fileController.saveDrawing(pane);
 					
 			}
 			

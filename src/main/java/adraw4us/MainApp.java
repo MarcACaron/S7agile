@@ -1,4 +1,4 @@
-package adraw4US;
+package adraw4us;
 
 import java.io.IOException;
 
@@ -42,7 +42,6 @@ public class MainApp extends Application {
 
         initRootLayout();
 
-        //showPersonOverview();
         showMainOverview();
     }
     
@@ -66,7 +65,7 @@ public class MainApp extends Application {
             menuController = loader.getController();
             menuController.setMainApp(this);
         } catch (IOException e) {
-            e.printStackTrace();
+        	System.out.println(e.getMessage());
         }
     }
     
@@ -85,33 +84,31 @@ public class MainApp extends Application {
             loader4.setLocation(MainApp.class.getResource("../view/ColorPaletteOverview.fxml"));
             detailPaletteLoader.setLocation(MainApp.class.getResource("../view/DetailPalette.fxml"));
             
-            AnchorPane MainOverview = (AnchorPane) loader1.load();
-            AnchorPane ScrollPaneOverview = (AnchorPane) loader2.load();
-            VBox FormPaletteOverview = (VBox) loader3.load();
-            HBox ColorPaletteOverview = (HBox) loader4.load();   
+            AnchorPane mainOverview = (AnchorPane) loader1.load();
+            AnchorPane scrollPaneOverview = (AnchorPane) loader2.load();
+            VBox formPaletteOverview = (VBox) loader3.load();
+            HBox colorPaletteOverview = (HBox) loader4.load();   
             VBox detailPaletteOverview = (VBox) detailPaletteLoader.load();
             
             
             // Set person overview into the center of root layout.
-            rootLayout.setCenter(MainOverview);
-//            rootLayout.setTop(ColorPaletteOverview);
-//            rootLayout.setLeft(FormPaletteOverview);
-            MainOverview.getChildren().addAll(ScrollPaneOverview);
-            MainOverview.getChildren().addAll(ColorPaletteOverview);
-            MainOverview.getChildren().addAll(FormPaletteOverview);
-            MainOverview.getChildren().addAll(detailPaletteOverview);
+            rootLayout.setCenter(mainOverview);
+            mainOverview.getChildren().addAll(scrollPaneOverview);
+            mainOverview.getChildren().addAll(colorPaletteOverview);
+            mainOverview.getChildren().addAll(formPaletteOverview);
+            mainOverview.getChildren().addAll(detailPaletteOverview);
             
-            AnchorPane.setTopAnchor(ColorPaletteOverview, 0.0);
-            AnchorPane.setTopAnchor(FormPaletteOverview,ColorPaletteOverview.getPrefHeight());
-            AnchorPane.setLeftAnchor(FormPaletteOverview, 0.0);
-            AnchorPane.setTopAnchor(detailPaletteOverview,ColorPaletteOverview.getPrefHeight());
+            AnchorPane.setTopAnchor(colorPaletteOverview, 0.0);
+            AnchorPane.setTopAnchor(formPaletteOverview,colorPaletteOverview.getPrefHeight());
+            AnchorPane.setLeftAnchor(formPaletteOverview, 0.0);
+            AnchorPane.setTopAnchor(detailPaletteOverview,colorPaletteOverview.getPrefHeight());
             AnchorPane.setRightAnchor(detailPaletteOverview, 0.0);
             
             
-            AnchorPane.setBottomAnchor(ScrollPaneOverview, MainOverview.getHeight());
-            AnchorPane.setRightAnchor(ScrollPaneOverview, detailPaletteOverview.getPrefWidth());
-            AnchorPane.setTopAnchor(ScrollPaneOverview, ColorPaletteOverview.getPrefHeight());
-            AnchorPane.setLeftAnchor(ScrollPaneOverview, FormPaletteOverview.getPrefWidth());
+            AnchorPane.setBottomAnchor(scrollPaneOverview, mainOverview.getHeight());
+            AnchorPane.setRightAnchor(scrollPaneOverview, detailPaletteOverview.getPrefWidth());
+            AnchorPane.setTopAnchor(scrollPaneOverview, colorPaletteOverview.getPrefHeight());
+            AnchorPane.setLeftAnchor(scrollPaneOverview, formPaletteOverview.getPrefWidth());
             
             
             
@@ -126,34 +123,9 @@ public class MainApp extends Application {
             paletteDetailController.setMainApp(this);
 
         } catch (IOException e) {
-            e.printStackTrace();
+        	System.out.println(e.getMessage());
         }
     }
-    
-/*    public void showPaletteOverview() {
-    	try {
-        FXMLLoader loader1 = new FXMLLoader();
-        FXMLLoader loader2 = new FXMLLoader();
-        FXMLLoader loader3 = new FXMLLoader();    	
-        loader1.setLocation(MainApp.class.getResource("../view/LastOverview.fxml"));
-        loader2.setLocation(MainApp.class.getResource("../view/ColorPaletteOverview.fxml"));
-        loader3.setLocation(MainApp.class.getResource("../view/FormPaletteOverview.fxml"));
-        AnchorPane LastOverview = (AnchorPane) loader1.load();
-        HBox ColorPaletteOverview = (HBox) loader2.load();    
-        VBox FormPaletteOverview = (VBox) loader3.load();        
-        
-        // Set person overview into the center of root layout.
-        showMainOverview.setCenter(LastOverview);       
-        AnchorPane.setLeftAnchor(FormPaletteOverview, 0.0);
-        AnchorPane.setTopAnchor(ColorPaletteOverview, 0.0);
-        
-        rootLayout.setTop(ColorPaletteOverview);
-        rootLayout.setLeft(FormPaletteOverview);
-        
-    } catch (IOException e) {
-        e.printStackTrace();
-    }        
-    }*/
     
     /**
      * Returns the main stage.

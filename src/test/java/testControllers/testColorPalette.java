@@ -11,7 +11,7 @@ import org.testfx.*;
 import org.testfx.framework.junit5.ApplicationTest;
 import org.testfx.util.WaitForAsyncUtils;
 
-import adraw4US.MainApp;
+import adraw4us.MainApp;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Button;

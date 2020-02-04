@@ -1,8 +1,5 @@
 package controller;
 
-import java.io.*;
-
-import com.sun.javafx.geom.Shape;
 
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
@@ -13,11 +10,6 @@ import javafx.scene.control.ButtonBar.ButtonData;
 import javafx.scene.layout.Pane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import models.CustomCircle;
-import models.CustomLine;
-import models.CustomRectangle;
-import models.Identifiable;
-import models.ShapeType;
 import models.XmlDecoder;
 import models.XmlEncoder;
 
@@ -86,7 +78,7 @@ public class FileController {
 		alert.getButtonTypes().setAll(buttonTypeYes, buttonTypeNo, buttonTypeCancel);
 
 		Optional<ButtonType> result = alert.showAndWait();
-		if (result.get() == buttonTypeYes){
+		if (result.isPresent() && result.get() == buttonTypeYes){
 			if (getCurrentFile() == null ) {
 				askForFile(stage);
 			}
@@ -97,9 +89,9 @@ public class FileController {
 				return false;
 			}
 		    return true;
-		} else if (result.get() == buttonTypeNo) {
+		} else if (result.isPresent() && result.get() == buttonTypeNo) {
 			return true;
-		} else if (result.get() == buttonTypeCancel) {
+		} else if (result.isPresent() && result.get() == buttonTypeCancel) {
 			return false;
 		}
 		return false;
@@ -120,7 +112,6 @@ public class FileController {
 		
 		if (fileCandidate != null && fileCandidate.isFile()) {
 			pane.getChildren().clear();
-			System.out.println(pane.getChildren().size());
 			currentFile = fileCandidate;
 			XmlDecoder.readXML(currentFile, pane);
 
