@@ -9,7 +9,7 @@ public class PatternApplier {
 	
 	
 	public PatternApplier() {
-		this.imagePackagePath = new String("images/");
+		this.imagePackagePath = "images/";
 	}
 	
 	private String imagePackagePath;

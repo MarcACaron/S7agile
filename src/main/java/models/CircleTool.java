@@ -9,12 +9,12 @@ import javafx.scene.shape.Shape;
 public class CircleTool extends Tool{
 
 	public CircleTool() {
-		this.tool = new CustomCircle();
+		this.shape = new CustomCircle();
 	}
 
 	public void ajustOnDrag(double posXStart, double posYStart, double posXEnd, double posYEnd) {
 		double radius;
-		CustomCircle circle = (CustomCircle)this.tool;
+		CustomCircle circle = (CustomCircle)this.shape;
 		if(startFromCenter){
 			radius = Math.sqrt(Math.pow(posXEnd-posXStart, 2)+Math.pow(posYEnd-posYStart, 2));
 			circle.setCenterX(posXStart);
@@ -33,10 +33,10 @@ public class CircleTool extends Tool{
 	
 	@Override
 	public void reset() {
-		this.tool = new CustomCircle();
+		this.shape = new CustomCircle();
 		this.fillShape();
-		this.tool.setStroke(stroke);
-		this.tool.setStrokeWidth(lineWidth);
+		this.shape.setStroke(stroke);
+		this.shape.setStrokeWidth(lineWidth);
 	}
 
 	@Override

@@ -17,11 +17,11 @@ public class TestCircleTool {
 	
 	@Test
 	public void testToolReset() {
-		circTool.getTool().setAccessibleHelp("test");
+		circTool.getShape().setAccessibleHelp("test");
 		
 		circTool.reset();
 		
-		assertNotEquals("test", circTool.getTool().getAccessibleHelp());
+		assertNotEquals("test", circTool.getShape().getAccessibleHelp());
 	}
 	
 	@Test
@@ -29,9 +29,9 @@ public class TestCircleTool {
 		
 		circTool.ajustOnDrag(2.0, 2.0, 4.0, 4.0);
 		
-		double centerX = ((CustomCircle)circTool.getTool()).getCenterX();
-		double centerY = ((CustomCircle)circTool.getTool()).getCenterY();
-		double radius = ((CustomCircle)circTool.getTool()).getRadius();
+		double centerX = ((CustomCircle)circTool.getShape()).getCenterX();
+		double centerY = ((CustomCircle)circTool.getShape()).getCenterY();
+		double radius = ((CustomCircle)circTool.getShape()).getRadius();
 		
 		assertEquals(2.0, centerX);
 		assertEquals(2.0, centerY);
@@ -45,9 +45,9 @@ public class TestCircleTool {
 		Tool.setStartFromCenter(false);
 		circTool.ajustOnDrag(2.0, 2.0, 4.0, 4.0);
 		
-		double centerX = ((CustomCircle)circTool.getTool()).getCenterX();
-		double centerY = ((CustomCircle)circTool.getTool()).getCenterY();
-		double radius = ((CustomCircle)circTool.getTool()).getRadius();
+		double centerX = ((CustomCircle)circTool.getShape()).getCenterX();
+		double centerY = ((CustomCircle)circTool.getShape()).getCenterY();
+		double radius = ((CustomCircle)circTool.getShape()).getRadius();
 		
 		assertEquals(3.0, centerX);
 		assertEquals(3.0, centerY);

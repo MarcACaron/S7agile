@@ -16,11 +16,11 @@ public class TestRectangleTool {
 	
 	@Test
 	public void testToolReset() {
-		rectTool.getTool().setAccessibleHelp("test");
+		rectTool.getShape().setAccessibleHelp("test");
 		
 		rectTool.reset();
 		
-		assertNotEquals("test", rectTool.getTool().getAccessibleHelp());
+		assertNotEquals("test", rectTool.getShape().getAccessibleHelp());
 	}
 	
 	@Test
@@ -28,10 +28,10 @@ public class TestRectangleTool {
 		
 		rectTool.ajustOnDrag(2.0, 2.0, 4.0, 4.0);
 		
-		double width = ((CustomRectangle)rectTool.getTool()).getWidth();
-		double height = ((CustomRectangle)rectTool.getTool()).getHeight();
-		double posX = ((CustomRectangle)rectTool.getTool()).getX();
-		double posY = ((CustomRectangle)rectTool.getTool()).getY();
+		double width = ((CustomRectangle)rectTool.getShape()).getWidth();
+		double height = ((CustomRectangle)rectTool.getShape()).getHeight();
+		double posX = ((CustomRectangle)rectTool.getShape()).getX();
+		double posY = ((CustomRectangle)rectTool.getShape()).getY();
 		
 		assertEquals(2.0, width);
 		assertEquals(2.0, height);
@@ -46,10 +46,10 @@ public class TestRectangleTool {
 		Tool.setStartFromCenter(true);
 		rectTool.ajustOnDrag(2.0, 2.0, 4.0, 4.0);
 		
-		double width = ((CustomRectangle)rectTool.getTool()).getWidth();
-		double height = ((CustomRectangle)rectTool.getTool()).getHeight();
-		double posX = ((CustomRectangle)rectTool.getTool()).getX();
-		double posY = ((CustomRectangle)rectTool.getTool()).getY();
+		double width = ((CustomRectangle)rectTool.getShape()).getWidth();
+		double height = ((CustomRectangle)rectTool.getShape()).getHeight();
+		double posX = ((CustomRectangle)rectTool.getShape()).getX();
+		double posY = ((CustomRectangle)rectTool.getShape()).getY();
 		
 		assertEquals(4.0, width);
 		assertEquals(4.0, height);

@@ -9,30 +9,30 @@ import javafx.scene.shape.Shape;
 public class LineTool extends Tool{
 
 	public LineTool() {
-		this.tool = new CustomLine();
+		this.shape = new CustomLine();
 	}
 
 	@Override
 	public void ajustOnDrag(double posXStart, double posYStart, double posXEnd, double posYEnd) {
 		if(startFromCenter) {
-			((CustomLine) this.tool).setStartX(posXEnd);
-			((CustomLine) this.tool).setStartY(posYEnd);
-			((CustomLine) this.tool).setEndX(2*posXStart-posXEnd);
-			((CustomLine) this.tool).setEndY(2*posYStart-posYEnd);
+			((CustomLine) this.shape).setStartX(posXEnd);
+			((CustomLine) this.shape).setStartY(posYEnd);
+			((CustomLine) this.shape).setEndX(2*posXStart-posXEnd);
+			((CustomLine) this.shape).setEndY(2*posYStart-posYEnd);
 		}else {
-			((CustomLine) this.tool).setStartX(posXStart);
-			((CustomLine) this.tool).setStartY(posYStart);
-			((CustomLine) this.tool).setEndX(posXEnd);
-			((CustomLine) this.tool).setEndY(posYEnd);
+			((CustomLine) this.shape).setStartX(posXStart);
+			((CustomLine) this.shape).setStartY(posYStart);
+			((CustomLine) this.shape).setEndX(posXEnd);
+			((CustomLine) this.shape).setEndY(posYEnd);
 		}
 		
 	}
 
 	@Override
 	public void reset() {
-		this.tool = new CustomLine();
-		this.tool.setStroke(stroke);
-		this.tool.setStrokeWidth(lineWidth);
+		this.shape = new CustomLine();
+		this.shape.setStroke(stroke);
+		this.shape.setStrokeWidth(lineWidth);
 	}
 
 	@Override

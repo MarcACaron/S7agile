@@ -9,7 +9,7 @@ import javafx.scene.shape.Shape;
 public class RectangleTool extends Tool {
 
 	public RectangleTool() {
-		this.tool = new CustomRectangle();
+		this.shape = new CustomRectangle();
 	}
 
 	@Override
@@ -30,18 +30,18 @@ public class RectangleTool extends Tool {
 			width = Math.abs(posXEnd - posXStart);
 			height = Math.abs(posYEnd - posYStart);
 		}
-		((CustomRectangle) this.tool).setX(posX);
-		((CustomRectangle) this.tool).setY(posY);
-		((CustomRectangle) this.tool).setWidth(width);
-		((CustomRectangle) this.tool).setHeight(height);
+		((CustomRectangle) this.shape).setX(posX);
+		((CustomRectangle) this.shape).setY(posY);
+		((CustomRectangle) this.shape).setWidth(width);
+		((CustomRectangle) this.shape).setHeight(height);
 	}
 
 	@Override
 	public void reset() {
-		this.tool = new CustomRectangle();
+		this.shape = new CustomRectangle();
 		this.fillShape();
-		this.tool.setStroke(stroke);
-		this.tool.setStrokeWidth(lineWidth);
+		this.shape.setStroke(stroke);
+		this.shape.setStrokeWidth(lineWidth);
 	}
 
 	@Override

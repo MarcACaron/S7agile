@@ -13,30 +13,30 @@ public abstract class Tool {
 	protected static double lineWidth;
 	protected static double lineStyle;
 	protected static boolean startFromCenter;
-	protected Shape tool;
+	protected Shape shape;
 	
 	public Tool() {
 	}
 	
-	public Tool(Shape tool) {
-		this.tool = tool;
+	public Tool(Shape shape) {
+		this.shape = shape;
 	}
 	
 	public abstract void ajustOnDrag(double posXStart, double posYStart, double posXEnd, double posYEnd);
 	
 	public void fillShape() {
-		if(this.tool!=null) {
-			this.tool.setFill(fill);
-			this.tool.setAccessibleText(fillName);
+		if(this.shape!=null) {
+			this.shape.setFill(fill);
+			this.shape.setAccessibleText(fillName);
 		}
 	}
 	public abstract void reset();
-	public Shape getTool() {
-		return tool;
+	public Shape getShape() {
+		return shape;
 	}
 
-	public void setTool(Shape tool) {
-		this.tool = tool;
+	public void setShape(Shape shape) {
+		this.shape = shape;
 	}
 	
 	public abstract Function<Object, Object> fillDetails(DetailPaletteController paletteDetailController, Shape nd);

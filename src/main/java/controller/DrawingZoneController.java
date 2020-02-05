@@ -44,7 +44,7 @@ public class DrawingZoneController {
 				orgX = t.getX();
 				orgY = t.getY();
 				childIndex = pane.getChildren().size();
-				pane.getChildren().add(this.mainApp.getTool().getTool());
+				pane.getChildren().add(this.mainApp.getTool().getShape());
 			}
 		});
 		pane.setOnMouseDragged(t -> {
@@ -62,7 +62,7 @@ public class DrawingZoneController {
 				Tool tool = this.mainApp.getTool();
 				sh.setOnMouseClicked(t2 -> {
 					if(this.mainApp.getTool().getClass()==SelectionTool.class) {
-						this.mainApp.getTool().setTool(sh);
+						this.mainApp.getTool().setShape(sh);
 						this.mainApp.getPaletteCouleurController().setLineWidth(sh.getStrokeWidth());
 						this.mainApp.getPaletteCouleurController().setStroke((Color) (sh.getStroke()));
 						

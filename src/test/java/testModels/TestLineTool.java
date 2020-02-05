@@ -15,11 +15,11 @@ public class TestLineTool {
 	
 	@Test
 	public void testToolReset() {
-		lineTool.getTool().setAccessibleHelp("test");
+		lineTool.getShape().setAccessibleHelp("test");
 		
 		lineTool.reset();
 		
-		assertNotEquals("test", lineTool.getTool().getAccessibleHelp());
+		assertNotEquals("test", lineTool.getShape().getAccessibleHelp());
 	}
 	
 	@Test
@@ -27,10 +27,10 @@ public class TestLineTool {
 		
 		lineTool.ajustOnDrag(2.0, 2.0, 4.0, 4.0);
 		
-		double startX = ((CustomLine)lineTool.getTool()).getStartX();
-		double startY = ((CustomLine)lineTool.getTool()).getStartY();
-		double endX = ((CustomLine)lineTool.getTool()).getEndX();
-		double endY = ((CustomLine)lineTool.getTool()).getEndY();
+		double startX = ((CustomLine)lineTool.getShape()).getStartX();
+		double startY = ((CustomLine)lineTool.getShape()).getStartY();
+		double endX = ((CustomLine)lineTool.getShape()).getEndX();
+		double endY = ((CustomLine)lineTool.getShape()).getEndY();
 		
 		assertEquals(2.0, startX);
 		assertEquals(2.0, startY);
@@ -45,10 +45,10 @@ public class TestLineTool {
 		Tool.setStartFromCenter(true);
 		lineTool.ajustOnDrag(2.0, 2.0, 4.0, 4.0);
 		
-		double startX = ((CustomLine)lineTool.getTool()).getStartX();
-		double startY = ((CustomLine)lineTool.getTool()).getStartY();
-		double endX = ((CustomLine)lineTool.getTool()).getEndX();
-		double endY = ((CustomLine)lineTool.getTool()).getEndY();
+		double startX = ((CustomLine)lineTool.getShape()).getStartX();
+		double startY = ((CustomLine)lineTool.getShape()).getStartY();
+		double endX = ((CustomLine)lineTool.getShape()).getEndX();
+		double endY = ((CustomLine)lineTool.getShape()).getEndY();
 		
 		assertEquals(4.0, startX);
 		assertEquals(4.0, startY);

@@ -50,37 +50,37 @@ public class DetailPaletteController {
 	}
 	@FXML 
 	private void onXPosChange(){
-		((Transformable)this.mainApp.getTool().getTool()).setXPosTool(Double.valueOf(xPosText.getText()));
+		((Transformable)this.mainApp.getTool().getShape()).setXPosTool(Double.valueOf(xPosText.getText()));
 	}
 
 	@FXML 
 	private void onYPosChange(){
-		((Transformable)this.mainApp.getTool().getTool()).setYPosTool(Double.valueOf(yPosText.getText()));
+		((Transformable)this.mainApp.getTool().getShape()).setYPosTool(Double.valueOf(yPosText.getText()));
 	}
 
 	@FXML 
 	private void onWidthChange(){
-		((Transformable)this.mainApp.getTool().getTool()).setWidthTool(Double.valueOf(widthText.getText()));
+		((Transformable)this.mainApp.getTool().getShape()).setWidthTool(Double.valueOf(widthText.getText()));
 	}
 
 	@FXML 
 	private void onHeightChange(){
-		((Transformable)this.mainApp.getTool().getTool()).setHeightTool(Double.valueOf(heightText.getText()));
+		((Transformable)this.mainApp.getTool().getShape()).setHeightTool(Double.valueOf(heightText.getText()));
 	}
 
 	@FXML 
 	private void onRadiusChange(){
-		((Transformable)this.mainApp.getTool().getTool()).setRadiusTool(Double.valueOf(radiusText.getText()));
+		((Transformable)this.mainApp.getTool().getShape()).setRadiusTool(Double.valueOf(radiusText.getText()));
 	}
 
 	@FXML 
 	private void onLengthChange(){
-		((Transformable)this.mainApp.getTool().getTool()).setLengthTool(Double.valueOf(lengthText.getText()));
+		((Transformable)this.mainApp.getTool().getShape()).setLengthTool(Double.valueOf(lengthText.getText()));
 	}
 
 	@FXML 
 	private void onRotateChange(){
-		((Transformable)this.mainApp.getTool().getTool()).setRotationTool(Double.valueOf(angleText.getText()));
+		((Transformable)this.mainApp.getTool().getShape()).setRotationTool(Double.valueOf(angleText.getText()));
 	}
 	
 	public void setMainApp(MainApp inputMain){mainApp = inputMain;}
