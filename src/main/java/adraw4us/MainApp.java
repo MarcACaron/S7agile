@@ -141,11 +141,6 @@ public class MainApp extends Application {
         	logger.log(Level.SEVERE, "Exeption: "+e.getMessage()+"; Fonction: showMainOverview();");
         }
     }
-    
-    /**
-     * Returns the main stage.
-     * @return
-     */
     public Stage getPrimaryStage() {
         return primaryStage;
     }
