@@ -6,12 +6,10 @@ import javafx.scene.shape.Line;
 public class CustomLine extends Line implements Transformable, Identifiable{
 
 	public CustomLine() {
-		// TODO Auto-generated constructor stub
 	}
 
 	public CustomLine(double startX, double startY, double endX, double endY) {
 		super(startX, startY, endX, endY);
-		// TODO Auto-generated constructor stub
 	}
 	
 	@Override
@@ -26,14 +24,17 @@ public class CustomLine extends Line implements Transformable, Identifiable{
 
 	@Override
 	public void setWidthTool(double value) {
+		//Don't have width
 	}
 
 	@Override
 	public void setHeightTool(double value) {
+		//Don't have height
 	}
 
 	@Override
 	public void setRadiusTool(double value) {
+		//Don't have radius
 	}
 
 	@Override

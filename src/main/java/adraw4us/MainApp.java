@@ -1,6 +1,8 @@
 package adraw4us;
 
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import controller.DetailPaletteController;
 import controller.DrawingZoneController;
@@ -25,6 +27,7 @@ public class MainApp extends Application {
     private PaletteCouleurController paletteCouleurController;
     private DetailPaletteController paletteDetailController;
     private Tool Tool;
+    private Logger logger = Logger.getLogger(MainApp.class.getName());
     
     public MainApp() {
     	this.Tool = null;
@@ -77,7 +80,7 @@ public class MainApp extends Application {
             menuController = loader.getController();
             menuController.setMainApp(this);
         } catch (IOException e) {
-        	System.out.println(e.getMessage());
+        	logger.log(Level.SEVERE, "Exeption: "+e.getMessage()+"; Fonction: initRootLayout();");
         }
     }
     
@@ -135,7 +138,7 @@ public class MainApp extends Application {
             paletteDetailController.setMainApp(this);
 
         } catch (IOException e) {
-        	System.out.println(e.getMessage());
+        	logger.log(Level.SEVERE, "Exeption: "+e.getMessage()+"; Fonction: showMainOverview();");
         }
     }
     

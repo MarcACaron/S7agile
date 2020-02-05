@@ -6,22 +6,18 @@ import javafx.scene.shape.Rectangle;
 public class CustomRectangle extends Rectangle implements Transformable, Identifiable {
 
 	public CustomRectangle() {
-		// TODO Auto-generated constructor stub
 	}
 
 	public CustomRectangle(double width, double height) {
 		super(width, height);
-		// TODO Auto-generated constructor stub
 	}
 
 	public CustomRectangle(double width, double height, Paint fill) {
 		super(width, height, fill);
-		// TODO Auto-generated constructor stub
 	}
 
 	public CustomRectangle(double x, double y, double width, double height) {
 		super(x, y, width, height);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
@@ -46,10 +42,12 @@ public class CustomRectangle extends Rectangle implements Transformable, Identif
 
 	@Override
 	public void setRadiusTool(double value) {
+		//Don't have radius
 	}
 
 	@Override
 	public void setLengthTool(double value) {
+		//Don't have length
 	}
 
 	@Override

@@ -7,7 +7,6 @@ import javafx.scene.shape.Circle;
 public class CustomCircle extends Circle implements Transformable, Identifiable {
 
 	public CustomCircle() {
-		// TODO Auto-generated constructor stub
 	}
 
 	public CustomCircle(double radius) {
@@ -16,17 +15,14 @@ public class CustomCircle extends Circle implements Transformable, Identifiable 
 
 	public CustomCircle(double radius, Paint fill) {
 		super(radius, fill);
-		// TODO Auto-generated constructor stub
 	}
 
 	public CustomCircle(double centerX, double centerY, double radius) {
 		super(centerX, centerY, radius);
-		// TODO Auto-generated constructor stub
 	}
 
 	public CustomCircle(double centerX, double centerY, double radius, Paint fill) {
 		super(centerX, centerY, radius, fill);
-		// TODO Auto-generated constructor stub
 	}
 	
 	public void setXPosTool(double value) {
@@ -38,9 +34,11 @@ public class CustomCircle extends Circle implements Transformable, Identifiable 
 	}
 
 	public void setWidthTool(double value) {
+		//Don't have width
 	}
 
 	public void setHeightTool(double value) {
+		//Don't have height
 	}
 
 	public void setRadiusTool(double value) {
@@ -48,6 +46,7 @@ public class CustomCircle extends Circle implements Transformable, Identifiable 
 	}
 
 	public void setLengthTool(double value) {
+		//Don't have length
 	}
 
 	@Override
