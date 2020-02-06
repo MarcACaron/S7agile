@@ -59,5 +59,55 @@ public class CustomCircle extends Circle implements Transformable, Identifiable 
 	public ShapeType getShapeType() {
 		return ShapeType.CIRCLE;
 	}
-	
+
+	@Override
+	public double getXPos() {
+		this.getCenterX();
+		return 0;
+	}
+
+	@Override
+	public double getYPos() {
+		this.getCenterY();
+		return 0;
+	}
+
+	@Override
+	public double getWidth() {
+		return 0;
+	}
+
+	@Override
+	public double getHeight() {
+		return 0;
+	}
+
+	@Override
+	public double getLength() {
+		return 0;
+	}
+
+	@Override
+	public double getRotation() {
+		return this.getRotate();
+	}
+	@Override
+	public boolean widthToolisNeeded() {
+		return false;
+	}
+
+	@Override
+	public boolean heightToolisNeeded() {
+		return false;
+	}
+
+	@Override
+	public boolean radiusToolisNeeded() {
+		return true;
+	}
+
+	@Override
+	public boolean lengthToolisNeeded() {
+		return false;
+	}
 }

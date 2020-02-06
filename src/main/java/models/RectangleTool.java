@@ -4,6 +4,7 @@ import java.util.function.Function;
 
 import adraw4us.Tool;
 import controller.DetailPaletteController;
+import controller.PaletteCouleurController;
 import javafx.scene.shape.Shape;
 
 public class RectangleTool extends Tool {
@@ -42,15 +43,5 @@ public class RectangleTool extends Tool {
 		this.fillShape();
 		this.shape.setStroke(stroke);
 		this.shape.setStrokeWidth(lineWidth);
-	}
-
-	@Override
-	public Function<Object, Object> fillDetails(DetailPaletteController pc, Shape nd) {
-		return (y) -> {
-			pc.select(false, false, true, true, false);
-			CustomRectangle rec = (CustomRectangle)nd;
-			pc.setTextField(rec.getX(), rec.getY(), rec.getWidth(), rec.getHeight(), 0.0, 0.0, rec.getRotate());
-			return y;
-			};
 	}
 }

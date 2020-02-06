@@ -36,14 +36,14 @@ public class DetailPaletteController {
 			detailPalette.setDisable(pState);
 		}
 	}
-	public void select(boolean width, boolean height, boolean radius, boolean length, boolean angle) {
+	public void select(Transformable tShape) {
 		paletteDisable(false);
 		
-		this.width.setDisable(width);
-		this.height.setDisable(height);
-		this.radius.setDisable(radius);
-		this.length.setDisable(length);
-		this.angle.setDisable(angle);
+		this.width.setDisable(!tShape.widthToolisNeeded());
+		this.height.setDisable(!tShape.heightToolisNeeded());
+		this.radius.setDisable(!tShape.radiusToolisNeeded());
+		this.length.setDisable(!tShape.lengthToolisNeeded());
+		this.angle.setDisable(false);
 	}
 	@FXML private void initialize() {
 		detailPalette.setDisable(true);
@@ -85,15 +85,15 @@ public class DetailPaletteController {
 	
 	public void setMainApp(MainApp inputMain){mainApp = inputMain;}
 
-	public void setTextField(double xPos, double yPos, double width, double height, double radius, double length, double angle) {
+	public void setTextField(Transformable tShape) {
 		
-		setXPosText(String.valueOf(Math.floor(xPos * 100) / 100));
-		setYPosText(String.valueOf(Math.floor(yPos * 100) / 100));
-		setWidthText(String.valueOf(Math.floor(width * 100) / 100));
-		setHeightText(String.valueOf(Math.floor(height * 100) / 100));
-		setRadiusText(String.valueOf(Math.floor(radius * 100) / 100));
-		setLengthText(String.valueOf(Math.floor(length * 100) / 100));
-		setAngleText(String.valueOf(Math.floor(angle * 100) / 100));
+		setXPosText(String.valueOf(Math.floor(tShape.getXPos() * 100) / 100));
+		setYPosText(String.valueOf(Math.floor(tShape.getYPos() * 100) / 100));
+		setWidthText(String.valueOf(Math.floor(tShape.getWidth() * 100) / 100));
+		setHeightText(String.valueOf(Math.floor(tShape.getHeight() * 100) / 100));
+		setRadiusText(String.valueOf(Math.floor(tShape.getRadius() * 100) / 100));
+		setLengthText(String.valueOf(Math.floor(tShape.getLength() * 100) / 100));
+		setAngleText(String.valueOf(Math.floor(tShape.getRotation() * 100) / 100));
 		
 	}
 	

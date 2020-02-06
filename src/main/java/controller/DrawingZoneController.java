@@ -3,14 +3,11 @@ package controller;
 
 
 import adraw4us.MainApp;
-import adraw4us.Tool;
 import javafx.fxml.FXML;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
 import javafx.scene.shape.Shape;
 import javafx.scene.transform.Scale;
-import models.SelectionTool;
 
 public class DrawingZoneController {
 	
@@ -36,40 +33,16 @@ public class DrawingZoneController {
 	@FXML
     private void initialize() {
 		pane.setOnMousePressed(t -> {
-			if(this.mainApp.getTool().getClass()==SelectionTool.class){// Mode selection	
-				this.mainApp.getTool().fillDetails(this.mainApp.getPaletteDetailController(), null).apply(null);
-				this.mainApp.getTool().reset();
-			}else {
-				this.mainApp.getTool().reset();
-				orgX = t.getX();
-				orgY = t.getY();
-				childIndex = pane.getChildren().size();
-				pane.getChildren().add(this.mainApp.getTool().getShape());
-			}
+			orgX = t.getX();
+			orgY = t.getY();
+			childIndex = pane.getChildren().size();
+			childIndex = this.mainApp.getTool().mousePressed(this.mainApp.getPaletteDetailController(), pane);
 		});
 		pane.setOnMouseDragged(t -> {
-			if(this.mainApp.getTool()==null) {// Mode selection
-				
-			}else {
-				this.mainApp.getTool().ajustOnDrag(orgX, orgY, t.getX(), t.getY());
-			}
+			this.mainApp.getTool().mouseDragged(orgX, orgY, t.getX(), t.getY());
 		});
 		pane.setOnMouseReleased(t -> {
-			if(this.mainApp.getTool().getClass()==SelectionTool.class) {// Mode selection
-				
-			}else {
-				Shape sh = (Shape) pane.getChildren().get(childIndex);
-				Tool tool = this.mainApp.getTool();
-				sh.setOnMouseClicked(t2 -> {
-					if(this.mainApp.getTool().getClass()==SelectionTool.class) {
-						this.mainApp.getTool().setShape(sh);
-						this.mainApp.getPaletteCouleurController().setLineWidth(sh.getStrokeWidth());
-						this.mainApp.getPaletteCouleurController().setStroke((Color) (sh.getStroke()));
-						
-						tool.fillDetails(this.mainApp.getPaletteDetailController(), sh).apply(null);
-					}
-				});
-			}
+			this.mainApp.getTool().mouseReleased(mainApp, pane, this.mainApp.getPaletteCouleurController(), this.mainApp.getPaletteDetailController());
 		});
 		
     }

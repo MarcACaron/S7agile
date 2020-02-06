@@ -3,8 +3,14 @@ package adraw4us;
 import java.util.function.Function;
 
 import controller.DetailPaletteController;
+import controller.PaletteCouleurController;
+import javafx.geometry.Point2D;
+import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Shape;
+import models.CustomCircle;
+import models.Transformable;
 
 public abstract class Tool {
 	protected static Paint fill;
@@ -39,7 +45,42 @@ public abstract class Tool {
 		this.shape = shape;
 	}
 	
-	public abstract Function<Object, Object> fillDetails(DetailPaletteController paletteDetailController, Shape nd);
+	public Function<Object, Object> fillDetails(DetailPaletteController dp, Shape nd){
+		return (y) -> {
+			if(nd == null) 
+				dp.paletteDisable(true);
+			else {
+				Transformable tShape = (Transformable) nd;
+				dp.select(tShape);
+				dp.setTextField(tShape);
+			}
+			return y;
+			};
+	}
+	
+	
+	public int mousePressed(DetailPaletteController detailPaletteController, Pane pane) {
+		int index = pane.getChildren().size();
+		this.reset();
+		pane.getChildren().add(this.getShape());
+		return index;
+	}
+	
+	public void mouseDragged(double posXStart, double posYStart, double posXEnd, double posYEnd) {
+		this.ajustOnDrag(posXStart, posYStart, posXEnd, posYEnd);
+	}
+	
+	public void mouseReleased(MainApp mainApp, Pane pane, PaletteCouleurController pc, DetailPaletteController dp) {
+		Shape shape2 = (Shape) pane.getChildren().get(pane.getChildren().size()-1);
+		shape2.setOnMouseClicked(t2 -> {
+			System.out.println("ok");
+			mainApp.getTool().setShape(shape2);
+			pc.setLineWidth(shape2.getStrokeWidth());
+			pc.setStroke((Color) (shape2.getStroke()));
+			
+			mainApp.getTool().fillDetails(dp, shape2).apply(null);
+		});
+	}
 
 	public static Paint getFill() {
 		return fill;

@@ -1,10 +1,6 @@
 package models;
 
-import java.util.function.Function;
-
 import adraw4us.Tool;
-import controller.DetailPaletteController;
-import javafx.scene.shape.Shape;
 
 public class LineTool extends Tool{
 
@@ -33,15 +29,5 @@ public class LineTool extends Tool{
 		this.shape = new CustomLine();
 		this.shape.setStroke(stroke);
 		this.shape.setStrokeWidth(lineWidth);
-	}
-
-	@Override
-	public Function<Object, Object> fillDetails(DetailPaletteController pc, Shape nd) {
-		return (y) -> {
-			pc.select(true, true, true, false, false);
-			CustomLine line = (CustomLine)nd;
-			pc.setTextField(line.getStartX(), line.getStartY(), 0.0, 0.0, 0.0, Math.sqrt(Math.pow((line.getStartX()-line.getStartY()), 2) + Math.pow((line.getEndX()-line.getEndY()), 2)), line.getRotate());
-			return y;
-			};
 	}
 }
