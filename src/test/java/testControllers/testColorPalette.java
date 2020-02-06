@@ -13,7 +13,7 @@ public class testColorPalette extends testApplicationUI {
 	private Button fillRed;
 	private ColorPicker stroke;
 	private ChoiceBox<Double> lineWidth;
-
+	/*
 	@Test
 	public void test_FillButtons() {
 		fillAnanas = find("#fillAnanas");
@@ -29,5 +29,5 @@ public class testColorPalette extends testApplicationUI {
 		clickOn(lineWidth);
 		
 		//assertEquals(mainApp.getTool().getTool().getAccessibleText().compareTo("Ananas"), 0);
-	}
+	}*/
 }

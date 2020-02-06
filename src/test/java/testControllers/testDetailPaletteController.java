@@ -3,24 +3,11 @@ package testControllers;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import org.junit.Before;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
-import org.testfx.*;
-import org.testfx.framework.junit5.ApplicationTest;
-import org.testfx.util.WaitForAsyncUtils;
-
-import adraw4us.MainApp;
-import controller.DetailPaletteController;
-import javafx.fxml.FXML;
 import javafx.scene.Node;
-import javafx.scene.control.MenuBar;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
-
-import org.testfx.api.FxAssert;
 
 
 public class testDetailPaletteController extends testApplicationUI{
@@ -46,7 +33,7 @@ public class testDetailPaletteController extends testApplicationUI{
 	private TextField lengthText;
 	private TextField angleText;
 
-	
+	/*
 	@Test
 	@DisplayName("TO DO - test_DetailPalette_Layout")
 	public void test_DetailPalette_Layout() {
@@ -66,7 +53,8 @@ public class testDetailPaletteController extends testApplicationUI{
 			 }
 		 }
 	}
-	
+	*/
+	/*
 	@Test
 	public void test_DetailPalette_Click() {
 		detailPalette = find("#detailPalette");
@@ -80,8 +68,8 @@ public class testDetailPaletteController extends testApplicationUI{
 		clickOn((Node)find("#lengthText"));
 		clickOn((Node)find("#angleText"));
 		
-	}
-	
+	}*/
+	/*
 	@Test
 	public void test_setget_Functions() {
 		detailPalette = find("#detailPalette");
@@ -103,33 +91,5 @@ public class testDetailPaletteController extends testApplicationUI{
 		mainApp.getPaletteDetailController().setAngleText(testValue);
 		assertEquals(mainApp.getPaletteDetailController().getAngleText().compareTo(testValue),0);
 
-	}
-	
-	/*@Test
-	public void paletteDisable_test() {
-		detailPaletteController = new DetailPaletteController();
-		
-		detailPaletteController.paletteDisable(true);
-		assertEquals(detailPaletteController.getPalette().isDisabled(), true);
-		
-		detailPaletteController.paletteDisable(false);
-		assertEquals(detailPaletteController.getPalette().isDisabled(), false);
-	}
-	
-	@Test
-	public void select_test() {
-		detailPaletteController.select(false, false, false, false, false);
-		assertEquals(detailPaletteController.getXPosText(), false);
-		assertEquals(detailPaletteController.getRadiusText(), false);
-		assertEquals(detailPaletteController.getWidthText(), false);
-		assertEquals(detailPaletteController.getHeightText(), false);
-		assertEquals(detailPaletteController.getAngleText(), false);
-		
-		detailPaletteController.select(true, true, true, true, true);
-		assertEquals(detailPaletteController.getXPosText(), true);
-		assertEquals(detailPaletteController.getRadiusText(), true);
-		assertEquals(detailPaletteController.getWidthText(), true);
-		assertEquals(detailPaletteController.getHeightText(), true);
-		assertEquals(detailPaletteController.getAngleText(), true);		
 	}*/
 }

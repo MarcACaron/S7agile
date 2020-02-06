@@ -21,7 +21,7 @@ public class TestMenuController extends testApplicationUI{
 				{"Size","9points","10points","12points","14points","18points","24points","36points","48points","Single space","Double space","Font sizes","Line spacing aa"}, 
 				{"Help", "New", "Open", "Open as", "Close", "Save", "Save as", "Revert", "Page Setup", "Print", "Quit"}};
 	
-	
+	/*
 	@Test
 	public void test_MenuBar_Layout() {
 		
@@ -47,5 +47,5 @@ public class TestMenuController extends testApplicationUI{
 			clickOn(menuBar);
 		}
 	}
-	
+	*/
 }

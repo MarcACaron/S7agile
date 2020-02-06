@@ -15,6 +15,7 @@ public class testPaletteFormController extends testApplicationUI {
     private ToggleButton ptDepart;
 	private ImageView ptDepartImage;
 	
+	/*
 	@Test
 	public void test_PaletteFormLayout() {
 		pointeur = find("#pointeur");
@@ -28,5 +29,5 @@ public class testPaletteFormController extends testApplicationUI {
 		clickOn(circle);
 		clickOn(line);
 		clickOn(ptDepart);
-	}
+	}*/
 }
