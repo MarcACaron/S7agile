@@ -33,8 +33,6 @@
               <MenuItem mnemonicParsing="false" text="Copy" />
               <MenuItem mnemonicParsing="false" text="Paste" />
               <MenuItem mnemonicParsing="false" onAction="#clear" text="Clear" />
-              <MenuItem mnemonicParsing="false" text="Duplicate" />              
-              <MenuItem mnemonicParsing="false" text="Select All ctl" />
                             
 			</items>
             
@@ -44,31 +42,10 @@
               <MenuItem mnemonicParsing="false" text="Turn Autogrid off" />
               <MenuItem mnemonicParsing="false" text="Show rules" />
               <MenuItem mnemonicParsing="false" text="Show gridlines" />
-              <MenuItem mnemonicParsing="false" text="Show size" />
-              <MenuItem mnemonicParsing="false" text="Single space" />
-              <MenuItem mnemonicParsing="false" text="Double space" />
-              <MenuItem mnemonicParsing="false" text="Line spacing aa" />              
+              <MenuItem mnemonicParsing="false" text="Show size" />           
 			</items>
           </Menu>
           
-          <Menu fx:id="MenuBarPen" mnemonicParsing="false" text="Pen">
-             <items>              
-              <MenuItem mnemonicParsing="false" text="Plain line" />
-              <MenuItem mnemonicParsing="false" text="Dashed line" />
-              <MenuItem mnemonicParsing="false" text="Autosize line" />
-              <MenuItem mnemonicParsing="false" text="Arrow at start" />
-              <MenuItem mnemonicParsing="false" text="Arrow at end" />         
-			</items>
-          </Menu>   
-          
-          <Menu fx:id="MenuBarFont" mnemonicParsing="false" text="Font">
-            <items>
-              <MenuItem mnemonicParsing="false" text="Times" />
-              <MenuItem mnemonicParsing="false" text="Helvetica" />
-              <MenuItem mnemonicParsing="false" text="Fonts" />
-              <MenuItem mnemonicParsing="false" text="Font sizes" />
-			</items>
-          </Menu>   
                                                                 
         </menus>
       </MenuBar>
