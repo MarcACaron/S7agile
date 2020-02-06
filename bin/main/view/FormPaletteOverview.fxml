@@ -7,7 +7,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox prefWidth="100.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.PaletteFormeController">
+<VBox prefWidth="100.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.PaletteFormeController">
    <children>
       <ToggleButton fx:id="pointeur" mnemonicParsing="false" onAction="#choosePointer" prefWidth="100.0">
          <toggleGroup>
