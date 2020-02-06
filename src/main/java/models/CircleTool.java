@@ -4,6 +4,7 @@ import java.util.function.Function;
 
 import adraw4us.Tool;
 import controller.DetailPaletteController;
+import controller.PaletteCouleurController;
 import javafx.scene.shape.Shape;
 
 public class CircleTool extends Tool{
@@ -37,15 +38,5 @@ public class CircleTool extends Tool{
 		this.fillShape();
 		this.shape.setStroke(stroke);
 		this.shape.setStrokeWidth(lineWidth);
-	}
-
-	@Override
-	public Function<Object, Object> fillDetails(DetailPaletteController pc, Shape nd) {
-		return (y) -> {
-			pc.select(true, true, false, true, false);
-			CustomCircle circle = (CustomCircle)nd;
-			pc.setTextField(circle.getCenterX(), circle.getCenterY(), 0.0, 0.0, circle.getRadius(), 0.0, circle.getRotate());
-			return y;
-			};
 	}
 }

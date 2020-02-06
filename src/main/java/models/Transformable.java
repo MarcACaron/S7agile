@@ -8,4 +8,15 @@ public interface Transformable {
 	public void setRadiusTool(double value);
 	public void setLengthTool(double value);
 	public void setRotationTool(double value);
+	public double getXPos();
+	public double getYPos();
+	public double getWidth();
+	public double getHeight();
+	public double getRadius();
+	public double getLength();
+	public double getRotation();
+	public boolean widthToolisNeeded();
+	public boolean heightToolisNeeded();
+	public boolean radiusToolisNeeded();
+	public boolean lengthToolisNeeded();
 }
