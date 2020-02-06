@@ -1,0 +1,6 @@
+projectKey=adrawUSKey
+serverUrl=http://sonar.gel.usherbrooke.ca:9000
+serverVersion=7.9.1.27448
+dashboardUrl=http://sonar.gel.usherbrooke.ca:9000/dashboard?id=adrawUSKey
+ceTaskId=AXARODCwODTkXnyk2NCs
+ceTaskUrl=http://sonar.gel.usherbrooke.ca:9000/api/ce/task?id=AXARODCwODTkXnyk2NCs
