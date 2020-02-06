@@ -14,16 +14,16 @@ public class CustomLine extends Line implements Transformable, Identifiable{
 	
 	@Override
 	public void setXPosTool(double value) {
-		double length = this.getLength();
+		double xL = this.getEndX() - this.getStartX();
 		this.setStartX(value);
-		this.setLengthTool(length);
+		this.setEndX(value + xL);
 	}
 
 	@Override
 	public void setYPosTool(double value) {
-		double length = this.getLength();
+		double yL = this.getEndY() - this.getStartY();
 		this.setStartY(value);
-		this.setLengthTool(length);
+		this.setEndY(value + yL);
 	}
 
 	@Override
@@ -43,8 +43,9 @@ public class CustomLine extends Line implements Transformable, Identifiable{
 
 	@Override
 	public void setLengthTool(double value) {
-		this.setEndX(this.getStartX()+Math.cos(this.getRotate())*value);
-		this.setEndX(this.getStartX()+Math.cos(this.getRotate())*value);
+		double length = this.getLength();
+		this.setEndX((this.getEndX()-this.getStartX())*value/length+this.getStartX());
+		this.setEndY((this.getEndY()-this.getStartY())*value/length+this.getStartY());
 	}
 	
 	@Override
