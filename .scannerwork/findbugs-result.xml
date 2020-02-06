@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<BugCollection version="3.1.12" sequence="0" timestamp="1580835101837" analysisTimestamp="1580836853365" release="">
+  <Project>
+    <Jar>C:\Users\marc_\Documents\Universit&#233;\S7MDA\APP02\GIT\bin\main\adraw4us\MainApp.class</Jar>
+    <Jar>C:\Users\marc_\Documents\Universit&#233;\S7MDA\APP02\GIT\bin\main\adraw4us\Tool.class</Jar>
+    <Jar>C:\Users\marc_\Documents\Universit&#233;\S7MDA\APP02\GIT\bin\main\controller\DetailPaletteController.class</Jar>
+    <Jar>C:\Users\marc_\Documents\Universit&#233;\S7MDA\APP02\GIT\bin\main\controller\DrawingZoneController.class</Jar>
+    <Jar>C:\Users\marc_\Documents\Universit&#233;\S7MDA\APP02\GIT\bin\main\controller\FileController.class</Jar>
+    <Jar>C:\Users\marc_\Documents\Universit&#233;\S7MDA\APP02\GIT\bin\main\controller\MenuController.class</Jar>
+    <Jar>C:\Users\marc_\Documents\Universit&#233;\S7MDA\APP02\GIT\bin\main\controller\PaletteCouleurController.class</Jar>
+    <Jar>C:\Users\marc_\Documents\Universit&#233;\S7MDA\APP02\GIT\bin\main\controller\PaletteFormeController.class</Jar>
+    <Jar>C:\Users\marc_\Documents\Universit&#233;\S7MDA\APP02\GIT\bin\main\models\CircleTool.class</Jar>
+    <Jar>C:\Users\marc_\Documents\Universit&#233;\S7MDA\APP02\GIT\bin\main\models\CustomCircle.class</Jar>
+    <Jar>C:\Users\marc_\Documents\Universit&#233;\S7MDA\APP02\GIT\bin\main\models\CustomLine.class</Jar>
+    <Jar>C:\Users\marc_\Documents\Universit&#233;\S7MDA\APP02\GIT\bin\main\models\CustomRectangle.class</Jar>
+    <Jar>C:\Users\marc_\Documents\Universit&#233;\S7MDA\APP02\GIT\bin\main\models\Drawable.class</Jar>
+    <Jar>C:\Users\marc_\Documents\Universit&#233;\S7MDA\APP02\GIT\bin\main\models\EditDraw.class</Jar>
+    <Jar>C:\Users\marc_\Documents\Universit&#233;\S7MDA\APP02\GIT\bin\main\models\EditMode.class</Jar>
+    <Jar>C:\Users\marc_\Documents\Universit&#233;\S7MDA\APP02\GIT\bin\main\models\Identifiable.class</Jar>
+    <Jar>C:\Users\marc_\Documents\Universit&#233;\S7MDA\APP02\GIT\bin\main\models\LineTool.class</Jar>
+    <Jar>C:\Users\marc_\Documents\Universit&#233;\S7MDA\APP02\GIT\bin\main\models\PatternApplier.class</Jar>
+    <Jar>C:\Users\marc_\Documents\Universit&#233;\S7MDA\APP02\GIT\bin\main\models\RectangleTool.class</Jar>
+    <Jar>C:\Users\marc_\Documents\Universit&#233;\S7MDA\APP02\GIT\bin\main\models\SelectionTool.class</Jar>
+    <Jar>C:\Users\marc_\Documents\Universit&#233;\S7MDA\APP02\GIT\bin\main\models\ShapeType.class</Jar>
+    <Jar>C:\Users\marc_\Documents\Universit&#233;\S7MDA\APP02\GIT\bin\main\models\Transformable.class</Jar>
+    <Jar>C:\Users\marc_\Documents\Universit&#233;\S7MDA\APP02\GIT\bin\main\models\XmlDecoder.class</Jar>
+    <Jar>C:\Users\marc_\Documents\Universit&#233;\S7MDA\APP02\GIT\bin\main\models\XmlEncoder.class</Jar>
+    <Jar>C:\Users\marc_\Documents\Universit&#233;\S7MDA\APP02\GIT\bin\main\models\XmlStrings.class</Jar>
+    <Jar>C:\Users\marc_\Documents\Universit&#233;\S7MDA\APP02\GIT\bin\test\testControllers\testApplicationUI.class</Jar>
+    <Jar>C:\Users\marc_\Documents\Universit&#233;\S7MDA\APP02\GIT\bin\test\testControllers\testColorPalette.class</Jar>
+    <Jar>C:\Users\marc_\Documents\Universit&#233;\S7MDA\APP02\GIT\bin\test\testControllers\testDetailPaletteController.class</Jar>
+    <Jar>C:\Users\marc_\Documents\Universit&#233;\S7MDA\APP02\GIT\bin\test\testControllers\TestMenuController.class</Jar>
+    <Jar>C:\Users\marc_\Documents\Universit&#233;\S7MDA\APP02\GIT\bin\test\testControllers\testPaletteFormController.class</Jar>
+    <Jar>C:\Users\marc_\Documents\Universit&#233;\S7MDA\APP02\GIT\bin\test\testModels\TestCircleTool.class</Jar>
+    <Jar>C:\Users\marc_\Documents\Universit&#233;\S7MDA\APP02\GIT\bin\test\testModels\testEditDraw.class</Jar>
+    <Jar>C:\Users\marc_\Documents\Universit&#233;\S7MDA\APP02\GIT\bin\test\testModels\TestLineTool.class</Jar>
+    <Jar>C:\Users\marc_\Documents\Universit&#233;\S7MDA\APP02\GIT\bin\test\testModels\TestPatternApplier.class</Jar>
+    <Jar>C:\Users\marc_\Documents\Universit&#233;\S7MDA\APP02\GIT\bin\test\testModels\TestRectangleTool.class</Jar>
+    <Jar>C:\Users\marc_\Documents\Universit&#233;\S7MDA\APP02\GIT\bin\test\testModels\TestSelectionTool.class</Jar>
+    <Jar>C:\Users\marc_\Documents\Universit&#233;\S7MDA\APP02\GIT\bin\test\testModels\TestXmlEncoderDecoder.class</Jar>
+    <AuxClasspathEntry>C:\Users\marc_\Documents\Universit&#233;\S7MDA\APP02\GIT\bin</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\marc_\Documents\Universit&#233;\S7MDA\APP02\GIT\.scannerwork\findbugs\annotations.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\marc_\Documents\Universit&#233;\S7MDA\APP02\GIT\.scannerwork\findbugs\jsr305.jar</AuxClasspathEntry>
+    <WrkDir>C:\Users\marc_\Documents\Universit&#233;\S7MDA\APP02\GIT\.scannerwork</WrkDir>
+  </Project>
+  <Errors errors="0" missingClasses="44">
+    <MissingClass>apply</MissingClass>
+    <MissingClass>handle</MissingClass>
+    <MissingClass>javafx.application.Application</MissingClass>
+    <MissingClass>javafx.collections.FXCollections</MissingClass>
+    <MissingClass>javafx.collections.ObservableList</MissingClass>
+    <MissingClass>javafx.event.EventHandler</MissingClass>
+    <MissingClass>javafx.fxml.FXMLLoader</MissingClass>
+    <MissingClass>javafx.scene.Scene</MissingClass>
+    <MissingClass>javafx.scene.control.Alert</MissingClass>
+    <MissingClass>javafx.scene.control.Alert$AlertType</MissingClass>
+    <MissingClass>javafx.scene.control.Button</MissingClass>
+    <MissingClass>javafx.scene.control.ButtonBar$ButtonData</MissingClass>
+    <MissingClass>javafx.scene.control.ButtonType</MissingClass>
+    <MissingClass>javafx.scene.control.ChoiceBox</MissingClass>
+    <MissingClass>javafx.scene.control.ColorPicker</MissingClass>
+    <MissingClass>javafx.scene.control.Menu</MissingClass>
+    <MissingClass>javafx.scene.control.MenuBar</MissingClass>
+    <MissingClass>javafx.scene.control.MenuItem</MissingClass>
+    <MissingClass>javafx.scene.control.TextField</MissingClass>
+    <MissingClass>javafx.scene.control.ToggleButton</MissingClass>
+    <MissingClass>javafx.scene.image.Image</MissingClass>
+    <MissingClass>javafx.scene.image.ImageView</MissingClass>
+    <MissingClass>javafx.scene.input.MouseEvent</MissingClass>
+    <MissingClass>javafx.scene.layout.AnchorPane</MissingClass>
+    <MissingClass>javafx.scene.layout.Background</MissingClass>
+    <MissingClass>javafx.scene.layout.BackgroundFill</MissingClass>
+    <MissingClass>javafx.scene.layout.BorderPane</MissingClass>
+    <MissingClass>javafx.scene.layout.HBox</MissingClass>
+    <MissingClass>javafx.scene.layout.Pane</MissingClass>
+    <MissingClass>javafx.scene.layout.VBox</MissingClass>
+    <MissingClass>javafx.scene.paint.Color</MissingClass>
+    <MissingClass>javafx.scene.paint.ImagePattern</MissingClass>
+    <MissingClass>javafx.scene.shape.Circle</MissingClass>
+    <MissingClass>javafx.scene.shape.Line</MissingClass>
+    <MissingClass>javafx.scene.shape.Rectangle</MissingClass>
+    <MissingClass>javafx.scene.shape.Shape</MissingClass>
+    <MissingClass>javafx.scene.transform.Scale</MissingClass>
+    <MissingClass>javafx.stage.FileChooser</MissingClass>
+    <MissingClass>javafx.stage.FileChooser$ExtensionFilter</MissingClass>
+    <MissingClass>javafx.stage.Stage</MissingClass>
+    <MissingClass>org.junit.jupiter.api.Assertions</MissingClass>
+    <MissingClass>org.testfx.framework.junit5.ApplicationTest</MissingClass>
+    <MissingClass>org.testfx.service.query.NodeQuery</MissingClass>
+    <MissingClass>org.testfx.util.WaitForAsyncUtils</MissingClass>
+  </Errors>
+  <FindBugsSummary timestamp="Tue, 4 Feb 2020 11:51:41 -0500" total_classes="37" referenced_classes="89" total_bugs="0" total_size="1266" num_packages="5" java_version="11.0.3" vm_version="11.0.3+7" cpu_seconds="21.64" clock_seconds="5.38" peak_mbytes="287.10" alloc_mbytes="2016.00" gc_seconds="0.10">
+    <FileStats path="adraw4us/MainApp.java" bugCount="0" size="81"/>
+    <FileStats path="adraw4us/Tool.java" bugCount="0" size="28"/>
+    <FileStats path="controller/DetailPaletteController.java" bugCount="0" size="99"/>
+    <FileStats path="controller/DrawingZoneController.java" bugCount="0" size="54"/>
+    <FileStats path="controller/FileController.java" bugCount="0" size="67"/>
+    <FileStats path="controller/MenuController.java" bugCount="0" size="43"/>
+    <FileStats path="controller/PaletteCouleurController.java" bugCount="0" size="71"/>
+    <FileStats path="controller/PaletteFormeController.java" bugCount="0" size="53"/>
+    <FileStats path="models/CircleTool.java" bugCount="0" size="33"/>
+    <FileStats path="models/CustomCircle.java" bugCount="0" size="36"/>
+    <FileStats path="models/CustomLine.java" bugCount="0" size="28"/>
+    <FileStats path="models/CustomRectangle.java" bugCount="0" size="34"/>
+    <FileStats path="models/Drawable.java" bugCount="0" size="8"/>
+    <FileStats path="models/EditDraw.java" bugCount="0" size="18"/>
+    <FileStats path="models/EditMode.java" bugCount="0" size="18"/>
+    <FileStats path="models/Identifiable.java" bugCount="0" size="2"/>
+    <FileStats path="models/LineTool.java" bugCount="0" size="29"/>
+    <FileStats path="models/PatternApplier.java" bugCount="0" size="19"/>
+    <FileStats path="models/RectangleTool.java" bugCount="0" size="34"/>
+    <FileStats path="models/SelectionTool.java" bugCount="0" size="18"/>
+    <FileStats path="models/ShapeType.java" bugCount="0" size="16"/>
+    <FileStats path="models/Transformable.java" bugCount="0" size="8"/>
+    <FileStats path="models/XmlDecoder.java" bugCount="0" size="75"/>
+    <FileStats path="models/XmlEncoder.java" bugCount="0" size="52"/>
+    <FileStats path="models/XmlStrings.java" bugCount="0" size="28"/>
+    <FileStats path="testControllers/TestMenuController.java" bugCount="0" size="29"/>
+    <FileStats path="testControllers/testApplicationUI.java" bugCount="0" size="11"/>
+    <FileStats path="testControllers/testColorPalette.java" bugCount="0" size="20"/>
+    <FileStats path="testControllers/testDetailPaletteController.java" bugCount="0" size="62"/>
+    <FileStats path="testControllers/testPaletteFormController.java" bugCount="0" size="21"/>
+    <FileStats path="testModels/TestCircleTool.java" bugCount="0" size="29"/>
+    <FileStats path="testModels/TestLineTool.java" bugCount="0" size="33"/>
+    <FileStats path="testModels/TestPatternApplier.java" bugCount="0" size="11"/>
+    <FileStats path="testModels/TestRectangleTool.java" bugCount="0" size="33"/>
+    <FileStats path="testModels/TestSelectionTool.java" bugCount="0" size="9"/>
+    <FileStats path="testModels/TestXmlEncoderDecoder.java" bugCount="0" size="35"/>
+    <FileStats path="testModels/testEditDraw.java" bugCount="0" size="21"/>
+    <PackageStats package="adraw4us" total_bugs="0" total_types="2" total_size="109">
+      <ClassStats class="adraw4us.MainApp" sourceFile="MainApp.java" interface="false" size="81" bugs="0"/>
+      <ClassStats class="adraw4us.Tool" sourceFile="Tool.java" interface="false" size="28" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="controller" total_bugs="0" total_types="6" total_size="387">
+      <ClassStats class="controller.DetailPaletteController" sourceFile="DetailPaletteController.java" interface="false" size="99" bugs="0"/>
+      <ClassStats class="controller.DrawingZoneController" sourceFile="DrawingZoneController.java" interface="false" size="54" bugs="0"/>
+      <ClassStats class="controller.FileController" sourceFile="FileController.java" interface="false" size="67" bugs="0"/>
+      <ClassStats class="controller.MenuController" sourceFile="MenuController.java" interface="false" size="43" bugs="0"/>
+      <ClassStats class="controller.PaletteCouleurController" sourceFile="PaletteCouleurController.java" interface="false" size="71" bugs="0"/>
+      <ClassStats class="controller.PaletteFormeController" sourceFile="PaletteFormeController.java" interface="false" size="53" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="models" total_bugs="0" total_types="17" total_size="456">
+      <ClassStats class="models.CircleTool" sourceFile="CircleTool.java" interface="false" size="33" bugs="0"/>
+      <ClassStats class="models.CustomCircle" sourceFile="CustomCircle.java" interface="false" size="36" bugs="0"/>
+      <ClassStats class="models.CustomLine" sourceFile="CustomLine.java" interface="false" size="28" bugs="0"/>
+      <ClassStats class="models.CustomRectangle" sourceFile="CustomRectangle.java" interface="false" size="34" bugs="0"/>
+      <ClassStats class="models.Drawable" sourceFile="Drawable.java" interface="true" size="8" bugs="0"/>
+      <ClassStats class="models.EditDraw" sourceFile="EditDraw.java" interface="false" size="18" bugs="0"/>
+      <ClassStats class="models.EditMode" sourceFile="EditMode.java" interface="false" size="18" bugs="0"/>
+      <ClassStats class="models.Identifiable" sourceFile="Identifiable.java" interface="true" size="2" bugs="0"/>
+      <ClassStats class="models.LineTool" sourceFile="LineTool.java" interface="false" size="29" bugs="0"/>
+      <ClassStats class="models.PatternApplier" sourceFile="PatternApplier.java" interface="false" size="19" bugs="0"/>
+      <ClassStats class="models.RectangleTool" sourceFile="RectangleTool.java" interface="false" size="34" bugs="0"/>
+      <ClassStats class="models.SelectionTool" sourceFile="SelectionTool.java" interface="false" size="18" bugs="0"/>
+      <ClassStats class="models.ShapeType" sourceFile="ShapeType.java" interface="false" size="16" bugs="0"/>
+      <ClassStats class="models.Transformable" sourceFile="Transformable.java" interface="true" size="8" bugs="0"/>
+      <ClassStats class="models.XmlDecoder" sourceFile="XmlDecoder.java" interface="false" size="75" bugs="0"/>
+      <ClassStats class="models.XmlEncoder" sourceFile="XmlEncoder.java" interface="false" size="52" bugs="0"/>
+      <ClassStats class="models.XmlStrings" sourceFile="XmlStrings.java" interface="false" size="28" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="testControllers" total_bugs="0" total_types="5" total_size="143">
+      <ClassStats class="testControllers.TestMenuController" sourceFile="TestMenuController.java" interface="false" size="29" bugs="0"/>
+      <ClassStats class="testControllers.testApplicationUI" sourceFile="testApplicationUI.java" interface="false" size="11" bugs="0"/>
+      <ClassStats class="testControllers.testColorPalette" sourceFile="testColorPalette.java" interface="false" size="20" bugs="0"/>
+      <ClassStats class="testControllers.testDetailPaletteController" sourceFile="testDetailPaletteController.java" interface="false" size="62" bugs="0"/>
+      <ClassStats class="testControllers.testPaletteFormController" sourceFile="testPaletteFormController.java" interface="false" size="21" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="testModels" total_bugs="0" total_types="7" total_size="171">
+      <ClassStats class="testModels.TestCircleTool" sourceFile="TestCircleTool.java" interface="false" size="29" bugs="0"/>
+      <ClassStats class="testModels.TestLineTool" sourceFile="TestLineTool.java" interface="false" size="33" bugs="0"/>
+      <ClassStats class="testModels.TestPatternApplier" sourceFile="TestPatternApplier.java" interface="false" size="11" bugs="0"/>
+      <ClassStats class="testModels.TestRectangleTool" sourceFile="TestRectangleTool.java" interface="false" size="33" bugs="0"/>
+      <ClassStats class="testModels.TestSelectionTool" sourceFile="TestSelectionTool.java" interface="false" size="9" bugs="0"/>
+      <ClassStats class="testModels.TestXmlEncoderDecoder" sourceFile="TestXmlEncoderDecoder.java" interface="false" size="35" bugs="0"/>
+      <ClassStats class="testModels.testEditDraw" sourceFile="testEditDraw.java" interface="false" size="21" bugs="0"/>
+    </PackageStats>
+    <FindBugsProfile>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.ClassDataAnalysisEngine" totalMilliseconds="514" invocations="628" avgMicrosecondsPerInvocation="819" maxMicrosecondsPerInvocation="73155" standardDeviationMicrosecondsPerInvocation="4328"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.ClassInfoAnalysisEngine" totalMilliseconds="350" invocations="623" avgMicrosecondsPerInvocation="562" maxMicrosecondsPerInvocation="40781" standardDeviationMicrosecondsPerInvocation="1978"/>
+      <ClassProfile name="com.h3xstream.findsecbugs.taintanalysis.TaintDataflowEngine" totalMilliseconds="174" invocations="208" avgMicrosecondsPerInvocation="838" maxMicrosecondsPerInvocation="20660" standardDeviationMicrosecondsPerInvocation="2249"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.ValueNumberDataflowFactory" totalMilliseconds="153" invocations="226" avgMicrosecondsPerInvocation="678" maxMicrosecondsPerInvocation="14430" standardDeviationMicrosecondsPerInvocation="1947"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.IsNullValueDataflowFactory" totalMilliseconds="139" invocations="208" avgMicrosecondsPerInvocation="671" maxMicrosecondsPerInvocation="16842" standardDeviationMicrosecondsPerInvocation="1787"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.TypeDataflowFactory" totalMilliseconds="137" invocations="212" avgMicrosecondsPerInvocation="649" maxMicrosecondsPerInvocation="13533" standardDeviationMicrosecondsPerInvocation="1864"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.UnconditionalValueDerefDataflowFactory" totalMilliseconds="125" invocations="208" avgMicrosecondsPerInvocation="602" maxMicrosecondsPerInvocation="23622" standardDeviationMicrosecondsPerInvocation="2251"/>
+      <ClassProfile name="edu.umd.cs.findbugs.ba.npe.NullDerefAndRedundantComparisonFinder" totalMilliseconds="114" invocations="208" avgMicrosecondsPerInvocation="552" maxMicrosecondsPerInvocation="9640" standardDeviationMicrosecondsPerInvocation="1236"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.CFGFactory" totalMilliseconds="102" invocations="220" avgMicrosecondsPerInvocation="464" maxMicrosecondsPerInvocation="12521" standardDeviationMicrosecondsPerInvocation="1259"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FieldItemSummary" totalMilliseconds="100" invocations="89" avgMicrosecondsPerInvocation="1133" maxMicrosecondsPerInvocation="16809" standardDeviationMicrosecondsPerInvocation="2459"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FindNoSideEffectMethods" totalMilliseconds="85" invocations="89" avgMicrosecondsPerInvocation="958" maxMicrosecondsPerInvocation="11159" standardDeviationMicrosecondsPerInvocation="1802"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FindRefComparison$SpecialTypeAnalysis" totalMilliseconds="68" invocations="172" avgMicrosecondsPerInvocation="396" maxMicrosecondsPerInvocation="8638" standardDeviationMicrosecondsPerInvocation="1066"/>
+      <ClassProfile name="edu.umd.cs.findbugs.OpcodeStack$JumpInfoFactory" totalMilliseconds="63" invocations="296" avgMicrosecondsPerInvocation="215" maxMicrosecondsPerInvocation="3331" standardDeviationMicrosecondsPerInvocation="413"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.MethodGenFactory" totalMilliseconds="55" invocations="220" avgMicrosecondsPerInvocation="250" maxMicrosecondsPerInvocation="28937" standardDeviationMicrosecondsPerInvocation="1948"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.UnreadFields" totalMilliseconds="44" invocations="37" avgMicrosecondsPerInvocation="1205" maxMicrosecondsPerInvocation="10302" standardDeviationMicrosecondsPerInvocation="1979"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FindOpenStream" totalMilliseconds="39" invocations="37" avgMicrosecondsPerInvocation="1070" maxMicrosecondsPerInvocation="23021" standardDeviationMicrosecondsPerInvocation="4142"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.NoteDirectlyRelevantTypeQualifiers" totalMilliseconds="33" invocations="89" avgMicrosecondsPerInvocation="378" maxMicrosecondsPerInvocation="7899" standardDeviationMicrosecondsPerInvocation="939"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.JavaClassAnalysisEngine" totalMilliseconds="32" invocations="184" avgMicrosecondsPerInvocation="175" maxMicrosecondsPerInvocation="11088" standardDeviationMicrosecondsPerInvocation="866"/>
+      <ClassProfile name="com.h3xstream.findsecbugs.injection.command.CommandInjectionDetector" totalMilliseconds="31" invocations="37" avgMicrosecondsPerInvocation="856" maxMicrosecondsPerInvocation="16109" standardDeviationMicrosecondsPerInvocation="2570"/>
+      <ClassProfile name="edu.umd.cs.findbugs.util.TopologicalSort" totalMilliseconds="31" invocations="526" avgMicrosecondsPerInvocation="59" maxMicrosecondsPerInvocation="1044" standardDeviationMicrosecondsPerInvocation="116"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.CalledMethods" totalMilliseconds="29" invocations="89" avgMicrosecondsPerInvocation="332" maxMicrosecondsPerInvocation="3327" standardDeviationMicrosecondsPerInvocation="529"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.ConstantDataflowFactory" totalMilliseconds="27" invocations="208" avgMicrosecondsPerInvocation="132" maxMicrosecondsPerInvocation="2535" standardDeviationMicrosecondsPerInvocation="338"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FunctionsThatMightBeMistakenForProcedures" totalMilliseconds="24" invocations="89" avgMicrosecondsPerInvocation="278" maxMicrosecondsPerInvocation="3632" standardDeviationMicrosecondsPerInvocation="627"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FindUselessObjects" totalMilliseconds="23" invocations="37" avgMicrosecondsPerInvocation="632" maxMicrosecondsPerInvocation="8737" standardDeviationMicrosecondsPerInvocation="1474"/>
+      <ClassProfile name="edu.umd.cs.findbugs.DetectorToDetector2Adapter" totalMilliseconds="23" invocations="8481" avgMicrosecondsPerInvocation="2" maxMicrosecondsPerInvocation="91" standardDeviationMicrosecondsPerInvocation="2"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.CheckRelaxingNullnessAnnotation" totalMilliseconds="22" invocations="37" avgMicrosecondsPerInvocation="610" maxMicrosecondsPerInvocation="10273" standardDeviationMicrosecondsPerInvocation="1653"/>
+      <ClassProfile name="com.h3xstream.findsecbugs.file.PathTraversalDetector" totalMilliseconds="22" invocations="37" avgMicrosecondsPerInvocation="604" maxMicrosecondsPerInvocation="2432" standardDeviationMicrosecondsPerInvocation="497"/>
+      <ClassProfile name="edu.umd.cs.findbugs.ba.npe.TypeQualifierNullnessAnnotationDatabase" totalMilliseconds="22" invocations="2583" avgMicrosecondsPerInvocation="8" maxMicrosecondsPerInvocation="998" standardDeviationMicrosecondsPerInvocation="36"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FindRefComparison" totalMilliseconds="21" invocations="37" avgMicrosecondsPerInvocation="594" maxMicrosecondsPerInvocation="7737" standardDeviationMicrosecondsPerInvocation="1288"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FindInconsistentSync2" totalMilliseconds="21" invocations="37" avgMicrosecondsPerInvocation="577" maxMicrosecondsPerInvocation="3539" standardDeviationMicrosecondsPerInvocation="598"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.OverridingEqualsNotSymmetrical" totalMilliseconds="21" invocations="89" avgMicrosecondsPerInvocation="237" maxMicrosecondsPerInvocation="8755" standardDeviationMicrosecondsPerInvocation="942"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FindBadCast2" totalMilliseconds="20" invocations="37" avgMicrosecondsPerInvocation="559" maxMicrosecondsPerInvocation="3266" standardDeviationMicrosecondsPerInvocation="773"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.DumbMethods" totalMilliseconds="20" invocations="37" avgMicrosecondsPerInvocation="552" maxMicrosecondsPerInvocation="2473" standardDeviationMicrosecondsPerInvocation="599"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.BuildObligationPolicyDatabase" totalMilliseconds="18" invocations="89" avgMicrosecondsPerInvocation="206" maxMicrosecondsPerInvocation="2581" standardDeviationMicrosecondsPerInvocation="367"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.BuildStringPassthruGraph" totalMilliseconds="18" invocations="89" avgMicrosecondsPerInvocation="206" maxMicrosecondsPerInvocation="4256" standardDeviationMicrosecondsPerInvocation="558"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.LoadOfKnownNullValue" totalMilliseconds="18" invocations="37" avgMicrosecondsPerInvocation="494" maxMicrosecondsPerInvocation="2065" standardDeviationMicrosecondsPerInvocation="453"/>
+      <ClassProfile name="com.h3xstream.findsecbugs.injection.custom.CustomInjectionDetector" totalMilliseconds="18" invocations="37" avgMicrosecondsPerInvocation="490" maxMicrosecondsPerInvocation="2531" standardDeviationMicrosecondsPerInvocation="546"/>
+      <ClassProfile name="com.h3xstream.findsecbugs.injection.redirect.UnvalidatedRedirectDetector" totalMilliseconds="18" invocations="37" avgMicrosecondsPerInvocation="489" maxMicrosecondsPerInvocation="2153" standardDeviationMicrosecondsPerInvocation="470"/>
+      <ClassProfile name="com.h3xstream.findsecbugs.injection.script.OgnlInjectionDetector" totalMilliseconds="17" invocations="37" avgMicrosecondsPerInvocation="482" maxMicrosecondsPerInvocation="2347" standardDeviationMicrosecondsPerInvocation="489"/>
+      <ClassProfile name="com.h3xstream.findsecbugs.xml.StdXmlTransformDetector" totalMilliseconds="17" invocations="37" avgMicrosecondsPerInvocation="475" maxMicrosecondsPerInvocation="1698" standardDeviationMicrosecondsPerInvocation="420"/>
+      <ClassProfile name="com.h3xstream.findsecbugs.xpath.XPathInjectionDetector" totalMilliseconds="17" invocations="37" avgMicrosecondsPerInvocation="475" maxMicrosecondsPerInvocation="1924" standardDeviationMicrosecondsPerInvocation="415"/>
+      <ClassProfile name="com.h3xstream.findsecbugs.HttpResponseSplittingDetector" totalMilliseconds="17" invocations="37" avgMicrosecondsPerInvocation="464" maxMicrosecondsPerInvocation="2671" standardDeviationMicrosecondsPerInvocation="510"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.LiveLocalStoreDataflowFactory" totalMilliseconds="16" invocations="195" avgMicrosecondsPerInvocation="86" maxMicrosecondsPerInvocation="2170" standardDeviationMicrosecondsPerInvocation="227"/>
+      <ClassProfile name="com.h3xstream.findsecbugs.injection.script.ScriptInjectionDetector" totalMilliseconds="16" invocations="37" avgMicrosecondsPerInvocation="448" maxMicrosecondsPerInvocation="1739" standardDeviationMicrosecondsPerInvocation="408"/>
+      <ClassProfile name="com.h3xstream.findsecbugs.injection.ldap.LdapInjectionDetector" totalMilliseconds="16" invocations="37" avgMicrosecondsPerInvocation="447" maxMicrosecondsPerInvocation="2597" standardDeviationMicrosecondsPerInvocation="466"/>
+      <ClassProfile name="com.h3xstream.findsecbugs.ExternalConfigurationControlDetector" totalMilliseconds="16" invocations="37" avgMicrosecondsPerInvocation="443" maxMicrosecondsPerInvocation="2873" standardDeviationMicrosecondsPerInvocation="561"/>
+      <ClassProfile name="com.h3xstream.findsecbugs.injection.trust.TrustBoundaryViolationAttributeDetector" totalMilliseconds="16" invocations="37" avgMicrosecondsPerInvocation="440" maxMicrosecondsPerInvocation="2409" standardDeviationMicrosecondsPerInvocation="449"/>
+      <ClassProfile name="com.h3xstream.findsecbugs.injection.crlf.CrlfLogInjectionDetector" totalMilliseconds="16" invocations="37" avgMicrosecondsPerInvocation="436" maxMicrosecondsPerInvocation="2422" standardDeviationMicrosecondsPerInvocation="499"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FindDeadLocalStores" totalMilliseconds="16" invocations="37" avgMicrosecondsPerInvocation="432" maxMicrosecondsPerInvocation="3117" standardDeviationMicrosecondsPerInvocation="605"/>
+      <ClassProfile name="com.h3xstream.findsecbugs.injection.aws.AwsQueryInjectionDetector" totalMilliseconds="15" invocations="37" avgMicrosecondsPerInvocation="430" maxMicrosecondsPerInvocation="2899" standardDeviationMicrosecondsPerInvocation="531"/>
+      <ClassProfile name="com.h3xstream.findsecbugs.injection.sql.SqlInjectionDetector" totalMilliseconds="15" invocations="37" avgMicrosecondsPerInvocation="429" maxMicrosecondsPerInvocation="1861" standardDeviationMicrosecondsPerInvocation="397"/>
+      <ClassProfile name="com.h3xstream.findsecbugs.injection.sql.AndroidSqlInjectionDetector" totalMilliseconds="15" invocations="37" avgMicrosecondsPerInvocation="422" maxMicrosecondsPerInvocation="1723" standardDeviationMicrosecondsPerInvocation="395"/>
+      <ClassProfile name="com.h3xstream.findsecbugs.scala.ScalaSensitiveDataExposureDetector" totalMilliseconds="15" invocations="37" avgMicrosecondsPerInvocation="419" maxMicrosecondsPerInvocation="2346" standardDeviationMicrosecondsPerInvocation="430"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.StreamResourceTracker" totalMilliseconds="15" invocations="5" avgMicrosecondsPerInvocation="3087" maxMicrosecondsPerInvocation="6055" standardDeviationMicrosecondsPerInvocation="2236"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FindNullDeref$CheckCallSitesAndReturnInstructions" totalMilliseconds="15" invocations="208" avgMicrosecondsPerInvocation="72" maxMicrosecondsPerInvocation="1095" standardDeviationMicrosecondsPerInvocation="152"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.ReflectiveClasses" totalMilliseconds="14" invocations="89" avgMicrosecondsPerInvocation="166" maxMicrosecondsPerInvocation="3326" standardDeviationMicrosecondsPerInvocation="422"/>
+      <ClassProfile name="com.h3xstream.findsecbugs.scala.SSRFDetector" totalMilliseconds="14" invocations="37" avgMicrosecondsPerInvocation="400" maxMicrosecondsPerInvocation="2947" standardDeviationMicrosecondsPerInvocation="497"/>
+    </FindBugsProfile>
+  </FindBugsSummary>
+  <ClassFeatures></ClassFeatures>
+  <History></History>
+</BugCollection>
