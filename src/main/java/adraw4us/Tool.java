@@ -73,13 +73,13 @@ public abstract class Tool {
 	public void mouseReleased(MainApp mainApp, Pane pane, PaletteCouleurController pc, DetailPaletteController dp) {
 		Shape shape2 = (Shape) pane.getChildren().get(pane.getChildren().size()-1);
 		shape2.setOnMouseClicked(t2 -> {
-			System.out.println("ok");
 			mainApp.getTool().setShape(shape2);
 			pc.setLineWidth(shape2.getStrokeWidth());
 			pc.setStroke((Color) (shape2.getStroke()));
 			
 			mainApp.getTool().fillDetails(dp, shape2).apply(null);
 		});
+		fillDetails(dp, shape2).apply(null);
 	}
 
 	public static Paint getFill() {

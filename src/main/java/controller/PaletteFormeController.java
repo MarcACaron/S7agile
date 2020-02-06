@@ -29,10 +29,9 @@ public class PaletteFormeController {
 	@FXML
 	private void choosePointer() {
 		if(pointeur.isSelected()) {
-			this.mainApp.setTool(new SelectionTool());
+			this.mainApp.setTool(new SelectionTool(this.mainApp.getTool().getShape()));
 		}else {
 			pointeur.setSelected(true);
-			this.mainApp.setTool(new SelectionTool());
 		}
 		
 	}
@@ -41,7 +40,7 @@ public class PaletteFormeController {
 		if(rectangle.isSelected()) {
 			this.mainApp.setTool(new RectangleTool());
 		}else {
-			this.mainApp.setTool(new SelectionTool());
+			this.mainApp.setTool(new SelectionTool(this.mainApp.getTool().getShape()));
 			pointeur.setSelected(true);
 		}
 		
@@ -51,7 +50,7 @@ public class PaletteFormeController {
 		if(circle.isSelected()) {
 			this.mainApp.setTool(new CircleTool());
 		}else {
-			this.mainApp.setTool(new SelectionTool());
+			this.mainApp.setTool(new SelectionTool(this.mainApp.getTool().getShape()));
 			pointeur.setSelected(true);
 		}
 		
@@ -61,7 +60,7 @@ public class PaletteFormeController {
 		if(line.isSelected()) {
 			this.mainApp.setTool(new LineTool());
 		}else {
-			this.mainApp.setTool(new SelectionTool());
+			this.mainApp.setTool(new SelectionTool(this.mainApp.getTool().getShape()));
 			pointeur.setSelected(true);
 		}
 		

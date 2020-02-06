@@ -18,12 +18,8 @@
               <MenuItem fx:id="menuItemNew" mnemonicParsing="false" text="New" />
               <MenuItem fx:id="menuItemOpen" mnemonicParsing="false" text="Open" />
               <MenuItem mnemonicParsing="false" text="Open as" />
-              <MenuItem mnemonicParsing="false" text="Close" />
               <MenuItem fx:id="menuItemSave" mnemonicParsing="false" text="Save" />
-              <MenuItem fx:id="menuItemSaveAs" mnemonicParsing="false" text="Save as" />              
-              <MenuItem mnemonicParsing="false" text="Revert" />
-              <MenuItem mnemonicParsing="false" text="Page Setup" />
-              <MenuItem mnemonicParsing="false" text="Print" />
+              <MenuItem fx:id="menuItemSaveAs" mnemonicParsing="false" text="Save as" />
               <MenuItem mnemonicParsing="false" text="Quit" />              
 			</items>
 
@@ -37,13 +33,6 @@
               <MenuItem mnemonicParsing="false" text="Copy" />
               <MenuItem mnemonicParsing="false" text="Paste" />
               <MenuItem mnemonicParsing="false" onAction="#clear" text="Clear" />
-              <MenuItem mnemonicParsing="false" text="Duplicate" />              
-              <MenuItem mnemonicParsing="false" text="Select All ctl" />
-              <MenuItem mnemonicParsing="false" text="Round Corners" />
-              <MenuItem mnemonicParsing="false" text="Reshape" />
-              <MenuItem mnemonicParsing="false" text="Smooth" />
-              <MenuItem mnemonicParsing="false" text="Unsmooth" />
-              <MenuItem mnemonicParsing="false" text="Show Clipboard" />
                             
 			</items>
             
@@ -53,75 +42,10 @@
               <MenuItem mnemonicParsing="false" text="Turn Autogrid off" />
               <MenuItem mnemonicParsing="false" text="Show rules" />
               <MenuItem mnemonicParsing="false" text="Show gridlines" />
-              <MenuItem mnemonicParsing="false" text="Show size" />
-              <MenuItem mnemonicParsing="false" text="Show page breaks" />
-              <MenuItem mnemonicParsing="false" text="Save as" />              
-              <MenuItem mnemonicParsing="false" text="Revert" />
-              <MenuItem mnemonicParsing="false" text="Page Setup" />
-              <MenuItem mnemonicParsing="false" text="Print" />
-              <MenuItem mnemonicParsing="false" text="Quit" />              
+              <MenuItem mnemonicParsing="false" text="Show size" />           
 			</items>
           </Menu>
           
-          <Menu fx:id="MenuBarPen" mnemonicParsing="false" text="Pen">
-             <items>
-              <MenuItem mnemonicParsing="false" text="1 points" />
-              <MenuItem mnemonicParsing="false" text="2 points" />
-              <MenuItem mnemonicParsing="false" text="4 points" />
-              <MenuItem mnemonicParsing="false" text="6 points" />
-              <MenuItem mnemonicParsing="false" text="8 points" />
-              <MenuItem mnemonicParsing="false" text="10 points" />              
-              <MenuItem mnemonicParsing="false" text="Plain line" />
-              <MenuItem mnemonicParsing="false" text="Dashed line" />
-              <MenuItem mnemonicParsing="false" text="Autosize line" />
-              <MenuItem mnemonicParsing="false" text="Arrow at start" />
-              <MenuItem mnemonicParsing="false" text="Arrow at end" />
-              <MenuItem mnemonicParsing="false" text="Pens" />
-              <MenuItem mnemonicParsing="false" text="Dashes" />
-              <MenuItem mnemonicParsing="false" text="Arrows aa" />         
-			</items>
-          </Menu>   
-          
-          <Menu fx:id="MenuBarFont" mnemonicParsing="false" text="Font">
-            <items>
-              <MenuItem mnemonicParsing="false" text="Times" />
-              <MenuItem mnemonicParsing="false" text="Helvetica" />
-              <MenuItem mnemonicParsing="false" text="Fonts" />
-              <MenuItem mnemonicParsing="false" text="SetStyle aa" />
-			</items>
-          </Menu>
-             
-          <Menu fx:id="MenuBarSize" mnemonicParsing="false" text="Size">
-             <items>
-              <MenuItem mnemonicParsing="false" text="9points" />
-              <MenuItem mnemonicParsing="false" text="10points" />
-              <MenuItem mnemonicParsing="false" text="12points" />
-              <MenuItem mnemonicParsing="false" text="14points" />
-              <MenuItem mnemonicParsing="false" text="18points" />
-              <MenuItem mnemonicParsing="false" text="24points" />              
-              <MenuItem mnemonicParsing="false" text="36points" />
-              <MenuItem mnemonicParsing="false" text="48points" />
-              <MenuItem mnemonicParsing="false" text="Single space" />
-              <MenuItem mnemonicParsing="false" text="Double space" />
-              <MenuItem mnemonicParsing="false" text="Font sizes" />
-              <MenuItem mnemonicParsing="false" text="Line spacing aa" />               
-			</items>
-          </Menu>   
-                    
-          <Menu fx:id="MenuBarHelp" mnemonicParsing="false" text="Help">
-            <items>
-              <MenuItem mnemonicParsing="false" text="New" />
-              <MenuItem mnemonicParsing="false" text="Open" />
-              <MenuItem mnemonicParsing="false" text="Open as" />
-              <MenuItem mnemonicParsing="false" text="Close" />
-              <MenuItem mnemonicParsing="false" text="Save" />
-              <MenuItem mnemonicParsing="false" text="Save as" />              
-              <MenuItem mnemonicParsing="false" text="Revert" />
-              <MenuItem mnemonicParsing="false" text="Page Setup" />
-              <MenuItem mnemonicParsing="false" text="Print" />
-              <MenuItem mnemonicParsing="false" text="Quit" />              
-			</items>
-          </Menu>   
                                                                 
         </menus>
       </MenuBar>
