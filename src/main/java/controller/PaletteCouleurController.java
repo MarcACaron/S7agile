@@ -7,12 +7,16 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ColorPicker;
+import javafx.scene.control.ToggleButton;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
+import models.RectangleTool;
+import models.SelectionTool;
 
 public class PaletteCouleurController {
 	
@@ -22,6 +26,10 @@ public class PaletteCouleurController {
     private Button fillDirt;
 	@FXML
     private Button fillRed;	
+	@FXML 
+	private Button gridButton;
+	@FXML
+    private ToggleButton gridBut;
 	@FXML
     private ColorPicker stroke;
 	@FXML
@@ -59,6 +67,16 @@ public class PaletteCouleurController {
 		fillShape("rouge");
 	}
 	
+	@FXML
+	private void grid() {
+		if(gridBut.isSelected()) {
+			this.mainApp.getDrawingZoneController().showGridPane();
+		}
+		else {
+			this.mainApp.getDrawingZoneController().hideGridPane();
+		}
+	}
+		
 	private void fillShape(String value) {
 		if(!value.equals("")) {
 			if(value.equals("rouge")) {
