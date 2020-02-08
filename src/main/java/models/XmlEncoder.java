@@ -4,6 +4,7 @@ import java.io.File;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.stream.XMLInputFactory;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
@@ -19,11 +20,21 @@ import javafx.scene.Node;
 public class XmlEncoder extends XmlStrings {
 	
 	public static Boolean createXML(ObservableList<Node> shapeList, File file) {
-		
+		String FEATURE = null; //OWASP
 		try {
 
 			DocumentBuilderFactory documentFactory = DocumentBuilderFactory.newInstance();
-
+		    FEATURE = "http://xml.org/sax/features/external-parameter-entities";
+		    documentFactory.setFeature(FEATURE, false);
+		    FEATURE = "http://apache.org/xml/features/nonvalidating/load-external-dtd";
+		    documentFactory.setFeature(FEATURE, false);
+		    documentFactory.setXIncludeAware(false);
+		    documentFactory.setExpandEntityReferences(false);
+			///
+			
+			
+			
+			
 			DocumentBuilder documentBuilder = documentFactory.newDocumentBuilder();
 
 			Document doc = documentBuilder.newDocument();

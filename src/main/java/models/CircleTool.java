@@ -1,11 +1,6 @@
 package models;
 
-import java.util.function.Function;
-
 import adraw4us.Tool;
-import controller.DetailPaletteController;
-import controller.PaletteCouleurController;
-import javafx.scene.shape.Shape;
 
 public class CircleTool extends Tool{
 
