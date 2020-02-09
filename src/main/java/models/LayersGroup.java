@@ -32,7 +32,10 @@ public class LayersGroup {
 	}
 	
 	public void deleteLayer(Layer layer) {
-		layers.remove(layer);
+		if ( layers.size() != 1 ) {
+			layers.remove(layer);
+		}
+		
 	}
 	
 	public int downList(Layer layer) {
