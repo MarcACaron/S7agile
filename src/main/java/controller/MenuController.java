@@ -1,16 +1,21 @@
 package controller;
 
+import java.io.IOException;
+
 import adraw4us.MainApp;
 import javafx.fxml.FXML;
-
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.layout.Pane;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 
 public class MenuController {
-	
-	private Pane pane;
 	
 	@FXML
 	private MenuBar menuBar;
@@ -23,9 +28,11 @@ public class MenuController {
 	
 	@FXML private MenuItem menuItemOpen;
 	
+	@FXML private MenuItem menuItemLayers;
+	
 	@FXML
 	private void clear() {
-		pane.getChildren().clear();
+		this.mainApp.getDrawingZoneController().clearDrawing();
 	}
 	
 	private MainApp mainApp;
@@ -37,9 +44,11 @@ public class MenuController {
 		FileController fileController = FileController.getInstance();
 		
 		menuItemNew.setOnAction(e -> {
+			
+			Pane drawing = this.mainApp.getDrawingZoneController().getDrawingsAsOne();
 
-			if (fileController.askToSave(mainApp.getPrimaryStage(), pane)) {
-				pane.getChildren().clear();
+			if (fileController.askToSave(mainApp.getPrimaryStage(), drawing)) {
+				this.mainApp.getDrawingZoneController().clearDrawing();
 				fileController.clearFile();
 			}
 			
@@ -47,8 +56,10 @@ public class MenuController {
 		
 		menuItemSaveAs.setOnAction(e -> {
 			
+			Pane drawing = this.mainApp.getDrawingZoneController().getDrawingsAsOne();
+			
 			if (fileController.askForFile(mainApp.getPrimaryStage())) {
-				fileController.saveDrawing(pane);
+				fileController.saveDrawing(drawing);
 			}
 				
 			
@@ -56,9 +67,11 @@ public class MenuController {
 		
 		menuItemSave.setOnAction(e -> {
 			
+			Pane drawing = this.mainApp.getDrawingZoneController().getDrawingsAsOne();
+			
 			if (fileController.getCurrentFile() == null && fileController.askForFile(mainApp.getPrimaryStage())) {
 				
-				fileController.saveDrawing(pane);
+				fileController.saveDrawing(drawing);
 					
 			}
 			
@@ -66,10 +79,33 @@ public class MenuController {
 		
 		menuItemOpen.setOnAction(e -> {
 			
-			if (fileController.askToSave(mainApp.getPrimaryStage(), pane)) {
-				fileController.openFile(mainApp.getPrimaryStage(), pane);
+			Pane drawing = this.mainApp.getDrawingZoneController().getDrawingsAsOne();
+			
+			if (fileController.askToSave(mainApp.getPrimaryStage(), drawing)) {
+				fileController.openFile(mainApp.getPrimaryStage(), drawing);
 					
 			}
+			
+		});
+		
+		menuItemLayers.setOnAction(e -> {
+
+			Parent root;
+			try {
+				FXMLLoader loader = new FXMLLoader();
+				loader.setLocation(getClass().getResource("../view/LayerWindow.fxml"));
+	            root = loader.load();
+	            Stage stage = new Stage();
+	            stage.initModality(Modality.WINDOW_MODAL);
+	            stage.initOwner(mainApp.getPrimaryStage().getScene().getWindow());
+	            stage.setScene(new Scene(root));
+	            stage.showAndWait();
+	            
+	            mainApp.getDrawingZoneController().updateLayers();
+	            
+	        }
+	        catch (IOException ex) {
+	        }
 			
 		});
 		
@@ -79,9 +115,6 @@ public class MenuController {
         this.mainApp = mainApp;
     }
 	
-	public void setPane(Pane pane) {
-		this.pane = pane;
-	}
 	
 	
 	
