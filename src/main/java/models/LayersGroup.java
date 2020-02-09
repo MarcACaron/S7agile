@@ -1,7 +1,6 @@
 package models;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 
 
@@ -54,6 +53,10 @@ public class LayersGroup {
 		}
 		
 		return layers.indexOf(layer);
+	}
+	
+	public void replaceLayers(ArrayList<Layer> newLayers) {
+		layers = newLayers;
 	}
 
 }

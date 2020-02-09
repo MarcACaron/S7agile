@@ -4,12 +4,18 @@ import java.util.ArrayList;
 
 public class ApplicationHistory {
 	
+	private static ApplicationHistory instance = new ApplicationHistory();
+	
 	ArrayList<ArrayList<Layer>> history = new ArrayList<ArrayList<Layer>>();
 	
 	ArrayList<Layer> reDoHistory = new ArrayList<Layer>();
 	
-	public ApplicationHistory(Layer initialLayer) {
-		
+	public static ApplicationHistory getInstance() {
+		return instance;
+	}
+	
+	public ApplicationHistory() {
+		//Constructor
 	}
 	
 	public ArrayList<Layer> undoHistory() {
@@ -29,17 +35,31 @@ public class ApplicationHistory {
 	}
 	
 	public ArrayList<Layer> redoHistory() {
-		ArrayList<Layer> returnLayers = reDoHistory;
 		
-		history.add(returnLayers);
-		reDoHistory.clear();
+		if (reDoHistory.size() != 0) {
+			ArrayList<Layer> returnLayers = reDoHistory;
+			
+			history.add(returnLayers);
+			reDoHistory.clear();
+			
+			return returnLayers;
+		}
 		
-		return returnLayers;
+		return null;
 	}
 	
 	public void addHistory(ArrayList<Layer> newHistory) {
 		history.add(newHistory);
 		reDoHistory.clear();
+	}
+	
+	public void update() {
+		LayersGroup layersGroup = LayersGroup.getLayersGroup();
+		
+		ArrayList<Layer> newLayers = layersGroup.getLayers();
+		
+		addHistory(newLayers);
+		
 	}
 
 }
