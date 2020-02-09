@@ -121,8 +121,7 @@ public class DrawingZoneController {
 	
 	public void saveShape() {
 		
-		shapeCopy = mainApp.getTool().getShape();
-		System.out.println("STFU");
+		Shape shape = mainApp.getTool().getShape();
 		
 		//Node shape = mainApp.getTool().getShape();
 		
