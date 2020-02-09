@@ -11,11 +11,7 @@
    <children>
       <ScrollPane fx:id="scrollPane" layoutX="171.0" layoutY="76.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <content>
-          <AnchorPane fx:id="anchorPane" minHeight="5000.0" minWidth="5000.0">
-               <children>
-                  <Pane fx:id="pane" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-               </children>
-            </AnchorPane>
+          <AnchorPane fx:id="anchorPane" minHeight="5000.0" minWidth="5000.0" />
         </content>
       </ScrollPane>
    </children>

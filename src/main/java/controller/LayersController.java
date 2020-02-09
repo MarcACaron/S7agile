@@ -35,14 +35,17 @@ public class LayersController {
 		
 		deleteButton.setOnAction(t -> {
 			for (int i = 0; i < layerGroup.getLayers().size(); ++i) {
-				if (layerGroup.getLayers().get(i).getId().equals(layerListView.getSelectionModel().getSelectedItem().getText())) {
+				if (layerListView.getSelectionModel().getSelectedItem() != null && layerGroup.getLayers().get(i).getId().equals(layerListView.getSelectionModel().getSelectedItem().getText())) {
 					layerGroup.deleteLayer(layerGroup.getLayers().get(i));
+					
+					Pane selectedPane = layerGroup.getLayers().get(i).getPane();
+					selectedPane.getChildren().clear();
+					updateList();
 					break;
 				}
 			}
 			
 			layerListView.getItems().remove(layerListView.getSelectionModel().getSelectedItem());
-			updateList();
 		});
 		
 		upButton.setOnAction(t -> {
@@ -60,12 +63,12 @@ public class LayersController {
 
 		});
 		
-		upButton.setOnAction(t -> {
+		downButton.setOnAction(t -> {
 			Label currentLabel = layerListView.getSelectionModel().getSelectedItem();
 			
 			for (int i = 0; i < layerGroup.getLayers().size(); ++i) {
 				if (layerGroup.getLayers().get(i).getId().equals(currentLabel.getText())) {
-					int newIndex = layerGroup.upList(layerGroup.getLayers().get(i));
+					int newIndex = layerGroup.downList(layerGroup.getLayers().get(i));
 					updateList();
 					layerListView.getSelectionModel().select(newIndex);
 
