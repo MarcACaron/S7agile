@@ -8,7 +8,11 @@ import adraw4us.MainApp;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
+import javafx.scene.SnapshotParameters;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.image.WritableImage;
+import javafx.scene.input.Clipboard;
+import javafx.scene.input.ClipboardContent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
@@ -29,6 +33,9 @@ public class DrawingZoneController {
 	private AnchorPane anchorPane;
 	@FXML
 	private MainApp mainApp;
+	
+	private Clipboard clipboard;
+	private Shape shapeCopy;
 	
 	LayersGroup layersGroup = LayersGroup.getLayersGroup();
 	
@@ -111,4 +118,27 @@ public class DrawingZoneController {
 	public void setMainApp(MainApp mainApp) {
         this.mainApp = mainApp;
     }
+	
+	public void saveShape() {
+		
+		shapeCopy = mainApp.getTool().getShape();
+		System.out.println("STFU");
+		
+		//Node shape = mainApp.getTool().getShape();
+		
+		//Clipboard.getSystemClipboard();
+		//ClipboardContent cc = new ClipboardContent();
+		//SnapshotParameters snapshotParam = new SnapshotParameters();
+		//WritableImage image = shape.snapshot(snapshotParam, null);
+		
+		//cc.putImage(image);
+		//clipboard.setContent(cc);
+		
+		
+	}
+	
+	public void pasteShape() {
+		pane.getChildren().add(shapeCopy);
+		
+	}
 }

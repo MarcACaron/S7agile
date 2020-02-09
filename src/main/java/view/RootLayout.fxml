@@ -30,8 +30,8 @@
             <items>
               <MenuItem mnemonicParsing="false" text="Undo ctl z" />
               <MenuItem mnemonicParsing="false" text="Cut" />
-              <MenuItem mnemonicParsing="false" text="Copy" />
-              <MenuItem mnemonicParsing="false" text="Paste" />
+              <MenuItem mnemonicParsing="false" onAction="#saveButtonOnClick" text="Copy" />
+              <MenuItem mnemonicParsing="false" onAction="#saveButtonOnClick" text="Paste" />
               <MenuItem mnemonicParsing="false" onAction="#clear" text="Clear" />
                             
 			</items>

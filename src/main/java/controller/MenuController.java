@@ -115,7 +115,13 @@ public class MenuController {
         this.mainApp = mainApp;
     }
 	
+	@FXML private void saveButtonOnClick() {
+		mainApp.getDrawingZoneController().saveShape();
+	}
 	
+	@FXML private void pasteButtonOnClick() {
+		mainApp.getDrawingZoneController().pasteShape();
+	}
 	
 	
 }
