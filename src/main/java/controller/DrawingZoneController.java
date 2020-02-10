@@ -82,6 +82,7 @@ public class DrawingZoneController {
 	public void updateLayers(){
 		anchorPane.getChildren().clear();
 		ArrayList<Layer> layers = layersGroup.getLayers();
+		System.out.println("hkjhlmj"+layersGroup.size());
 		
 		for (int i = layers.size() - 1; i >= 0; --i) {
 			Pane newPane = layers.get(i).getPane();
@@ -121,6 +122,10 @@ public class DrawingZoneController {
 		}
 		
 		return globalPane;
+	}
+	
+	public ObservableList<Node> getLayers(){
+		return anchorPane.getChildren();
 	}
 	
 	public void applyToCurrentPane(Shape shape) {
