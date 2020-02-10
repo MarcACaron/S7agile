@@ -123,21 +123,9 @@ public class DrawingZoneController {
 	
 	public void saveShape() {
 		
-		System.out.println("Copying");
-		
+		System.out.println("Copying");	
 		shapeCopy = (Transformable)mainApp.getTool().getShape();
-		
-		//Node shape = mainApp.getTool().getShape();
-		
-		//Clipboard.getSystemClipboard();
-		//ClipboardContent cc = new ClipboardContent();
-		//SnapshotParameters snapshotParam = new SnapshotParameters();
-		//WritableImage image = shape.snapshot(snapshotParam, null);
-		
-		//cc.putImage(image);
-		//clipboard.setContent(cc);
-		
-		
+
 	}
 	
 	public void pasteShape() {

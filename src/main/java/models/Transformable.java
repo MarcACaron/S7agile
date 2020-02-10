@@ -3,6 +3,9 @@ package models;
 import javafx.scene.shape.Shape;
 
 public interface Transformable {
+	public final int xCopyOffset = 50;
+	public final int yCopyOffset = 50;
+	
 	public void setXPosTool(double value);
 	public void setYPosTool(double value);
 	public void setWidthTool(double value);
