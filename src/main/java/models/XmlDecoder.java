@@ -1,183 +1,110 @@
 package models;
 
 import java.io.File;
-import java.io.IOException;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
 
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.NamedNodeMap;
-import org.w3c.dom.NodeList;
-import org.xml.sax.SAXException;
+import javax.xml.namespace.QName;
+import javax.xml.stream.XMLEventReader;
+import javax.xml.stream.XMLInputFactory;
+import javax.xml.stream.XMLStreamException;
+import javax.xml.stream.events.StartElement;
+import javax.xml.stream.events.XMLEvent;
 
-import javafx.collections.ObservableList;
-import javafx.scene.Node;
-import javafx.scene.layout.Pane;
+import adraw4us.MainApp;
+import adraw4us.shapeFactory;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Shape;
 
 public class XmlDecoder extends XmlStrings {
 	
 	private static PatternApplier patternApplier = new PatternApplier();
 	
-	public static ObservableList<Node> readXML(File file, Pane pane) {
-		
-		
-		try {
-
-			 DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-		     DocumentBuilder builder = factory.newDocumentBuilder();
-		       
-		     Document doc = builder.parse(file);
-		     
-		     doc.getDocumentElement().normalize();
-		     Element root = doc.getDocumentElement();
-		     
-		     NodeList a = root.getChildNodes();
-		     
-		     for (int i = 0; i<a.getLength(); ++i) {
-		    	 
-		    	 if (a.item(i).getNodeName().equals("rectangle")) {
-		    		 
-		    		 //// RECTANGLE
-		    		 
-		    		 CustomRectangle rectangle = new CustomRectangle();
-		    		 
-		    		 NamedNodeMap nodeMap = a.item(i).getAttributes();
-
-		    		 for (int j = 0; j < nodeMap.getLength(); ++j) {
-		    			 
-		    			 if (nodeMap.item(j).getNodeName() == FILL) {
-		    				 
-		    				 rectangle.setAccessibleText(nodeMap.item(j).getNodeValue());
-		    				 rectangle = (CustomRectangle)(patternApplier.setFill(rectangle));
-		    				 
-		    			 } else if (nodeMap.item(j).getNodeName() == HEIGHT) {
-		    				 
-		    				 rectangle.setHeight(Double.valueOf(nodeMap.item(j).getNodeValue()));
-		    				 
-		    			 } else if (nodeMap.item(j).getNodeName() == WIDTH) {
-		    				 
-		    				 rectangle.setWidth(Double.valueOf(nodeMap.item(j).getNodeValue()));
-		    				 
-		    			 } else if (nodeMap.item(j).getNodeName() == POSX) {
-		    				 
-		    				 rectangle.setX(Double.valueOf(nodeMap.item(j).getNodeValue()));
-		    				 
-		    			 } else if (nodeMap.item(j).getNodeName() == POSY) {
-		    				 
-		    				 rectangle.setY(Double.valueOf(nodeMap.item(j).getNodeValue()));
-		    				 
-		    			 } else if (nodeMap.item(j).getNodeName() == STROKECOLOR) {
-		    				 
-		    				 rectangle.setStroke(Color.web(nodeMap.item(j).getNodeValue()));
-		    				 
-		    			 } else if (nodeMap.item(j).getNodeName() == STROKEWIDTH) {
-		    				 
-		    				 rectangle.setStrokeWidth(Double.valueOf(nodeMap.item(j).getNodeValue()));
-		    				 
-		    			 }
-	
-		    		 }
-		    		 
-		    		 pane.getChildren().add(rectangle);
-		    	 } // end rectangle
-		    	 
-		    	 else if (a.item(i).getNodeName().equals("circle")) {
-		    		 
-		    		 //// CIRCLE
-		    		 
-		    		 CustomCircle circle = new CustomCircle();
-		    		 
-		    		 NamedNodeMap nodeMap = a.item(i).getAttributes();
-
-		    		 for (int j = 0; j < nodeMap.getLength(); ++j) {
-		    			 
-		    			 if (nodeMap.item(j).getNodeName() == FILL) {
-		    				 
-		    				 circle.setAccessibleText(nodeMap.item(j).getNodeValue());
-		    				 circle = (CustomCircle)(patternApplier.setFill(circle));
-		    				 
-		    			 } else if (nodeMap.item(j).getNodeName() == RADIUS) {
-		    				 
-		    				 circle.setRadius(Double.valueOf(nodeMap.item(j).getNodeValue()));
-		    				 
-		    			 } else if (nodeMap.item(j).getNodeName() == POSX) {
-		    				 
-		    				 circle.setCenterX(Double.valueOf(nodeMap.item(j).getNodeValue()));
-		    				 
-		    			 } else if (nodeMap.item(j).getNodeName() == POSY) {
-		    				 
-		    				 circle.setCenterY(Double.valueOf(nodeMap.item(j).getNodeValue()));
-		    				 
-		    			 } else if (nodeMap.item(j).getNodeName() == STROKECOLOR) {
-		    				 
-		    				 circle.setStroke(Color.web(nodeMap.item(j).getNodeValue()));
-		    				 
-		    			 } else if (nodeMap.item(j).getNodeName() == STROKEWIDTH) {
-		    				 
-		    				 circle.setStrokeWidth(Double.valueOf(nodeMap.item(j).getNodeValue()));
-		    				 
-		    			 }
-	
-		    		 }
-		    		 
-		    		 pane.getChildren().add(circle);
-		    	 } // end circle
-		    	 
-		    	 else if (a.item(i).getNodeName().equals("line")) {
-		    		 
-		    		 //// LINE
-		    		 
-		    		 CustomLine line = new CustomLine();
-		    		 
-		    		 NamedNodeMap nodeMap = a.item(i).getAttributes();
-
-		    		 for (int j = 0; j < nodeMap.getLength(); ++j) {
-		    			 
-		    			 if (nodeMap.item(j).getNodeName() == STARTPOSX) {
-		    				 
-		    				 line.setStartX(Double.valueOf(nodeMap.item(j).getNodeValue()));
-		    				 
-		    			 } else if (nodeMap.item(j).getNodeName() == STARTPOSY) {
-		    				 
-		    				 line.setStartY(Double.valueOf(nodeMap.item(j).getNodeValue()));
-		    				 
-		    			 } else if (nodeMap.item(j).getNodeName() == ENDPOSX) {
-		    				 
-		    				 line.setEndX(Double.valueOf(nodeMap.item(j).getNodeValue()));
-		    				 
-		    			 } else if (nodeMap.item(j).getNodeName() == ENDPOSY) {
-		    				 
-		    				 line.setEndY(Double.valueOf(nodeMap.item(j).getNodeValue()));
-		    				 
-		    			 } else if (nodeMap.item(j).getNodeName() == STROKECOLOR) {
-		    				 
-		    				 line.setStroke(Color.web(nodeMap.item(j).getNodeValue()));
-		    				 
-		    			 } else if (nodeMap.item(j).getNodeName() == STROKEWIDTH) {
-		    				 
-		    				 line.setStrokeWidth(Double.valueOf(nodeMap.item(j).getNodeValue()));
-		    				 
-		    			 }
-	
-		    		 }
-		    		 
-		    		 pane.getChildren().add(line);
-		    	 } // end LINE
-		    		 
-		     }
-
-		} catch (ParserConfigurationException pce) {
-
-		} catch (SAXException e) {
-
-		} catch (IOException e) {
-
+	public static void readXML(File file, MainApp mainApp) throws FileNotFoundException, XMLStreamException {
+		LayersGroup layersGroup = LayersGroup.getLayersGroup();
+		layersGroup.clear();
+		XMLInputFactory xif = XMLInputFactory.newInstance();
+		XMLEventReader  reader = xif.createXMLEventReader(new FileInputStream(file));
+	    XMLEvent event;
+		ArrayList<String> layerNames = new ArrayList<String>();
+	    while (reader.hasNext()) {
+	    	Shape sh = null;
+			event = reader.nextEvent();
+			if (event.isStartElement()) {
+				StartElement se = event.asStartElement();
+				if(se.getName().getLocalPart().equals("Shape")) {
+					sh = shapeFactory.build(se.getAttributeByName(new QName("shapeType")).getValue());
+					if(sh != null) {
+						sh.setAccessibleText(se.getAttributeByName(new QName("shapeType")).getValue());
+						String name = se.getAttributeByName(new QName("layer")).getValue();
+						if(!layerNames.contains(name)) {
+							System.out.println(layersGroup.equals(LayersGroup.getLayersGroup()));
+							layerNames.add(name);
+							layersGroup.createNewLayer(new GridLayer(name));
+						}
+						layersGroup.getLayers().get(layerNames.indexOf(name)).getPane().getChildren().add(sh);
+						event = reader.nextEvent();
+						event = reader.nextEvent();
+						((Transformable)sh).setXPosTool(Double.valueOf(event.asCharacters().getData()));
+						event = reader.nextEvent();
+						event = reader.nextEvent();
+						event = reader.nextEvent();
+						((Transformable)sh).setYPosTool(Double.valueOf(event.asCharacters().getData()));
+						event = reader.nextEvent();
+						event = reader.nextEvent();
+						event = reader.nextEvent();
+						((Transformable)sh).setWidthTool(Double.valueOf(event.asCharacters().getData()));
+						event = reader.nextEvent();
+						event = reader.nextEvent();
+						event = reader.nextEvent();
+						((Transformable)sh).setHeightTool(Double.valueOf(event.asCharacters().getData()));
+						event = reader.nextEvent();
+						event = reader.nextEvent();
+						event = reader.nextEvent();
+						((Transformable)sh).setRadiusTool(Double.valueOf(event.asCharacters().getData()));
+						event = reader.nextEvent();
+						event = reader.nextEvent();
+						event = reader.nextEvent();
+						((Transformable)sh).setLengthTool(Double.valueOf(event.asCharacters().getData()));
+						event = reader.nextEvent();
+						event = reader.nextEvent();
+						event = reader.nextEvent();
+						((Transformable)sh).setRotationTool(Double.valueOf(event.asCharacters().getData()));
+						event = reader.nextEvent();
+						event = reader.nextEvent();
+						event = reader.nextEvent();
+						patternApplier.fillShape(sh, event.asCharacters().getData());
+						event = reader.nextEvent();
+						event = reader.nextEvent();
+						event = reader.nextEvent();
+						sh.setStroke(Color.valueOf(event.asCharacters().getData()));
+						event = reader.nextEvent();
+						event = reader.nextEvent();
+						event = reader.nextEvent();
+						sh.setStrokeWidth(Double.valueOf(event.asCharacters().getData()));
+						Shape sh2 = sh;
+						sh.setOnMouseClicked(t2 -> {
+							mainApp.getTool().setShape(sh2);
+							mainApp.getPaletteCouleurController().setLineWidth(sh2.getStrokeWidth());
+							mainApp.getPaletteCouleurController().setStroke((Color) (sh2.getStroke()));
+							
+							mainApp.getTool().fillDetails(mainApp.getPaletteDetailController(), sh2).apply(null);
+						});
+					}				
+				}else if(se.getName().getLocalPart().equals("numberOfLayers")) {
+					event = reader.nextEvent();
+					int nbOfLayers = Integer.parseInt(event.asCharacters().getData());
+					for(int i = 0; i<nbOfLayers; i++) {
+						//layersGroup.createNewLayer(new L);
+						//
+					}
+					System.out.println("Layers: "+event.asCharacters().getData());
+				}
+			} else if (event.isCharacters()) {
+			} else if (event.isEndElement()) {
+			}
 		}
-		return null;
-		
 	}
 
 }

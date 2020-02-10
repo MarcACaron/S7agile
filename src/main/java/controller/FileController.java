@@ -1,20 +1,23 @@
 package controller;
 
 
-import javafx.collections.ObservableList;
-import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonBar.ButtonData;
-import javafx.scene.layout.Pane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import models.LayersGroup;
 import models.XmlDecoder;
 import models.XmlEncoder;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.Optional;
+
+import javax.xml.stream.XMLStreamException;
+
+import adraw4us.MainApp;
 
 public class FileController {
 
@@ -50,10 +53,9 @@ public class FileController {
 
 	}
 
-	public void saveDrawing(Pane pane) {
-		ObservableList<Node> shapeList = pane.getChildren();
+	public void saveDrawing(LayersGroup layersGroupe) throws FileNotFoundException, XMLStreamException {
 
-		XmlEncoder.createXML(shapeList, currentFile);
+		XmlEncoder.createXML(layersGroupe, currentFile);
 
 	}
 	
@@ -65,7 +67,7 @@ public class FileController {
 		currentFile = null;
 	}
 	
-	public Boolean askToSave(Stage stage, Pane pane) {
+	public Boolean askToSave(Stage stage, LayersGroup layersGroup) throws FileNotFoundException, XMLStreamException {
 		Alert alert = new Alert(AlertType.WARNING);
 		alert.setTitle("");
 		alert.setHeaderText("");
@@ -84,7 +86,7 @@ public class FileController {
 			}
 			
 			if (getCurrentFile() != null) {
-				saveDrawing(pane);
+				saveDrawing(layersGroup);
 			} else {
 				return false;
 			}
@@ -97,7 +99,7 @@ public class FileController {
 		return false;
 	}
 
-	public void openFile(Stage stage, Pane pane) {
+	public void openFile(Stage stage, LayersGroup layersGroup, MainApp mainApp) throws FileNotFoundException, XMLStreamException {
 		
 		fileChooser = new FileChooser();
 		if (currentFile != null) {
@@ -111,9 +113,11 @@ public class FileController {
 		File fileCandidate = fileChooser.showOpenDialog(stage);
 		
 		if (fileCandidate != null && fileCandidate.isFile()) {
-			pane.getChildren().clear();
+			layersGroup.clear();
+			//layersGroup = new LayersGroup();
 			currentFile = fileCandidate;
-			XmlDecoder.readXML(currentFile, pane);
+			XmlDecoder.readXML(currentFile, mainApp);
+			System.out.println("fileC "+layersGroup.size());
 
 		}
 	}

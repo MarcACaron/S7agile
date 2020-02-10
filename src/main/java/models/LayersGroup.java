@@ -7,7 +7,7 @@ import java.util.Collections;
 
 public class LayersGroup {
 	
-	private static LayersGroup instance = new LayersGroup();
+	public static LayersGroup instance = new LayersGroup();
 	
 	public static LayersGroup getLayersGroup( ) {
 		return instance;
@@ -17,6 +17,14 @@ public class LayersGroup {
 	
 	public Layer getCurrentLayer() {
 		return layers.get(0);
+	}
+	
+	public int size() {
+		return layers.size();
+	}
+	
+	public void clear() {
+		instance = new LayersGroup();
 	}
 	
 	public LayersGroup() {
