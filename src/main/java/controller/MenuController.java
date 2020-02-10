@@ -1,18 +1,20 @@
 package controller;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
+
+import javax.xml.stream.XMLStreamException;
 
 import adraw4us.MainApp;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
-import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import models.LayersGroup;
 
 
 public class MenuController {
@@ -45,21 +47,29 @@ public class MenuController {
 		
 		menuItemNew.setOnAction(e -> {
 			
-			Pane drawing = this.mainApp.getDrawingZoneController().getDrawingsAsOne();
+			LayersGroup layersGroup = this.mainApp.getDrawingZoneController().layersGroup;
 
-			if (fileController.askToSave(mainApp.getPrimaryStage(), drawing)) {
-				this.mainApp.getDrawingZoneController().clearDrawing();
-				fileController.clearFile();
+			try {
+				if (fileController.askToSave(mainApp.getPrimaryStage(), layersGroup)) {
+					this.mainApp.getDrawingZoneController().clearDrawing();
+					fileController.clearFile();
+				}
+			} catch (FileNotFoundException | XMLStreamException e1) {
+				e1.printStackTrace();
 			}
 			
 		});
 		
 		menuItemSaveAs.setOnAction(e -> {
 			
-			Pane drawing = this.mainApp.getDrawingZoneController().getDrawingsAsOne();
+			LayersGroup layersGroup = this.mainApp.getDrawingZoneController().layersGroup;
 			
 			if (fileController.askForFile(mainApp.getPrimaryStage())) {
-				fileController.saveDrawing(drawing);
+				try {
+					fileController.saveDrawing(layersGroup);
+				} catch (FileNotFoundException | XMLStreamException e1) {
+					e1.printStackTrace();
+				}
 			}
 				
 			
@@ -67,23 +77,30 @@ public class MenuController {
 		
 		menuItemSave.setOnAction(e -> {
 			
-			Pane drawing = this.mainApp.getDrawingZoneController().getDrawingsAsOne();
+			LayersGroup layersGroup = this.mainApp.getDrawingZoneController().layersGroup;
 			
 			if (fileController.getCurrentFile() == null && fileController.askForFile(mainApp.getPrimaryStage())) {
 				
-				fileController.saveDrawing(drawing);
+				try {
+					fileController.saveDrawing(layersGroup);
+				} catch (FileNotFoundException | XMLStreamException e1) {
+					e1.printStackTrace();
+				}
 					
 			}
 			
 		});
 		
 		menuItemOpen.setOnAction(e -> {
-			
-			Pane drawing = this.mainApp.getDrawingZoneController().getDrawingsAsOne();
-			
-			if (fileController.askToSave(mainApp.getPrimaryStage(), drawing)) {
-				fileController.openFile(mainApp.getPrimaryStage(), drawing);
-					
+			try {
+				if (fileController.askToSave(mainApp.getPrimaryStage(), LayersGroup.getLayersGroup())) {
+					fileController.openFile(mainApp.getPrimaryStage(), LayersGroup.getLayersGroup(), mainApp);
+					System.out.println(":: "+this.mainApp.getDrawingZoneController().layersGroup.size());
+					this.mainApp.getDrawingZoneController().updateLayers();
+						
+				}
+			} catch (FileNotFoundException | XMLStreamException e1) {
+				e1.printStackTrace();
 			}
 			
 		});
@@ -100,7 +117,6 @@ public class MenuController {
 	            stage.initOwner(mainApp.getPrimaryStage().getScene().getWindow());
 	            stage.setScene(new Scene(root));
 	            stage.showAndWait();
-	            
 	            mainApp.getDrawingZoneController().updateLayers();
 	            
 	        }

@@ -20,6 +20,7 @@ public interface Transformable {
 	public double getRadius();
 	public double getLength();
 	public double getRotation();
+	public String getType();
 	public boolean widthToolisNeeded();
 	public boolean heightToolisNeeded();
 	public boolean radiusToolisNeeded();

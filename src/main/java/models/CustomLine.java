@@ -127,4 +127,9 @@ public class CustomLine extends Line implements Transformable, Identifiable{
 		
 		return newLine;
 	}
+	
+	@Override
+	public String getType() {
+		return "line";
+	}
 }

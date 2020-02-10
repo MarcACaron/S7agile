@@ -20,6 +20,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.shape.Shape;
 import javafx.scene.transform.Scale;
 import models.CustomRectangle;
+import models.ApplicationHistory;
 import models.GridLayer;
 import models.Layer;
 import models.LayersGroup;
@@ -27,7 +28,7 @@ import models.Transformable;
 
 public class DrawingZoneController {
 	
-	@FXML private Pane pane;
+	//@FXML private Pane pane;
 	
 	@FXML
 	private ScrollPane scrollPane;
@@ -38,6 +39,7 @@ public class DrawingZoneController {
 	
 	private Clipboard clipboard;
 	private Transformable shapeCopy;
+	ApplicationHistory history;
 	
 	LayersGroup layersGroup = LayersGroup.getLayersGroup();
 	
@@ -60,38 +62,51 @@ public class DrawingZoneController {
 	@FXML
     private void initialize() {
 		
-		pane.setOnMousePressed(t -> {
+		anchorPane.setOnMousePressed(t -> {
 			System.out.println("allo");
 			orgX = t.getX();
 			orgY = t.getY();
-			childIndex = pane.getChildren().size();
-			childIndex = this.mainApp.getTool().mousePressed(this.mainApp.getPaletteDetailController(), pane);
+			childIndex = anchorPane.getChildren().size();
+			childIndex = this.mainApp.getTool().mousePressed(this.mainApp.getPaletteDetailController(), anchorPane);
 		});
-		pane.setOnMouseDragged(t -> {
+		anchorPane.setOnMouseDragged(t -> {
 			this.mainApp.getTool().mouseDragged(orgX, orgY, t.getX(), t.getY());
 		});
-		pane.setOnMouseReleased(t -> {
-			this.mainApp.getTool().mouseReleased(mainApp, pane, this.mainApp.getPaletteCouleurController(), this.mainApp.getPaletteDetailController());
+		anchorPane.setOnMouseReleased(t -> {
+			this.mainApp.getTool().mouseReleased(mainApp, anchorPane, this.mainApp.getPaletteCouleurController(), this.mainApp.getPaletteDetailController());
 		});
 		
 		GridLayer rootLayer = new GridLayer("Layer 0");
 		layersGroup.createNewLayer(rootLayer);
 		
 		Pane pane2 = new Pane();
-		pane.getChildren().add(pane2);
+		anchorPane.getChildren().add(pane2);
 		
 		rootLayer.setPane(pane2);
 		
+		history = new ApplicationHistory(rootLayer);
     }
 	
 	public void updateLayers(){
-		pane.getChildren().clear();
+		anchorPane.getChildren().clear();
 		ArrayList<Layer> layers = layersGroup.getLayers();
+		System.out.println("hkjhlmj"+layersGroup.size());
 		
-		for (int i = 0; i < layers.size(); ++i) {
+		for (int i = layers.size() - 1; i >= 0; --i) {
 			Pane newPane = layers.get(i).getPane();
 			if (newPane != null) {
-				pane.getChildren().add(newPane);
+				System.out.println("NewPane added to anchorPane size : " + newPane.getChildren().size());
+				anchorPane.getChildren().add(newPane);
+				
+				AnchorPane.setBottomAnchor(newPane, 0.0);
+				AnchorPane.setLeftAnchor(newPane, 0.0);
+				AnchorPane.setRightAnchor(newPane, 0.0);
+				AnchorPane.setTopAnchor(newPane, 0.0);
+				
+				layers.get(i).setPane(newPane);
+			}
+			else {
+				System.out.println("Pane was Null");
 			}
 			
 		}
@@ -117,6 +132,19 @@ public class DrawingZoneController {
 		return globalPane;
 	}
 	
+	public ObservableList<Node> getLayers(){
+		return anchorPane.getChildren();
+	}
+	
+	public void applyToCurrentPane(Shape shape) {
+		Pane currentPane = layersGroup.getCurrentLayer().getPane();
+		
+		currentPane.getChildren().add(shape);
+		layersGroup.getCurrentLayer().setPane(currentPane);
+
+		updateLayers();
+	}
+	
 	public void setMainApp(MainApp mainApp) {
         this.mainApp = mainApp;
     }
@@ -131,7 +159,7 @@ public class DrawingZoneController {
 	public void pasteShape() {
 		if (shapeCopy != null) {
 			System.out.println("Pasting");
-			pane.getChildren().add(shapeCopy.duplicate());
+			anchorPane.getChildren().add(shapeCopy.duplicate());
 		}
 		
 	}

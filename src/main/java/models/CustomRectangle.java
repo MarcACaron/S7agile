@@ -120,4 +120,9 @@ public class CustomRectangle extends Rectangle implements Transformable, Identif
 		
 		return newRectangle;
 	}
+	
+	@Override
+	public String getType() {
+		return "rectangle";
+	}
 }
