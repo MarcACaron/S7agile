@@ -113,4 +113,9 @@ public class CustomLine extends Line implements Transformable, Identifiable{
 	public boolean lengthToolisNeeded() {
 		return true;
 	}
+
+	@Override
+	public String getType() {
+		return "line";
+	}
 }

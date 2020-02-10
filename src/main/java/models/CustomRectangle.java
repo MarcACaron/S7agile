@@ -105,4 +105,9 @@ public class CustomRectangle extends Rectangle implements Transformable, Identif
 	public boolean lengthToolisNeeded() {
 		return false;
 	}
+
+	@Override
+	public String getType() {
+		return "rectangle";
+	}
 }

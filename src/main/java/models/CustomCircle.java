@@ -62,14 +62,12 @@ public class CustomCircle extends Circle implements Transformable, Identifiable 
 
 	@Override
 	public double getXPos() {
-		this.getCenterX();
-		return 0;
+		return this.getCenterX();
 	}
 
 	@Override
 	public double getYPos() {
-		this.getCenterY();
-		return 0;
+		return this.getCenterY();
 	}
 
 	@Override
@@ -109,5 +107,10 @@ public class CustomCircle extends Circle implements Transformable, Identifiable 
 	@Override
 	public boolean lengthToolisNeeded() {
 		return false;
+	}
+
+	@Override
+	public String getType() {
+		return "circle";
 	}
 }
