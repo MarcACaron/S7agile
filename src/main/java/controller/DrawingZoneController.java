@@ -19,9 +19,11 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.shape.Shape;
 import javafx.scene.transform.Scale;
+import models.CustomRectangle;
 import models.GridLayer;
 import models.Layer;
 import models.LayersGroup;
+import models.Transformable;
 
 public class DrawingZoneController {
 	
@@ -35,7 +37,7 @@ public class DrawingZoneController {
 	private MainApp mainApp;
 	
 	private Clipboard clipboard;
-	private Shape shapeCopy;
+	private Transformable shapeCopy;
 	
 	LayersGroup layersGroup = LayersGroup.getLayersGroup();
 	
@@ -121,7 +123,9 @@ public class DrawingZoneController {
 	
 	public void saveShape() {
 		
-		Shape shape = mainApp.getTool().getShape();
+		System.out.println("Copying");
+		
+		shapeCopy = (Transformable)mainApp.getTool().getShape();
 		
 		//Node shape = mainApp.getTool().getShape();
 		
@@ -137,7 +141,10 @@ public class DrawingZoneController {
 	}
 	
 	public void pasteShape() {
-		pane.getChildren().add(shapeCopy);
+		if (shapeCopy != null) {
+			System.out.println("Pasting");
+			pane.getChildren().add(shapeCopy.duplicate());
+		}
 		
 	}
 }

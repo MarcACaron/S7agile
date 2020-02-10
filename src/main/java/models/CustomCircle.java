@@ -3,6 +3,7 @@ package models;
 
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
+import javafx.scene.shape.Shape;
 
 public class CustomCircle extends Circle implements Transformable, Identifiable {
 
@@ -109,5 +110,18 @@ public class CustomCircle extends Circle implements Transformable, Identifiable 
 	@Override
 	public boolean lengthToolisNeeded() {
 		return false;
+	}
+	@Override
+	public Shape duplicate() {
+		CustomCircle newCircle = new CustomCircle();
+		newCircle.setStroke(this.getStroke());
+		newCircle.setStrokeWidth(this.getStrokeWidth());
+		newCircle.setFill(this.getFill());
+		newCircle.setCenterX(this.getCenterX() + 50);
+		newCircle.setCenterY(this.getCenterY() + 50);
+		newCircle.setRadiusTool(this.getRadius());
+		newCircle.setRotationTool(this.getRotation());
+		
+		return newCircle;
 	}
 }

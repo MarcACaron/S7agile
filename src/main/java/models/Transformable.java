@@ -1,5 +1,7 @@
 package models;
 
+import javafx.scene.shape.Shape;
+
 public interface Transformable {
 	public void setXPosTool(double value);
 	public void setYPosTool(double value);
@@ -19,4 +21,5 @@ public interface Transformable {
 	public boolean heightToolisNeeded();
 	public boolean radiusToolisNeeded();
 	public boolean lengthToolisNeeded();
+	public Shape duplicate();
 }
