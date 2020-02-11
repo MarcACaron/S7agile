@@ -5,7 +5,10 @@ import models.CustomCircle;
 import models.CustomLine; 
 import models.CustomRectangle; 
  
-public class shapeFactory { 
+public class ShapeFactory { 
+	private ShapeFactory() {
+	}
+	
 	public static Shape build(String shapeName) { 
 		switch (shapeName) { 
 		case "rectangle": 

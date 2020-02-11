@@ -66,22 +66,6 @@ public class PaletteCouleurController {
 		fillShape("rouge");
 	}
 	
-	/*@FXML
-	private void grid() {
-		if(gridBut.isSelected()) {
-			this.mainApp.getDrawingZoneController().inverseGridPaneVisibility();
-		}
-		else {
-			this.mainApp.getDrawingZoneController().inverseGridPaneVisibility();			
-		}
-	}*/
-	
-	@FXML
-	private void test() {
-		this.mainApp.getDrawingZoneController().printMagnetismeGridPane();
-	}
-
-	
 	private void fillShape(String value) {
 		if(!value.equals("")) {
 			if(value.equals("rouge")) {
@@ -98,7 +82,6 @@ public class PaletteCouleurController {
 			    this.mainApp.getTool().fillShape();
 			}
 		}
-		
 	}
 	
 	public void setStroke(Color stroke) {

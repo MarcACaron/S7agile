@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import adraw4us.MainApp;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
@@ -19,9 +18,7 @@ import models.Layer;
 import models.LayersGroup;
 
 public class DrawingZoneController {
-	
-	//@FXML private Pane pane;
-	
+		
 	@FXML
 	private ScrollPane scrollPane;
 	@FXML
@@ -29,9 +26,7 @@ public class DrawingZoneController {
 	@FXML
 	private GridPane gridPane;
 	private MainApp mainApp;
-	
-	//ApplicationHistory history = ApplicationHistory.getInstance();
-	
+		
 	LayersGroup layersGroup = LayersGroup.getLayersGroup();
 	
 	ArrayList<Pane> paneList = new ArrayList<Pane>();
@@ -74,19 +69,10 @@ public class DrawingZoneController {
 		return gridPaneBoolean;
 	}
 	
-	public void printMagnetismeGridPane() {
-		System.out.println(getMagnetismeGridPane());
-	}
-	
-	public Pos getMagnetismeGridPane() {
-		return gridPane.getAlignment();
-	}
-	
 	@FXML
     private void initialize() {
 		
 		anchorPane.setOnMousePressed(t -> {
-			System.out.println("allo");
 			orgX = t.getX();
 			orgY = t.getY();
 			childIndex = anchorPane.getChildren().size();

@@ -13,7 +13,7 @@ import javax.xml.stream.events.StartElement;
 import javax.xml.stream.events.XMLEvent;
 
 import adraw4us.MainApp;
-import adraw4us.shapeFactory;
+import adraw4us.ShapeFactory;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Shape;
 
@@ -36,7 +36,7 @@ public class XmlDecoder extends XmlStrings {
 			if (event.isStartElement()) {
 				StartElement se = event.asStartElement();
 				if(se.getName().getLocalPart().equals("Shape")) {
-					sh = shapeFactory.build(se.getAttributeByName(new QName("shapeType")).getValue());
+					sh = ShapeFactory.build(se.getAttributeByName(new QName("shapeType")).getValue());
 					if(sh != null) {
 						sh.setAccessibleText(se.getAttributeByName(new QName("shapeType")).getValue());
 						String name = se.getAttributeByName(new QName("layer")).getValue();
