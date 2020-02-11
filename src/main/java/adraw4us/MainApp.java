@@ -26,11 +26,11 @@ public class MainApp extends Application {
     private DrawingZoneController drawingZoneController;
     private PaletteCouleurController paletteCouleurController;
     private DetailPaletteController paletteDetailController;
-    private Tool Tool;
+    private Tool ToolApp;
     private Logger logger = Logger.getLogger(MainApp.class.getName());
     
     public MainApp() {
-    	this.Tool = null;
+    	this.ToolApp = null;
 	}
     public MenuController getMenuController() {
 		return menuController;
@@ -45,10 +45,10 @@ public class MainApp extends Application {
 		return paletteDetailController;
 	}
 	public Tool getTool() {
-		return Tool;
+		return ToolApp;
 	}
 	public void setTool(Tool tool) {
-		Tool = tool;
+		ToolApp = tool;
 	}
 	@Override
     public void start(Stage primaryStage) {

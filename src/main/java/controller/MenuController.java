@@ -40,7 +40,7 @@ public class MenuController {
 	
 	@FXML private MenuItem menuItemRedo;
 	
-	private Logger LOGGER;
+	private Logger LoggerMenuController;
 	
 	@FXML
 	private void clear() {
@@ -65,7 +65,7 @@ public class MenuController {
 					fileController.clearFile();
 				}
 			} catch (FileNotFoundException | XMLStreamException e1) {
-				LOGGER.log(Level.SEVERE, "Exeption:menuItemNew: "+e1.getMessage()+"; Fonction: initialize():MenuController:menuItemNew;");
+				LoggerMenuController.log(Level.SEVERE, "Exeption:menuItemNew: "+e1.getMessage()+"; Fonction: initialize():MenuController:menuItemNew;");
 			}
 			
 		});
@@ -78,7 +78,7 @@ public class MenuController {
 				try {
 					fileController.saveDrawing(layersGroup);
 				} catch (FileNotFoundException | XMLStreamException e1) {
-					LOGGER.log(Level.SEVERE, "Exeption:menuItemSaveAs: "+e1.getMessage()+"; Fonction: initialize():MenuController:menuItemSaveAs;");
+					LoggerMenuController.log(Level.SEVERE, "Exeption:menuItemSaveAs: "+e1.getMessage()+"; Fonction: initialize():MenuController:menuItemSaveAs;");
 				}
 			}
 				
@@ -94,7 +94,7 @@ public class MenuController {
 				try {
 					fileController.saveDrawing(layersGroup);
 				} catch (FileNotFoundException | XMLStreamException e1) {
-					LOGGER.log(Level.SEVERE, "Exeption:menuItemSave: "+e1.getMessage()+"; Fonction: initialize():MenuController:menuItemSave;");
+					LoggerMenuController.log(Level.SEVERE, "Exeption:menuItemSave: "+e1.getMessage()+"; Fonction: initialize():MenuController:menuItemSave;");
 				}
 					
 			}
@@ -110,7 +110,7 @@ public class MenuController {
 						
 				}
 			} catch (FileNotFoundException | XMLStreamException e1) {
-				LOGGER.log(Level.SEVERE, "Exeption:menuItemOpen: "+e1.getMessage()+"; Fonction: initialize():MenuController:MenuItemOpen;");
+				LoggerMenuController.log(Level.SEVERE, "Exeption:menuItemOpen: "+e1.getMessage()+"; Fonction: initialize():MenuController:MenuItemOpen;");
 			}
 			
 		});
@@ -131,16 +131,14 @@ public class MenuController {
 	            
 	        }
 	        catch (IOException ex) {
-	        	LOGGER.log(Level.SEVERE, "Exeption: "+ex.getMessage()+"; Fonction: initialize():MenuController;");
+	        	LoggerMenuController.log(Level.SEVERE, "Exeption: "+ex.getMessage()+"; Fonction: initialize():MenuController;");
 	        }
 			
 		});
 		
-		menuShowGridLines.setOnAction(e -> {
-
-			mainApp.getDrawingZoneController().inverseGridPaneVisibility();
-			
-		});
+		menuShowGridLines.setOnAction(e -> 
+			mainApp.getDrawingZoneController().inverseGridPaneVisibility()
+		);
 		
     }
 

@@ -44,7 +44,7 @@ public abstract class Tool {
 	}
 	
 	public Function<Object, Object> fillDetails(DetailPaletteController dp, Shape nd){
-		return (y) -> {
+		return y -> {
 			if(nd == null) 
 				dp.paletteDisable(true);
 			else {

@@ -29,7 +29,7 @@ public class DrawingZoneController {
 		
 	LayersGroup layersGroup = LayersGroup.getLayersGroup();
 	
-	ArrayList<Pane> paneList = new ArrayList<Pane>();
+	ArrayList<Pane> paneList = new ArrayList<>();
 	
 	double orgX;
 	double orgY;
@@ -74,12 +74,12 @@ public class DrawingZoneController {
 			childIndex = anchorPane.getChildren().size();
 			childIndex = this.mainApp.getTool().mousePressed(this.mainApp.getPaletteDetailController(), anchorPane);
 		});
-		anchorPane.setOnMouseDragged(t -> {
-			this.mainApp.getTool().mouseDragged(orgX, orgY, t.getX(), t.getY());
-		});
-		anchorPane.setOnMouseReleased(t -> {
-			this.mainApp.getTool().mouseReleased(mainApp, anchorPane, this.mainApp.getPaletteCouleurController(), this.mainApp.getPaletteDetailController());
-		});
+		anchorPane.setOnMouseDragged(t -> 
+			this.mainApp.getTool().mouseDragged(orgX, orgY, t.getX(), t.getY())
+		);
+		anchorPane.setOnMouseReleased(t -> 
+			this.mainApp.getTool().mouseReleased(mainApp, anchorPane, this.mainApp.getPaletteCouleurController(), this.mainApp.getPaletteDetailController())
+		);
 		clearDrawing();
 		updateLayers();
     }
