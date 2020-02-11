@@ -40,7 +40,7 @@ public class XmlDecoder extends XmlStrings {
 			if(!se.getName().getLocalPart().equals("Shape")) {
 				continue;
 			}
-			sh = shapeFactory.build(se.getAttributeByName(new QName("shapeType")).getValue());
+			sh = ShapeFactory.build(se.getAttributeByName(new QName("shapeType")).getValue());
 			if(sh != null) {
 				sh.setAccessibleText(se.getAttributeByName(new QName("shapeType")).getValue());
 				String name = se.getAttributeByName(new QName("layer")).getValue();

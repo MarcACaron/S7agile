@@ -2,6 +2,7 @@ package adraw4us;
 
 import java.util.function.Function;
 import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import controller.DetailPaletteController;
 import controller.PaletteCouleurController;
