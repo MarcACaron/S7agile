@@ -19,6 +19,10 @@ import javafx.scene.shape.Shape;
 
 public class XmlDecoder {
 	
+	private XmlDecoder() {
+		
+	}
+	
 	private static LayersGroup layersGroup = LayersGroup.getLayersGroup();
 	
 	private static PatternApplier patternApplier = new PatternApplier();
@@ -46,7 +50,6 @@ public class XmlDecoder {
 				String name = se.getAttributeByName(new QName("layer")).getValue();
 				if(!layerNames.contains(name)) {
 					Layer a = new GridLayer(name);
-					System.out.println(layersGroup.getLayers().size() + "allo");
 					layerNames.add(name);
 					layersGroup.createNewLayer(a);
 				}
@@ -100,7 +103,6 @@ public class XmlDecoder {
 				});
 			}				
 		}
-	    System.out.println(layersGroup.size() + " Size in encoder");
 	    mainApp.getDrawingZoneController().updateLayers();
 	}
 

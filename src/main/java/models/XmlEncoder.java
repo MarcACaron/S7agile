@@ -13,6 +13,10 @@ import javafx.scene.shape.Shape;
 
 public class XmlEncoder {
 	
+	private XmlEncoder() {
+		
+	}
+	
 	public static void createXML(LayersGroup layersGroup, File file) throws FileNotFoundException, XMLStreamException {
 		XMLOutputFactory factory = XMLOutputFactory.newInstance();
 		XMLStreamWriter writer = factory.createXMLStreamWriter(new FileOutputStream(file));
