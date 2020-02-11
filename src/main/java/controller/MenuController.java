@@ -105,7 +105,6 @@ public class MenuController {
 			try {
 				if (fileController.askToSave(mainApp.getPrimaryStage(), LayersGroup.getLayersGroup())) {
 					fileController.openFile(mainApp.getPrimaryStage(), mainApp);
-					System.out.println(":: "+this.mainApp.getDrawingZoneController().layersGroup.size());
 					this.mainApp.getDrawingZoneController().updateLayers();
 						
 				}
