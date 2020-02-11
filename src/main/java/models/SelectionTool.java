@@ -1,14 +1,11 @@
 package models;
 
-import java.util.function.Function;
-
 import adraw4us.MainApp;
 import adraw4us.Tool;
 import controller.DetailPaletteController;
 import controller.PaletteCouleurController;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Shape;
-import javafx.scene.paint.Color;
 
 public class SelectionTool extends Tool {
 

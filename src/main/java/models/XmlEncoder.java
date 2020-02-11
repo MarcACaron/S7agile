@@ -7,9 +7,7 @@ import java.io.FileOutputStream;
 import javax.xml.stream.XMLOutputFactory;
 import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamWriter;
-import javafx.collections.ObservableList;
-import javafx.scene.Node;
-import javafx.scene.layout.Pane;
+
 import javafx.scene.shape.Shape;
 
 
@@ -21,12 +19,8 @@ public class XmlEncoder extends XmlStrings {
 		writer.writeStartDocument();
 		int length = layersGroup.size();
 		writer.writeStartElement("Save");
-		/*
-		writer.writeStartElement("numberOfLayers");
-		writer.writeCharacters(String.valueOf(length));
-		writer.writeEndElement();*/
+
 		for(int layerIndex=0; layerIndex<length; layerIndex++) {
-			//Pane p = new Pane();
 			int numberOfShape = layersGroup.getLayers().get(layerIndex).getPane().getChildren().size();
 			for(int shapeIndex=0; shapeIndex<numberOfShape; shapeIndex++) {
 				Shape sh = (Shape) layersGroup.getLayers().get(layerIndex).getPane().getChildren().get(shapeIndex);

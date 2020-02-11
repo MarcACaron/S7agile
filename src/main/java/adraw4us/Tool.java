@@ -44,7 +44,7 @@ public abstract class Tool {
 	}
 	
 	public Function<Object, Object> fillDetails(DetailPaletteController dp, Shape nd){
-		return y -> {
+		return (y) -> {
 			if(nd == null) 
 				dp.paletteDisable(true);
 			else {
@@ -70,7 +70,7 @@ public abstract class Tool {
 	
 	public void mouseReleased(MainApp mainApp, Pane pane, PaletteCouleurController pc, DetailPaletteController dp) {
 		Shape shape2 = (Shape) pane.getChildren().get(pane.getChildren().size()-1);
-		pane.getChildren().remove(0);
+		pane.getChildren().remove(1);
 		mainApp.getDrawingZoneController().applyToCurrentPane(shape2);
 		
 		shape2.setOnMouseClicked(t2 -> {

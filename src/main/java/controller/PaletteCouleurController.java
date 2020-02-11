@@ -12,11 +12,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
-import models.RectangleTool;
-import models.SelectionTool;
 
 public class PaletteCouleurController {
 	
@@ -69,23 +66,7 @@ public class PaletteCouleurController {
 		fillShape("rouge");
 	}
 	
-	/*@FXML
-	private void grid() {
-		if(gridBut.isSelected()) {
-			this.mainApp.getDrawingZoneController().inverseGridPaneVisibility();
-		}
-		else {
-			this.mainApp.getDrawingZoneController().inverseGridPaneVisibility();			
-		}
-	}*/
-	
-	@FXML
-	private void test() {
-		this.mainApp.getDrawingZoneController().printMagnetismeGridPane();
-	}
-
-	
-	public void fillShape(String value) {
+	private void fillShape(String value) {
 		if(!value.equals("")) {
 			if(value.equals("rouge")) {
 			    Tool.setFill(Color.RED);
@@ -101,7 +82,6 @@ public class PaletteCouleurController {
 			    this.mainApp.getTool().fillShape();
 			}
 		}
-		
 	}
 	
 	public void setStroke(Color stroke) {

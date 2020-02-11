@@ -44,8 +44,8 @@ dependencies {
 	testCompile('org.testfx:testfx-core:4.0.16-alpha') {
     	exclude group: 'org.testfx', module: 'testfx-internal-java8'
 	}
-    //testCompile(group: 'org.testfx', name: 'openjfx-monocle', version: 'jdk-11+26')//Uncomment
-    testRuntime(group: 'org.testfx', name: 'openjfx-monocle', version: 'jdk-11+26')//Tuto
+    testCompile(group: 'org.testfx', name: 'openjfx-monocle', version: 'jdk-11+26')//Uncomment
+    //testRuntime(group: 'org.testfx', name: 'openjfx-monocle', version: 'jdk-11+26')//Tuto
     
 	// JUnit
 	testCompile(group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: '5.5.2')
@@ -59,6 +59,7 @@ dependencies {
 test {
 	useJUnitPlatform()
 	if (project.hasProperty('headless')) {
+		println 'headless !'
         systemProperty 'java.awt.headless', 'true'
         systemProperty 'testfx.robot', 'glass'
         systemProperty 'testfx.headless', 'true'
