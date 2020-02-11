@@ -17,7 +17,7 @@ import adraw4us.ShapeFactory;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Shape;
 
-public class XmlDecoder extends XmlStrings {
+public class XmlDecoder {
 	
 	private static LayersGroup layersGroup = LayersGroup.getLayersGroup();
 	

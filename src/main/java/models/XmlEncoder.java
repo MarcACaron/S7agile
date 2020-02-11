@@ -11,7 +11,7 @@ import javax.xml.stream.XMLStreamWriter;
 import javafx.scene.shape.Shape;
 
 
-public class XmlEncoder extends XmlStrings {
+public class XmlEncoder {
 	
 	public static void createXML(LayersGroup layersGroup, File file) throws FileNotFoundException, XMLStreamException {
 		XMLOutputFactory factory = XMLOutputFactory.newInstance();
