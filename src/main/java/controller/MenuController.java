@@ -94,7 +94,7 @@ public class MenuController {
 		menuItemOpen.setOnAction(e -> {
 			try {
 				if (fileController.askToSave(mainApp.getPrimaryStage(), LayersGroup.getLayersGroup())) {
-					fileController.openFile(mainApp.getPrimaryStage(), LayersGroup.getLayersGroup(), mainApp);
+					fileController.openFile(mainApp.getPrimaryStage(), mainApp);
 					System.out.println(":: "+this.mainApp.getDrawingZoneController().layersGroup.size());
 					this.mainApp.getDrawingZoneController().updateLayers();
 						

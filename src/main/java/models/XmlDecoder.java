@@ -20,10 +20,9 @@ import javafx.scene.shape.Shape;
 public class XmlDecoder extends XmlStrings {
 	
 	private static PatternApplier patternApplier = new PatternApplier();
-	
+	private static LayersGroup layersGroup = LayersGroup.getLayersGroup();
 	public static void readXML(File file, MainApp mainApp) throws FileNotFoundException, XMLStreamException {
-		LayersGroup layersGroup = LayersGroup.getLayersGroup();
-		layersGroup.clear();
+		layersGroup.reset();
 		XMLInputFactory xif = XMLInputFactory.newInstance();
 		XMLEventReader  reader = xif.createXMLEventReader(new FileInputStream(file));
 	    XMLEvent event;
