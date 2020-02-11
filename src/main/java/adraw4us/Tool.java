@@ -1,8 +1,6 @@
 package adraw4us;
 
 import java.util.function.Function;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import controller.DetailPaletteController;
 import controller.PaletteCouleurController;
@@ -19,7 +17,6 @@ public abstract class Tool {
 	protected static double lineWidth;
 	protected static double lineStyle;
 	protected static boolean startFromCenter;
-	protected static Logger logger = Logger.getLogger(Tool.class.getName());
 	protected Shape shape;
 	
 	public Tool() {
@@ -75,7 +72,6 @@ public abstract class Tool {
 		Shape shape2 = (Shape) pane.getChildren().get(pane.getChildren().size()-1);
 		pane.getChildren().remove(1);
 		mainApp.getDrawingZoneController().applyToCurrentPane(shape2);
-		logger.log(Level.INFO, "Size Pane : "+pane.getChildren().size());
 		
 		shape2.setOnMouseClicked(t2 -> {
 			mainApp.getTool().setShape(shape2);
