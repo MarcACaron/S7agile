@@ -34,6 +34,8 @@ public class MenuController {
 	
 	@FXML private MenuItem menuItemLayers;
 	
+	@FXML private MenuItem menuShowGridLines;
+	
 	@FXML private MenuItem menuItemUndo;
 	
 	@FXML private MenuItem menuItemRedo;
