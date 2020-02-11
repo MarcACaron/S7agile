@@ -159,7 +159,7 @@ public class DrawingZoneController {
 	public void pasteShape() {
 		if (shapeCopy != null) {
 			System.out.println("Pasting");
-			anchorPane.getChildren().add(shapeCopy.duplicate());
+			this.applyToCurrentPane(shapeCopy.duplicate());
 		}
 		
 	}
