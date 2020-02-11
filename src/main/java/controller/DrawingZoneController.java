@@ -3,6 +3,7 @@ package controller;
 
 
 import java.util.ArrayList;
+import java.util.List;
 
 import adraw4us.MainApp;
 import javafx.collections.ObservableList;
@@ -85,7 +86,7 @@ public class DrawingZoneController {
     }
 	
 	public void updateLayers() {
-		ArrayList<Layer> layers = layersGroup.getLayers();
+		List<Layer> layers = layersGroup.getLayers();
 		
 		for (int i = layers.size() - 1; i >= 0; --i) {
 			Pane newPane = layers.get(i).getPane();
@@ -126,7 +127,8 @@ public class DrawingZoneController {
 				((Pane)(clearPaneList.get(i))).getChildren().clear();
 			}
 		}
-				
+		
+		anchorPane.toFront();
 		updateLayers();
 	}
 	
