@@ -67,7 +67,7 @@ public class LayersController {
 			Label currentLabel = layerListView.getSelectionModel().getSelectedItem();
 			
 			for (int i = 0; i < layerGroup.getLayers().size(); ++i) {
-				if (layerGroup.getLayers().get(i).getId().equals(currentLabel.getText())) {
+				if (currentLabel == null && layerGroup.getLayers().get(i).getId().equals(currentLabel.getText())) {
 					int newIndex = layerGroup.downList(layerGroup.getLayers().get(i));
 					updateList();
 					layerListView.getSelectionModel().select(newIndex);
