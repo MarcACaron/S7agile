@@ -51,7 +51,7 @@ public class XmlDecoder extends XmlStrings {
 					layersGroup.createNewLayer(a);
 				}
 				layersGroup.getLayers().get(layerNames.indexOf(name)).getPane().getChildren().add(sh);
-				event = reader.nextEvent();
+				reader.nextEvent();
 				event = reader.nextEvent();
 				((Transformable)sh).setXPosTool(Double.valueOf(event.asCharacters().getData()));
 				reader.nextEvent();

@@ -119,20 +119,14 @@ public class DrawingZoneController {
 	public void clearDrawing() {
 		layersGroup.reset();
 		
-		ObservableList<Node> paneList = anchorPane.getChildren();
+		ObservableList<Node> clearPaneList = anchorPane.getChildren();
 		
-		for (int i = 1; i < paneList.size() - 1; ++i) {
-			if ( gridPane.getId().equals(paneList.get(i).getId())  ) {
-				((Pane)(paneList.get(i))).getChildren().clear();
+		for (int i = 1; i < clearPaneList.size() - 1; ++i) {
+			if ( gridPane.getId().equals(clearPaneList.get(i).getId())  ) {
+				((Pane)(clearPaneList.get(i))).getChildren().clear();
 			}
-			else {
-				System.out.println("plz detect grid");
-			}
-			
 		}
-		
-		//anchorPane.getChildren().clear();
-		
+				
 		updateLayers();
 	}
 	
