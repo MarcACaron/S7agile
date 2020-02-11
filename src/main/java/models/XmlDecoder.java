@@ -92,14 +92,6 @@ public class XmlDecoder extends XmlStrings {
 							mainApp.getTool().fillDetails(mainApp.getPaletteDetailController(), sh2).apply(null);
 						});
 					}				
-				}else if(se.getName().getLocalPart().equals("numberOfLayers")) {
-					event = reader.nextEvent();
-					int nbOfLayers = Integer.parseInt(event.asCharacters().getData());
-					for(int i = 0; i<nbOfLayers; i++) {
-						//layersGroup.createNewLayer(new L);
-						//
-					}
-					System.out.println("Layers: "+event.asCharacters().getData());
 				}
 			} else if (event.isCharacters()) {
 			} else if (event.isEndElement()) {
