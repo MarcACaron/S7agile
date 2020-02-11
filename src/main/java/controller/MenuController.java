@@ -130,6 +130,9 @@ public class MenuController {
 			
 		});
 		
+		menuShowGridLines.setOnAction(e ->{
+			this.mainApp.getDrawingZoneController().inverseGridPaneVisibility();
+		});
     }
 
 	public void setMainApp(MainApp mainApp) {

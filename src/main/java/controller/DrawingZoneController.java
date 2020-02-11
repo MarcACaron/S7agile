@@ -7,11 +7,12 @@ import java.util.ArrayList;
 import adraw4us.MainApp;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.Node;
+import javafx.geometry.Pos;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.RowConstraints;
 import javafx.scene.shape.Shape;
 import javafx.scene.transform.Scale;
 import models.ApplicationHistory;
@@ -28,6 +29,9 @@ public class DrawingZoneController {
 	@FXML
 	private AnchorPane anchorPane;
 	@FXML
+	private ScrollPane scrollPane;
+	@FXML
+	private GridPane gridPane;
 	private MainApp mainApp;
 	
 	ApplicationHistory history = ApplicationHistory.getInstance();
@@ -39,6 +43,15 @@ public class DrawingZoneController {
 	double orgX;
 	double orgY;
 	int childIndex;
+	boolean gridPaneBoolean;
+	
+	public void redo() {
+		
+	}
+	
+	public void undo() {
+		
+	}
 	
 	public void zoomIn(double zoom) {
         Scale scaleTransform = new Scale(zoom, zoom, 0, 0);
@@ -50,6 +63,29 @@ public class DrawingZoneController {
         anchorPane.getTransforms().add(scaleTransform);
     }
 
+	public void inverseGridPaneVisibility() {
+		boolean visState = getLineGridPane(); //Boolean qui set la visibilit� des lines
+		if (visState == true) {
+			gridPane.setGridLinesVisible(false);
+		}
+		else {
+			gridPane.setGridLinesVisible(true);
+		}
+	}
+	
+	public boolean getLineGridPane() {
+		gridPaneBoolean = gridPane.isGridLinesVisible();
+		return gridPaneBoolean;
+	}
+	
+	public void printMagnetismeGridPane() {
+		System.out.println(getMagnetismeGridPane());
+	}
+	
+	public Pos getMagnetismeGridPane() {
+		return gridPane.getAlignment();
+	}
+	
 	@FXML
     private void initialize() {
 		
