@@ -24,6 +24,7 @@ public class XmlDecoder extends XmlStrings {
 	public static void readXML(File file, MainApp mainApp) throws FileNotFoundException, XMLStreamException {
 		layersGroup.reset();
 		XMLInputFactory xif = XMLInputFactory.newInstance();
+		xif.setProperty(XMLInputFactory.IS_SUPPORTING_EXTERNAL_ENTITIES, Boolean.FALSE);
 		XMLEventReader  reader = xif.createXMLEventReader(new FileInputStream(file));
 	    XMLEvent event;
 		ArrayList<String> layerNames = new ArrayList<String>();

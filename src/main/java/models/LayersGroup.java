@@ -8,7 +8,7 @@ import javafx.scene.layout.Pane;
 
 public class LayersGroup {
 	
-	public static LayersGroup instance = new LayersGroup();
+	private static LayersGroup instance = new LayersGroup();
 	
 	public static LayersGroup getLayersGroup( ) {
 		return instance;
