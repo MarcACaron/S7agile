@@ -16,6 +16,7 @@ public class testPaletteCouleur extends ApplicationTest{
 	@Override public void start(Stage stage) {
         mainApp = new MainApp();
         mainApp.start(stage);
+        System.out.println("prem's");
     }
 	
 	@Test
