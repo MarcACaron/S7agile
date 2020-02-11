@@ -9,7 +9,11 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
+import javafx.scene.SnapshotParameters;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.image.WritableImage;
+import javafx.scene.input.Clipboard;
+import javafx.scene.input.ClipboardContent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
@@ -17,10 +21,12 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.RowConstraints;
 import javafx.scene.shape.Shape;
 import javafx.scene.transform.Scale;
+import models.CustomRectangle;
 import models.ApplicationHistory;
 import models.GridLayer;
 import models.Layer;
 import models.LayersGroup;
+import models.Transformable;
 
 public class DrawingZoneController {
 	
@@ -32,7 +38,9 @@ public class DrawingZoneController {
 	private GridPane gridPane;
 	private MainApp mainApp;
 	
-	//ApplicationHistory history = ApplicationHistory.getInstance();
+	private Clipboard clipboard;
+	private Transformable shapeCopy;
+	ApplicationHistory history;
 	
 	LayersGroup layersGroup = LayersGroup.getLayersGroup();
 	
@@ -163,4 +171,19 @@ public class DrawingZoneController {
 	public void setMainApp(MainApp mainApp) {
         this.mainApp = mainApp;
     }
+	
+	public void saveShape() {
+		
+		System.out.println("Copying");	
+		shapeCopy = (Transformable)mainApp.getTool().getShape();
+
+	}
+	
+	public void pasteShape() {
+		if (shapeCopy != null) {
+			System.out.println("Pasting");
+			this.applyToCurrentPane(shapeCopy.duplicate());
+		}
+		
+	}
 }

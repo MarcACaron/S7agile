@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
 import adraw4us.Tool;
+import models.CustomLine;
 import models.CustomRectangle;
 import models.RectangleTool;
 
@@ -55,6 +56,19 @@ public class TestRectangleTool {
 		assertEquals(4.0, height);
 		assertEquals(0.0, posX);
 		assertEquals(0.0, posY);
+		
+	}
+	
+	@Test
+	public void testDuplicateMethod() {
+		CustomRectangle rect = new CustomRectangle();
+		CustomRectangle rectClone = (CustomRectangle) rect.duplicate();
+
+		assertEquals(true, rect.getStroke() == rectClone.getStroke());
+		assertEquals(true, rect.getStrokeWidth() == rectClone.getStrokeWidth());
+		assertEquals(true, rect.getFill() == rectClone.getFill());
+		assertEquals(true, rect.getWidth() == rectClone.getWidth());
+		assertEquals(true, rect.getHeight() == rectClone.getHeight());
 		
 	}
 }

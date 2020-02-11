@@ -2,6 +2,7 @@ package models;
 
 
 import javafx.scene.shape.Line;
+import javafx.scene.shape.Shape;
 
 public class CustomLine extends Line implements Transformable{
 
@@ -108,7 +109,22 @@ public class CustomLine extends Line implements Transformable{
 	public boolean lengthToolisNeeded() {
 		return true;
 	}
-
+	
+	public Shape duplicate() {
+		CustomLine newLine = new CustomLine();
+		newLine.setStroke(this.getStroke());
+		newLine.setStrokeWidth(this.getStrokeWidth());
+		newLine.setFill(this.getFill());
+		newLine.setStartX(this.getStartX() + xCopyOffset);
+		newLine.setStartY(this.getStartY() + yCopyOffset);
+		newLine.setEndX(this.getEndX() + xCopyOffset);
+		newLine.setEndY(this.getEndY() + yCopyOffset);
+		newLine.setLengthTool(this.getLength());
+		newLine.setRotationTool(this.getRotation());
+		
+		return newLine;
+	}
+	
 	@Override
 	public String getType() {
 		return "line";

@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import adraw4us.Tool;
 import models.CircleTool;
+import models.Transformable;
 import models.CustomCircle;
 
 
@@ -52,6 +53,19 @@ public class TestCircleTool {
 		assertEquals(3.0, centerX);
 		assertEquals(3.0, centerY);
 		assertEquals(true, 1.40 < radius && radius < 1.42);
+		
+	}
+	
+	@Test
+	public void testDuplicateMethod() {
+		CustomCircle circle = new CustomCircle();
+		CustomCircle circleClone = (CustomCircle) circle.duplicate();
+		
+		assertEquals(circle.getStroke() == circleClone.getStroke(), true);
+		assertEquals(circle.getStrokeWidth() == circleClone.getStrokeWidth(), true);
+		assertEquals(circle.getFill() == circleClone.getFill(), true);
+		assertEquals(circle.getRadius() == circleClone.getRadius(), true);
+		assertEquals(circle.getRotation() == circleClone.getRotation(), true);
 		
 	}
 
