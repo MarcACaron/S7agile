@@ -8,7 +8,9 @@ import adraw4us.MainApp;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
@@ -29,12 +31,10 @@ public class DrawingZoneController {
 	@FXML
 	private AnchorPane anchorPane;
 	@FXML
-	private ScrollPane scrollPane;
-	@FXML
 	private GridPane gridPane;
 	private MainApp mainApp;
 	
-	ApplicationHistory history = ApplicationHistory.getInstance();
+	//ApplicationHistory history = ApplicationHistory.getInstance();
 	
 	LayersGroup layersGroup = LayersGroup.getLayersGroup();
 	
@@ -103,24 +103,18 @@ public class DrawingZoneController {
 			this.mainApp.getTool().mouseReleased(mainApp, anchorPane, this.mainApp.getPaletteCouleurController(), this.mainApp.getPaletteDetailController());
 		});
 		
-		GridLayer rootLayer = new GridLayer("Layer 0");
-		layersGroup.createNewLayer(rootLayer);
-		
-		Pane pane2 = new Pane();
-		anchorPane.getChildren().add(pane2);
-		
-		rootLayer.setPane(pane2);
+		updateLayers();
     }
 	
-	public void updateLayers(){
-		anchorPane.getChildren().clear();
+	public void updateLayers() {
 		ArrayList<Layer> layers = layersGroup.getLayers();
-		System.out.println("hkjhlmj"+layersGroup.size());
+		
+		System.out.println(layersGroup.size() + " size in drawing board");
 		
 		for (int i = layers.size() - 1; i >= 0; --i) {
 			Pane newPane = layers.get(i).getPane();
 			
-			if (newPane != null) {
+			if (newPane != null && !anchorPane.getChildrenUnmodifiable().contains(newPane)) {
 				anchorPane.getChildren().add(newPane);
 				
 				AnchorPane.setBottomAnchor(newPane, 0.0);
@@ -132,27 +126,20 @@ public class DrawingZoneController {
 			}
 			
 		}
-		history.update();
 	}
 	
 	public void clearDrawing() {
+		layersGroup.reset();
 		
 		ObservableList<Node> paneList = anchorPane.getChildren();
 		
-		for (int i = 0; i < paneList.size(); i++) {
+		for (int i = 0; i < paneList.size(); ++i) {
 			((Pane)(paneList.get(i))).getChildren().clear();
 		}
-	}
-	
-	public Pane getDrawingsAsOne() {
-		ObservableList<Node> paneList = anchorPane.getChildren();
-		Pane globalPane = new Pane();
 		
-		for (int i = 0; i < paneList.size(); i++) {
-			globalPane.getChildren().addAll(((Pane)(paneList.get(i))).getChildren());
-		}
+		anchorPane.getChildren().clear();
 		
-		return globalPane;
+		updateLayers();
 	}
 	
 	public ObservableList<Node> getLayers(){
@@ -164,9 +151,20 @@ public class DrawingZoneController {
 		
 		currentPane.getChildren().add(shape);
 		layersGroup.getCurrentLayer().setPane(currentPane);
+		
+		System.out.println(layersGroup.getCurrentLayer().getPane().getChildren().size());
 
 		updateLayers();
 	}
+	
+//	public void undo() {
+//		ArrayList<Layer> olderLayers = history.undoHistory();
+//		
+//		if (olderLayers != null) {
+//			layersGroup.replaceLayers(olderLayers);
+//			updateLayers();
+//		}
+//	}
 	
 	public void setMainApp(MainApp mainApp) {
         this.mainApp = mainApp;

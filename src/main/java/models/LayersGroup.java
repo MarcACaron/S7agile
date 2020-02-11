@@ -35,6 +35,10 @@ public class LayersGroup {
 		rootLayer.setPane(pane2);
 	}
 	
+	public void clear() {
+		layers = new ArrayList<Layer>();
+	}
+	
 	public LayersGroup() {
 		layers = new ArrayList<Layer>();
 		

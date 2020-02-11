@@ -19,10 +19,12 @@ import javafx.scene.shape.Shape;
 
 public class XmlDecoder extends XmlStrings {
 	
-	private static PatternApplier patternApplier = new PatternApplier();
 	private static LayersGroup layersGroup = LayersGroup.getLayersGroup();
+	
+	private static PatternApplier patternApplier = new PatternApplier();
+	
 	public static void readXML(File file, MainApp mainApp) throws FileNotFoundException, XMLStreamException {
-		layersGroup.reset();
+		layersGroup.clear();
 		XMLInputFactory xif = XMLInputFactory.newInstance();
 		xif.setProperty(XMLInputFactory.IS_SUPPORTING_EXTERNAL_ENTITIES, Boolean.FALSE);
 		XMLEventReader  reader = xif.createXMLEventReader(new FileInputStream(file));
@@ -39,9 +41,10 @@ public class XmlDecoder extends XmlStrings {
 						sh.setAccessibleText(se.getAttributeByName(new QName("shapeType")).getValue());
 						String name = se.getAttributeByName(new QName("layer")).getValue();
 						if(!layerNames.contains(name)) {
-							System.out.println(layersGroup.equals(LayersGroup.getLayersGroup()));
+							Layer a = new GridLayer(name);
+							System.out.println(layersGroup.getLayers().size() + "allo");
 							layerNames.add(name);
-							layersGroup.createNewLayer(new GridLayer(name));
+							layersGroup.createNewLayer(a);
 						}
 						layersGroup.getLayers().get(layerNames.indexOf(name)).getPane().getChildren().add(sh);
 						event = reader.nextEvent();
@@ -97,6 +100,8 @@ public class XmlDecoder extends XmlStrings {
 			} else if (event.isEndElement()) {
 			}
 		}
+	    System.out.println(layersGroup.size() + " Size in encoder");
+	    mainApp.getDrawingZoneController().updateLayers();
 	}
 
 }

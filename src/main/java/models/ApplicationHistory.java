@@ -10,6 +10,8 @@ public class ApplicationHistory {
 	
 	ArrayList<Layer> reDoHistory = new ArrayList<Layer>();
 	
+	LayersGroup layersGroup = LayersGroup.getLayersGroup();
+	
 	public static ApplicationHistory getInstance() {
 		return instance;
 	}
@@ -19,7 +21,7 @@ public class ApplicationHistory {
 	}
 	
 	public ArrayList<Layer> undoHistory() {
-		if (history.size() == 0) {
+		if (history.size() == 0 || history.size() == 1) {
 			return null;
 		}
 		
@@ -49,12 +51,11 @@ public class ApplicationHistory {
 	}
 	
 	public void addHistory(ArrayList<Layer> newHistory) {
-		history.add(newHistory);
+		history.add(new ArrayList<Layer>(newHistory));
 		reDoHistory.clear();
 	}
 	
 	public void update() {
-		LayersGroup layersGroup = LayersGroup.getLayersGroup();
 		
 		ArrayList<Layer> newLayers = layersGroup.getLayers();
 		
