@@ -28,8 +28,8 @@
           <Menu fx:id="MenuBarEdit" mnemonicParsing="false" text="Edit">
           
             <items>
-              <MenuItem mnemonicParsing="false" text="Undo ctl z" />
-              <MenuItem mnemonicParsing="false" text="Cut" />
+              <MenuItem fx:id="menuItemUndo" mnemonicParsing="false" text="Undo" />
+              <MenuItem fx:id="menuItemRedo" mnemonicParsing="false" text="Redo" />
               <MenuItem mnemonicParsing="false" text="Copy" />
               <MenuItem mnemonicParsing="false" text="Paste" />
               <MenuItem mnemonicParsing="false" onAction="#clear" text="Clear" />
