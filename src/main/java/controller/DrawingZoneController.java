@@ -4,6 +4,7 @@ package controller;
 
 import adraw4us.MainApp;
 import javafx.fxml.FXML;
+import javafx.geometry.Pos;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
@@ -24,6 +25,15 @@ public class DrawingZoneController {
 	double orgX;
 	double orgY;
 	int childIndex;
+	boolean gridPaneBoolean;
+	
+	public void redo() {
+		
+	}
+	
+	public void undo() {
+		
+	}
 	
 	public void zoomIn(double zoom) {
         Scale scaleTransform = new Scale(zoom, zoom, 0, 0);
@@ -38,14 +48,28 @@ public class DrawingZoneController {
 
     }
 
-	public void showGridPane() {
-		gridPane.setVisible(true);
+	public void inverseGridPaneVisibility() {
+		boolean visState = getLineGridPane(); //Boolean qui set la visibilité des lines
+		if (visState == true) {
+			gridPane.setGridLinesVisible(false);
+		}
+		else {
+			gridPane.setGridLinesVisible(true);
+		}
 	}
 	
-	public void hideGridPane() {
-		gridPane.setVisible(false);
+	public boolean getLineGridPane() {
+		gridPaneBoolean = gridPane.isGridLinesVisible();
+		return gridPaneBoolean;
 	}
 	
+	public void printMagnetismeGridPane() {
+		System.out.println(getMagnetismeGridPane());
+	}
+	
+	public Pos getMagnetismeGridPane() {
+		return gridPane.getAlignment();
+	}
 	
 	@FXML
     private void initialize() {

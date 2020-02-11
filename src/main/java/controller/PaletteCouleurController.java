@@ -21,6 +21,8 @@ import models.SelectionTool;
 public class PaletteCouleurController {
 	
 	@FXML
+	private Button testBut;
+	@FXML
     private Button fillAnanas;
 	@FXML
     private Button fillDirt;
@@ -67,16 +69,22 @@ public class PaletteCouleurController {
 		fillShape("rouge");
 	}
 	
-	@FXML
+	/*@FXML
 	private void grid() {
 		if(gridBut.isSelected()) {
-			this.mainApp.getDrawingZoneController().showGridPane();
+			this.mainApp.getDrawingZoneController().inverseGridPaneVisibility();
 		}
 		else {
-			this.mainApp.getDrawingZoneController().hideGridPane();
+			this.mainApp.getDrawingZoneController().inverseGridPaneVisibility();			
 		}
+	}*/
+	
+	@FXML
+	private void test() {
+		this.mainApp.getDrawingZoneController().printMagnetismeGridPane();
 	}
-		
+
+	
 	private void fillShape(String value) {
 		if(!value.equals("")) {
 			if(value.equals("rouge")) {

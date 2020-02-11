@@ -23,6 +23,8 @@ public class MenuController {
 	
 	@FXML private MenuItem menuItemOpen;
 	
+	@FXML private MenuItem menuShowGridLines;
+	
 	@FXML
 	private void clear() {
 		pane.getChildren().clear();
@@ -73,6 +75,9 @@ public class MenuController {
 			
 		});
 		
+		menuShowGridLines.setOnAction(e ->{
+			this.mainApp.getDrawingZoneController().inverseGridPaneVisibility();
+		});
     }
 
 	public void setMainApp(MainApp mainApp) {

@@ -41,7 +41,7 @@
             <items>
               <MenuItem mnemonicParsing="false" text="Turn Autogrid off" />
               <MenuItem mnemonicParsing="false" text="Show rules" />
-              <MenuItem mnemonicParsing="false" text="Show gridlines" />
+              <MenuItem fx:id="menuShowGridLines" mnemonicParsing="false" text="Show gridlines" />
               <MenuItem mnemonicParsing="false" text="Show size" />           
 			</items>
           </Menu>
