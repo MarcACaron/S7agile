@@ -33,72 +33,72 @@ public class XmlDecoder extends XmlStrings {
 	    while (reader.hasNext()) {
 	    	Shape sh = null;
 			event = reader.nextEvent();
-			if (event.isStartElement()) {
-				StartElement se = event.asStartElement();
-				if(se.getName().getLocalPart().equals("Shape")) {
-					sh = shapeFactory.build(se.getAttributeByName(new QName("shapeType")).getValue());
-					if(sh != null) {
-						sh.setAccessibleText(se.getAttributeByName(new QName("shapeType")).getValue());
-						String name = se.getAttributeByName(new QName("layer")).getValue();
-						if(!layerNames.contains(name)) {
-							Layer a = new GridLayer(name);
-							System.out.println(layersGroup.getLayers().size() + "allo");
-							layerNames.add(name);
-							layersGroup.createNewLayer(a);
-						}
-						layersGroup.getLayers().get(layerNames.indexOf(name)).getPane().getChildren().add(sh);
-						event = reader.nextEvent();
-						event = reader.nextEvent();
-						((Transformable)sh).setXPosTool(Double.valueOf(event.asCharacters().getData()));
-						event = reader.nextEvent();
-						event = reader.nextEvent();
-						event = reader.nextEvent();
-						((Transformable)sh).setYPosTool(Double.valueOf(event.asCharacters().getData()));
-						event = reader.nextEvent();
-						event = reader.nextEvent();
-						event = reader.nextEvent();
-						((Transformable)sh).setWidthTool(Double.valueOf(event.asCharacters().getData()));
-						event = reader.nextEvent();
-						event = reader.nextEvent();
-						event = reader.nextEvent();
-						((Transformable)sh).setHeightTool(Double.valueOf(event.asCharacters().getData()));
-						event = reader.nextEvent();
-						event = reader.nextEvent();
-						event = reader.nextEvent();
-						((Transformable)sh).setRadiusTool(Double.valueOf(event.asCharacters().getData()));
-						event = reader.nextEvent();
-						event = reader.nextEvent();
-						event = reader.nextEvent();
-						((Transformable)sh).setLengthTool(Double.valueOf(event.asCharacters().getData()));
-						event = reader.nextEvent();
-						event = reader.nextEvent();
-						event = reader.nextEvent();
-						((Transformable)sh).setRotationTool(Double.valueOf(event.asCharacters().getData()));
-						event = reader.nextEvent();
-						event = reader.nextEvent();
-						event = reader.nextEvent();
-						patternApplier.fillShape(sh, event.asCharacters().getData());
-						event = reader.nextEvent();
-						event = reader.nextEvent();
-						event = reader.nextEvent();
-						sh.setStroke(Color.valueOf(event.asCharacters().getData()));
-						event = reader.nextEvent();
-						event = reader.nextEvent();
-						event = reader.nextEvent();
-						sh.setStrokeWidth(Double.valueOf(event.asCharacters().getData()));
-						Shape sh2 = sh;
-						sh.setOnMouseClicked(t2 -> {
-							mainApp.getTool().setShape(sh2);
-							mainApp.getPaletteCouleurController().setLineWidth(sh2.getStrokeWidth());
-							mainApp.getPaletteCouleurController().setStroke((Color) (sh2.getStroke()));
-							
-							mainApp.getTool().fillDetails(mainApp.getPaletteDetailController(), sh2).apply(null);
-						});
-					}				
-				}
-			} else if (event.isCharacters()) {
-			} else if (event.isEndElement()) {
+			if (!event.isStartElement()) {
+				continue;
 			}
+			StartElement se = event.asStartElement();
+			if(!se.getName().getLocalPart().equals("Shape")) {
+				continue;
+			}
+			sh = shapeFactory.build(se.getAttributeByName(new QName("shapeType")).getValue());
+			if(sh != null) {
+				sh.setAccessibleText(se.getAttributeByName(new QName("shapeType")).getValue());
+				String name = se.getAttributeByName(new QName("layer")).getValue();
+				if(!layerNames.contains(name)) {
+					Layer a = new GridLayer(name);
+					System.out.println(layersGroup.getLayers().size() + "allo");
+					layerNames.add(name);
+					layersGroup.createNewLayer(a);
+				}
+				layersGroup.getLayers().get(layerNames.indexOf(name)).getPane().getChildren().add(sh);
+				event = reader.nextEvent();
+				event = reader.nextEvent();
+				((Transformable)sh).setXPosTool(Double.valueOf(event.asCharacters().getData()));
+				event = reader.nextEvent();
+				event = reader.nextEvent();
+				event = reader.nextEvent();
+				((Transformable)sh).setYPosTool(Double.valueOf(event.asCharacters().getData()));
+				event = reader.nextEvent();
+				event = reader.nextEvent();
+				event = reader.nextEvent();
+				((Transformable)sh).setWidthTool(Double.valueOf(event.asCharacters().getData()));
+				event = reader.nextEvent();
+				event = reader.nextEvent();
+				event = reader.nextEvent();
+				((Transformable)sh).setHeightTool(Double.valueOf(event.asCharacters().getData()));
+				event = reader.nextEvent();
+				event = reader.nextEvent();
+				event = reader.nextEvent();
+				((Transformable)sh).setRadiusTool(Double.valueOf(event.asCharacters().getData()));
+				event = reader.nextEvent();
+				event = reader.nextEvent();
+				event = reader.nextEvent();
+				((Transformable)sh).setLengthTool(Double.valueOf(event.asCharacters().getData()));
+				event = reader.nextEvent();
+				event = reader.nextEvent();
+				event = reader.nextEvent();
+				((Transformable)sh).setRotationTool(Double.valueOf(event.asCharacters().getData()));
+				event = reader.nextEvent();
+				event = reader.nextEvent();
+				event = reader.nextEvent();
+				patternApplier.fillShape(sh, event.asCharacters().getData());
+				event = reader.nextEvent();
+				event = reader.nextEvent();
+				event = reader.nextEvent();
+				sh.setStroke(Color.valueOf(event.asCharacters().getData()));
+				event = reader.nextEvent();
+				event = reader.nextEvent();
+				event = reader.nextEvent();
+				sh.setStrokeWidth(Double.valueOf(event.asCharacters().getData()));
+				Shape sh2 = sh;
+				sh.setOnMouseClicked(t2 -> {
+					mainApp.getTool().setShape(sh2);
+					mainApp.getPaletteCouleurController().setLineWidth(sh2.getStrokeWidth());
+					mainApp.getPaletteCouleurController().setStroke((Color) (sh2.getStroke()));
+					
+					mainApp.getTool().fillDetails(mainApp.getPaletteDetailController(), sh2).apply(null);
+				});
+			}				
 		}
 	    System.out.println(layersGroup.size() + " Size in encoder");
 	    mainApp.getDrawingZoneController().updateLayers();
