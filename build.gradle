@@ -44,7 +44,8 @@ dependencies {
 	testCompile('org.testfx:testfx-core:4.0.16-alpha') {
     	exclude group: 'org.testfx', module: 'testfx-internal-java8'
 	}
-    testCompile(group: 'org.testfx', name: 'openjfx-monocle', version: 'jdk-11+26')
+    //testCompile(group: 'org.testfx', name: 'openjfx-monocle', version: 'jdk-11+26')//Uncomment
+    testRuntime(group: 'org.testfx', name: 'openjfx-monocle', version: 'jdk-11+26')//Tuto
     
 	// JUnit
 	testCompile(group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: '5.5.2')
@@ -61,6 +62,10 @@ test {
         systemProperty 'java.awt.headless', 'true'
         systemProperty 'testfx.robot', 'glass'
         systemProperty 'testfx.headless', 'true'
+        
+        System.setProperty("prism.order", "sw");//tuto
+        System.setProperty("prism.text", "t2k");//tuto
+        
         systemProperty 'testfx.setup.timeout', '600000'
         exclude("**/ExampleOfREM.*") // Ne marche pas sur Jenkins
     } else {
