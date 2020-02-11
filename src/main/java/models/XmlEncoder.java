@@ -7,9 +7,7 @@ import java.io.FileOutputStream;
 import javax.xml.stream.XMLOutputFactory;
 import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamWriter;
-import javafx.collections.ObservableList;
-import javafx.scene.Node;
-import javafx.scene.layout.Pane;
+
 import javafx.scene.shape.Shape;
 
 

@@ -14,10 +14,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.ColumnConstraints;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.RowConstraints;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -127,20 +124,6 @@ public class MainApp extends Application {
             AnchorPane.setRightAnchor(scrollPaneOverview, detailPaletteOverview.getPrefWidth());
             AnchorPane.setTopAnchor(scrollPaneOverview, colorPaletteOverview.getPrefHeight());
             AnchorPane.setLeftAnchor(scrollPaneOverview, formPaletteOverview.getPrefWidth());
-            
-    		/*GridPane gridPane = new GridPane();
-    		
-    		scrollPaneOverview.getChildren().addAll(gridPane);
-    		
-    		ColumnConstraints column = new ColumnConstraints(40);
-    		RowConstraints row = new RowConstraints(40);
-    		
-    		for(int i=0; i<50; i++) {
-        		gridPane.getColumnConstraints().add(column);
-        		gridPane.getRowConstraints().add(row);
-    		}
-    		
-            gridPane.setStyle("-fx-grid-lines-visible: true");*/
             
             drawingZoneController = loader2.getController();
             drawingZoneController.setMainApp(this);

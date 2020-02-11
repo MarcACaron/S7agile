@@ -7,23 +7,18 @@ import java.util.ArrayList;
 import adraw4us.MainApp;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.RowConstraints;
 import javafx.scene.shape.Shape;
 import javafx.scene.transform.Scale;
-import models.ApplicationHistory;
-import models.GridLayer;
 import models.Layer;
 import models.LayersGroup;
 
 public class DrawingZoneController {
-	
+		
 	@FXML
 	private ScrollPane scrollPane;
 	@FXML
@@ -31,9 +26,7 @@ public class DrawingZoneController {
 	@FXML
 	private GridPane gridPane;
 	private MainApp mainApp;
-	
-	//ApplicationHistory history = ApplicationHistory.getInstance();
-	
+		
 	LayersGroup layersGroup = LayersGroup.getLayersGroup();
 	
 	ArrayList<Pane> paneList = new ArrayList<Pane>();
@@ -70,14 +63,6 @@ public class DrawingZoneController {
 	public boolean getLineGridPaneVisibility() {
 		gridPaneBoolean = gridPane.isGridLinesVisible();
 		return gridPaneBoolean;
-	}
-	
-	public void printMagnetismeGridPane() {
-		System.out.println(getMagnetismeGridPane());
-	}
-	
-	public Pos getMagnetismeGridPane() {
-		return gridPane.getAlignment();
 	}
 	
 	@FXML
