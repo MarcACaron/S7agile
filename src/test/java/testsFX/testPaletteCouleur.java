@@ -17,7 +17,7 @@ public class testPaletteCouleur extends ApplicationTest{
     }
 	
 	@Test
-	public void selectColor() {
+	public void testSelectFillColor() {
 		clickOn("#fillAnanas");
 		String clickFill = Tool.getFillName();
 		mainApp.getPaletteCouleurController().fillShape("ananas");
@@ -33,6 +33,16 @@ public class testPaletteCouleur extends ApplicationTest{
 		mainApp.getPaletteCouleurController().fillShape("rouge");
 		fill = Tool.getFillName();
 		assertEquals(fill, clickFill);
+	}
+	
+	@Test
+	public void testSelectStrokeColor() {
+		clickOn("#stroke");
+	}
+	
+	@Test
+	public void selectStrokeWidth() {
+		clickOn("#lineWidth");
 	}
 
 }
