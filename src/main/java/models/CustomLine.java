@@ -3,7 +3,7 @@ package models;
 
 import javafx.scene.shape.Line;
 
-public class CustomLine extends Line implements Transformable, Identifiable{
+public class CustomLine extends Line implements Transformable{
 
 	public CustomLine() {
 	}
@@ -52,11 +52,6 @@ public class CustomLine extends Line implements Transformable, Identifiable{
 	public void setRotationTool(double value) {
 		this.setRotate(value);
 		
-	}
-	
-	@Override
-	public ShapeType getShapeType() {
-		return ShapeType.LINE;
 	}
 
 	@Override

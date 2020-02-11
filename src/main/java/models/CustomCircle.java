@@ -4,7 +4,7 @@ package models;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 
-public class CustomCircle extends Circle implements Transformable, Identifiable {
+public class CustomCircle extends Circle implements Transformable {
 
 	public CustomCircle() {
 	}
@@ -53,11 +53,6 @@ public class CustomCircle extends Circle implements Transformable, Identifiable 
 	public void setRotationTool(double value) {
 		this.setRotate(value);
 		
-	}
-	
-	@Override
-	public ShapeType getShapeType() {
-		return ShapeType.CIRCLE;
 	}
 
 	@Override
