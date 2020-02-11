@@ -59,6 +59,7 @@ dependencies {
 test {
 	useJUnitPlatform()
 	if (project.hasProperty('headless')) {
+		println 'headless !'
         systemProperty 'java.awt.headless', 'true'
         systemProperty 'testfx.robot', 'glass'
         systemProperty 'testfx.headless', 'true'
