@@ -120,10 +120,12 @@ public class CustomLine extends Line implements Transformable, Identifiable{
 		newLine.setStroke(this.getStroke());
 		newLine.setStrokeWidth(this.getStrokeWidth());
 		newLine.setFill(this.getFill());
+		newLine.setStartX(this.getStartX() + xCopyOffset);
+		newLine.setStartY(this.getStartY() + yCopyOffset);
+		newLine.setEndX(this.getEndX() + xCopyOffset);
+		newLine.setEndY(this.getEndY() + yCopyOffset);
 		newLine.setLengthTool(this.getLength());
 		newLine.setRotationTool(this.getRotation());
-		newLine.setXPosTool(this.getXPos() + xCopyOffset);
-		newLine.setYPosTool(this.getYPos() + yCopyOffset);
 		
 		return newLine;
 	}
