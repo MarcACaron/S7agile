@@ -12,6 +12,7 @@ import javafx.stage.Stage;
 
 public class testPaletteCouleur extends ApplicationTest{
 	MainApp mainApp;
+	/*
 	@Start
 	@Override public void start(Stage stage) {
         mainApp = new MainApp();
@@ -37,7 +38,6 @@ public class testPaletteCouleur extends ApplicationTest{
 		fill = Tool.getFillName();
 		assertEquals(fill, clickFill);
 	}
-	/*
 	@Test
 	public void testSelectStrokeColor() {
 		clickOn("#stroke");
@@ -47,5 +47,4 @@ public class testPaletteCouleur extends ApplicationTest{
 	public void selectStrokeWidth() {
 		clickOn("#lineWidth");
 	}*/
-
 }
