@@ -64,10 +64,10 @@ public class LayersController {
 		});
 		
 		downButton.setOnAction(t -> {
-			Label currentLabel = layerListView.getSelectionModel().getSelectedItem();
+			String current = layerListView.getSelectionModel().getSelectedItem().getText();
 			
 			for (int i = 0; i < layerGroup.getLayers().size(); ++i) {
-				if (currentLabel == null && layerGroup.getLayers().get(i).getId().equals(currentLabel.getText())) {
+				if (current == null || layerGroup.getLayers().get(i).getId().equals(current)) {
 					int newIndex = layerGroup.downList(layerGroup.getLayers().get(i));
 					updateList();
 					layerListView.getSelectionModel().select(newIndex);
