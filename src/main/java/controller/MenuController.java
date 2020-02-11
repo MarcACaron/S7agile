@@ -40,7 +40,7 @@ public class MenuController {
 	
 	@FXML private MenuItem menuItemRedo;
 	
-	private Logger LoggerMenuController;
+	private Logger loggerMenuController;
 	
 	@FXML
 	private void clear() {
@@ -60,12 +60,12 @@ public class MenuController {
 			LayersGroup layersGroup = this.mainApp.getDrawingZoneController().layersGroup;
 
 			try {
-				if (fileController.askToSave(mainApp.getPrimaryStage(), layersGroup)) {
+				if (Boolean.TRUE.equals(fileController.askToSave(mainApp.getPrimaryStage(), layersGroup))) {
 					this.mainApp.getDrawingZoneController().clearDrawing();
 					fileController.clearFile();
 				}
 			} catch (FileNotFoundException | XMLStreamException e1) {
-				LoggerMenuController.log(Level.SEVERE, "Exeption:menuItemNew: "+e1.getMessage()+"; Fonction: initialize():MenuController:menuItemNew;");
+				loggerMenuController.log(Level.SEVERE, "Exeption:menuItemNew: "+e1.getMessage()+"; Fonction: initialize():MenuController:menuItemNew;");
 			}
 			
 		});
@@ -74,11 +74,11 @@ public class MenuController {
 			
 			LayersGroup layersGroup = this.mainApp.getDrawingZoneController().layersGroup;
 			
-			if (fileController.askForFile(mainApp.getPrimaryStage())) {
+			if (Boolean.TRUE.equals(fileController.askForFile(mainApp.getPrimaryStage()))) {
 				try {
 					fileController.saveDrawing(layersGroup);
 				} catch (FileNotFoundException | XMLStreamException e1) {
-					LoggerMenuController.log(Level.SEVERE, "Exeption:menuItemSaveAs: "+e1.getMessage()+"; Fonction: initialize():MenuController:menuItemSaveAs;");
+					loggerMenuController.log(Level.SEVERE, "Exeption:menuItemSaveAs: "+e1.getMessage()+"; Fonction: initialize():MenuController:menuItemSaveAs;");
 				}
 			}
 				
@@ -94,7 +94,7 @@ public class MenuController {
 				try {
 					fileController.saveDrawing(layersGroup);
 				} catch (FileNotFoundException | XMLStreamException e1) {
-					LoggerMenuController.log(Level.SEVERE, "Exeption:menuItemSave: "+e1.getMessage()+"; Fonction: initialize():MenuController:menuItemSave;");
+					loggerMenuController.log(Level.SEVERE, "Exeption:menuItemSave: "+e1.getMessage()+"; Fonction: initialize():MenuController:menuItemSave;");
 				}
 					
 			}
@@ -103,13 +103,13 @@ public class MenuController {
 		
 		menuItemOpen.setOnAction(e -> {
 			try {
-				if (fileController.askToSave(mainApp.getPrimaryStage(), LayersGroup.getLayersGroup())) {
+				if (Boolean.TRUE.equals(fileController.askToSave(mainApp.getPrimaryStage(), LayersGroup.getLayersGroup()))) {
 					fileController.openFile(mainApp.getPrimaryStage(), mainApp);
 					this.mainApp.getDrawingZoneController().updateLayers();
 						
 				}
 			} catch (FileNotFoundException | XMLStreamException e1) {
-				LoggerMenuController.log(Level.SEVERE, "Exeption:menuItemOpen: "+e1.getMessage()+"; Fonction: initialize():MenuController:MenuItemOpen;");
+				loggerMenuController.log(Level.SEVERE, "Exeption:menuItemOpen: "+e1.getMessage()+"; Fonction: initialize():MenuController:MenuItemOpen;");
 			}
 			
 		});
@@ -130,7 +130,7 @@ public class MenuController {
 	            
 	        }
 	        catch (IOException ex) {
-	        	LoggerMenuController.log(Level.SEVERE, "Exeption: "+ex.getMessage()+"; Fonction: initialize():MenuController;");
+	        	loggerMenuController.log(Level.SEVERE, "Exeption: "+ex.getMessage()+"; Fonction: initialize():MenuController;");
 	        }
 			
 		});
