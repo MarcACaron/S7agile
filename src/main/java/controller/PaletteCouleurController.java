@@ -85,7 +85,7 @@ public class PaletteCouleurController {
 	}
 
 	
-	private void fillShape(String value) {
+	public void fillShape(String value) {
 		if(!value.equals("")) {
 			if(value.equals("rouge")) {
 			    Tool.setFill(Color.RED);
