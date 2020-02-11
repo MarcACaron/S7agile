@@ -11,14 +11,10 @@ import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.RowConstraints;
 import javafx.scene.shape.Shape;
 import javafx.scene.transform.Scale;
-import models.ApplicationHistory;
-import models.GridLayer;
 import models.Layer;
 import models.LayersGroup;
 
