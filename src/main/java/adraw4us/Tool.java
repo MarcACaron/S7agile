@@ -4,12 +4,10 @@ import java.util.function.Function;
 
 import controller.DetailPaletteController;
 import controller.PaletteCouleurController;
-import javafx.geometry.Point2D;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Shape;
-import models.CustomCircle;
 import models.Transformable;
 
 public abstract class Tool {

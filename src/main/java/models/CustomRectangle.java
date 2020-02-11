@@ -3,7 +3,7 @@ package models;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
 
-public class CustomRectangle extends Rectangle implements Transformable, Identifiable {
+public class CustomRectangle extends Rectangle implements Transformable {
 
 	public CustomRectangle() {
 	}
@@ -54,11 +54,6 @@ public class CustomRectangle extends Rectangle implements Transformable, Identif
 	public void setRotationTool(double value) {
 		this.setRotate(value);
 		
-	}
-	
-	@Override
-	public ShapeType getShapeType() {
-		return ShapeType.RECTANGLE;
 	}
 
 	@Override

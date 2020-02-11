@@ -99,7 +99,7 @@ public class FileController {
 		return false;
 	}
 
-	public void openFile(Stage stage, LayersGroup layersGroup, MainApp mainApp) throws FileNotFoundException, XMLStreamException {
+	public void openFile(Stage stage, MainApp mainApp) throws FileNotFoundException, XMLStreamException {
 		
 		fileChooser = new FileChooser();
 		if (currentFile != null) {
@@ -113,11 +113,8 @@ public class FileController {
 		File fileCandidate = fileChooser.showOpenDialog(stage);
 		
 		if (fileCandidate != null && fileCandidate.isFile()) {
-			layersGroup.clear();
-			//layersGroup = new LayersGroup();
 			currentFile = fileCandidate;
 			XmlDecoder.readXML(currentFile, mainApp);
-			System.out.println("fileC "+layersGroup.size());
 
 		}
 	}

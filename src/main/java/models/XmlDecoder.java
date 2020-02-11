@@ -20,11 +20,11 @@ import javafx.scene.shape.Shape;
 public class XmlDecoder extends XmlStrings {
 	
 	private static PatternApplier patternApplier = new PatternApplier();
-	
+	private static LayersGroup layersGroup = LayersGroup.getLayersGroup();
 	public static void readXML(File file, MainApp mainApp) throws FileNotFoundException, XMLStreamException {
-		LayersGroup layersGroup = LayersGroup.getLayersGroup();
-		layersGroup.clear();
+		layersGroup.reset();
 		XMLInputFactory xif = XMLInputFactory.newInstance();
+		xif.setProperty(XMLInputFactory.IS_SUPPORTING_EXTERNAL_ENTITIES, Boolean.FALSE);
 		XMLEventReader  reader = xif.createXMLEventReader(new FileInputStream(file));
 	    XMLEvent event;
 		ArrayList<String> layerNames = new ArrayList<String>();
@@ -92,14 +92,6 @@ public class XmlDecoder extends XmlStrings {
 							mainApp.getTool().fillDetails(mainApp.getPaletteDetailController(), sh2).apply(null);
 						});
 					}				
-				}else if(se.getName().getLocalPart().equals("numberOfLayers")) {
-					event = reader.nextEvent();
-					int nbOfLayers = Integer.parseInt(event.asCharacters().getData());
-					for(int i = 0; i<nbOfLayers; i++) {
-						//layersGroup.createNewLayer(new L);
-						//
-					}
-					System.out.println("Layers: "+event.asCharacters().getData());
 				}
 			} else if (event.isCharacters()) {
 			} else if (event.isEndElement()) {
