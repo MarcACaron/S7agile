@@ -3,6 +3,7 @@ package models;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.List;
 
 public class ApplicationHistory {
 	
@@ -52,14 +53,14 @@ public class ApplicationHistory {
 		return null;
 	}
 	
-	public void addHistory(ArrayList<Layer> newHistory) {
-		history.add(new ArrayList<Layer>(newHistory));
+	public void addHistory(List<Layer> newLayers) {
+		history.add(new ArrayList<Layer>(newLayers));
 		reDoHistory.clear();
 	}
 	
 	public void update() {
 		
-		ArrayList<Layer> newLayers = layersGroup.getLayers();
+		List<Layer> newLayers = layersGroup.getLayers();
 		
 		addHistory(newLayers);
 		
