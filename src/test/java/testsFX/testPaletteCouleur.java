@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 import org.testfx.framework.junit5.ApplicationTest;
+import org.testfx.framework.junit5.Start;
 
 import adraw4us.MainApp;
 import adraw4us.Tool;
@@ -11,6 +12,7 @@ import javafx.stage.Stage;
 
 public class testPaletteCouleur extends ApplicationTest{
 	MainApp mainApp;
+	@Start
 	@Override public void start(Stage stage) {
         mainApp = new MainApp();
         mainApp.start(stage);
