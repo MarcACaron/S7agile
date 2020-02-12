@@ -102,7 +102,7 @@ public class CustomRectangle extends Rectangle implements Transformable {
 		return false;
 	}
 	@Override
-	public Shape duplicate() {
+	public Shape duplicateAndOffset() {
 		CustomRectangle newRectangle = new CustomRectangle();
 		newRectangle.setStroke(this.getStroke());
 		newRectangle.setStrokeWidth(this.getStrokeWidth());
@@ -111,7 +111,20 @@ public class CustomRectangle extends Rectangle implements Transformable {
 		newRectangle.setYPosTool(this.getYPos() + yCopyOffset);
 		newRectangle.setWidthTool(this.getWidth());
 		newRectangle.setHeightTool(this.getHeight());
-		System.out.println(this.getWidth() + "  " + this.getLength());
+		
+		return newRectangle;
+	}
+	
+	@Override
+	public Shape duplicate() {
+		CustomRectangle newRectangle = new CustomRectangle();
+		newRectangle.setStroke(this.getStroke());
+		newRectangle.setStrokeWidth(this.getStrokeWidth());
+		newRectangle.setFill(this.getFill());
+		newRectangle.setXPosTool(this.getXPos());
+		newRectangle.setYPosTool(this.getYPos());
+		newRectangle.setWidthTool(this.getWidth());
+		newRectangle.setHeightTool(this.getHeight());
 		
 		return newRectangle;
 	}

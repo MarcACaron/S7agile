@@ -110,7 +110,7 @@ public class CustomLine extends Line implements Transformable{
 		return true;
 	}
 	
-	public Shape duplicate() {
+	public Shape duplicateAndOffset() {
 		CustomLine newLine = new CustomLine();
 		newLine.setStroke(this.getStroke());
 		newLine.setStrokeWidth(this.getStrokeWidth());
@@ -119,6 +119,21 @@ public class CustomLine extends Line implements Transformable{
 		newLine.setStartY(this.getStartY() + yCopyOffset);
 		newLine.setEndX(this.getEndX() + xCopyOffset);
 		newLine.setEndY(this.getEndY() + yCopyOffset);
+		newLine.setLengthTool(this.getLength());
+		newLine.setRotationTool(this.getRotation());
+		
+		return newLine;
+	}
+	
+	public Shape duplicate() {
+		CustomLine newLine = new CustomLine();
+		newLine.setStroke(this.getStroke());
+		newLine.setStrokeWidth(this.getStrokeWidth());
+		newLine.setFill(this.getFill());
+		newLine.setStartX(this.getStartX());
+		newLine.setStartY(this.getStartY());
+		newLine.setEndX(this.getEndX());
+		newLine.setEndY(this.getEndY());
 		newLine.setLengthTool(this.getLength());
 		newLine.setRotationTool(this.getRotation());
 		

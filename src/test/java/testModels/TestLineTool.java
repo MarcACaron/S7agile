@@ -67,7 +67,7 @@ public class TestLineTool {
 		line.setEndX(40);
 		line.setEndY(45);
 		
-		CustomLine lineClone = (CustomLine) line.duplicate();
+		CustomLine lineClone = (CustomLine) line.duplicateAndOffset();
 
 		assertEquals(true, line.getStroke() == lineClone.getStroke());
 		assertEquals(true, line.getStrokeWidth() == lineClone.getStrokeWidth());

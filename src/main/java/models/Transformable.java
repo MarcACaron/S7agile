@@ -25,5 +25,6 @@ public interface Transformable {
 	public boolean heightToolisNeeded();
 	public boolean radiusToolisNeeded();
 	public boolean lengthToolisNeeded();
+	public Shape duplicateAndOffset();
 	public Shape duplicate();
 }

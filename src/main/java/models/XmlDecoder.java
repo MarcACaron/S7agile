@@ -101,7 +101,7 @@ public class XmlDecoder extends XmlStrings {
 			}				
 		}
 	    System.out.println(layersGroup.size() + " Size in encoder");
-	    mainApp.getDrawingZoneController().updateLayers();
+	    mainApp.getDrawingZoneController().updateLayers(true);
 	}
 
 }

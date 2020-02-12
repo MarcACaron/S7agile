@@ -38,13 +38,10 @@ public class DrawingZoneController {
 	private GridPane gridPane;
 	private MainApp mainApp;
 	
-	private Clipboard clipboard;
 	private Transformable shapeCopy;
-	ApplicationHistory history;
+	ApplicationHistory history = ApplicationHistory.getInstance();
 	
 	LayersGroup layersGroup = LayersGroup.getLayersGroup();
-	
-	ArrayList<Pane> paneList = new ArrayList<Pane>();
 	
 	double orgX;
 	double orgY;
@@ -52,11 +49,22 @@ public class DrawingZoneController {
 	boolean gridPaneBoolean;
 	
 	public void redo() {
+		clearDrawing();
 		
+		layersGroup.clear();
+		ArrayList<Layer> redoLayers = history.redoHistory();
+		
+		layersGroup.replaceLayers(redoLayers);
+		updateLayers(true);
 	}
 	
 	public void undo() {
+		clearDrawing();
+		layersGroup.clear();
+		ArrayList<Layer> undoLayers = history.undoHistory();
 		
+		layersGroup.replaceLayers(undoLayers);
+		updateLayers(true);
 	}
 	
 	public void zoomIn(double zoom) {
@@ -103,11 +111,10 @@ public class DrawingZoneController {
 		anchorPane.setOnMouseReleased(t -> {
 			this.mainApp.getTool().mouseReleased(mainApp, anchorPane, this.mainApp.getPaletteCouleurController(), this.mainApp.getPaletteDetailController());
 		});
-		clearDrawing();
-		updateLayers();
+		updateLayers(true);
     }
 	
-	public void updateLayers() {
+	public void updateLayers(Boolean saveHistory) {
 		ArrayList<Layer> layers = layersGroup.getLayers();
 		
 		for (int i = layers.size() - 1; i >= 0; --i) {
@@ -137,6 +144,11 @@ public class DrawingZoneController {
 			}
 			
 		}
+		
+		if ( saveHistory ) {
+			history.update();
+		}
+		
 	}
 	
 	public void clearDrawing() {
@@ -144,19 +156,15 @@ public class DrawingZoneController {
 		
 		ObservableList<Node> paneList = anchorPane.getChildren();
 		
-		for (int i = 1; i < paneList.size() - 1; ++i) {
-			if ( gridPane.getId().equals(paneList.get(i).getId())  ) {
-				((Pane)(paneList.get(i))).getChildren().clear();
-			}
-			else {
-				System.out.println("plz detect grid");
-			}
+		for (int i = 0; i < paneList.size(); ++i) {
 			
+			if ( !gridPane.getId().equals(paneList.get(i).getId()) ) {
+				((Pane)(paneList.get(i))).getChildren().clear();
+				anchorPane.getChildren().remove(i);
+			}
 		}
 		
-		//anchorPane.getChildren().clear();
-		
-		updateLayers();
+		//updateLayers(true);
 	}
 	
 	public void applyToCurrentPane(Shape shape) {
@@ -165,7 +173,7 @@ public class DrawingZoneController {
 		currentPane.getChildren().add(shape);
 		layersGroup.getCurrentLayer().setPane(currentPane);
 
-		updateLayers();
+		updateLayers(true);
 	}
 	
 	public void setMainApp(MainApp mainApp) {
@@ -182,8 +190,7 @@ public class DrawingZoneController {
 	public void pasteShape() {
 		if (shapeCopy != null) {
 			System.out.println("Pasting");
-			this.applyToCurrentPane(shapeCopy.duplicate());
+			this.applyToCurrentPane(shapeCopy.duplicateAndOffset());
 		}
-		
 	}
 }

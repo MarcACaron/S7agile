@@ -59,7 +59,7 @@ public class TestCircleTool {
 	@Test
 	public void testDuplicateMethod() {
 		CustomCircle circle = new CustomCircle();
-		CustomCircle circleClone = (CustomCircle) circle.duplicate();
+		CustomCircle circleClone = (CustomCircle) circle.duplicateAndOffset();
 		
 		assertEquals(circle.getStroke() == circleClone.getStroke(), true);
 		assertEquals(circle.getStrokeWidth() == circleClone.getStrokeWidth(), true);

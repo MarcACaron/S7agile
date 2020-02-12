@@ -2,6 +2,12 @@ package models;
 
 import java.util.ArrayList;
 
+
+import javafx.collections.ObservableList;
+import javafx.scene.Node;
+import javafx.scene.layout.Pane;
+import javafx.scene.shape.Shape;
+
 public class ApplicationHistory {
 	
 	private static ApplicationHistory instance = new ApplicationHistory();
@@ -29,7 +35,7 @@ public class ApplicationHistory {
 		
 		ArrayList<Layer> returnLayers = history.get(historyIndex);
 		
-		reDoHistory = history.get(history.size() - 1);
+		reDoHistory = history.get(historyIndex + 1);
 		
 		history.remove(historyIndex + 1);
 		
@@ -38,11 +44,11 @@ public class ApplicationHistory {
 	
 	public ArrayList<Layer> redoHistory() {
 		
-		if (reDoHistory.size() != 0) {
+		if (reDoHistory.size() > 0) {
 			ArrayList<Layer> returnLayers = reDoHistory;
 			
-			history.add(returnLayers);
-			reDoHistory.clear();
+			//history.add(returnLayers);
+			reDoHistory = new ArrayList<Layer>();
 			
 			return returnLayers;
 		}
@@ -50,17 +56,35 @@ public class ApplicationHistory {
 		return null;
 	}
 	
-	public void addHistory(ArrayList<Layer> newHistory) {
+	private void addHistory(ArrayList<Layer> newHistory) {
 		history.add(new ArrayList<Layer>(newHistory));
-		reDoHistory.clear();
+		reDoHistory = new ArrayList<Layer>();
 	}
 	
 	public void update() {
 		
 		ArrayList<Layer> newLayers = layersGroup.getLayers();
+		ArrayList<Layer> newHistoryLayers = new ArrayList<Layer>();
 		
-		addHistory(newLayers);
+		for (int i = 0; i < newLayers.size(); ++i) {
+			Layer layer = newLayers.get(i);
+			
+			ObservableList<Node> paneChilds = layer.getPane().getChildrenUnmodifiable();
+			Pane newPane = new Pane();
+			
+			for (int j = 0; j < paneChilds.size(); ++j) {
+				Transformable shape = (Transformable)paneChilds.get(j);
+				Shape newShape = shape.duplicate();
+				newPane.getChildren().add(newShape);
+			}
+			
+			Layer newLayer = new GridLayer("Layer " + i);
+			newLayer.setPane(newPane);
+			
+			newHistoryLayers.add(newLayer);
+		}
 		
+		history.add(newHistoryLayers);
 	}
 
 }
