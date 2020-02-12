@@ -1,6 +1,7 @@
 package models;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
@@ -11,9 +12,9 @@ public class ApplicationHistory {
 	
 	private static ApplicationHistory instance = new ApplicationHistory();
 	
-	ArrayList<ArrayList<Layer>> history = new ArrayList<ArrayList<Layer>>();
+	ArrayList<ArrayList<Layer>> history = new ArrayList<>();
 	
-	ArrayList<Layer> reDoHistory = new ArrayList<Layer>();
+	ArrayList<Layer> reDoHistory = new ArrayList<>();
 	
 	LayersGroup layersGroup = LayersGroup.getLayersGroup();
 	
@@ -25,9 +26,9 @@ public class ApplicationHistory {
 		//Constructor
 	}
 	
-	public ArrayList<Layer> undoHistory() {
-		if (history.size() == 0 || history.size() == 1) {
-			return null;
+	public List<Layer> undoHistory() {
+		if (history.isEmpty() || history.size() == 1) {
+			return new ArrayList<>();
 		}
 		
 		int historyIndex = history.size() - 2;
@@ -41,29 +42,23 @@ public class ApplicationHistory {
 		return returnLayers;
 	}
 	
-	public ArrayList<Layer> redoHistory() {
+	public List<Layer> redoHistory() {
 		
 		if (reDoHistory.size() > 0) {
 			ArrayList<Layer> returnLayers = reDoHistory;
-			
-			//history.add(returnLayers);
-			reDoHistory = new ArrayList<Layer>();
+		
+			reDoHistory = new ArrayList<>();
 			
 			return returnLayers;
 		}
 		
-		return null;
-	}
-	
-	private void addHistory(ArrayList<Layer> newHistory) {
-		history.add(new ArrayList<Layer>(newHistory));
-		reDoHistory = new ArrayList<Layer>();
+		return new ArrayList<>();
 	}
 	
 	public void update() {
 		
 		ArrayList<Layer> newLayers = layersGroup.getLayers();
-		ArrayList<Layer> newHistoryLayers = new ArrayList<Layer>();
+		ArrayList<Layer> newHistoryLayers = new ArrayList<>();
 		
 		for (int i = 0; i < newLayers.size(); ++i) {
 			Layer layer = newLayers.get(i);

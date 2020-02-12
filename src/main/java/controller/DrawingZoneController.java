@@ -88,12 +88,9 @@ public class DrawingZoneController {
 			childIndex = anchorPane.getChildren().size();
 			childIndex = this.mainApp.getTool().mousePressed(this.mainApp.getPaletteDetailController(), anchorPane);
 		});
-		anchorPane.setOnMouseDragged(t -> {
-			this.mainApp.getTool().mouseDragged(orgX, orgY, t.getX(), t.getY());
-		});
-		anchorPane.setOnMouseReleased(t -> {
-			this.mainApp.getTool().mouseReleased(mainApp, anchorPane, this.mainApp.getPaletteCouleurController(), this.mainApp.getPaletteDetailController());
-		});
+		anchorPane.setOnMouseDragged(t -> this.mainApp.getTool().mouseDragged(orgX, orgY, t.getX(), t.getY()));
+		
+		anchorPane.setOnMouseReleased(t -> this.mainApp.getTool().mouseReleased(mainApp, anchorPane, this.mainApp.getPaletteCouleurController(), this.mainApp.getPaletteDetailController()));
 		updateLayers(true);
     }
 	
@@ -128,7 +125,7 @@ public class DrawingZoneController {
 			
 		}
 		
-		if ( saveHistory ) {
+		if ( Boolean.TRUE.equals(saveHistory)) {
 			history.update();
 		}
 		
@@ -146,8 +143,6 @@ public class DrawingZoneController {
 				anchorPane.getChildren().remove(i);
 			}
 		}
-		
-		//updateLayers(true);
 	}
 	
 	public void applyToCurrentPane(Shape shape) {
