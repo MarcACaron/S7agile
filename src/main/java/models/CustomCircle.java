@@ -85,13 +85,19 @@ public class CustomCircle extends Circle implements Transformable {
 	public double getRotation() {
 		return this.getRotate();
 	}
+	
+	@Override
+	public boolean heightToolisNeeded() {
+		return false;
+	}
+	
 	@Override
 	public boolean widthToolisNeeded() {
 		return false;
 	}
 
 	@Override
-	public boolean heightToolisNeeded() {
+	public boolean lengthToolisNeeded() {
 		return false;
 	}
 
@@ -100,10 +106,7 @@ public class CustomCircle extends Circle implements Transformable {
 		return true;
 	}
 
-	@Override
-	public boolean lengthToolisNeeded() {
-		return false;
-	}
+	
 	
 	@Override
 	public Shape duplicateAndOffset() {
