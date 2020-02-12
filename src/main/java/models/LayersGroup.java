@@ -2,7 +2,6 @@ package models;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
 
 import javafx.scene.layout.Pane;
 
@@ -15,7 +14,7 @@ public class LayersGroup {
 		return instance;
 	}
 	
-	private List<Layer> layers;
+	private ArrayList<Layer> layers;
 	
 	public Layer getCurrentLayer() {
 		return layers.get(0);
@@ -51,7 +50,7 @@ public class LayersGroup {
 		rootLayer.setPane(pane2);
 	}
 	
-	public List<Layer> getLayers() {
+	public ArrayList<Layer> getLayers() {
 		return layers;
 	}
 	
@@ -84,7 +83,7 @@ public class LayersGroup {
 		return layers.indexOf(layer);
 	}
 	
-	public void replaceLayers(List<Layer> newLayers) {
+	public void replaceLayers(ArrayList<Layer> newLayers) {
 		layers = newLayers;
 	}
 

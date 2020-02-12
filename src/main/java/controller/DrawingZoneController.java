@@ -144,7 +144,7 @@ public class DrawingZoneController {
 	public void clearDrawing() {
 		layersGroup.reset();
 		
-		ObservableList<Node> clearPaneList = anchorPane.getChildren();
+		ObservableList<Node> paneList = anchorPane.getChildren();
 		
 		for (int i = 0; i < paneList.size(); ++i) {
 			
