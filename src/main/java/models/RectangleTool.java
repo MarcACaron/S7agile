@@ -5,6 +5,8 @@ import java.util.function.Function;
 import adraw4us.Tool;
 import controller.DetailPaletteController;
 import controller.PaletteCouleurController;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 import javafx.scene.shape.Shape;
 
 public class RectangleTool extends Tool {
@@ -43,5 +45,12 @@ public class RectangleTool extends Tool {
 		this.fillShape();
 		this.shape.setStroke(stroke);
 		this.shape.setStrokeWidth(lineWidth);
+	}
+	
+	@Override
+	public void overlayForm() {
+		Circle dot = new Circle(1,Color.BLACK);
+		dot.setCenterX(((CustomRectangle) this.getShape()).getXPos() + ((CustomRectangle) this.getShape()).getWidth());
+		dot.setCenterY(((CustomRectangle) this.getShape()).getYPos() + ((CustomRectangle) this.getShape()).getHeight());
 	}
 }

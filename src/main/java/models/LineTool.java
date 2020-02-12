@@ -30,4 +30,7 @@ public class LineTool extends Tool{
 		this.shape.setStroke(stroke);
 		this.shape.setStrokeWidth(lineWidth);
 	}
+	
+	@Override
+	public void overlayForm() {}
 }
