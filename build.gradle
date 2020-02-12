@@ -27,7 +27,7 @@ repositories {
 }
 
 javafx {
-    version = "11.0.2"
+    version = "12"//11.0.2
     modules = ['javafx.base', 'javafx.controls', 'javafx.fxml', 'javafx.swing','javafx.graphics'] 
     /* -ea --module-path /Users/gonr1001/Documents/javafx-sdk-11.0.2/lib --add-modules=javafx.controls,javafx.fxml,javafx.swing,javafx.graphics*/   
 }
@@ -44,8 +44,7 @@ dependencies {
 	testCompile('org.testfx:testfx-core:4.0.16-alpha') {
     	exclude group: 'org.testfx', module: 'testfx-internal-java8'
 	}
-    testCompile(group: 'org.testfx', name: 'openjfx-monocle', version: 'jdk-11+26')//Uncomment
-    //testRuntime(group: 'org.testfx', name: 'openjfx-monocle', version: 'jdk-11+26')//Tuto
+    testCompile "org.testfx:openjfx-monocle:jdk-11+26"
     
 	// JUnit
 	testCompile(group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: '5.5.2')
@@ -54,21 +53,20 @@ dependencies {
 	
 	testCompile(group: 'org.jacoco', name: 'org.jacoco.agent', version: '0.8.4')
 	testCompile(group: 'org.picocontainer', name: 'picocontainer', version: '2.15')
+	
 }
 
 test {
 	useJUnitPlatform()
 	if (project.hasProperty('headless')) {
-		println 'headless !'
+		println 'headless.'
         systemProperty 'java.awt.headless', 'true'
         systemProperty 'testfx.robot', 'glass'
         systemProperty 'testfx.headless', 'true'
-        
-        System.setProperty("prism.order", "sw");//tuto
-        System.setProperty("prism.text", "t2k");//tuto
-        
+        systemProperty 'prism.order', 'sw'
+        systemProperty 'prism.text', 't2k'
         systemProperty 'testfx.setup.timeout', '600000'
-        exclude("**/ExampleOfREM.*") // Ne marche pas sur Jenkins
+        //exclude("**/ExampleOfREM.*") // Ne marche pas sur Jenkins
     } else {
     	exclude("**/SaveTest.*") // the save test does not work on a computer with gradle but works fine on jenkins and when is launched via JUnit
     }
@@ -114,7 +112,7 @@ sourceSets {
 			srcDirs= ["src/main/java"]
 		}
 		resources {
-			srcDirs= ["src/main/ressources"]
+			srcDirs= ["src/main/java"]
 		}
 	}
 	test {
@@ -122,7 +120,7 @@ sourceSets {
 			srcDirs= ["src/test/java"]
 		}
 		resources {
-			srcDirs= ["src/test/resources"]
+			srcDirs= ["src/test/java"]
 		}
 	}
 }

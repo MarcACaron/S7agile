@@ -1,16 +1,102 @@
-package testControllers;
+package testsFX;
 
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import org.junit.jupiter.api.Order;
 import org.testfx.util.WaitForAsyncUtils;
 
 import javafx.scene.control.MenuBar;
+import javafx.scene.input.KeyCode;
 
 
 public class TestMenuController extends testApplicationUI{
-
-	private MenuBar menuBar;
+	
+	@Test
+	public void testFileNew() {
+		clickOn("#MenuBarFile");
+		clickOn("#menuItemNew");
+		clickOn("No");
+		//TODO: Tester si on a bien un truc neuf
+	}	
+	@Test
+	@Order(1)
+	public void testFileSave() {
+		//TODO: Supprimer le fichier avant de faire ce test
+		clickOn("#MenuBarFile");
+		clickOn("#menuItemSave");
+		type(KeyCode.T);
+		type(KeyCode.E);
+		type(KeyCode.S);
+		type(KeyCode.T);
+		type(KeyCode.ENTER);
+		type(KeyCode.LEFT);
+		type(KeyCode.ENTER);
+		//TODO: Tester si on a bien le fichier voulu
+	}
+	@Test
+	@Order(2)
+	public void testFileOpen() {
+		clickOn("#rectangle");
+		moveBy(150, 150);
+		drag();
+		moveBy(150, 150);
+		drop();
+		clickOn("#MenuBarFile");
+		clickOn("#menuItemOpen");
+		type(KeyCode.ENTER);//sauvegarde
+		type(KeyCode.T);
+		type(KeyCode.E);
+		type(KeyCode.S);
+		type(KeyCode.T);
+		type(KeyCode.ENTER);
+		type(KeyCode.LEFT);
+		type(KeyCode.ENTER);
+		type(KeyCode.T);
+		type(KeyCode.E);
+		type(KeyCode.S);
+		type(KeyCode.T);
+		type(KeyCode.ENTER);
+		//TODO: Tester si on a bien la même chose qu'avant la sauvegarde
+	}
+	@Test
+	public void testEdit() {
+		clickOn("#MenuBarEdit");
+		
+	}
+	@Test
+	public void testLayoutGrid() {
+		clickOn("#MenuBarLayout");
+		clickOn("#menuShowGridLines");
+		pause(3);
+		clickOn("#MenuBarLayout");
+		clickOn("#menuShowGridLines");
+		pause(2);//TODO: Verifier qu'on a bien les grilles
+	}
+	@Test
+	public void testLayoutLayers() {
+		clickOn("#MenuBarLayout");
+		clickOn("#menuItemLayers");
+		clickOn("#newButton");
+		clickOn("Layer 0");
+		clickOn("Up");
+		clickOn("Layer 0");
+		clickOn("Down");
+		clickOn("Layer 0");
+		clickOn("#hideButton");
+		clickOn("Layer 0");
+		clickOn("#hideButton");
+		clickOn("Layer 0");
+		//clickOn("Delete"); NE MARCHE PAS
+	}
+	
+	private void pause(int times) {
+		for(int i=0; i<times; i++) {
+			moveBy(150, 150);
+			moveBy(-150, -150);
+		}
+	}
+	/*private MenuBar menuBar;
 	
 	final String[][] nameArray =
 		{		{"File", "New", "Open", "Open as", "Close", "Save", "Save as", "Revert", "Page Setup", "Print", "Quit"},
