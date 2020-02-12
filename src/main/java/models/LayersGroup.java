@@ -84,7 +84,7 @@ public class LayersGroup {
 		return layers.indexOf(layer);
 	}
 	
-	public void replaceLayers(ArrayList<Layer> newLayers) {
+	public void replaceLayers(List<Layer> newLayers) {
 		layers = newLayers;
 	}
 

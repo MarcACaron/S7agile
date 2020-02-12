@@ -44,7 +44,7 @@ public class ApplicationHistory {
 	
 	public List<Layer> redoHistory() {
 		
-		if (reDoHistory.size() > 0) {
+		if (!reDoHistory.isEmpty()) {
 			ArrayList<Layer> returnLayers = reDoHistory;
 		
 			reDoHistory = new ArrayList<>();
