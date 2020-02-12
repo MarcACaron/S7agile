@@ -13,97 +13,97 @@ import javax.xml.stream.events.StartElement;
 import javax.xml.stream.events.XMLEvent;
 
 import adraw4us.MainApp;
-import adraw4us.shapeFactory;
+import adraw4us.ShapeFactory;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Shape;
 
-public class XmlDecoder extends XmlStrings {
+public class XmlDecoder {
+	
+	private XmlDecoder() {
+		
+	}
+	
+	private static LayersGroup layersGroup = LayersGroup.getLayersGroup();
 	
 	private static PatternApplier patternApplier = new PatternApplier();
-	private static LayersGroup layersGroup = LayersGroup.getLayersGroup();
+	
 	public static void readXML(File file, MainApp mainApp) throws FileNotFoundException, XMLStreamException {
-		layersGroup.reset();
+		layersGroup.clear();
 		XMLInputFactory xif = XMLInputFactory.newInstance();
+		xif.setProperty(XMLInputFactory.IS_SUPPORTING_EXTERNAL_ENTITIES, Boolean.FALSE);
 		XMLEventReader  reader = xif.createXMLEventReader(new FileInputStream(file));
 	    XMLEvent event;
 		ArrayList<String> layerNames = new ArrayList<String>();
 	    while (reader.hasNext()) {
 	    	Shape sh = null;
 			event = reader.nextEvent();
-			if (event.isStartElement()) {
-				StartElement se = event.asStartElement();
-				if(se.getName().getLocalPart().equals("Shape")) {
-					sh = shapeFactory.build(se.getAttributeByName(new QName("shapeType")).getValue());
-					if(sh != null) {
-						sh.setAccessibleText(se.getAttributeByName(new QName("shapeType")).getValue());
-						String name = se.getAttributeByName(new QName("layer")).getValue();
-						if(!layerNames.contains(name)) {
-							System.out.println(layersGroup.equals(LayersGroup.getLayersGroup()));
-							layerNames.add(name);
-							layersGroup.createNewLayer(new GridLayer(name));
-						}
-						layersGroup.getLayers().get(layerNames.indexOf(name)).getPane().getChildren().add(sh);
-						event = reader.nextEvent();
-						event = reader.nextEvent();
-						((Transformable)sh).setXPosTool(Double.valueOf(event.asCharacters().getData()));
-						event = reader.nextEvent();
-						event = reader.nextEvent();
-						event = reader.nextEvent();
-						((Transformable)sh).setYPosTool(Double.valueOf(event.asCharacters().getData()));
-						event = reader.nextEvent();
-						event = reader.nextEvent();
-						event = reader.nextEvent();
-						((Transformable)sh).setWidthTool(Double.valueOf(event.asCharacters().getData()));
-						event = reader.nextEvent();
-						event = reader.nextEvent();
-						event = reader.nextEvent();
-						((Transformable)sh).setHeightTool(Double.valueOf(event.asCharacters().getData()));
-						event = reader.nextEvent();
-						event = reader.nextEvent();
-						event = reader.nextEvent();
-						((Transformable)sh).setRadiusTool(Double.valueOf(event.asCharacters().getData()));
-						event = reader.nextEvent();
-						event = reader.nextEvent();
-						event = reader.nextEvent();
-						((Transformable)sh).setLengthTool(Double.valueOf(event.asCharacters().getData()));
-						event = reader.nextEvent();
-						event = reader.nextEvent();
-						event = reader.nextEvent();
-						((Transformable)sh).setRotationTool(Double.valueOf(event.asCharacters().getData()));
-						event = reader.nextEvent();
-						event = reader.nextEvent();
-						event = reader.nextEvent();
-						patternApplier.fillShape(sh, event.asCharacters().getData());
-						event = reader.nextEvent();
-						event = reader.nextEvent();
-						event = reader.nextEvent();
-						sh.setStroke(Color.valueOf(event.asCharacters().getData()));
-						event = reader.nextEvent();
-						event = reader.nextEvent();
-						event = reader.nextEvent();
-						sh.setStrokeWidth(Double.valueOf(event.asCharacters().getData()));
-						Shape sh2 = sh;
-						sh.setOnMouseClicked(t2 -> {
-							mainApp.getTool().setShape(sh2);
-							mainApp.getPaletteCouleurController().setLineWidth(sh2.getStrokeWidth());
-							mainApp.getPaletteCouleurController().setStroke((Color) (sh2.getStroke()));
-							
-							mainApp.getTool().fillDetails(mainApp.getPaletteDetailController(), sh2).apply(null);
-						});
-					}				
-				}else if(se.getName().getLocalPart().equals("numberOfLayers")) {
-					event = reader.nextEvent();
-					int nbOfLayers = Integer.parseInt(event.asCharacters().getData());
-					for(int i = 0; i<nbOfLayers; i++) {
-						//layersGroup.createNewLayer(new L);
-						//
-					}
-					System.out.println("Layers: "+event.asCharacters().getData());
-				}
-			} else if (event.isCharacters()) {
-			} else if (event.isEndElement()) {
+			if (!event.isStartElement()) {
+				continue;
 			}
+			StartElement se = event.asStartElement();
+			if(!se.getName().getLocalPart().equals("Shape")) {
+				continue;
+			}
+			sh = ShapeFactory.build(se.getAttributeByName(new QName("shapeType")).getValue());
+			if(sh != null) {
+				sh.setAccessibleText(se.getAttributeByName(new QName("shapeType")).getValue());
+				String name = se.getAttributeByName(new QName("layer")).getValue();
+				if(!layerNames.contains(name)) {
+					Layer a = new GridLayer(name);
+					layerNames.add(name);
+					layersGroup.createNewLayer(a);
+				}
+				layersGroup.getLayers().get(layerNames.indexOf(name)).getPane().getChildren().add(sh);
+				reader.nextEvent();
+				event = reader.nextEvent();
+				((Transformable)sh).setXPosTool(Double.valueOf(event.asCharacters().getData()));
+				reader.nextEvent();
+				reader.nextEvent();
+				event = reader.nextEvent();
+				((Transformable)sh).setYPosTool(Double.valueOf(event.asCharacters().getData()));
+				reader.nextEvent();
+				reader.nextEvent();
+				event = reader.nextEvent();
+				((Transformable)sh).setWidthTool(Double.valueOf(event.asCharacters().getData()));
+				reader.nextEvent();
+				reader.nextEvent();
+				event = reader.nextEvent();
+				((Transformable)sh).setHeightTool(Double.valueOf(event.asCharacters().getData()));
+				reader.nextEvent();
+				reader.nextEvent();
+				event = reader.nextEvent();
+				((Transformable)sh).setRadiusTool(Double.valueOf(event.asCharacters().getData()));
+				reader.nextEvent();
+				reader.nextEvent();
+				event = reader.nextEvent();
+				((Transformable)sh).setLengthTool(Double.valueOf(event.asCharacters().getData()));
+				reader.nextEvent();
+				reader.nextEvent();
+				event = reader.nextEvent();
+				((Transformable)sh).setRotationTool(Double.valueOf(event.asCharacters().getData()));
+				reader.nextEvent();
+				reader.nextEvent();
+				event = reader.nextEvent();
+				patternApplier.fillShape(sh, event.asCharacters().getData());
+				reader.nextEvent();
+				reader.nextEvent();
+				event = reader.nextEvent();
+				sh.setStroke(Color.valueOf(event.asCharacters().getData()));
+				reader.nextEvent();
+				reader.nextEvent();
+				event = reader.nextEvent();
+				sh.setStrokeWidth(Double.valueOf(event.asCharacters().getData()));
+				Shape sh2 = sh;
+				sh.setOnMouseClicked(t2 -> {
+					mainApp.getTool().setShape(sh2);
+					mainApp.getPaletteCouleurController().setLineWidth(sh2.getStrokeWidth());
+					mainApp.getPaletteCouleurController().setStroke((Color) (sh2.getStroke()));
+					
+					mainApp.getTool().fillDetails(mainApp.getPaletteDetailController(), sh2).apply(null);
+				});
+			}				
 		}
+	    mainApp.getDrawingZoneController().updateLayers();
 	}
 
 }

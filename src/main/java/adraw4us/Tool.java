@@ -4,12 +4,10 @@ import java.util.function.Function;
 
 import controller.DetailPaletteController;
 import controller.PaletteCouleurController;
-import javafx.geometry.Point2D;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Shape;
-import models.CustomCircle;
 import models.Transformable;
 
 public abstract class Tool {
@@ -46,7 +44,7 @@ public abstract class Tool {
 	}
 	
 	public Function<Object, Object> fillDetails(DetailPaletteController dp, Shape nd){
-		return (y) -> {
+		return y -> {
 			if(nd == null) 
 				dp.paletteDisable(true);
 			else {
@@ -72,10 +70,8 @@ public abstract class Tool {
 	
 	public void mouseReleased(MainApp mainApp, Pane pane, PaletteCouleurController pc, DetailPaletteController dp) {
 		Shape shape2 = (Shape) pane.getChildren().get(pane.getChildren().size()-1);
-		pane.getChildren().remove(0);
+		pane.getChildren().remove(1);
 		mainApp.getDrawingZoneController().applyToCurrentPane(shape2);
-		//pane.getChildren().clear();
-		System.out.println(pane.getChildren().size());
 		
 		shape2.setOnMouseClicked(t2 -> {
 			mainApp.getTool().setShape(shape2);

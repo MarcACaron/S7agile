@@ -36,7 +36,7 @@ public class TestXmlEncoderDecoder {
 		rectangle.setStroke(Color.BLACK);
 		line.setStroke(Color.BLACK);
 	}
-	//TODO: changer ça en une LayerGroup
+	//TODO: changer ï¿½a en une LayerGroup
 	/*
 	@Test
 	public void testEncodeXML() {
@@ -48,7 +48,7 @@ public class TestXmlEncoderDecoder {
 		shapeList.add(line);
 		shapeList.add(rectangle);
 		
-		Boolean a = XmlEncoder.createXML(shapeList, file);
+		//Boolean a = XmlEncoder.createXML(shapeList, file);
 		
 		assertEquals(true, a);
 	}*/
@@ -60,7 +60,7 @@ public class TestXmlEncoderDecoder {
 		
 		file = new File("./Encodetest.xml");
 
-		XmlDecoder.readXML(file, pane);
+		//XmlDecoder.readXML(file, pane);
 		
 		assertEquals(3, pane.getChildren().size());
 		

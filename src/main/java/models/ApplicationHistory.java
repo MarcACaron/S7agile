@@ -1,6 +1,9 @@
 package models;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
 
 public class ApplicationHistory {
 	
@@ -9,6 +12,8 @@ public class ApplicationHistory {
 	ArrayList<ArrayList<Layer>> history = new ArrayList<ArrayList<Layer>>();
 	
 	ArrayList<Layer> reDoHistory = new ArrayList<Layer>();
+	
+	LayersGroup layersGroup = LayersGroup.getLayersGroup();
 	
 	public static ApplicationHistory getInstance() {
 		return instance;
@@ -19,7 +24,7 @@ public class ApplicationHistory {
 	}
 	
 	public ArrayList<Layer> undoHistory() {
-		if (history.size() == 0) {
+		if (history.size() == 0 || history.size() == 1) {
 			return null;
 		}
 		
@@ -48,15 +53,14 @@ public class ApplicationHistory {
 		return null;
 	}
 	
-	public void addHistory(ArrayList<Layer> newHistory) {
-		history.add(newHistory);
+	public void addHistory(List<Layer> newLayers) {
+		history.add(new ArrayList<Layer>(newLayers));
 		reDoHistory.clear();
 	}
 	
 	public void update() {
-		LayersGroup layersGroup = LayersGroup.getLayersGroup();
 		
-		ArrayList<Layer> newLayers = layersGroup.getLayers();
+		List<Layer> newLayers = layersGroup.getLayers();
 		
 		addHistory(newLayers);
 		

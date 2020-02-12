@@ -3,6 +3,7 @@ package controller;
 
 
 import java.util.ArrayList;
+import java.util.List;
 
 import adraw4us.MainApp;
 import javafx.collections.ObservableList;
@@ -14,31 +15,35 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Shape;
 import javafx.scene.transform.Scale;
-import models.ApplicationHistory;
-import models.GridLayer;
 import models.Layer;
 import models.LayersGroup;
 
 public class DrawingZoneController {
-	
-	//@FXML private Pane pane;
-	
+		
 	@FXML
 	private ScrollPane scrollPane;
 	@FXML
 	private AnchorPane anchorPane;
 	@FXML
+	private GridPane gridPane;
 	private MainApp mainApp;
-	
-	ApplicationHistory history = ApplicationHistory.getInstance();
-	
+		
 	LayersGroup layersGroup = LayersGroup.getLayersGroup();
 	
-	ArrayList<Pane> paneList = new ArrayList<Pane>();
+	ArrayList<Pane> paneList = new ArrayList<>();
 	
 	double orgX;
 	double orgY;
 	int childIndex;
+	boolean gridPaneBoolean;
+	
+	public void redo() {
+		
+	}
+	
+	public void undo() {
+		
+	}
 	
 	public void zoomIn(double zoom) {
         Scale scaleTransform = new Scale(zoom, zoom, 0, 0);
@@ -50,41 +55,55 @@ public class DrawingZoneController {
         anchorPane.getTransforms().add(scaleTransform);
     }
 
+	public void inverseGridPaneVisibility() {
+		boolean visState = getLineGridPaneVisibility(); //Boolean qui set la visibilit� des lines
+
+		gridPane.setGridLinesVisible(!visState);
+	}
+	
+	public boolean getLineGridPaneVisibility() {
+		gridPaneBoolean = gridPane.isGridLinesVisible();
+		return gridPaneBoolean;
+	}
+	
 	@FXML
     private void initialize() {
 		
 		anchorPane.setOnMousePressed(t -> {
-			System.out.println("allo");
 			orgX = t.getX();
 			orgY = t.getY();
 			childIndex = anchorPane.getChildren().size();
 			childIndex = this.mainApp.getTool().mousePressed(this.mainApp.getPaletteDetailController(), anchorPane);
 		});
-		anchorPane.setOnMouseDragged(t -> {
-			this.mainApp.getTool().mouseDragged(orgX, orgY, t.getX(), t.getY());
-		});
-		anchorPane.setOnMouseReleased(t -> {
-			this.mainApp.getTool().mouseReleased(mainApp, anchorPane, this.mainApp.getPaletteCouleurController(), this.mainApp.getPaletteDetailController());
-		});
-		
-		GridLayer rootLayer = new GridLayer("Layer 0");
-		layersGroup.createNewLayer(rootLayer);
-		
-		Pane pane2 = new Pane();
-		anchorPane.getChildren().add(pane2);
-		
-		rootLayer.setPane(pane2);
+		anchorPane.setOnMouseDragged(t -> 
+			this.mainApp.getTool().mouseDragged(orgX, orgY, t.getX(), t.getY())
+		);
+		anchorPane.setOnMouseReleased(t -> 
+			this.mainApp.getTool().mouseReleased(mainApp, anchorPane, this.mainApp.getPaletteCouleurController(), this.mainApp.getPaletteDetailController())
+		);
+		clearDrawing();
+		updateLayers();
     }
 	
-	public void updateLayers(){
-		anchorPane.getChildren().clear();
-		ArrayList<Layer> layers = layersGroup.getLayers();
-		System.out.println("hkjhlmj"+layersGroup.size());
+	public void updateLayers() {
+		List<Layer> layers = layersGroup.getLayers();
 		
 		for (int i = layers.size() - 1; i >= 0; --i) {
 			Pane newPane = layers.get(i).getPane();
 			
-			if (newPane != null) {
+			if (newPane != null && !anchorPane.getChildrenUnmodifiable().contains(newPane)) {
+				anchorPane.getChildren().add(newPane);
+				
+				AnchorPane.setBottomAnchor(newPane, 0.0);
+				AnchorPane.setLeftAnchor(newPane, 0.0);
+				AnchorPane.setRightAnchor(newPane, 0.0);
+				AnchorPane.setTopAnchor(newPane, 0.0);
+				
+				layers.get(i).setPane(newPane);
+			}
+			else if (anchorPane.getChildrenUnmodifiable().contains(newPane)) {
+				anchorPane.getChildren().remove(newPane);
+				
 				anchorPane.getChildren().add(newPane);
 				
 				AnchorPane.setBottomAnchor(newPane, 0.0);
@@ -96,31 +115,21 @@ public class DrawingZoneController {
 			}
 			
 		}
-		history.update();
 	}
 	
 	public void clearDrawing() {
+		layersGroup.reset();
 		
-		ObservableList<Node> paneList = anchorPane.getChildren();
+		ObservableList<Node> clearPaneList = anchorPane.getChildren();
 		
-		for (int i = 0; i < paneList.size(); i++) {
-			((Pane)(paneList.get(i))).getChildren().clear();
-		}
-	}
-	
-	public Pane getDrawingsAsOne() {
-		ObservableList<Node> paneList = anchorPane.getChildren();
-		Pane globalPane = new Pane();
-		
-		for (int i = 0; i < paneList.size(); i++) {
-			globalPane.getChildren().addAll(((Pane)(paneList.get(i))).getChildren());
+		for (int i = 1; i < clearPaneList.size() - 1; ++i) {
+			if ( gridPane.getId().equals(clearPaneList.get(i).getId())  ) {
+				((Pane)(clearPaneList.get(i))).getChildren().clear();
+			}
 		}
 		
-		return globalPane;
-	}
-	
-	public ObservableList<Node> getLayers(){
-		return anchorPane.getChildren();
+		anchorPane.toFront();
+		updateLayers();
 	}
 	
 	public void applyToCurrentPane(Shape shape) {

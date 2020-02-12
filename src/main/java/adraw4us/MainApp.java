@@ -26,11 +26,11 @@ public class MainApp extends Application {
     private DrawingZoneController drawingZoneController;
     private PaletteCouleurController paletteCouleurController;
     private DetailPaletteController paletteDetailController;
-    private Tool Tool;
+    private Tool toolApp;
     private Logger logger = Logger.getLogger(MainApp.class.getName());
     
     public MainApp() {
-    	this.Tool = null;
+    	this.toolApp = null;
 	}
     public MenuController getMenuController() {
 		return menuController;
@@ -45,10 +45,10 @@ public class MainApp extends Application {
 		return paletteDetailController;
 	}
 	public Tool getTool() {
-		return Tool;
+		return toolApp;
 	}
 	public void setTool(Tool tool) {
-		Tool = tool;
+		toolApp = tool;
 	}
 	@Override
     public void start(Stage primaryStage) {
@@ -124,8 +124,6 @@ public class MainApp extends Application {
             AnchorPane.setRightAnchor(scrollPaneOverview, detailPaletteOverview.getPrefWidth());
             AnchorPane.setTopAnchor(scrollPaneOverview, colorPaletteOverview.getPrefHeight());
             AnchorPane.setLeftAnchor(scrollPaneOverview, formPaletteOverview.getPrefWidth());
-            
-            
             
             drawingZoneController = loader2.getController();
             drawingZoneController.setMainApp(this);

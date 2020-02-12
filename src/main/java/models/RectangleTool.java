@@ -1,6 +1,5 @@
 package models;
 
-import java.util.function.Function;
 
 import adraw4us.Tool;
 import controller.DetailPaletteController;

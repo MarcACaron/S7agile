@@ -3,8 +3,6 @@ package models;
 import javafx.scene.layout.Pane;
 
 public class GridLayer extends Layer {
-
-	//private Pane pane = new Pane();
 	
 	public GridLayer(String layerId) {
 		this.layerId = layerId;
