@@ -57,7 +57,7 @@ public class ApplicationHistory {
 	
 	public void update() {
 		
-		ArrayList<Layer> newLayers = layersGroup.getLayers();
+		ArrayList<Layer> newLayers = (ArrayList<Layer>)layersGroup.getLayers();
 		ArrayList<Layer> newHistoryLayers = new ArrayList<>();
 		
 		for (int i = 0; i < newLayers.size(); ++i) {

@@ -107,8 +107,8 @@ public class CustomRectangle extends Rectangle implements Transformable {
 		newRectangle.setStroke(this.getStroke());
 		newRectangle.setStrokeWidth(this.getStrokeWidth());
 		newRectangle.setFill(this.getFill());
-		newRectangle.setXPosTool(this.getXPos() + xCopyOffset);
-		newRectangle.setYPosTool(this.getYPos() + yCopyOffset);
+		newRectangle.setXPosTool(this.getXPos() + XCOPYOFFSET);
+		newRectangle.setYPosTool(this.getYPos() + YCOPYOFFSET);
 		newRectangle.setWidthTool(this.getWidth());
 		newRectangle.setHeightTool(this.getHeight());
 		

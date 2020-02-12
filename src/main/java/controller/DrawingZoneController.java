@@ -95,7 +95,7 @@ public class DrawingZoneController {
     }
 	
 	public void updateLayers(Boolean saveHistory) {
-		ArrayList<Layer> layers = layersGroup.getLayers();
+		ArrayList<Layer> layers = (ArrayList<Layer>)layersGroup.getLayers();
 		
 		for (int i = layers.size() - 1; i >= 0; --i) {
 			Pane newPane = layers.get(i).getPane();

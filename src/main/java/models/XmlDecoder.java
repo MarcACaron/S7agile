@@ -33,7 +33,7 @@ public class XmlDecoder {
 		xif.setProperty(XMLInputFactory.IS_SUPPORTING_EXTERNAL_ENTITIES, Boolean.FALSE);
 		XMLEventReader  reader = xif.createXMLEventReader(new FileInputStream(file));
 	    XMLEvent event;
-		ArrayList<String> layerNames = new ArrayList<String>();
+		ArrayList<String> layerNames = new ArrayList<>();
 	    while (reader.hasNext()) {
 	    	Shape sh = null;
 			event = reader.nextEvent();

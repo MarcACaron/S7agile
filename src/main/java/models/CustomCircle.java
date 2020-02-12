@@ -111,8 +111,8 @@ public class CustomCircle extends Circle implements Transformable {
 		newCircle.setStroke(this.getStroke());
 		newCircle.setStrokeWidth(this.getStrokeWidth());
 		newCircle.setFill(this.getFill());
-		newCircle.setCenterX(this.getCenterX() + xCopyOffset);
-		newCircle.setCenterY(this.getCenterY() + yCopyOffset);
+		newCircle.setCenterX(this.getCenterX() + XCOPYOFFSET);
+		newCircle.setCenterY(this.getCenterY() + YCOPYOFFSET);
 		newCircle.setRadiusTool(this.getRadius());
 		newCircle.setRotationTool(this.getRotation());
 		
