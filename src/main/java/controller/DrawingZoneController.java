@@ -43,7 +43,7 @@ public class DrawingZoneController {
 		clearDrawing();
 		
 		layersGroup.clear();
-		ArrayList<Layer> redoLayers = history.redoHistory();
+		ArrayList<Layer> redoLayers = (ArrayList<Layer>)history.redoHistory();
 		
 		layersGroup.replaceLayers(redoLayers);
 		updateLayers(true);
@@ -52,7 +52,7 @@ public class DrawingZoneController {
 	public void undo() {
 		clearDrawing();
 		layersGroup.clear();
-		ArrayList<Layer> undoLayers = history.undoHistory();
+		ArrayList<Layer> undoLayers = (ArrayList<Layer>)history.undoHistory();
 		
 		layersGroup.replaceLayers(undoLayers);
 		updateLayers(true);
