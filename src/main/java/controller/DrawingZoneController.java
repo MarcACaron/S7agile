@@ -9,14 +9,22 @@ import adraw4us.MainApp;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
+import javafx.scene.SnapshotParameters;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.image.WritableImage;
+import javafx.scene.input.Clipboard;
+import javafx.scene.input.ClipboardContent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Shape;
 import javafx.scene.transform.Scale;
+import models.CustomRectangle;
+import models.ApplicationHistory;
+import models.GridLayer;
 import models.Layer;
 import models.LayersGroup;
+import models.Transformable;
 
 public class DrawingZoneController {
 		
@@ -27,10 +35,11 @@ public class DrawingZoneController {
 	@FXML
 	private GridPane gridPane;
 	private MainApp mainApp;
-		
-	LayersGroup layersGroup = LayersGroup.getLayersGroup();
 	
-	ArrayList<Pane> paneList = new ArrayList<>();
+	private Transformable shapeCopy;
+	ApplicationHistory history = ApplicationHistory.getInstance();
+	
+	LayersGroup layersGroup = LayersGroup.getLayersGroup();
 	
 	double orgX;
 	double orgY;
@@ -38,11 +47,22 @@ public class DrawingZoneController {
 	boolean gridPaneBoolean;
 	
 	public void redo() {
+		clearDrawing();
 		
+		layersGroup.clear();
+		ArrayList<Layer> redoLayers = history.redoHistory();
+		
+		layersGroup.replaceLayers(redoLayers);
+		updateLayers(true);
 	}
 	
 	public void undo() {
+		clearDrawing();
+		layersGroup.clear();
+		ArrayList<Layer> undoLayers = history.undoHistory();
 		
+		layersGroup.replaceLayers(undoLayers);
+		updateLayers(true);
 	}
 	
 	public void zoomIn(double zoom) {
@@ -75,18 +95,17 @@ public class DrawingZoneController {
 			childIndex = anchorPane.getChildren().size();
 			childIndex = this.mainApp.getTool().mousePressed(this.mainApp.getPaletteDetailController(), anchorPane);
 		});
-		anchorPane.setOnMouseDragged(t -> 
-			this.mainApp.getTool().mouseDragged(orgX, orgY, t.getX(), t.getY())
-		);
-		anchorPane.setOnMouseReleased(t -> 
-			this.mainApp.getTool().mouseReleased(mainApp, anchorPane, this.mainApp.getPaletteCouleurController(), this.mainApp.getPaletteDetailController())
-		);
-		clearDrawing();
-		updateLayers();
+		anchorPane.setOnMouseDragged(t -> {
+			this.mainApp.getTool().mouseDragged(orgX, orgY, t.getX(), t.getY());
+		});
+		anchorPane.setOnMouseReleased(t -> {
+			this.mainApp.getTool().mouseReleased(mainApp, anchorPane, this.mainApp.getPaletteCouleurController(), this.mainApp.getPaletteDetailController());
+		});
+		updateLayers(true);
     }
 	
-	public void updateLayers() {
-		List<Layer> layers = layersGroup.getLayers();
+	public void updateLayers(Boolean saveHistory) {
+		ArrayList<Layer> layers = layersGroup.getLayers();
 		
 		for (int i = layers.size() - 1; i >= 0; --i) {
 			Pane newPane = layers.get(i).getPane();
@@ -115,6 +134,11 @@ public class DrawingZoneController {
 			}
 			
 		}
+		
+		if ( saveHistory ) {
+			history.update();
+		}
+		
 	}
 	
 	public void clearDrawing() {
@@ -122,14 +146,15 @@ public class DrawingZoneController {
 		
 		ObservableList<Node> clearPaneList = anchorPane.getChildren();
 		
-		for (int i = 1; i < clearPaneList.size() - 1; ++i) {
-			if ( gridPane.getId().equals(clearPaneList.get(i).getId())  ) {
-				((Pane)(clearPaneList.get(i))).getChildren().clear();
+		for (int i = 0; i < paneList.size(); ++i) {
+			
+			if ( !gridPane.getId().equals(paneList.get(i).getId()) ) {
+				((Pane)(paneList.get(i))).getChildren().clear();
+				anchorPane.getChildren().remove(i);
 			}
 		}
 		
-		anchorPane.toFront();
-		updateLayers();
+		//updateLayers(true);
 	}
 	
 	public void applyToCurrentPane(Shape shape) {
@@ -138,10 +163,24 @@ public class DrawingZoneController {
 		currentPane.getChildren().add(shape);
 		layersGroup.getCurrentLayer().setPane(currentPane);
 
-		updateLayers();
+		updateLayers(true);
 	}
 	
 	public void setMainApp(MainApp mainApp) {
         this.mainApp = mainApp;
     }
+	
+	public void saveShape() {
+		
+		System.out.println("Copying");	
+		shapeCopy = (Transformable)mainApp.getTool().getShape();
+
+	}
+	
+	public void pasteShape() {
+		if (shapeCopy != null) {
+			System.out.println("Pasting");
+			this.applyToCurrentPane(shapeCopy.duplicateAndOffset());
+		}
+	}
 }

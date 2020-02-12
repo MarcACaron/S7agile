@@ -103,7 +103,7 @@ public class XmlDecoder {
 				});
 			}				
 		}
-	    mainApp.getDrawingZoneController().updateLayers();
+	    mainApp.getDrawingZoneController().updateLayers(true);
 	}
 
 }

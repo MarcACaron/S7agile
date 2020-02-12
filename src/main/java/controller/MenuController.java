@@ -105,7 +105,7 @@ public class MenuController {
 			try {
 				if (Boolean.TRUE.equals(fileController.askToSave(mainApp.getPrimaryStage(), LayersGroup.getLayersGroup()))) {
 					fileController.openFile(mainApp.getPrimaryStage(), mainApp);
-					this.mainApp.getDrawingZoneController().updateLayers();
+					this.mainApp.getDrawingZoneController().updateLayers(true);
 						
 				}
 			} catch (FileNotFoundException | XMLStreamException e1) {
@@ -126,7 +126,7 @@ public class MenuController {
 	            stage.initOwner(mainApp.getPrimaryStage().getScene().getWindow());
 	            stage.setScene(new Scene(root));
 	            stage.showAndWait();
-	            mainApp.getDrawingZoneController().updateLayers();
+	            mainApp.getDrawingZoneController().updateLayers(true);
 	            
 	        }
 	        catch (IOException ex) {
@@ -145,7 +145,26 @@ public class MenuController {
         this.mainApp = mainApp;
     }
 	
+	@FXML private void saveButtonOnClick() {
+		mainApp.getDrawingZoneController().saveShape();
+	}
 	
+	@FXML private void pasteButtonOnClick() {
+		mainApp.getDrawingZoneController().pasteShape();
+	}
+	
+	@FXML private void undoClick() {
+		mainApp.getDrawingZoneController().undo();
+	}
+	
+	@FXML private void redoClick() {
+		mainApp.getDrawingZoneController().redo();
+	}
+	
+	@FXML private void resetDrawing() {
+		mainApp.getDrawingZoneController().clearDrawing();
+		mainApp.getDrawingZoneController().updateLayers(true);
+	}
 	
 	
 }
