@@ -17,11 +17,11 @@ public class TestRectangleTool {
 	
 	@Test
 	public void testToolReset() {
-		rectTool.getShape().setAccessibleHelp("test");
+		rectTool.getShapes().get(0).setAccessibleHelp("test");
 		
 		rectTool.reset();
 		
-		assertNotEquals("test", rectTool.getShape().getAccessibleHelp());
+		assertNotEquals("test", rectTool.getShapes().get(0).getAccessibleHelp());
 	}
 	
 	@Test
@@ -47,10 +47,10 @@ public class TestRectangleTool {
 		Tool.setStartFromCenter(true);
 		rectTool.ajustOnDrag(2.0, 2.0, 4.0, 4.0);
 		
-		double width = ((CustomRectangle)rectTool.getShape()).getWidth();
-		double height = ((CustomRectangle)rectTool.getShape()).getHeight();
-		double posX = ((CustomRectangle)rectTool.getShape()).getX();
-		double posY = ((CustomRectangle)rectTool.getShape()).getY();
+		double width = ((CustomRectangle)rectTool.getShapes().get(0)).getWidth();
+		double height = ((CustomRectangle)rectTool.getShapes().get(0)).getHeight();
+		double posX = ((CustomRectangle)rectTool.getShapes().get(0)).getX();
+		double posY = ((CustomRectangle)rectTool.getShapes().get(0)).getY();
 		
 		assertEquals(4.0, width);
 		assertEquals(4.0, height);

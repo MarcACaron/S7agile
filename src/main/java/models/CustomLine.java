@@ -144,4 +144,25 @@ public class CustomLine extends Line implements Transformable{
 	public String getType() {
 		return "line";
 	}
+
+	@Override
+	public boolean isSelected(double xStart, double yStart, double xEnd, double yEnd) {
+		if(this.getStartX()<xStart)
+			return false;
+		if(this.getEndX()<xStart)
+			return false;
+		if(this.getStartY()<yStart)
+			return false;
+		if(this.getEndY()<yStart)
+			return false;
+		if(this.getStartX()>xEnd)
+			return false;
+		if(this.getEndX()>xEnd)
+			return false;
+		if(this.getStartY()>yEnd)
+			return false;
+		if(this.getEndY()>yEnd)
+			return false;
+		return true;
+	}
 }

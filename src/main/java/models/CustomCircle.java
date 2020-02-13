@@ -140,4 +140,22 @@ public class CustomCircle extends Circle implements Transformable {
 	public String getType() {
 		return "circle";
 	}
+
+	@Override
+	public boolean isSelected(double xStart, double yStart, double xEnd, double yEnd) {
+		if(this.getXPos()<xStart)
+			return false;
+		if(this.getXPos()<yStart)
+			return false;
+		if(this.getXPos()>xEnd)
+			return false;
+		if(this.getXPos()>yEnd)
+			return false;
+		if(Math.sqrt(Math.pow(xStart-this.getXPos(), 2)+Math.pow(yStart-this.getYPos(), 2))<this.getRadius())
+			return false;
+		if(Math.sqrt(Math.pow(xEnd-this.getXPos(), 2)+Math.pow(yEnd-this.getYPos(), 2))<this.getRadius())
+			return false;
+		return true;
+		
+	}
 }

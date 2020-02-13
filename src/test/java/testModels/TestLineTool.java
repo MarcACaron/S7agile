@@ -16,11 +16,11 @@ public class TestLineTool {
 	
 	@Test
 	public void testToolReset() {
-		lineTool.getShape().setAccessibleHelp("test");
+		lineTool.getShapes().get(0).setAccessibleHelp("test");
 		
 		lineTool.reset();
 		
-		assertNotEquals("test", lineTool.getShape().getAccessibleHelp());
+		assertNotEquals("test", lineTool.getShapes().get(0).getAccessibleHelp());
 	}
 	/*
 	@Test
@@ -46,10 +46,10 @@ public class TestLineTool {
 		Tool.setStartFromCenter(true);
 		lineTool.ajustOnDrag(2.0, 2.0, 4.0, 4.0);
 		
-		double startX = ((CustomLine)lineTool.getShape()).getStartX();
-		double startY = ((CustomLine)lineTool.getShape()).getStartY();
-		double endX = ((CustomLine)lineTool.getShape()).getEndX();
-		double endY = ((CustomLine)lineTool.getShape()).getEndY();
+		double startX = ((CustomLine)lineTool.getShapes().get(0)).getStartX();
+		double startY = ((CustomLine)lineTool.getShapes().get(0)).getStartY();
+		double endX = ((CustomLine)lineTool.getShapes().get(0)).getEndX();
+		double endY = ((CustomLine)lineTool.getShapes().get(0)).getEndY();
 		
 		assertEquals(4.0, startX);
 		assertEquals(4.0, startY);
