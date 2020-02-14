@@ -15,14 +15,14 @@ import models.CustomCircle;
 public class TestCircleTool {
 	
 	CircleTool circTool = new CircleTool();
-	
 	@Test
 	public void testToolReset() {
-		circTool.getShape().setAccessibleHelp("test");
+		
+		circTool.getShapes().get(0).setAccessibleHelp("test");
 		
 		circTool.reset();
 		
-		assertNotEquals("test", circTool.getShape().getAccessibleHelp());
+		assertNotEquals("test", circTool.getShapes().get(0).getAccessibleHelp());
 	}
 	/*
 	@Test
@@ -46,9 +46,9 @@ public class TestCircleTool {
 		Tool.setStartFromCenter(false);
 		circTool.ajustOnDrag(2.0, 2.0, 4.0, 4.0);
 		
-		double centerX = ((CustomCircle)circTool.getShape()).getCenterX();
-		double centerY = ((CustomCircle)circTool.getShape()).getCenterY();
-		double radius = ((CustomCircle)circTool.getShape()).getRadius();
+		double centerX = ((CustomCircle)circTool.getShapes().get(0)).getCenterX();
+		double centerY = ((CustomCircle)circTool.getShapes().get(0)).getCenterY();
+		double radius = ((CustomCircle)circTool.getShapes().get(0)).getRadius();
 		
 		assertEquals(3.0, centerX);
 		assertEquals(3.0, centerY);

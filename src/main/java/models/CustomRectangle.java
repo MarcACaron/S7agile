@@ -133,4 +133,17 @@ public class CustomRectangle extends Rectangle implements Transformable {
 	public String getType() {
 		return "rectangle";
 	}
+
+	@Override
+	public boolean isSelected(double xStart, double yStart, double xEnd, double yEnd) {
+		if(this.getX()<xStart)
+			return false;
+		if(this.getY()<yStart)
+			return false;
+		if(this.getX()+this.getWidth()>xEnd)
+			return false;
+		if(this.getY()+this.getHeight()>yEnd)
+			return false;
+		return true;
+	}
 }

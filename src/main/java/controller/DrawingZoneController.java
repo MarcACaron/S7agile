@@ -29,7 +29,7 @@ public class DrawingZoneController {
 	private GridPane gridPane;
 	private MainApp mainApp;
 	
-	private Transformable shapeCopy;
+	private ArrayList<Shape> shapesCopy;
 	ApplicationHistory history = ApplicationHistory.getInstance();
 	
 	LayersGroup layersGroup = LayersGroup.getLayersGroup();
@@ -86,11 +86,11 @@ public class DrawingZoneController {
 			orgX = t.getX();
 			orgY = t.getY();
 			childIndex = anchorPane.getChildren().size();
-			childIndex = this.mainApp.getTool().mousePressed(this.mainApp.getPaletteDetailController(), anchorPane);
+			childIndex = this.mainApp.getTool().mousePressed(this.mainApp.getPaletteDetailController(), layersGroup.getCurrentLayer().getPane());
 		});
 		anchorPane.setOnMouseDragged(t -> this.mainApp.getTool().mouseDragged(orgX, orgY, t.getX(), t.getY()));
 		
-		anchorPane.setOnMouseReleased(t -> this.mainApp.getTool().mouseReleased(mainApp, anchorPane, this.mainApp.getPaletteCouleurController(), this.mainApp.getPaletteDetailController()));
+		anchorPane.setOnMouseReleased(t -> this.mainApp.getTool().mouseReleased(mainApp, layersGroup.getCurrentLayer().getPane(), this.mainApp.getPaletteCouleurController(), this.mainApp.getPaletteDetailController()));
 		updateLayers(true);
     }
 	
@@ -160,13 +160,16 @@ public class DrawingZoneController {
 	
 	public void saveShape() {
 		
-		shapeCopy = (Transformable)mainApp.getTool().getShape();
+		shapesCopy = (ArrayList<Shape>) mainApp.getTool().getShapes().clone();//TODO: Verifier que ça fonctionne correctement 
 
 	}
 	
 	public void pasteShape() {
-		if (shapeCopy != null) {
-			this.applyToCurrentPane(shapeCopy.duplicateAndOffset());
+		if (shapesCopy != null) {
+			shapesCopy.forEach(shape -> {
+				this.applyToCurrentPane(shape); //TODO: checker si ça foctionne correctement
+			});
+			//this.applyToCurrentPane(shapeCopy.duplicateAndOffset()); TODO: Effacer si tout fonctionne bien
 		}
 	}
 }

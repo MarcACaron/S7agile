@@ -27,4 +27,5 @@ public interface Transformable {
 	public boolean lengthToolisNeeded();
 	public Shape duplicateAndOffset();
 	public Shape duplicate();
+	public boolean isSelected(double xStart, double yStart, double xEnd, double yEnd);
 }

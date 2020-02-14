@@ -5,12 +5,13 @@ import adraw4us.Tool;
 public class CircleTool extends Tool{
 
 	public CircleTool() {
-		this.shape = new CustomCircle();
+		super();
+		setShape(new CustomCircle());
 	}
 
 	public void ajustOnDrag(double posXStart, double posYStart, double posXEnd, double posYEnd) {
 		double radius;
-		CustomCircle circle = (CustomCircle)this.shape;
+		CustomCircle circle = (CustomCircle)this.shapes.get(0);
 		if(startFromCenter){
 			radius = Math.sqrt(Math.pow(posXEnd-posXStart, 2)+Math.pow(posYEnd-posYStart, 2));
 			circle.setCenterX(posXStart);
@@ -29,9 +30,12 @@ public class CircleTool extends Tool{
 	
 	@Override
 	public void reset() {
-		this.shape = new CustomCircle();
+		this.shapes.clear();
+		setShape(new CustomCircle());
 		this.fillShape();
-		this.shape.setStroke(stroke);
-		this.shape.setStrokeWidth(lineWidth);
+		this.shapes.forEach(shape -> {
+			shape.setStroke(stroke);
+			shape.setStrokeWidth(lineWidth);
+		});
 	}
 }
