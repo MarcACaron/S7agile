@@ -160,16 +160,16 @@ public class DrawingZoneController {
 	
 	public void saveShape() {
 		
-		shapesCopy = (ArrayList<Shape>) mainApp.getTool().getShapes().clone();//TODO: Verifier que ça fonctionne correctement 
+		shapesCopy = (ArrayList<Shape>) mainApp.getTool().getShapes().clone();
 
 	}
 	
 	public void pasteShape() {
 		if (shapesCopy != null) {
 			shapesCopy.forEach(shape -> {
-				this.applyToCurrentPane(shape); //TODO: checker si ça foctionne correctement
+				this.applyToCurrentPane(shape); 
 			});
-			//this.applyToCurrentPane(shapeCopy.duplicateAndOffset()); TODO: Effacer si tout fonctionne bien
+			
 		}
 	}
 }

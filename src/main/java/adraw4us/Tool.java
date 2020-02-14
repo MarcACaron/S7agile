@@ -21,11 +21,11 @@ public abstract class Tool {
 	protected ArrayList<Shape> shapes;
 	
 	public Tool() {
-		this.shapes=new ArrayList<Shape>();
+		this.shapes=new ArrayList<>();
 	}
 	
 	public Tool(Shape shape) {
-		this.shapes=new ArrayList<Shape>();
+		this.shapes=new ArrayList<>();
 		this.shapes.add(shape);
 	}
 	public Tool(ArrayList<Shape> shapes) {

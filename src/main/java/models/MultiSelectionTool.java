@@ -43,12 +43,12 @@ public class MultiSelectionTool extends Tool {
 			width = Math.abs(posXEnd - posXStart);
 			height = Math.abs(posYEnd - posYStart);
 		}
-		if(selection==null)
-			System.out.println("dsjfsdjf");
-		this.selection.setX(posX);
-		this.selection.setY(posY);
-		this.selection.setWidth(width);
-		this.selection.setHeight(height);
+		if(selection!=null) {
+			this.selection.setX(posX);
+			this.selection.setY(posY);
+			this.selection.setWidth(width);
+			this.selection.setHeight(height);
+		}
 	}
 
 	@Override
