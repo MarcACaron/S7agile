@@ -67,11 +67,9 @@ public class Persistance {
 				}
 				String initialToken = st.nextToken();
 				if (initialToken.equalsIgnoreCase("FillName")) {
-					System.out.println("Fillename");
 					Tool.setFillName(st.nextToken());
 					
 				} else if (initialToken.equalsIgnoreCase("Stroke")) {
-					System.out.println("stroke");
 					Tool.setStroke(Paint.valueOf(st.nextToken()));
 					
 				} else if (initialToken.equalsIgnoreCase("LineWidth")) {
@@ -82,15 +80,7 @@ public class Persistance {
 					
 					String token = st.nextToken();
 					
-					if (token.equalsIgnoreCase("rectangle")) {
-						appTool = new RectangleTool();
-					} else if (token.equalsIgnoreCase("circle")) {
-						appTool = new CircleTool();
-					} else if (token.equalsIgnoreCase("selection")) {
-						appTool = new SelectionTool();
-					} else if (token.equalsIgnoreCase("multiSelection")) {
-						appTool = new MultiSelectionTool();
-					}
+					getCorrectTool(token);
 					
 				} else if (initialToken.equalsIgnoreCase("DrawMode")) {
 					Tool.setStartFromCenter(Boolean.valueOf(st.nextToken()));
@@ -105,4 +95,17 @@ public class Persistance {
 		return null;
 	}
 
+	private Tool getCorrectTool(String token) {
+		
+		if (token.equalsIgnoreCase("rectangle")) {
+			return new RectangleTool();
+		} else if (token.equalsIgnoreCase("circle")) {
+			return new CircleTool();
+		} else if (token.equalsIgnoreCase("selection")) {
+			return new SelectionTool();
+		} else if (token.equalsIgnoreCase("multiSelection")) {
+			return new MultiSelectionTool();
+		}
+		return new SelectionTool();
+	}
 }
