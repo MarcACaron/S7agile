@@ -17,6 +17,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import models.Persistance;
 
 public class MainApp extends Application {
 
@@ -54,10 +55,16 @@ public class MainApp extends Application {
     public void start(Stage primaryStage) {
         this.primaryStage = primaryStage;
         this.primaryStage.setTitle("adraw4US");
-
+        
+        
+        
         initRootLayout();
 
         showMainOverview();
+        Persistance persi = new Persistance(toolApp);
+        setTool(persi.readState());
+        
+        persi.setOnClosedEvent(primaryStage);
     }
     
     /**

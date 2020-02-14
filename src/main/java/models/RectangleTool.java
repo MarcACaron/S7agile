@@ -44,4 +44,9 @@ public class RectangleTool extends Tool {
 			shape.setStrokeWidth(lineWidth);
 		});
 	}
+	
+	@Override
+	public String getToolType() {
+		return "rectangle";
+	}
 }

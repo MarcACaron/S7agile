@@ -38,4 +38,9 @@ public class CircleTool extends Tool{
 			shape.setStrokeWidth(lineWidth);
 		});
 	}
+	
+	@Override
+	public String getToolType() {
+		return "circle";
+	}
 }
