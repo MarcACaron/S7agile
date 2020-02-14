@@ -90,4 +90,9 @@ public class MultiSelectionTool extends Tool {
 				
 		}
 	}
+
+	@Override
+	public String getToolType() {
+		return "multiSelection";
+	}
 }

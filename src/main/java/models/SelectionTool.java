@@ -51,4 +51,9 @@ public class SelectionTool extends Tool {
 	public void mouseReleased(MainApp mainApp, Pane pane, PaletteCouleurController paletteCouleurController, DetailPaletteController pc) {
 		//
 	}
+	
+	@Override
+	public String getToolType() {
+		return "selection";
+	}
 }

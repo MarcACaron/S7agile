@@ -145,4 +145,6 @@ public abstract class Tool {
 	public static void setStartFromCenter(boolean startFromCenter) {
 		Tool.startFromCenter = startFromCenter;
 	}
+	
+	public abstract String getToolType();
 }

@@ -34,4 +34,9 @@ public class LineTool extends Tool{
 			shape.setStrokeWidth(lineWidth);
 		});
 	}
+	
+	@Override
+	public String getToolType() {
+		return "line";
+	}
 }
