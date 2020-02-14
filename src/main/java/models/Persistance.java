@@ -53,9 +53,9 @@ public class Persistance {
 		
 		BufferedReader reader;
 		Tool returnTool = new RectangleTool();
-		
+		reader = new BufferedReader(new FileReader("persistance.ini"));
 		try {
-			reader = new BufferedReader(new FileReader("persistance.ini"));
+			
 			
 			String line = reader.readLine();
 			
@@ -87,9 +87,15 @@ public class Persistance {
 				}
 				line = reader.readLine();
 			}
-			reader.close();
 			return returnTool;
 		} catch (Exception ex) {
+			
+		} finally {
+			try {
+				reader.close();
+			} catch (Exception exe) {
+				
+			}
 			
 		}
 		return null;
