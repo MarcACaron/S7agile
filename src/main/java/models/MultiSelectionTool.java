@@ -66,9 +66,9 @@ public class MultiSelectionTool extends Tool {
 		selection.setFill(null);
 		selection.getStrokeDashArray().addAll(25d, 20d, 5d, 20d);
 		System.out.println("....");
-		if(selection==null)
-			System.out.println("aaaaa");
-		pane.getChildren().add(selection);
+		if(selection!=null)
+			pane.getChildren().add(selection);
+		
 		return index;
 	}
 	
