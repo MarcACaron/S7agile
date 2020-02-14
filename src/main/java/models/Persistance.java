@@ -53,49 +53,50 @@ public class Persistance {
 		
 		BufferedReader reader;
 		Tool returnTool = new RectangleTool();
-		reader = new BufferedReader(new FileReader("persistance.ini"));
+		
 		try {
+			reader = new BufferedReader(new FileReader("persistance.ini"));
 			
-			
-			String line = reader.readLine();
-			
-			while (line != null) {
-				StringTokenizer st = new StringTokenizer(line, "=");
+			try {
 				
-				if (st.countTokens() != 2) {
-					continue;
+				String line = reader.readLine();
+			
+				while (line != null) {
+					StringTokenizer st = new StringTokenizer(line, "=");
+				
+					if (st.countTokens() != 2) {
+						continue;
+					}
+					String initialToken = st.nextToken();
+					if (initialToken.equalsIgnoreCase("FillName")) {
+						Tool.setFillName(st.nextToken());
+					
+					} else if (initialToken.equalsIgnoreCase("Stroke")) {
+						Tool.setStroke(Paint.valueOf(st.nextToken()));
+					
+					} else if (initialToken.equalsIgnoreCase("LineWidth")) {
+					
+						Tool.setLineWidth(Double.valueOf(st.nextToken()));
+					
+					} else if (initialToken.equalsIgnoreCase("FormType")) {
+					
+						String token = st.nextToken();
+					
+						getCorrectTool(token);
+					
+					} else if (initialToken.equalsIgnoreCase("DrawMode")) {
+						Tool.setStartFromCenter(Boolean.valueOf(st.nextToken()));
+					}
+					line = reader.readLine();
 				}
-				String initialToken = st.nextToken();
-				if (initialToken.equalsIgnoreCase("FillName")) {
-					Tool.setFillName(st.nextToken());
+			} catch (Exception plz) {
 					
-				} else if (initialToken.equalsIgnoreCase("Stroke")) {
-					Tool.setStroke(Paint.valueOf(st.nextToken()));
-					
-				} else if (initialToken.equalsIgnoreCase("LineWidth")) {
-					
-					Tool.setLineWidth(Double.valueOf(st.nextToken()));
-					
-				} else if (initialToken.equalsIgnoreCase("FormType")) {
-					
-					String token = st.nextToken();
-					
-					getCorrectTool(token);
-					
-				} else if (initialToken.equalsIgnoreCase("DrawMode")) {
-					Tool.setStartFromCenter(Boolean.valueOf(st.nextToken()));
-				}
-				line = reader.readLine();
+			} finally {
+				reader.close();
 			}
+			
 			return returnTool;
 		} catch (Exception ex) {
-			
-		} finally {
-			try {
-				reader.close();
-			} catch (Exception exe) {
-				
-			}
 			
 		}
 		return null;
