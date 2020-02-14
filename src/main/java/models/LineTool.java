@@ -5,29 +5,38 @@ import adraw4us.Tool;
 public class LineTool extends Tool{
 
 	public LineTool() {
-		this.shape = new CustomLine();
+		super();
+		setShape(new CustomLine());
 	}
 
 	@Override
 	public void ajustOnDrag(double posXStart, double posYStart, double posXEnd, double posYEnd) {
 		if(startFromCenter) {
-			((CustomLine) this.shape).setStartX(posXEnd);
-			((CustomLine) this.shape).setStartY(posYEnd);
-			((CustomLine) this.shape).setEndX(2*posXStart-posXEnd);
-			((CustomLine) this.shape).setEndY(2*posYStart-posYEnd);
+			((CustomLine) this.shapes.get(0)).setStartX(posXEnd);
+			((CustomLine) this.shapes.get(0)).setStartY(posYEnd);
+			((CustomLine) this.shapes.get(0)).setEndX(2*posXStart-posXEnd);
+			((CustomLine) this.shapes.get(0)).setEndY(2*posYStart-posYEnd);
 		}else {
-			((CustomLine) this.shape).setStartX(posXStart);
-			((CustomLine) this.shape).setStartY(posYStart);
-			((CustomLine) this.shape).setEndX(posXEnd);
-			((CustomLine) this.shape).setEndY(posYEnd);
+			((CustomLine) this.shapes.get(0)).setStartX(posXStart);
+			((CustomLine) this.shapes.get(0)).setStartY(posYStart);
+			((CustomLine) this.shapes.get(0)).setEndX(posXEnd);
+			((CustomLine) this.shapes.get(0)).setEndY(posYEnd);
 		}
 		
 	}
 
 	@Override
 	public void reset() {
-		this.shape = new CustomLine();
-		this.shape.setStroke(stroke);
-		this.shape.setStrokeWidth(lineWidth);
+		this.shapes.clear();
+		setShape(new CustomLine());
+		this.shapes.forEach(shape -> {
+			shape.setStroke(stroke);
+			shape.setStrokeWidth(lineWidth);
+		});
+	}
+	
+	@Override
+	public String getToolType() {
+		return "line";
 	}
 }

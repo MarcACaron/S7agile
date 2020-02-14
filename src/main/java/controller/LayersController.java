@@ -19,7 +19,7 @@ public class LayersController {
 	
 	@FXML private Button hideButton;
 	
-	@FXML private ListView<Label> layerListView = new ListView<Label>();
+	@FXML private ListView<Label> layerListView = new ListView<>();
 	
 	LayersGroup layerGroup = LayersGroup.getLayersGroup();
 	

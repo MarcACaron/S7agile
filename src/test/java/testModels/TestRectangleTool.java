@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
 import adraw4us.Tool;
+import models.CustomLine;
 import models.CustomRectangle;
 import models.RectangleTool;
 
@@ -16,11 +17,11 @@ public class TestRectangleTool {
 	
 	@Test
 	public void testToolReset() {
-		rectTool.getShape().setAccessibleHelp("test");
+		rectTool.getShapes().get(0).setAccessibleHelp("test");
 		
 		rectTool.reset();
 		
-		assertNotEquals("test", rectTool.getShape().getAccessibleHelp());
+		assertNotEquals("test", rectTool.getShapes().get(0).getAccessibleHelp());
 	}
 	
 	@Test
@@ -46,15 +47,28 @@ public class TestRectangleTool {
 		Tool.setStartFromCenter(true);
 		rectTool.ajustOnDrag(2.0, 2.0, 4.0, 4.0);
 		
-		double width = ((CustomRectangle)rectTool.getShape()).getWidth();
-		double height = ((CustomRectangle)rectTool.getShape()).getHeight();
-		double posX = ((CustomRectangle)rectTool.getShape()).getX();
-		double posY = ((CustomRectangle)rectTool.getShape()).getY();
+		double width = ((CustomRectangle)rectTool.getShapes().get(0)).getWidth();
+		double height = ((CustomRectangle)rectTool.getShapes().get(0)).getHeight();
+		double posX = ((CustomRectangle)rectTool.getShapes().get(0)).getX();
+		double posY = ((CustomRectangle)rectTool.getShapes().get(0)).getY();
 		
 		assertEquals(4.0, width);
 		assertEquals(4.0, height);
 		assertEquals(0.0, posX);
 		assertEquals(0.0, posY);
+		
+	}
+	
+	@Test
+	public void testDuplicateMethod() {
+		CustomRectangle rect = new CustomRectangle();
+		CustomRectangle rectClone = (CustomRectangle) rect.duplicateAndOffset();
+
+		assertEquals(true, rect.getStroke() == rectClone.getStroke());
+		assertEquals(true, rect.getStrokeWidth() == rectClone.getStrokeWidth());
+		assertEquals(true, rect.getFill() == rectClone.getFill());
+		assertEquals(true, rect.getWidth() == rectClone.getWidth());
+		assertEquals(true, rect.getHeight() == rectClone.getHeight());
 		
 	}
 }

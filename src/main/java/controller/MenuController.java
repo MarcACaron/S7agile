@@ -40,7 +40,7 @@ public class MenuController {
 	
 	@FXML private MenuItem menuItemRedo;
 	
-	private Logger LOGGER;
+	private Logger loggerMenuController;
 	
 	@FXML
 	private void clear() {
@@ -60,12 +60,12 @@ public class MenuController {
 			LayersGroup layersGroup = this.mainApp.getDrawingZoneController().layersGroup;
 
 			try {
-				if (fileController.askToSave(mainApp.getPrimaryStage(), layersGroup)) {
+				if (Boolean.TRUE.equals(fileController.askToSave(mainApp.getPrimaryStage(), layersGroup))) {
 					this.mainApp.getDrawingZoneController().clearDrawing();
 					fileController.clearFile();
 				}
 			} catch (FileNotFoundException | XMLStreamException e1) {
-				LOGGER.log(Level.SEVERE, "Exeption:menuItemNew: "+e1.getMessage()+"; Fonction: initialize():MenuController:menuItemNew;");
+				loggerMenuController.log(Level.SEVERE, "Exeption:menuItemNew: "+e1.getMessage()+"; Fonction: initialize():MenuController:menuItemNew;");
 			}
 			
 		});
@@ -74,11 +74,11 @@ public class MenuController {
 			
 			LayersGroup layersGroup = this.mainApp.getDrawingZoneController().layersGroup;
 			
-			if (fileController.askForFile(mainApp.getPrimaryStage())) {
+			if (Boolean.TRUE.equals(fileController.askForFile(mainApp.getPrimaryStage()))) {
 				try {
 					fileController.saveDrawing(layersGroup);
 				} catch (FileNotFoundException | XMLStreamException e1) {
-					LOGGER.log(Level.SEVERE, "Exeption:menuItemSaveAs: "+e1.getMessage()+"; Fonction: initialize():MenuController:menuItemSaveAs;");
+					loggerMenuController.log(Level.SEVERE, "Exeption:menuItemSaveAs: "+e1.getMessage()+"; Fonction: initialize():MenuController:menuItemSaveAs;");
 				}
 			}
 				
@@ -94,7 +94,7 @@ public class MenuController {
 				try {
 					fileController.saveDrawing(layersGroup);
 				} catch (FileNotFoundException | XMLStreamException e1) {
-					LOGGER.log(Level.SEVERE, "Exeption:menuItemSave: "+e1.getMessage()+"; Fonction: initialize():MenuController:menuItemSave;");
+					loggerMenuController.log(Level.SEVERE, "Exeption:menuItemSave: "+e1.getMessage()+"; Fonction: initialize():MenuController:menuItemSave;");
 				}
 					
 			}
@@ -103,14 +103,13 @@ public class MenuController {
 		
 		menuItemOpen.setOnAction(e -> {
 			try {
-				if (fileController.askToSave(mainApp.getPrimaryStage(), LayersGroup.getLayersGroup())) {
+				if (Boolean.TRUE.equals(fileController.askToSave(mainApp.getPrimaryStage(), LayersGroup.getLayersGroup()))) {
 					fileController.openFile(mainApp.getPrimaryStage(), mainApp);
-					System.out.println(":: "+this.mainApp.getDrawingZoneController().layersGroup.size());
-					this.mainApp.getDrawingZoneController().updateLayers();
+					this.mainApp.getDrawingZoneController().updateLayers(true);
 						
 				}
 			} catch (FileNotFoundException | XMLStreamException e1) {
-				LOGGER.log(Level.SEVERE, "Exeption:menuItemOpen: "+e1.getMessage()+"; Fonction: initialize():MenuController:MenuItemOpen;");
+				loggerMenuController.log(Level.SEVERE, "Exeption:menuItemOpen: "+e1.getMessage()+"; Fonction: initialize():MenuController:MenuItemOpen;");
 			}
 			
 		});
@@ -127,20 +126,18 @@ public class MenuController {
 	            stage.initOwner(mainApp.getPrimaryStage().getScene().getWindow());
 	            stage.setScene(new Scene(root));
 	            stage.showAndWait();
-	            mainApp.getDrawingZoneController().updateLayers();
+	            mainApp.getDrawingZoneController().updateLayers(true);
 	            
 	        }
 	        catch (IOException ex) {
-	        	LOGGER.log(Level.SEVERE, "Exeption: "+ex.getMessage()+"; Fonction: initialize():MenuController;");
+	        	loggerMenuController.log(Level.SEVERE, "Exeption: "+ex.getMessage()+"; Fonction: initialize():MenuController;");
 	        }
 			
 		});
 		
-		menuShowGridLines.setOnAction(e -> {
-
-			mainApp.getDrawingZoneController().inverseGridPaneVisibility();
-			
-		});
+		menuShowGridLines.setOnAction(e -> 
+			mainApp.getDrawingZoneController().inverseGridPaneVisibility()
+		);
 		
     }
 
@@ -148,7 +145,26 @@ public class MenuController {
         this.mainApp = mainApp;
     }
 	
+	@FXML private void saveButtonOnClick() {
+		mainApp.getDrawingZoneController().saveShape();
+	}
 	
+	@FXML private void pasteButtonOnClick() {
+		mainApp.getDrawingZoneController().pasteShape();
+	}
+	
+	@FXML private void undoClick() {
+		mainApp.getDrawingZoneController().undo();
+	}
+	
+	@FXML private void redoClick() {
+		mainApp.getDrawingZoneController().redo();
+	}
+	
+	@FXML private void resetDrawing() {
+		mainApp.getDrawingZoneController().clearDrawing();
+		mainApp.getDrawingZoneController().updateLayers(true);
+	}
 	
 	
 }

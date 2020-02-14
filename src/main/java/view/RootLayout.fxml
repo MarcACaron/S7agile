@@ -25,11 +25,11 @@
           <Menu fx:id="MenuBarEdit" mnemonicParsing="false" text="Edit">
           
             <items>
-              <MenuItem fx:id="menuItemUndo" mnemonicParsing="false" text="Undo" />
-              <MenuItem fx:id="menuItemRedo" mnemonicParsing="false" text="Redo" />
-              <MenuItem mnemonicParsing="false" text="Copy" />
-              <MenuItem mnemonicParsing="false" text="Paste" />
-              <MenuItem mnemonicParsing="false" onAction="#clear" text="Clear" />
+              <MenuItem fx:id="menuItemUndo" mnemonicParsing="false" onAction="#undoClick" text="Undo" />
+              <MenuItem fx:id="menuItemRedo" mnemonicParsing="false" onAction="#redoClick" text="Redo" />
+              <MenuItem mnemonicParsing="false" onAction="#saveButtonOnClick" text="Copy" />
+              <MenuItem mnemonicParsing="false" onAction="#pasteButtonOnClick" text="Paste" />
+              <MenuItem mnemonicParsing="false" onAction="#resetDrawing" text="Clear" />
                             
 			</items>
             

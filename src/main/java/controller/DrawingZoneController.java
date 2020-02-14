@@ -14,8 +14,10 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Shape;
 import javafx.scene.transform.Scale;
+import models.ApplicationHistory;
 import models.Layer;
 import models.LayersGroup;
+import models.Transformable;
 
 public class DrawingZoneController {
 		
@@ -26,10 +28,11 @@ public class DrawingZoneController {
 	@FXML
 	private GridPane gridPane;
 	private MainApp mainApp;
-		
-	LayersGroup layersGroup = LayersGroup.getLayersGroup();
 	
-	ArrayList<Pane> paneList = new ArrayList<Pane>();
+	private ArrayList<Shape> shapesCopy;
+	ApplicationHistory history = ApplicationHistory.getInstance();
+	
+	LayersGroup layersGroup = LayersGroup.getLayersGroup();
 	
 	double orgX;
 	double orgY;
@@ -37,11 +40,22 @@ public class DrawingZoneController {
 	boolean gridPaneBoolean;
 	
 	public void redo() {
+		clearDrawing();
 		
+		layersGroup.clear();
+		ArrayList<Layer> redoLayers = (ArrayList<Layer>)history.redoHistory();
+		
+		layersGroup.replaceLayers(redoLayers);
+		updateLayers(true);
 	}
 	
 	public void undo() {
+		clearDrawing();
+		layersGroup.clear();
+		ArrayList<Layer> undoLayers = (ArrayList<Layer>)history.undoHistory();
 		
+		layersGroup.replaceLayers(undoLayers);
+		updateLayers(true);
 	}
 	
 	public void zoomIn(double zoom) {
@@ -72,20 +86,16 @@ public class DrawingZoneController {
 			orgX = t.getX();
 			orgY = t.getY();
 			childIndex = anchorPane.getChildren().size();
-			childIndex = this.mainApp.getTool().mousePressed(this.mainApp.getPaletteDetailController(), anchorPane);
+			childIndex = this.mainApp.getTool().mousePressed(this.mainApp.getPaletteDetailController(), layersGroup.getCurrentLayer().getPane());
 		});
-		anchorPane.setOnMouseDragged(t -> {
-			this.mainApp.getTool().mouseDragged(orgX, orgY, t.getX(), t.getY());
-		});
-		anchorPane.setOnMouseReleased(t -> {
-			this.mainApp.getTool().mouseReleased(mainApp, anchorPane, this.mainApp.getPaletteCouleurController(), this.mainApp.getPaletteDetailController());
-		});
-		clearDrawing();
-		updateLayers();
+		anchorPane.setOnMouseDragged(t -> this.mainApp.getTool().mouseDragged(orgX, orgY, t.getX(), t.getY()));
+		
+		anchorPane.setOnMouseReleased(t -> this.mainApp.getTool().mouseReleased(mainApp, layersGroup.getCurrentLayer().getPane(), this.mainApp.getPaletteCouleurController(), this.mainApp.getPaletteDetailController()));
+		updateLayers(true);
     }
 	
-	public void updateLayers() {
-		ArrayList<Layer> layers = layersGroup.getLayers();
+	public void updateLayers(Boolean saveHistory) {
+		ArrayList<Layer> layers = (ArrayList<Layer>)layersGroup.getLayers();
 		
 		for (int i = layers.size() - 1; i >= 0; --i) {
 			Pane newPane = layers.get(i).getPane();
@@ -114,20 +124,25 @@ public class DrawingZoneController {
 			}
 			
 		}
+		
+		if ( Boolean.TRUE.equals(saveHistory)) {
+			history.update();
+		}
+		
 	}
 	
 	public void clearDrawing() {
 		layersGroup.reset();
 		
-		ObservableList<Node> clearPaneList = anchorPane.getChildren();
+		ObservableList<Node> paneList = anchorPane.getChildren();
 		
-		for (int i = 1; i < clearPaneList.size() - 1; ++i) {
-			if ( gridPane.getId().equals(clearPaneList.get(i).getId())  ) {
-				((Pane)(clearPaneList.get(i))).getChildren().clear();
+		for (int i = 0; i < paneList.size(); ++i) {
+			
+			if ( !gridPane.getId().equals(paneList.get(i).getId()) ) {
+				((Pane)(paneList.get(i))).getChildren().clear();
+				anchorPane.getChildren().remove(i);
 			}
 		}
-				
-		updateLayers();
 	}
 	
 	public void applyToCurrentPane(Shape shape) {
@@ -136,10 +151,25 @@ public class DrawingZoneController {
 		currentPane.getChildren().add(shape);
 		layersGroup.getCurrentLayer().setPane(currentPane);
 
-		updateLayers();
+		updateLayers(true);
 	}
 	
 	public void setMainApp(MainApp mainApp) {
         this.mainApp = mainApp;
     }
+	
+	public void saveShape() {
+		
+		shapesCopy = (ArrayList<Shape>) mainApp.getTool().getShapes().clone();
+
+	}
+	
+	public void pasteShape() {
+		if (shapesCopy != null) {
+			shapesCopy.forEach(shape -> {
+				this.applyToCurrentPane(shape); 
+			});
+			
+		}
+	}
 }

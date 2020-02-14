@@ -2,6 +2,7 @@ package models;
 
 
 import javafx.scene.shape.Line;
+import javafx.scene.shape.Shape;
 
 public class CustomLine extends Line implements Transformable{
 
@@ -108,9 +109,60 @@ public class CustomLine extends Line implements Transformable{
 	public boolean lengthToolisNeeded() {
 		return true;
 	}
-
+	
+	public Shape duplicateAndOffset() {
+		CustomLine newLine = new CustomLine();
+		newLine.setStroke(this.getStroke());
+		newLine.setStrokeWidth(this.getStrokeWidth());
+		newLine.setFill(this.getFill());
+		newLine.setStartX(this.getStartX() + XCOPYOFFSET);
+		newLine.setStartY(this.getStartY() + YCOPYOFFSET);
+		newLine.setEndX(this.getEndX() + XCOPYOFFSET);
+		newLine.setEndY(this.getEndY() + YCOPYOFFSET);
+		newLine.setLengthTool(this.getLength());
+		newLine.setRotationTool(this.getRotation());
+		
+		return newLine;
+	}
+	
+	public Shape duplicate() {
+		CustomLine newLine = new CustomLine();
+		newLine.setStroke(this.getStroke());
+		newLine.setStrokeWidth(this.getStrokeWidth());
+		newLine.setFill(this.getFill());
+		newLine.setStartX(this.getStartX());
+		newLine.setStartY(this.getStartY());
+		newLine.setEndX(this.getEndX());
+		newLine.setEndY(this.getEndY());
+		newLine.setLengthTool(this.getLength());
+		newLine.setRotationTool(this.getRotation());
+		
+		return newLine;
+	}
+	
 	@Override
 	public String getType() {
 		return "line";
+	}
+
+	@Override
+	public boolean isSelected(double xStart, double yStart, double xEnd, double yEnd) {
+		if(this.getStartX()<xStart)
+			return false;
+		if(this.getEndX()<xStart)
+			return false;
+		if(this.getStartY()<yStart)
+			return false;
+		if(this.getEndY()<yStart)
+			return false;
+		if(this.getStartX()>xEnd)
+			return false;
+		if(this.getEndX()>xEnd)
+			return false;
+		if(this.getStartY()>yEnd)
+			return false;
+		if(this.getEndY()>yEnd)
+			return false;
+		return true;
 	}
 }

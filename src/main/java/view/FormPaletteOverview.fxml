@@ -21,6 +21,16 @@
             </ImageView>
          </graphic>
       </ToggleButton>
+      <ToggleButton fx:id="multiSelection" mnemonicParsing="false" onAction="#chooseMultiSelection" prefWidth="100.0" toggleGroup="$formToggleGroup">
+         <graphic>
+            <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/MultiSelection.png.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </ToggleButton>
+      <Separator prefWidth="200.0" />
       
       <ToggleButton fx:id="rectangle" mnemonicParsing="false" onAction="#chooseRectangle" prefWidth="100.0" toggleGroup="$formToggleGroup">
          <graphic>

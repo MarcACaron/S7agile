@@ -2,6 +2,7 @@ package models;
 
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.shape.Shape;
 
 public class CustomRectangle extends Rectangle implements Transformable {
 
@@ -100,9 +101,49 @@ public class CustomRectangle extends Rectangle implements Transformable {
 	public boolean lengthToolisNeeded() {
 		return false;
 	}
-
+	@Override
+	public Shape duplicateAndOffset() {
+		CustomRectangle newRectangle = new CustomRectangle();
+		newRectangle.setStroke(this.getStroke());
+		newRectangle.setStrokeWidth(this.getStrokeWidth());
+		newRectangle.setFill(this.getFill());
+		newRectangle.setXPosTool(this.getXPos() + XCOPYOFFSET);
+		newRectangle.setYPosTool(this.getYPos() + YCOPYOFFSET);
+		newRectangle.setWidthTool(this.getWidth());
+		newRectangle.setHeightTool(this.getHeight());
+		
+		return newRectangle;
+	}
+	
+	@Override
+	public Shape duplicate() {
+		CustomRectangle newRectangle = new CustomRectangle();
+		newRectangle.setStroke(this.getStroke());
+		newRectangle.setStrokeWidth(this.getStrokeWidth());
+		newRectangle.setFill(this.getFill());
+		newRectangle.setXPosTool(this.getXPos());
+		newRectangle.setYPosTool(this.getYPos());
+		newRectangle.setWidthTool(this.getWidth());
+		newRectangle.setHeightTool(this.getHeight());
+		
+		return newRectangle;
+	}
+	
 	@Override
 	public String getType() {
 		return "rectangle";
+	}
+
+	@Override
+	public boolean isSelected(double xStart, double yStart, double xEnd, double yEnd) {
+		if(this.getX()<xStart)
+			return false;
+		if(this.getY()<yStart)
+			return false;
+		if(this.getX()+this.getWidth()>xEnd)
+			return false;
+		if(this.getY()+this.getHeight()>yEnd)
+			return false;
+		return true;
 	}
 }

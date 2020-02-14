@@ -17,6 +17,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import models.Persistance;
 
 public class MainApp extends Application {
 
@@ -26,11 +27,11 @@ public class MainApp extends Application {
     private DrawingZoneController drawingZoneController;
     private PaletteCouleurController paletteCouleurController;
     private DetailPaletteController paletteDetailController;
-    private Tool Tool;
+    private Tool toolApp;
     private Logger logger = Logger.getLogger(MainApp.class.getName());
     
     public MainApp() {
-    	this.Tool = null;
+    	this.toolApp = null;
 	}
     public MenuController getMenuController() {
 		return menuController;
@@ -45,19 +46,25 @@ public class MainApp extends Application {
 		return paletteDetailController;
 	}
 	public Tool getTool() {
-		return Tool;
+		return toolApp;
 	}
 	public void setTool(Tool tool) {
-		Tool = tool;
+		toolApp = tool;
 	}
 	@Override
     public void start(Stage primaryStage) {
         this.primaryStage = primaryStage;
         this.primaryStage.setTitle("adraw4US");
-
+        
+        
+        
         initRootLayout();
 
         showMainOverview();
+        Persistance persi = new Persistance(toolApp);
+        setTool(persi.readState());
+        
+        persi.setOnClosedEvent(primaryStage);
     }
     
     /**

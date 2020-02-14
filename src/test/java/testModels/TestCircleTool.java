@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import adraw4us.Tool;
 import models.CircleTool;
+import models.Transformable;
 import models.CustomCircle;
 
 
@@ -14,14 +15,14 @@ import models.CustomCircle;
 public class TestCircleTool {
 	
 	CircleTool circTool = new CircleTool();
-	
 	@Test
 	public void testToolReset() {
-		circTool.getShape().setAccessibleHelp("test");
+		
+		circTool.getShapes().get(0).setAccessibleHelp("test");
 		
 		circTool.reset();
 		
-		assertNotEquals("test", circTool.getShape().getAccessibleHelp());
+		assertNotEquals("test", circTool.getShapes().get(0).getAccessibleHelp());
 	}
 	/*
 	@Test
@@ -45,13 +46,26 @@ public class TestCircleTool {
 		Tool.setStartFromCenter(false);
 		circTool.ajustOnDrag(2.0, 2.0, 4.0, 4.0);
 		
-		double centerX = ((CustomCircle)circTool.getShape()).getCenterX();
-		double centerY = ((CustomCircle)circTool.getShape()).getCenterY();
-		double radius = ((CustomCircle)circTool.getShape()).getRadius();
+		double centerX = ((CustomCircle)circTool.getShapes().get(0)).getCenterX();
+		double centerY = ((CustomCircle)circTool.getShapes().get(0)).getCenterY();
+		double radius = ((CustomCircle)circTool.getShapes().get(0)).getRadius();
 		
 		assertEquals(3.0, centerX);
 		assertEquals(3.0, centerY);
 		assertEquals(true, 1.40 < radius && radius < 1.42);
+		
+	}
+	
+	@Test
+	public void testDuplicateMethod() {
+		CustomCircle circle = new CustomCircle();
+		CustomCircle circleClone = (CustomCircle) circle.duplicateAndOffset();
+		
+		assertEquals(circle.getStroke() == circleClone.getStroke(), true);
+		assertEquals(circle.getStrokeWidth() == circleClone.getStrokeWidth(), true);
+		assertEquals(circle.getFill() == circleClone.getFill(), true);
+		assertEquals(circle.getRadius() == circleClone.getRadius(), true);
+		assertEquals(circle.getRotation() == circleClone.getRotation(), true);
 		
 	}
 

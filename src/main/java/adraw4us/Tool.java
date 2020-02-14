@@ -1,5 +1,6 @@
 package adraw4us;
 
+import java.util.ArrayList;
 import java.util.function.Function;
 
 import controller.DetailPaletteController;
@@ -17,34 +18,45 @@ public abstract class Tool {
 	protected static double lineWidth;
 	protected static double lineStyle;
 	protected static boolean startFromCenter;
-	protected Shape shape;
+	protected ArrayList<Shape> shapes;
 	
 	public Tool() {
+		this.shapes=new ArrayList<>();
 	}
 	
 	public Tool(Shape shape) {
-		this.shape = shape;
+		this.shapes=new ArrayList<>();
+		this.shapes.add(shape);
+	}
+	public Tool(ArrayList<Shape> shapes) {
+		this.shapes=shapes;
 	}
 	
 	public abstract void ajustOnDrag(double posXStart, double posYStart, double posXEnd, double posYEnd);
 	
 	public void fillShape() {
-		if(this.shape!=null) {
-			this.shape.setFill(fill);
-			this.shape.setAccessibleText(fillName);
+		if(this.shapes!=null) {
+			this.shapes.forEach(shape -> {
+				shape.setFill(fill);
+				shape.setAccessibleText(fillName);
+			});
 		}
 	}
 	public abstract void reset();
-	public Shape getShape() {
-		return shape;
+	public ArrayList<Shape> getShapes() {
+		return shapes;
 	}
-
+	
 	public void setShape(Shape shape) {
-		this.shape = shape;
+		this.shapes.clear();
+		this.shapes.add(shape);
+	}
+	public void setShapes(ArrayList<Shape> shapes) {
+		this.shapes = shapes;
 	}
 	
 	public Function<Object, Object> fillDetails(DetailPaletteController dp, Shape nd){
-		return (y) -> {
+		return y -> {
 			if(nd == null) 
 				dp.paletteDisable(true);
 			else {
@@ -58,9 +70,11 @@ public abstract class Tool {
 	
 	
 	public int mousePressed(DetailPaletteController detailPaletteController, Pane pane) {
-		int index = pane.getChildren().size();
+		int index = pane.getChildren().size()-1 + shapes.size();
 		this.reset();
-		pane.getChildren().add(this.getShape());
+		this.shapes.forEach(shape -> {
+			pane.getChildren().add(shape);
+		});
 		return index;
 	}
 	
@@ -70,7 +84,7 @@ public abstract class Tool {
 	
 	public void mouseReleased(MainApp mainApp, Pane pane, PaletteCouleurController pc, DetailPaletteController dp) {
 		Shape shape2 = (Shape) pane.getChildren().get(pane.getChildren().size()-1);
-		pane.getChildren().remove(1);
+		pane.getChildren().remove(pane.getChildren().size()-1);
 		mainApp.getDrawingZoneController().applyToCurrentPane(shape2);
 		
 		shape2.setOnMouseClicked(t2 -> {
@@ -131,4 +145,6 @@ public abstract class Tool {
 	public static void setStartFromCenter(boolean startFromCenter) {
 		Tool.startFromCenter = startFromCenter;
 	}
+	
+	public abstract String getToolType();
 }

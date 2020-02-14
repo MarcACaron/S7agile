@@ -50,44 +50,44 @@ public class DetailPaletteController {
 	}
 	@FXML 
 	private void onXPosChange(){
-		((Transformable)this.mainApp.getTool().getShape()).setXPosTool(Double.valueOf(xPosText.getText()));
-		this.mainApp.getTool().fillDetails(this, this.mainApp.getTool().getShape());
+		((Transformable)this.mainApp.getTool().getShapes().get(0)).setXPosTool(Double.valueOf(xPosText.getText()));
+		this.mainApp.getTool().fillDetails(this, this.mainApp.getTool().getShapes().get(0));
 	}
 
 	@FXML 
 	private void onYPosChange(){
-		((Transformable)this.mainApp.getTool().getShape()).setYPosTool(Double.valueOf(yPosText.getText()));
-		this.mainApp.getTool().fillDetails(this, this.mainApp.getTool().getShape());
+		((Transformable)this.mainApp.getTool().getShapes().get(0)).setYPosTool(Double.valueOf(yPosText.getText()));
+		this.mainApp.getTool().fillDetails(this, this.mainApp.getTool().getShapes().get(0));
 	}
 
 	@FXML 
 	private void onWidthChange(){
-		((Transformable)this.mainApp.getTool().getShape()).setWidthTool(Double.valueOf(widthText.getText()));
-		this.mainApp.getTool().fillDetails(this, this.mainApp.getTool().getShape());
+		((Transformable)this.mainApp.getTool().getShapes().get(0)).setWidthTool(Double.valueOf(widthText.getText()));
+		this.mainApp.getTool().fillDetails(this, this.mainApp.getTool().getShapes().get(0));
 	}
 
 	@FXML 
 	private void onHeightChange(){
-		((Transformable)this.mainApp.getTool().getShape()).setHeightTool(Double.valueOf(heightText.getText()));
-		this.mainApp.getTool().fillDetails(this, this.mainApp.getTool().getShape());
+		((Transformable)this.mainApp.getTool().getShapes().get(0)).setHeightTool(Double.valueOf(heightText.getText()));
+		this.mainApp.getTool().fillDetails(this, this.mainApp.getTool().getShapes().get(0));
 	}
 
 	@FXML 
 	private void onRadiusChange(){
-		((Transformable)this.mainApp.getTool().getShape()).setRadiusTool(Double.valueOf(radiusText.getText()));
-		this.mainApp.getTool().fillDetails(this, this.mainApp.getTool().getShape());
+		((Transformable)this.mainApp.getTool().getShapes().get(0)).setRadiusTool(Double.valueOf(radiusText.getText()));
+		this.mainApp.getTool().fillDetails(this, this.mainApp.getTool().getShapes().get(0));
 	}
 
 	@FXML 
 	private void onLengthChange(){
-		((Transformable)this.mainApp.getTool().getShape()).setLengthTool(Double.valueOf(lengthText.getText()));
-		this.mainApp.getTool().fillDetails(this, this.mainApp.getTool().getShape());
+		((Transformable)this.mainApp.getTool().getShapes().get(0)).setLengthTool(Double.valueOf(lengthText.getText()));
+		this.mainApp.getTool().fillDetails(this, this.mainApp.getTool().getShapes().get(0));
 	}
 
 	@FXML 
 	private void onRotateChange(){
-		((Transformable)this.mainApp.getTool().getShape()).setRotationTool(Double.valueOf(angleText.getText()));
-		this.mainApp.getTool().fillDetails(this, this.mainApp.getTool().getShape());
+		((Transformable)this.mainApp.getTool().getShapes().get(0)).setRotationTool(Double.valueOf(angleText.getText()));
+		this.mainApp.getTool().fillDetails(this, this.mainApp.getTool().getShapes().get(0));
 	}
 	
 	public void setMainApp(MainApp inputMain){mainApp = inputMain;}

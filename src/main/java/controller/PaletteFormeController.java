@@ -8,6 +8,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import models.CircleTool;
 import models.LineTool;
+import models.MultiSelectionTool;
 import models.RectangleTool;
 import models.SelectionTool;
 
@@ -15,6 +16,8 @@ public class PaletteFormeController {
 	
 	@FXML
     private ToggleButton pointeur;
+	@FXML
+    private ToggleButton multiSelection;
 	@FXML
     private ToggleButton rectangle;
 	@FXML
@@ -29,8 +32,18 @@ public class PaletteFormeController {
 	@FXML
 	private void choosePointer() {
 		if(pointeur.isSelected()) {
-			this.mainApp.setTool(new SelectionTool(this.mainApp.getTool().getShape()));
+			this.mainApp.setTool(new SelectionTool(this.mainApp.getTool().getShapes()));
 		}else {
+			pointeur.setSelected(true);
+		}
+		
+	}
+	@FXML
+	private void chooseMultiSelection() {
+		if(multiSelection.isSelected()) {
+			this.mainApp.setTool(new MultiSelectionTool(this.mainApp.getTool().getShapes()));
+		}else {
+			this.mainApp.setTool(new SelectionTool(this.mainApp.getTool().getShapes()));
 			pointeur.setSelected(true);
 		}
 		
@@ -40,7 +53,7 @@ public class PaletteFormeController {
 		if(rectangle.isSelected()) {
 			this.mainApp.setTool(new RectangleTool());
 		}else {
-			this.mainApp.setTool(new SelectionTool(this.mainApp.getTool().getShape()));
+			this.mainApp.setTool(new SelectionTool(this.mainApp.getTool().getShapes()));
 			pointeur.setSelected(true);
 		}
 		
@@ -50,7 +63,7 @@ public class PaletteFormeController {
 		if(circle.isSelected()) {
 			this.mainApp.setTool(new CircleTool());
 		}else {
-			this.mainApp.setTool(new SelectionTool(this.mainApp.getTool().getShape()));
+			this.mainApp.setTool(new SelectionTool(this.mainApp.getTool().getShapes()));
 			pointeur.setSelected(true);
 		}
 		
@@ -60,7 +73,7 @@ public class PaletteFormeController {
 		if(line.isSelected()) {
 			this.mainApp.setTool(new LineTool());
 		}else {
-			this.mainApp.setTool(new SelectionTool(this.mainApp.getTool().getShape()));
+			this.mainApp.setTool(new SelectionTool(this.mainApp.getTool().getShapes()));
 			pointeur.setSelected(true);
 		}
 		

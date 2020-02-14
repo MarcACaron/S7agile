@@ -6,7 +6,8 @@ import adraw4us.Tool;
 public class RectangleTool extends Tool {
 
 	public RectangleTool() {
-		this.shape = new CustomRectangle();
+		super();
+		setShape(new CustomRectangle());
 	}
 
 	@Override
@@ -27,17 +28,25 @@ public class RectangleTool extends Tool {
 			width = Math.abs(posXEnd - posXStart);
 			height = Math.abs(posYEnd - posYStart);
 		}
-		((CustomRectangle) this.shape).setX(posX);
-		((CustomRectangle) this.shape).setY(posY);
-		((CustomRectangle) this.shape).setWidth(width);
-		((CustomRectangle) this.shape).setHeight(height);
+		((CustomRectangle) this.shapes.get(0)).setX(posX);
+		((CustomRectangle) this.shapes.get(0)).setY(posY);
+		((CustomRectangle) this.shapes.get(0)).setWidth(width);
+		((CustomRectangle) this.shapes.get(0)).setHeight(height);
 	}
 
 	@Override
 	public void reset() {
-		this.shape = new CustomRectangle();
+		this.shapes.clear();
+		setShape(new CustomRectangle());
 		this.fillShape();
-		this.shape.setStroke(stroke);
-		this.shape.setStrokeWidth(lineWidth);
+		this.shapes.forEach(shape -> {
+			shape.setStroke(stroke);
+			shape.setStrokeWidth(lineWidth);
+		});
+	}
+	
+	@Override
+	public String getToolType() {
+		return "rectangle";
 	}
 }

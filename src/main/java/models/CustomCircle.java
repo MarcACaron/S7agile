@@ -3,6 +3,7 @@ package models;
 
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
+import javafx.scene.shape.Shape;
 
 public class CustomCircle extends Circle implements Transformable {
 
@@ -84,19 +85,15 @@ public class CustomCircle extends Circle implements Transformable {
 	public double getRotation() {
 		return this.getRotate();
 	}
-	@Override
-	public boolean widthToolisNeeded() {
-		return false;
-	}
-
+	
 	@Override
 	public boolean heightToolisNeeded() {
 		return false;
 	}
-
+	
 	@Override
-	public boolean radiusToolisNeeded() {
-		return true;
+	public boolean widthToolisNeeded() {
+		return false;
 	}
 
 	@Override
@@ -105,7 +102,60 @@ public class CustomCircle extends Circle implements Transformable {
 	}
 
 	@Override
+	public boolean radiusToolisNeeded() {
+		return true;
+	}
+
+	
+	
+	@Override
+	public Shape duplicateAndOffset() {
+		CustomCircle newCircle = new CustomCircle();
+		newCircle.setStroke(this.getStroke());
+		newCircle.setStrokeWidth(this.getStrokeWidth());
+		newCircle.setFill(this.getFill());
+		newCircle.setCenterX(this.getCenterX() + XCOPYOFFSET);
+		newCircle.setCenterY(this.getCenterY() + YCOPYOFFSET);
+		newCircle.setRadiusTool(this.getRadius());
+		newCircle.setRotationTool(this.getRotation());
+		
+		return newCircle;
+	}
+	
+	@Override
+	public Shape duplicate() {
+		CustomCircle newCircle = new CustomCircle();
+		newCircle.setStroke(this.getStroke());
+		newCircle.setStrokeWidth(this.getStrokeWidth());
+		newCircle.setFill(this.getFill());
+		newCircle.setCenterX(this.getCenterX());
+		newCircle.setCenterY(this.getCenterY());
+		newCircle.setRadiusTool(this.getRadius());
+		newCircle.setRotationTool(this.getRotation());
+		
+		return newCircle;
+	}
+
+	@Override
 	public String getType() {
 		return "circle";
+	}
+
+	@Override
+	public boolean isSelected(double xStart, double yStart, double xEnd, double yEnd) {
+		if(this.getXPos()<xStart)
+			return false;
+		if(this.getXPos()<yStart)
+			return false;
+		if(this.getXPos()>xEnd)
+			return false;
+		if(this.getXPos()>yEnd)
+			return false;
+		if(Math.sqrt(Math.pow(xStart-this.getXPos(), 2)+Math.pow(yStart-this.getYPos(), 2))<this.getRadius())
+			return false;
+		if(Math.sqrt(Math.pow(xEnd-this.getXPos(), 2)+Math.pow(yEnd-this.getYPos(), 2))<this.getRadius())
+			return false;
+		return true;
+		
 	}
 }

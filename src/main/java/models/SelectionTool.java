@@ -1,5 +1,7 @@
 package models;
 
+import java.util.ArrayList;
+
 import adraw4us.MainApp;
 import adraw4us.Tool;
 import controller.DetailPaletteController;
@@ -15,6 +17,10 @@ public class SelectionTool extends Tool {
 	public SelectionTool(Shape tool) {
 		super(tool);
 	}
+	
+	public SelectionTool(ArrayList<Shape> shapes) {
+		super(shapes);
+	}
 
 	@Override
 	public void ajustOnDrag(double posXStart, double posYStart, double posXEnd, double posYEnd) {
@@ -23,7 +29,7 @@ public class SelectionTool extends Tool {
 
 	@Override
 	public void reset() {
-		this.shape = null;
+		this.shapes.clear();
 	}
 	
 	@Override
@@ -44,5 +50,10 @@ public class SelectionTool extends Tool {
 	@Override
 	public void mouseReleased(MainApp mainApp, Pane pane, PaletteCouleurController paletteCouleurController, DetailPaletteController pc) {
 		//
+	}
+	
+	@Override
+	public String getToolType() {
+		return "selection";
 	}
 }

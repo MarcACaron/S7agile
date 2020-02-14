@@ -17,7 +17,11 @@ import adraw4us.ShapeFactory;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Shape;
 
-public class XmlDecoder extends XmlStrings {
+public class XmlDecoder {
+	
+	private XmlDecoder() {
+		
+	}
 	
 	private static LayersGroup layersGroup = LayersGroup.getLayersGroup();
 	
@@ -29,7 +33,7 @@ public class XmlDecoder extends XmlStrings {
 		xif.setProperty(XMLInputFactory.IS_SUPPORTING_EXTERNAL_ENTITIES, Boolean.FALSE);
 		XMLEventReader  reader = xif.createXMLEventReader(new FileInputStream(file));
 	    XMLEvent event;
-		ArrayList<String> layerNames = new ArrayList<String>();
+		ArrayList<String> layerNames = new ArrayList<>();
 	    while (reader.hasNext()) {
 	    	Shape sh = null;
 			event = reader.nextEvent();
@@ -46,7 +50,6 @@ public class XmlDecoder extends XmlStrings {
 				String name = se.getAttributeByName(new QName("layer")).getValue();
 				if(!layerNames.contains(name)) {
 					Layer a = new GridLayer(name);
-					System.out.println(layersGroup.getLayers().size() + "allo");
 					layerNames.add(name);
 					layersGroup.createNewLayer(a);
 				}
@@ -100,8 +103,7 @@ public class XmlDecoder extends XmlStrings {
 				});
 			}				
 		}
-	    System.out.println(layersGroup.size() + " Size in encoder");
-	    mainApp.getDrawingZoneController().updateLayers();
+	    mainApp.getDrawingZoneController().updateLayers(true);
 	}
 
 }
