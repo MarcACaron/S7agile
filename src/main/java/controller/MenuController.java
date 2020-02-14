@@ -36,6 +36,8 @@ public class MenuController {
 	
 	@FXML private MenuItem menuShowGridLines;
 	
+	@FXML private MenuItem menuItemMagnetism;
+	
 	@FXML private MenuItem menuItemUndo;
 	
 	@FXML private MenuItem menuItemRedo;
@@ -137,6 +139,11 @@ public class MenuController {
 		
 		menuShowGridLines.setOnAction(e -> 
 			mainApp.getDrawingZoneController().inverseGridPaneVisibility()
+		);
+		
+		menuItemMagnetism.setOnAction(e -> {
+			mainApp.getDrawingZoneController().inverseMagnetism();
+			}
 		);
 		
     }
