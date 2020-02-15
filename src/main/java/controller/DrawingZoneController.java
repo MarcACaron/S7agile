@@ -3,7 +3,6 @@ package controller;
 
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import adraw4us.MainApp;
@@ -35,6 +34,7 @@ public class DrawingZoneController {
 	LayersGroup layersGroup = LayersGroup.getLayersGroup();
 	
 	ArrayList<Pane> paneList = new ArrayList<>();
+	List<Point2D> listPoints = new ArrayList<>();
 	
 	double orgX;
 	double orgY;
@@ -71,73 +71,46 @@ public class DrawingZoneController {
 		return gridPaneBoolean;
 	}
 	
+	
 	public void inverseMagnetism() {
 		magnetismState = !magnetismState;
 	}
-	
-    public void setNearestGridPoint() {
-    	if (magnetismState == true) {
-		orgX = finalPoint.getX();
-		orgY = finalPoint.getY();
-    	}
-    }
     
-	/*public void createGridPoints() {
+	public void createGridPoints() {
 		for (int i=0; i<100; i++) {
 			pointGridX = i * 50;
-			for (int j=0;j<100; j++) {
-				pointGridY = i * 50;	
+			for (int j=0; j<100; j++) {
+				pointGridY = j * 50;	
+				listPoints.add(new Point2D(pointGridX, pointGridY));
 			}
 		}
-	}*/
-	
-	//Tableau de point à initialiser avec un Tableau
-    Point2D point1 = new Point2D(0.0,0.0);
-    Point2D point2 = new Point2D(0.0,50.0);
-    Point2D point3 = new Point2D(0.0,100.0);
-    Point2D point4 = new Point2D(50.0,0.0);
-    Point2D point5 = new Point2D(50.0,50.0);
-    Point2D point6 = new Point2D(50.0,100.0);
-    Point2D point7 = new Point2D(100.0,0.0);
-    Point2D point8 = new Point2D(100.0,50.0);
-    Point2D point9 = new Point2D(100.0,100.0);
+	}
 	
     private void getNearestGridPoint(double pointX, double pointY){
     	
-    	double distanceMin = 50.0;
-    	int indexPointsTab;
-    	Point2D comparedPoint = new Point2D(pointX,pointY);    	
-    	ArrayList<Point2D> pointsTab = new ArrayList<>(); 
-   	
-    	pointsTab.add(point1);
-    	pointsTab.add(point2);
-    	pointsTab.add(point3);
-    	pointsTab.add(point4);
-    	pointsTab.add(point5);
-    	pointsTab.add(point6);
-    	pointsTab.add(point7);
-    	pointsTab.add(point8);
-    	pointsTab.add(point9);
+    	List<Double> listDistancePoints = new ArrayList<>();
+    	Point2D comparedPoint = new Point2D(pointX,pointY); 
     	
-    	double distancesTab[] = {comparedPoint.distance(point1),
-    							 comparedPoint.distance(point2),
-    							 comparedPoint.distance(point3),
-    							 comparedPoint.distance(point4),
-    							 comparedPoint.distance(point5),
-    							 comparedPoint.distance(point6),
-    							 comparedPoint.distance(point7),
-    							 comparedPoint.distance(point8),
-    							 comparedPoint.distance(point9)};
+    	double distanceMin = 200.0;
     	
-    	for (int i=0;i<distancesTab.length;i++)
-    	{
-    		if(distancesTab[i] < distanceMin) {
-    			distanceMin = distancesTab[i];
-    			indexPointsTab = i;
-    	    	finalPoint = pointsTab.get(indexPointsTab);
-    		}
-    	}   	    	
-    	System.out.println("Point le plus proche :" + finalPoint);
+    	createGridPoints();
+    	
+    	for(int i=0; i<10000; i++) {
+    		listDistancePoints.add(comparedPoint.distance(listPoints.get(i)));
+        	        	
+        	if (listDistancePoints.get(i) < distanceMin) {
+        		distanceMin = listDistancePoints.get(i);
+        		finalPoint = listPoints.get(i);
+        	}
+    	}
+    	System.out.print("\n"+finalPoint);
+    }
+    
+    public void setNearestGridPoint() {
+    	if (magnetismState == true) {
+    		orgX = finalPoint.getX();
+    		orgY = finalPoint.getY();
+    	}
     }
     
 	@FXML
@@ -151,13 +124,17 @@ public class DrawingZoneController {
 			setNearestGridPoint();
 		});
 		
-		anchorPane.setOnMouseDragged(t -> {
-			this.mainApp.getTool().mouseDragged(orgX, orgY, t.getX(), t.getY());
-		});
-		
-		anchorPane.setOnMouseReleased(t -> 
-			this.mainApp.getTool().mouseReleased(mainApp, anchorPane, this.mainApp.getPaletteCouleurController(), this.mainApp.getPaletteDetailController())
+		anchorPane.setOnMouseDragged(t -> 
+			this.mainApp.getTool().mouseDragged(orgX, orgY, t.getX(), t.getY())
 		);
+		
+		anchorPane.setOnMouseReleased(t -> {
+			orgX = t.getX();
+			orgY = t.getY();
+			this.mainApp.getTool().mouseReleased(mainApp, anchorPane, this.mainApp.getPaletteCouleurController(), this.mainApp.getPaletteDetailController());
+			getNearestGridPoint(orgX, orgY);
+			setNearestGridPoint();
+		});
 		
 		clearDrawing();
 		updateLayers();
