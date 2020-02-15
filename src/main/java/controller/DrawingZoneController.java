@@ -3,6 +3,7 @@ package controller;
 
 
 import java.util.ArrayList;
+import java.util.List;
 
 import adraw4us.MainApp;
 import javafx.collections.ObservableList;
@@ -18,7 +19,6 @@ import javafx.scene.transform.Scale;
 import models.ApplicationHistory;
 import models.Layer;
 import models.LayersGroup;
-import models.Transformable;
 
 public class DrawingZoneController {
 		
