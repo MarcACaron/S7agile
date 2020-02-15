@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import adraw4us.MainApp;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.geometry.Point2D;
 import javafx.scene.Node;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
@@ -32,12 +33,20 @@ public class DrawingZoneController {
 	private ArrayList<Shape> shapesCopy;
 	ApplicationHistory history = ApplicationHistory.getInstance();
 	
+	private Point2D finalPoint = new Point2D(0.0,0.0);
+	
 	LayersGroup layersGroup = LayersGroup.getLayersGroup();
+	
+	ArrayList<Pane> paneList = new ArrayList<>();
+	List<Point2D> listPoints = new ArrayList<>();
 	
 	double orgX;
 	double orgY;
+	double pointGridX;
+	double pointGridY;
 	int childIndex;
 	boolean gridPaneBoolean;
+	boolean magnetismState = false;
 	
 	public void redo() {
 		clearDrawing();
@@ -69,7 +78,7 @@ public class DrawingZoneController {
     }
 
 	public void inverseGridPaneVisibility() {
-		boolean visState = getLineGridPaneVisibility(); //Boolean qui set la visibilit� des lines
+		boolean visState = getLineGridPaneVisibility(); 
 
 		gridPane.setGridLinesVisible(!visState);
 	}
@@ -79,14 +88,58 @@ public class DrawingZoneController {
 		return gridPaneBoolean;
 	}
 	
+	
+	public void inverseMagnetism() {
+		magnetismState = !magnetismState;
+	}
+    
+	public void createGridPoints() {
+		for (int i=0; i<100; i++) {
+			pointGridX = i * 50;
+			for (int j=0; j<100; j++) {
+				pointGridY = j * 50;	
+				listPoints.add(new Point2D(pointGridX, pointGridY));
+			}
+		}
+	}
+	
+    private void getNearestGridPoint(double pointX, double pointY){
+    	
+    	List<Double> listDistancePoints = new ArrayList<>();
+    	Point2D comparedPoint = new Point2D(pointX,pointY); 
+    	
+    	double distanceMin = 200.0;
+    	
+    	createGridPoints();
+    	
+    	for(int i=0; i<10000; i++) {
+    		listDistancePoints.add(comparedPoint.distance(listPoints.get(i)));
+        	        	
+        	if (listDistancePoints.get(i) < distanceMin) {
+        		distanceMin = listDistancePoints.get(i);
+        		finalPoint = listPoints.get(i);
+        	}
+    	}
+    	System.out.print("\n"+finalPoint);
+    }
+    
+    public void setNearestGridPoint() {
+    	if (magnetismState == true) {
+    		orgX = finalPoint.getX();
+    		orgY = finalPoint.getY();
+    	}
+    }
+    
 	@FXML
     private void initialize() {
-		
 		anchorPane.setOnMousePressed(t -> {
 			orgX = t.getX();
 			orgY = t.getY();
 			childIndex = anchorPane.getChildren().size();
 			childIndex = this.mainApp.getTool().mousePressed(this.mainApp.getPaletteDetailController(), layersGroup.getCurrentLayer().getPane());
+			childIndex = this.mainApp.getTool().mousePressed(this.mainApp.getPaletteDetailController(), anchorPane);
+			getNearestGridPoint(orgX, orgY);
+			setNearestGridPoint();
 		});
 		anchorPane.setOnMouseDragged(t -> this.mainApp.getTool().mouseDragged(orgX, orgY, t.getX(), t.getY()));
 		
