@@ -41,9 +41,9 @@ public class PaletteFormeController {
 	@FXML
 	private void chooseMultiSelection() {
 		if(multiSelection.isSelected()) {
-			this.mainApp.setTool(new MultiSelectionTool(this.mainApp.getTool().getShapes()));
+			this.mainApp.setTool(new MultiSelectionTool());
 		}else {
-			this.mainApp.setTool(new SelectionTool(this.mainApp.getTool().getShapes()));
+			this.mainApp.setTool(new SelectionTool());
 			pointeur.setSelected(true);
 		}
 		

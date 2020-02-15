@@ -11,6 +11,29 @@ public class testPaletteFormController extends testApplicationUI {
 		clickOn("#pointeur");
 	}
 	@Test
+	public void testMultiPointeur() {
+		clickOn("#rectangle");
+		moveBy(80, 80);
+		drag();
+		moveBy(2, 2);
+		drop();
+		clickOn("#line");
+		moveBy(80, 80);
+		drag();
+		moveBy(2, 2);
+		drop();
+		clickOn("#circle");
+		moveBy(80, 80);
+		drag();
+		moveBy(2, 2);
+		drop();
+		clickOn("#multiSelection");
+		moveBy(80, 80);
+		drag();
+		moveBy(200, 200);
+		drop();
+	}
+	@Test
 	public void testRectangle() {
 		clickOn("#rectangle");
 		moveBy(150, 150);
