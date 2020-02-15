@@ -3,23 +3,12 @@ package testsFX;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
-import org.testfx.framework.junit5.ApplicationTest;
-import org.testfx.framework.junit5.Start;
-
-import adraw4us.MainApp;
 import adraw4us.Tool;
-import javafx.stage.Stage;
+import javafx.scene.input.KeyCode;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 
-public class testPaletteCouleur extends ApplicationTest{
-	MainApp mainApp;
-	/*
-	@Start
-	@Override public void start(Stage stage) {
-        mainApp = new MainApp();
-        mainApp.start(stage);
-        System.out.println("prem's");
-    }
-	
+public class testPaletteCouleur extends testApplicationUI{
 	@Test
 	public void testSelectFillColor() {
 		clickOn("#fillAnanas");
@@ -27,11 +16,13 @@ public class testPaletteCouleur extends ApplicationTest{
 		mainApp.getPaletteCouleurController().fillShape("ananas");
 		String fill = Tool.getFillName();
 		assertEquals(fill, clickFill);
+		
 		clickOn("#fillDirt");
 		clickFill = Tool.getFillName();
 		mainApp.getPaletteCouleurController().fillShape("dirt");
 		fill = Tool.getFillName();
 		assertEquals(fill, clickFill);
+		
 		clickOn("#fillRed");
 		clickFill = Tool.getFillName();
 		mainApp.getPaletteCouleurController().fillShape("rouge");
@@ -40,11 +31,31 @@ public class testPaletteCouleur extends ApplicationTest{
 	}
 	@Test
 	public void testSelectStrokeColor() {
+		Paint click = Tool.getStroke();
+		assertEquals(Color.BLACK, click);
+		
 		clickOn("#stroke");
+		type(KeyCode.UP);
+		type(KeyCode.ENTER);
+		click = Tool.getStroke();
+		assertEquals(Color.LIME, click);
 	}
 	
 	@Test
-	public void selectStrokeWidth() {
+	public void testSelectStrokeWidth() {
+		double strokeW = Tool.getLineWidth();
+		assertEquals(1.0, strokeW);
+		
 		clickOn("#lineWidth");
-	}*/
+		type(KeyCode.DOWN);
+		type(KeyCode.ENTER);
+		strokeW = Tool.getLineWidth();
+		assertEquals(3.0, strokeW);
+	}
+	
+	@Test
+	public void testZoom() {
+		clickOn("#zoomOut");
+		clickOn("#zoomIn");
+	}
 }

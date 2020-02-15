@@ -39,6 +39,10 @@ public class PaletteCouleurController {
     private ChoiceBox<int[]> policeText;
     @FXML
     private ImageView detailsImage;
+	@FXML
+    private Button zoomIn;
+	@FXML
+    private Button zoomOut;
 	
 	private MainApp mainApp;
 		
@@ -66,7 +70,7 @@ public class PaletteCouleurController {
 		fillShape("rouge");
 	}
 	
-	private void fillShape(String value) {
+	public void fillShape(String value) {
 		if(!value.equals("")) {
 			if(value.equals("rouge")) {
 			    Tool.setFill(Color.RED);
