@@ -77,14 +77,14 @@ public abstract class Tool {
 			mainApp.getTool().setShape(shape2);
 			pc.setLineWidth(shape2.getStrokeWidth());
 			pc.setStroke((Color) (shape2.getStroke()));
-			//this.overlayForm();
+			mainApp.getDrawingZoneController().applyToCurrentPane(this.overlayForm());
 			mainApp.getTool().fillDetails(dp, shape2).apply(null);
 			
 		});
 		fillDetails(dp, shape2).apply(null);
 	}
 	
-	public abstract void overlayForm();
+	public abstract Shape overlayForm();
 
 	public static Paint getFill() {
 		return fill;

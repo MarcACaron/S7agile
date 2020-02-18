@@ -1,6 +1,7 @@
 package models;
 
 import adraw4us.Tool;
+import javafx.scene.shape.Shape;
 
 public class CircleTool extends Tool{
 
@@ -36,5 +37,7 @@ public class CircleTool extends Tool{
 	}
 	
 	@Override
-	public void overlayForm() {}
+	public Shape overlayForm() {
+		return null;
+	}
 }

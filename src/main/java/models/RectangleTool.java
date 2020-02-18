@@ -47,9 +47,10 @@ public class RectangleTool extends Tool {
 	}
 	
 	@Override
-	public void overlayForm() {
-		Circle dot = new Circle(1,Color.BLACK);
+	public Shape overlayForm() {
+		Circle dot = new Circle(3,Color.BLACK);
 		dot.setCenterX(((CustomRectangle) this.getShape()).getXPos() + ((CustomRectangle) this.getShape()).getWidth());
 		dot.setCenterY(((CustomRectangle) this.getShape()).getYPos() + ((CustomRectangle) this.getShape()).getHeight());
+		return dot;
 	}
 }

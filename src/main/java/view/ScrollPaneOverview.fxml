@@ -219,6 +219,7 @@
                       <RowConstraints minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />                                                 
                     </rowConstraints>
                   </GridPane>
+                  <Pane id="selectionPane" />
                </children>
             </AnchorPane>
         </content>

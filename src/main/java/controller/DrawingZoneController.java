@@ -32,9 +32,8 @@ public class DrawingZoneController {
 	
 	ArrayList<Pane> paneList = new ArrayList<>();
 	
-	double orgX;
-	double orgY;
-	int childIndex;
+	double orgX, orgY;
+	int childIndex, numberOfLayers;
 	boolean gridPaneBoolean;
 	
 	public void redo() {
@@ -123,7 +122,7 @@ public class DrawingZoneController {
 		ObservableList<Node> clearPaneList = anchorPane.getChildren();
 		
 		for (int i = 1; i < clearPaneList.size() - 1; ++i) {
-			if ( gridPane.getId().equals(clearPaneList.get(i).getId())  ) {
+			if (gridPane.getId().equals(clearPaneList.get(i).getId())) {
 				((Pane)(clearPaneList.get(i))).getChildren().clear();
 			}
 		}
@@ -140,6 +139,14 @@ public class DrawingZoneController {
 
 		updateLayers();
 	}
+	
+	public void applyToDrawingPane(Shape shape) {
+		numberOfLayers = anchorPane.getChildren().size();
+		
+		anchorPane.getChildren().add(shape);
+	}
+	
+	public void clearDrawingPane() {}
 	
 	public void setMainApp(MainApp mainApp) {
         this.mainApp = mainApp;

@@ -1,6 +1,7 @@
 package models;
 
 import adraw4us.Tool;
+import javafx.scene.shape.Shape;
 
 public class LineTool extends Tool{
 
@@ -32,5 +33,7 @@ public class LineTool extends Tool{
 	}
 	
 	@Override
-	public void overlayForm() {}
+	public Shape overlayForm() {
+		return null;
+	}
 }

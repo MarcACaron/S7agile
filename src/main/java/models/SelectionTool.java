@@ -50,5 +50,7 @@ public class SelectionTool extends Tool {
 	}
 	
 	@Override
-	public void overlayForm() {}
+	public Shape overlayForm() {
+		return null;
+	}
 }
