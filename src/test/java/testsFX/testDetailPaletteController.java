@@ -35,10 +35,10 @@ public class testDetailPaletteController extends testApplicationUI{
 		double rotation = ((Transformable)this.mainApp.getTool().getShapes().get(0)).getRotation();
 		double radius = ((Transformable)this.mainApp.getTool().getShapes().get(0)).getRadius();
 		String type = ((Transformable)this.mainApp.getTool().getShapes().get(0)).getType();
-		assertEquals(x, 111);
-		assertEquals(y, 111);
-		assertEquals(rotation, 111);
-		assertEquals(radius, 111);
+		assertEquals(110.9<x&& x<111.1, true);
+		assertEquals(110.9<y&& y<111.1, true);
+		assertEquals(110.9<rotation&& rotation<111.1, true);
+		assertEquals(110.9<radius&& radius<111.1, true);
 		assertEquals(type, "circle");
 	}
 	@Test
@@ -73,14 +73,14 @@ public class testDetailPaletteController extends testApplicationUI{
 		double width = ((Transformable)this.mainApp.getTool().getShapes().get(0)).getWidth();
 		double rotation = ((Transformable)this.mainApp.getTool().getShapes().get(0)).getRotation();
 		String type = ((Transformable)this.mainApp.getTool().getShapes().get(0)).getType();
-		assertEquals(x, 111);
-		assertEquals(y, 111);
-		assertEquals(rotation, 111);
-		assertEquals(height, 111);
-		assertEquals(width, 111);
+		assertEquals(110.9<x&& x<111.1, true);
+		assertEquals(110.9<y&& y<111.1, true);
+		assertEquals(110.9<rotation&& rotation<111.1, true);
+		assertEquals(110.9<height&& height<111.1, true);
+		assertEquals(110.9<width&& width<111.1, true);
 		assertEquals(type, "rectangle");
 	}
-	//@Test
+	@Test
 	public void testDetailWithLine() {
 		clickOn("#line");
 		moveBy(80, 80);
@@ -111,9 +111,9 @@ public class testDetailPaletteController extends testApplicationUI{
 		double length = ((Transformable)this.mainApp.getTool().getShapes().get(0)).getLength();
 		double rotation = ((Transformable)this.mainApp.getTool().getShapes().get(0)).getRotation();
 		String type = ((Transformable)this.mainApp.getTool().getShapes().get(0)).getType();
-		assertEquals(x, 111);
-		assertEquals(y, 111);
-		assertEquals(rotation, 111);
+		assertEquals(110.9<x&& x<111.1, true);
+		assertEquals(110.9<y&& y<111.1, true);
+		assertEquals(110.9<rotation&& rotation<111.1, true);
 		assertEquals(110.9<length&& length<111.1, true);
 		assertEquals(type, "line");
 	}
