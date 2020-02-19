@@ -36,7 +36,7 @@
           </Menu>
           <Menu fx:id="MenuBarLayout" mnemonicParsing="false" text="Layout">
             <items>
-              <MenuItem fx:id="menuItemGrid" mnemonicParsing="false" text="Turn Autogrid off" />
+              <MenuItem fx:id="menuItemMagnetism" mnemonicParsing="false" text="Turn Autogrid off" />
               <MenuItem mnemonicParsing="false" text="Show rules" />
               <MenuItem fx:id="menuShowGridLines" mnemonicParsing="false" text="Show gridlines" />
               <MenuItem fx:id="menuItemLayers" mnemonicParsing="false" text="Layers" />           
