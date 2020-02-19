@@ -1,5 +1,6 @@
 package testsFX;
 
+import static org.junit.Assert.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
@@ -13,6 +14,8 @@ public class testPaletteCouleur extends testApplicationUI{
 	public void testSelectFillColor() {
 		clickOn("#fillAnanas");
 		String clickFill = Tool.getFillName();
+		assertNotNull(mainApp);
+		assertNotNull(mainApp.getPaletteCouleurController());
 		mainApp.getPaletteCouleurController().fillShape("ananas");
 		String fill = Tool.getFillName();
 		assertEquals(fill, clickFill);
