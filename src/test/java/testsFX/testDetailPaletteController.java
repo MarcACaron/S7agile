@@ -20,6 +20,7 @@ public class testDetailPaletteController extends testApplicationUI{
 		double rotation2 = ((Transformable)this.mainApp.getTool().getShapes().get(0)).getRotation();
 		double radius2 = ((Transformable)this.mainApp.getTool().getShapes().get(0)).getRadius();
 		doubleClickOn("#xPosText");
+		type(KeyCode.DELETE,3);
 		type(KeyCode.NUMPAD1,3);
 		type(KeyCode.ENTER);
 		doubleClickOn("#yPosText");
@@ -42,11 +43,11 @@ public class testDetailPaletteController extends testApplicationUI{
 		assertEquals(x, x2);
 		assertEquals(y, y2);
 		assertEquals(rotation, rotation2);
+		assertEquals(110.9<radius&& radius<111.1, true);
 		assertEquals(radius, radius2);
 		assertEquals(x, true);
 		assertEquals(110.9<y&& y<111.1, true);
 		assertEquals(110.9<rotation&& rotation<111.1, true);
-		assertEquals(110.9<radius&& radius<111.1, true);
 		assertEquals(type, "circle");
 	}
 	@Test
