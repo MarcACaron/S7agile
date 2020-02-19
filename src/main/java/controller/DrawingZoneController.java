@@ -137,7 +137,6 @@ public class DrawingZoneController {
 			orgY = t.getY();
 			childIndex = anchorPane.getChildren().size();
 			childIndex = this.mainApp.getTool().mousePressed(this.mainApp.getPaletteDetailController(), layersGroup.getCurrentLayer().getPane());
-			childIndex = this.mainApp.getTool().mousePressed(this.mainApp.getPaletteDetailController(), anchorPane);
 			getNearestGridPoint(orgX, orgY);
 			setNearestGridPoint();
 		});
