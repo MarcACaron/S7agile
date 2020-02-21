@@ -248,6 +248,9 @@ public class DrawingZoneController {
 		for (int i = 0; i < dots.length; i++) {
 			dots[i].setStroke(outlineColor);
 			dots[i].setFill(inlineColor);
+			
+			dots[i].setOnMouseDragged(t -> {/*Nothing*/});
+			
 			selectionLayoutPane.getChildren().add(dots[i]);
 		}
 	}
