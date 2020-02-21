@@ -165,4 +165,11 @@ public class CustomLine extends Line implements Transformable{
 			return false;
 		return true;
 	}
+	
+	@Override
+	public double[] getOutlineCoords() {
+		double array[] = {0,0,0,0};
+		//Not used in our case	
+		return array;
+	}
 }

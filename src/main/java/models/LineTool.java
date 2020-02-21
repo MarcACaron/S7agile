@@ -1,5 +1,6 @@
 package models;
 
+import adraw4us.MainApp;
 import adraw4us.Tool;
 
 public class LineTool extends Tool{
@@ -33,6 +34,12 @@ public class LineTool extends Tool{
 			shape.setStroke(stroke);
 			shape.setStrokeWidth(lineWidth);
 		});
+	}
+	
+	@Override
+	protected void showSelectedShape(MainApp mainApp, Transformable inputShape) {
+		mainApp.getDrawingZoneController().clearSelectionLayer();
+		//Not used in our case
 	}
 	
 	@Override

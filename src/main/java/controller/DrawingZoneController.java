@@ -1,7 +1,6 @@
 package controller;
 
-
-
+import java.awt.Transparency;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,13 +13,20 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
 import javafx.scene.transform.Scale;
 import models.ApplicationHistory;
 import models.Layer;
 import models.LayersGroup;
+import models.Transformable;
 
 public class DrawingZoneController {
+	
+	private final Color outlineColor = Color.DARKBLUE, 
+						inlineColor = Color.LIGHTBLUE;
 		
 	@FXML
 	private ScrollPane scrollPane;
@@ -28,6 +34,9 @@ public class DrawingZoneController {
 	private AnchorPane anchorPane;
 	@FXML
 	private GridPane gridPane;
+	@FXML
+	private AnchorPane selectionLayoutPane;
+	
 	private MainApp mainApp;
 	
 	private ArrayList<Shape> shapesCopy;
@@ -223,5 +232,27 @@ public class DrawingZoneController {
 			});
 			
 		}
+	}
+	
+	public void addSelectionShape(double coords[]) {
+		Shape shapeToAdd = new Rectangle(coords[0], coords[1], coords[2]-coords[0], coords[3]-coords[1]); //startX, startY, EndX, EndY
+		shapeToAdd.setStroke(outlineColor);
+		shapeToAdd.setStrokeWidth(2);
+		shapeToAdd.setFill(Color.TRANSPARENT);
+		selectionLayoutPane.getChildren().add(shapeToAdd);
+		
+		Shape dots[] = {new Circle(coords[0], coords[1], 5),
+						new Circle(coords[2], coords[1], 5),
+						new Circle(coords[0], coords[3], 5),
+						new Circle(coords[2], coords[3], 5)};
+		for (int i = 0; i < dots.length; i++) {
+			dots[i].setStroke(outlineColor);
+			dots[i].setFill(inlineColor);
+			selectionLayoutPane.getChildren().add(dots[i]);
+		}
+	}
+	
+	public void clearSelectionLayer() {
+		selectionLayoutPane.getChildren().clear();
 	}
 }

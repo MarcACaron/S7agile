@@ -146,4 +146,16 @@ public class CustomRectangle extends Rectangle implements Transformable {
 			return false;
 		return true;
 	}
+	
+	@Override
+	public double[] getOutlineCoords() {
+		double array[] = {0,0,0,0};
+		
+		array[0] = this.getXPos() - selectionShapeOffset;
+		array[1] = this.getYPos()  - selectionShapeOffset;
+		array[2] = this.getXPos() + this.getWidth() + selectionShapeOffset;
+		array[3] = this.getYPos() + this.getHeight() + selectionShapeOffset;
+		
+		return array;
+	}
 }

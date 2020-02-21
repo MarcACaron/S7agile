@@ -6,6 +6,8 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Shape;
 
 public class CustomCircle extends Circle implements Transformable {
+	
+	private final static int selectionShapeOffset = 10;
 
 	public CustomCircle() {
 	}
@@ -156,6 +158,17 @@ public class CustomCircle extends Circle implements Transformable {
 		if(Math.sqrt(Math.pow(xEnd-this.getXPos(), 2)+Math.pow(yEnd-this.getYPos(), 2))<this.getRadius())
 			return false;
 		return true;
+	}
+	
+	@Override
+	public double[] getOutlineCoords() {
+		double array[] = {0,0,0,0};
 		
+		array[0] = this.getXPos() - this.getRadius() - selectionShapeOffset;
+		array[1] = this.getYPos() - this.getRadius() - selectionShapeOffset;
+		array[2] = this.getXPos() + this.getRadius() + selectionShapeOffset;
+		array[3] = this.getYPos() + this.getRadius() + selectionShapeOffset;
+		
+		return array;
 	}
 }

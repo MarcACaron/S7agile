@@ -4,14 +4,18 @@ import java.util.ArrayList;
 import java.util.function.Function;
 
 import controller.DetailPaletteController;
+import controller.DrawingZoneController;
 import controller.PaletteCouleurController;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
+import javafx.scene.shape.Circle;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
 import models.Transformable;
 
 public abstract class Tool {
+		
 	protected static Paint fill;
 	protected static String fillName;
 	protected static Paint stroke;
@@ -92,13 +96,14 @@ public abstract class Tool {
 			pc.setLineWidth(shape2.getStrokeWidth());
 			pc.setStroke((Color) (shape2.getStroke()));
 			
+			mainApp.getTool().showSelectedShape(mainApp, (Transformable)shape2);
 			mainApp.getTool().fillDetails(dp, shape2).apply(null);
 			
 		});
 		fillDetails(dp, shape2).apply(null);
+		this.showSelectedShape(mainApp, (Transformable)shape2);
 	}
-
-	public static Paint getFill() {
+		public static Paint getFill() {
 		return fill;
 	}
 
@@ -145,6 +150,8 @@ public abstract class Tool {
 	public static void setStartFromCenter(boolean startFromCenter) {
 		Tool.startFromCenter = startFromCenter;
 	}
+	
+	protected abstract void showSelectedShape(MainApp mainApp, Transformable inputShape);
 	
 	public abstract String getToolType();
 }

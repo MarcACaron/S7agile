@@ -3,8 +3,9 @@ package models;
 import javafx.scene.shape.Shape;
 
 public interface Transformable {
-	public final int XCOPYOFFSET = 50;
-	public final int YCOPYOFFSET = 50;
+	public final static int XCOPYOFFSET = 50;
+	public final static int YCOPYOFFSET = 50;
+	public final static int selectionShapeOffset = 10;
 	
 	public void setXPosTool(double value);
 	public void setYPosTool(double value);
@@ -28,4 +29,7 @@ public interface Transformable {
 	public Shape duplicateAndOffset();
 	public Shape duplicate();
 	public boolean isSelected(double xStart, double yStart, double xEnd, double yEnd);
+	
+	public double[] getOutlineCoords();
+	
 }
