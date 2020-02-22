@@ -8,8 +8,7 @@ import controller.PaletteCouleurController;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
-import javafx.scene.shape.Shape;
-import models.Transformable;
+import models.CustomShape;
 
 public abstract class Tool {
 	protected static Paint fill;
@@ -18,49 +17,57 @@ public abstract class Tool {
 	protected static double lineWidth;
 	protected static double lineStyle;
 	protected static boolean startFromCenter;
-	protected ArrayList<Shape> shapes;
+	protected CustomShape shape;
 	
-	public Tool() {
-		this.shapes=new ArrayList<>();
+	public Tool(CustomShape shape) {
+		this.shape=shape;
 	}
 	
-	public Tool(Shape shape) {
-		this.shapes=new ArrayList<>();
-		this.shapes.add(shape);
+	public void ajustOnDrag(double posXStart, double posYStart, double posXEnd, double posYEnd) {
+		double startX;
+		double startY;
+		double width;
+		double height;
+		if(posXStart<posXEnd) {
+			startX=posXStart;
+			width = posXEnd-posXStart;
+		}else {
+			startX=posXEnd;
+			width = posXStart-posXEnd;
+		}
+		if(posYStart<posYEnd) {
+			startY=posYStart;
+			height = posYEnd-posYStart;
+		}else {
+			startY=posYEnd;
+			height = posYStart-posYEnd;
+		}
+		this.shape.setXPos(startX);
+		this.shape.setYPos(startY);
+		this.shape.setWidth(width);
+		this.shape.setHeight(height);
 	}
-	public Tool(ArrayList<Shape> shapes) {
-		this.shapes=shapes;
-	}
-	
-	public abstract void ajustOnDrag(double posXStart, double posYStart, double posXEnd, double posYEnd);
 	
 	public void fillShape() {
-		if(this.shapes!=null) {
-			this.shapes.forEach(shape -> {
-				shape.setFill(fill);
-				shape.setAccessibleText(fillName);
-			});
+		if(this.shape!=null) {
+			this.shape.setFill(fill);
 		}
 	}
 	public abstract void reset();
-	public ArrayList<Shape> getShapes() {
-		return shapes;
+	public CustomShape getShape() {
+		return shape;
 	}
 	
-	public void setShape(Shape shape) {
-		this.shapes.clear();
-		this.shapes.add(shape);
-	}
-	public void setShapes(ArrayList<Shape> shapes) {
-		this.shapes = shapes;
+	public void setShape(CustomShape shape) {
+		this.shape = shape;
 	}
 	
-	public Function<Object, Object> fillDetails(DetailPaletteController dp, Shape nd){
+	public Function<Object, Object> fillDetails(DetailPaletteController dp, CustomShape nd){
 		return y -> {
 			if(nd == null) 
 				dp.paletteDisable(true);
 			else {
-				Transformable tShape = (Transformable) nd;
+				CustomShape tShape = (CustomShape) nd;
 				dp.select(tShape);
 				dp.setTextField(tShape);
 			}
@@ -69,12 +76,11 @@ public abstract class Tool {
 	}
 	
 	
-	public int mousePressed(DetailPaletteController detailPaletteController, Pane pane) {
-		int index = pane.getChildren().size()-1 + shapes.size();
+	public int mousePressed(DetailPaletteController detailPaletteController, Pane pane, ArrayList<CustomShape> drawnShapes) {
+		int index = pane.getChildren().size();
 		this.reset();
-		this.shapes.forEach(shape -> {
-			pane.getChildren().add(shape);
-		});
+		drawnShapes.add(shape);
+		pane.getChildren().add(shape.getDraw());
 		return index;
 	}
 	
@@ -82,12 +88,12 @@ public abstract class Tool {
 		this.ajustOnDrag(posXStart, posYStart, posXEnd, posYEnd);
 	}
 	
-	public void mouseReleased(MainApp mainApp, Pane pane, PaletteCouleurController pc, DetailPaletteController dp) {
-		Shape shape2 = (Shape) pane.getChildren().get(pane.getChildren().size()-1);
+	public void mouseReleased(MainApp mainApp, Pane pane, PaletteCouleurController pc, DetailPaletteController dp, ArrayList<CustomShape> drawnShapes) {
+		CustomShape shape2 = this.shape;
 		pane.getChildren().remove(pane.getChildren().size()-1);
-		mainApp.getDrawingZoneController().applyToCurrentPane(shape2);
+		mainApp.getDrawingZoneController().applyToCurrentPane(shape2.getDraw());
 		
-		shape2.setOnMouseClicked(t2 -> {
+		shape2.getDraw().setOnMouseClicked(t2 -> {
 			mainApp.getTool().setShape(shape2);
 			pc.setLineWidth(shape2.getStrokeWidth());
 			pc.setStroke((Color) (shape2.getStroke()));

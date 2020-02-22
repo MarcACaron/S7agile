@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import adraw4us.Tool;
 import models.CircleTool;
-import models.Transformable;
+import models.CustomShape;
 import models.CustomCircle;
 
 

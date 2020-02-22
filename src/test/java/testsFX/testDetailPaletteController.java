@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
 
 import javafx.scene.input.KeyCode;
-import models.Transformable;
+import models.CustomShape;
 
 public class testDetailPaletteController extends testApplicationUI{
 	@Test
@@ -30,14 +30,14 @@ public class testDetailPaletteController extends testApplicationUI{
 		doubleClickOn("#angleText");
 		type(KeyCode.NUMPAD1,3);
 		type(KeyCode.ENTER);
-		double x = ((Transformable)this.mainApp.getTool().getShapes().get(0)).getXPos();
-		double y = ((Transformable)this.mainApp.getTool().getShapes().get(0)).getYPos();
-		double length = ((Transformable)this.mainApp.getTool().getShapes().get(0)).getLength();
-		double height = ((Transformable)this.mainApp.getTool().getShapes().get(0)).getHeight();
-		double width = ((Transformable)this.mainApp.getTool().getShapes().get(0)).getWidth();
-		double rotation = ((Transformable)this.mainApp.getTool().getShapes().get(0)).getRotation();
-		double radius = ((Transformable)this.mainApp.getTool().getShapes().get(0)).getRadius();
-		String type = ((Transformable)this.mainApp.getTool().getShapes().get(0)).getType();
+		double x = ((CustomShape)this.mainApp.getTool().getShapes().get(0)).getXPos();
+		double y = ((CustomShape)this.mainApp.getTool().getShapes().get(0)).getYPos();
+		double length = ((CustomShape)this.mainApp.getTool().getShapes().get(0)).getLength();
+		double height = ((CustomShape)this.mainApp.getTool().getShapes().get(0)).getHeight();
+		double width = ((CustomShape)this.mainApp.getTool().getShapes().get(0)).getWidth();
+		double rotation = ((CustomShape)this.mainApp.getTool().getShapes().get(0)).getRotation();
+		double radius = ((CustomShape)this.mainApp.getTool().getShapes().get(0)).getRadius();
+		String type = ((CustomShape)this.mainApp.getTool().getShapes().get(0)).getType();
 		assertEquals(x, 111);
 		assertEquals(y, 111);
 		assertEquals(rotation, 111);
@@ -70,14 +70,14 @@ public class testDetailPaletteController extends testApplicationUI{
 		doubleClickOn("#angleText");
 		type(KeyCode.NUMPAD1,3);
 		type(KeyCode.ENTER);
-		double x = ((Transformable)this.mainApp.getTool().getShapes().get(0)).getXPos();
-		double y = ((Transformable)this.mainApp.getTool().getShapes().get(0)).getYPos();
-		double length = ((Transformable)this.mainApp.getTool().getShapes().get(0)).getLength();
-		double height = ((Transformable)this.mainApp.getTool().getShapes().get(0)).getHeight();
-		double width = ((Transformable)this.mainApp.getTool().getShapes().get(0)).getWidth();
-		double rotation = ((Transformable)this.mainApp.getTool().getShapes().get(0)).getRotation();
-		double radius = ((Transformable)this.mainApp.getTool().getShapes().get(0)).getRadius();
-		String type = ((Transformable)this.mainApp.getTool().getShapes().get(0)).getType();
+		double x = ((CustomShape)this.mainApp.getTool().getShapes().get(0)).getXPos();
+		double y = ((CustomShape)this.mainApp.getTool().getShapes().get(0)).getYPos();
+		double length = ((CustomShape)this.mainApp.getTool().getShapes().get(0)).getLength();
+		double height = ((CustomShape)this.mainApp.getTool().getShapes().get(0)).getHeight();
+		double width = ((CustomShape)this.mainApp.getTool().getShapes().get(0)).getWidth();
+		double rotation = ((CustomShape)this.mainApp.getTool().getShapes().get(0)).getRotation();
+		double radius = ((CustomShape)this.mainApp.getTool().getShapes().get(0)).getRadius();
+		String type = ((CustomShape)this.mainApp.getTool().getShapes().get(0)).getType();
 		assertEquals(x, 111);
 		assertEquals(y, 111);
 		assertEquals(rotation, 111);
@@ -111,14 +111,14 @@ public class testDetailPaletteController extends testApplicationUI{
 		doubleClickOn("#angleText");
 		type(KeyCode.NUMPAD1,3);
 		type(KeyCode.ENTER);
-		double x = ((Transformable)this.mainApp.getTool().getShapes().get(0)).getXPos();
-		double y = ((Transformable)this.mainApp.getTool().getShapes().get(0)).getYPos();
-		double length = ((Transformable)this.mainApp.getTool().getShapes().get(0)).getLength();
-		double height = ((Transformable)this.mainApp.getTool().getShapes().get(0)).getHeight();
-		double width = ((Transformable)this.mainApp.getTool().getShapes().get(0)).getWidth();
-		double rotation = ((Transformable)this.mainApp.getTool().getShapes().get(0)).getRotation();
-		double radius = ((Transformable)this.mainApp.getTool().getShapes().get(0)).getRadius();
-		String type = ((Transformable)this.mainApp.getTool().getShapes().get(0)).getType();
+		double x = ((CustomShape)this.mainApp.getTool().getShapes().get(0)).getXPos();
+		double y = ((CustomShape)this.mainApp.getTool().getShapes().get(0)).getYPos();
+		double length = ((CustomShape)this.mainApp.getTool().getShapes().get(0)).getLength();
+		double height = ((CustomShape)this.mainApp.getTool().getShapes().get(0)).getHeight();
+		double width = ((CustomShape)this.mainApp.getTool().getShapes().get(0)).getWidth();
+		double rotation = ((CustomShape)this.mainApp.getTool().getShapes().get(0)).getRotation();
+		double radius = ((CustomShape)this.mainApp.getTool().getShapes().get(0)).getRadius();
+		String type = ((CustomShape)this.mainApp.getTool().getShapes().get(0)).getType();
 		assertEquals(x, 111);
 		assertEquals(y, 111);
 		assertEquals(rotation, 111);

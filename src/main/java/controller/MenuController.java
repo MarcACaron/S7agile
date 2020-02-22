@@ -62,7 +62,7 @@ public class MenuController {
 			LayersGroup layersGroup = this.mainApp.getDrawingZoneController().layersGroup;
 
 			try {
-				if (Boolean.TRUE.equals(fileController.askToSave(mainApp.getPrimaryStage(), layersGroup))) {
+				if (Boolean.TRUE.equals(fileController.askToSave(mainApp.getPrimaryStage(), layersGroup, mainApp.getDrawingZoneController().drawnShapes))) {
 					this.mainApp.getDrawingZoneController().clearDrawing();
 					fileController.clearFile();
 				}
@@ -78,7 +78,7 @@ public class MenuController {
 			
 			if (Boolean.TRUE.equals(fileController.askForFile(mainApp.getPrimaryStage()))) {
 				try {
-					fileController.saveDrawing(layersGroup);
+					fileController.saveDrawing(layersGroup, mainApp.getDrawingZoneController().drawnShapes);
 				} catch (FileNotFoundException | XMLStreamException e1) {
 					loggerMenuController.log(Level.SEVERE, "Exeption:menuItemSaveAs: "+e1.getMessage()+"; Fonction: initialize():MenuController:menuItemSaveAs;");
 				}
@@ -94,7 +94,7 @@ public class MenuController {
 			if (fileController.getCurrentFile() == null && fileController.askForFile(mainApp.getPrimaryStage())) {
 				
 				try {
-					fileController.saveDrawing(layersGroup);
+					fileController.saveDrawing(layersGroup, mainApp.getDrawingZoneController().drawnShapes);
 				} catch (FileNotFoundException | XMLStreamException e1) {
 					loggerMenuController.log(Level.SEVERE, "Exeption:menuItemSave: "+e1.getMessage()+"; Fonction: initialize():MenuController:menuItemSave;");
 				}
@@ -105,7 +105,7 @@ public class MenuController {
 		
 		menuItemOpen.setOnAction(e -> {
 			try {
-				if (Boolean.TRUE.equals(fileController.askToSave(mainApp.getPrimaryStage(), LayersGroup.getLayersGroup()))) {
+				if (Boolean.TRUE.equals(fileController.askToSave(mainApp.getPrimaryStage(), LayersGroup.getLayersGroup(), mainApp.getDrawingZoneController().drawnShapes))) {
 					fileController.openFile(mainApp.getPrimaryStage(), mainApp);
 					this.mainApp.getDrawingZoneController().updateLayers(true);
 						

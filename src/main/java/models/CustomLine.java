@@ -2,117 +2,53 @@ package models;
 
 
 import javafx.scene.shape.Line;
-import javafx.scene.shape.Shape;
+import javafx.scene.shape.Rectangle;
 
-public class CustomLine extends Line implements Transformable{
+public class CustomLine extends CustomShape{
 
 	public CustomLine() {
+		this.shape = new Line();
+		this.boundingBox = new Rectangle();
 	}
-
-	public CustomLine(double startX, double startY, double endX, double endY) {
-		super(startX, startY, endX, endY);
-	}
-	
-	@Override
-	public void setXPosTool(double value) {
-		double xL = this.getEndX() - this.getStartX();
+	public void setXPos(double value) {
+		((Line)this.shape).setStartX(value);
+		this.boundingBox.setX(value);
+		/*double xL = this.getEndX() - this.getStartX();
 		this.setStartX(value);
-		this.setEndX(value + xL);
+		this.setEndX(value + xL);*/
 	}
 
-	@Override
-	public void setYPosTool(double value) {
+	public void setYPos(double value) {
+		((Line)this.shape).setStartY(value);
+		this.boundingBox.setY(value);
+		/*
 		double yL = this.getEndY() - this.getStartY();
 		this.setStartY(value);
-		this.setEndY(value + yL);
+		this.setEndY(value + yL);*/
 	}
 
 	@Override
-	public void setWidthTool(double value) {
-		//Don't have width
+	public void setWidth(double value) {
+		((Line)this.shape).setStartX(this.boundingBox.getX()+value);
+		this.boundingBox.setWidth(value);
+		//((Line)this.shape).setEndX(value);
 	}
 
 	@Override
-	public void setHeightTool(double value) {
-		//Don't have height
+	public void setHeight(double value) {
+		((Line)this.shape).setStartY(this.boundingBox.getY()+value);
+		this.boundingBox.setHeight(value);
 	}
 
-	@Override
-	public void setRadiusTool(double value) {
-		//Don't have radius
-	}
-
-	@Override
-	public void setLengthTool(double value) {
-		double length = this.getLength();
-		this.setEndX((this.getEndX()-this.getStartX())*value/length+this.getStartX());
-		this.setEndY((this.getEndY()-this.getStartY())*value/length+this.getStartY());
+	public void updateLineLength() {
+		//double length = this.getLength();
+		/*this.setEndX((this.getEndX()-this.getStartX())*value/length+this.getStartX());
+		this.setEndY((this.getEndY()-this.getStartY())*value/length+this.getStartY());*/
 	}
 	
-	@Override
-	public void setRotationTool(double value) {
-		this.setRotate(value);
-		
-	}
-
-	@Override
-	public double getXPos() {
-		return this.getStartX();
-	}
-
-	@Override
-	public double getYPos() {
-		return this.getStartY();
-	}
-
-	@Override
-	public double getWidth() {
-		return 0;
-	}
-
-	@Override
-	public double getHeight() {
-		return 0;
-	}
-
-	@Override
-	public double getRadius() {
-		return 0;
-	}
-
-	@Override
-	public double getLength() {
-		return Math.sqrt(Math.pow(this.getStartX() - this.getEndX(), 2) + Math.pow(this.getStartY() - this.getEndY(), 2));
-	}
-
-	@Override
-	public double getRotation() {
-		return this.getRotate();
-	}
-
-	@Override
-	public boolean widthToolisNeeded() {
-		return false;
-	}
-
-	@Override
-	public boolean heightToolisNeeded() {
-		return false;
-	}
-
-	@Override
-	public boolean radiusToolisNeeded() {
-		return false;
-	}
-
-	@Override
-	public boolean lengthToolisNeeded() {
-		return true;
-	}
-	
-	public Shape duplicateAndOffset() {
+	public CustomShape duplicateAndOffset() {//TODO: Réparer
 		CustomLine newLine = new CustomLine();
-		newLine.setStroke(this.getStroke());
+		/*newLine.setStroke(this.getStroke());
 		newLine.setStrokeWidth(this.getStrokeWidth());
 		newLine.setFill(this.getFill());
 		newLine.setStartX(this.getStartX() + XCOPYOFFSET);
@@ -120,14 +56,14 @@ public class CustomLine extends Line implements Transformable{
 		newLine.setEndX(this.getEndX() + XCOPYOFFSET);
 		newLine.setEndY(this.getEndY() + YCOPYOFFSET);
 		newLine.setLengthTool(this.getLength());
-		newLine.setRotationTool(this.getRotation());
+		newLine.setRotationTool(this.getRotation());*/
 		
 		return newLine;
 	}
 	
-	public Shape duplicate() {
+	public CustomShape duplicate() {//TODO: Réparer
 		CustomLine newLine = new CustomLine();
-		newLine.setStroke(this.getStroke());
+		/*newLine.setStroke(this.getStroke());
 		newLine.setStrokeWidth(this.getStrokeWidth());
 		newLine.setFill(this.getFill());
 		newLine.setStartX(this.getStartX());
@@ -135,7 +71,7 @@ public class CustomLine extends Line implements Transformable{
 		newLine.setEndX(this.getEndX());
 		newLine.setEndY(this.getEndY());
 		newLine.setLengthTool(this.getLength());
-		newLine.setRotationTool(this.getRotation());
+		newLine.setRotationTool(this.getRotation());*/
 		
 		return newLine;
 	}
@@ -143,26 +79,5 @@ public class CustomLine extends Line implements Transformable{
 	@Override
 	public String getType() {
 		return "line";
-	}
-
-	@Override
-	public boolean isSelected(double xStart, double yStart, double xEnd, double yEnd) {
-		if(this.getStartX()<xStart)
-			return false;
-		if(this.getEndX()<xStart)
-			return false;
-		if(this.getStartY()<yStart)
-			return false;
-		if(this.getEndY()<yStart)
-			return false;
-		if(this.getStartX()>xEnd)
-			return false;
-		if(this.getEndX()>xEnd)
-			return false;
-		if(this.getStartY()>yEnd)
-			return false;
-		if(this.getEndY()>yEnd)
-			return false;
-		return true;
 	}
 }

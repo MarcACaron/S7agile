@@ -25,7 +25,7 @@ public class XmlDecoder {
 	
 	private static LayersGroup layersGroup = LayersGroup.getLayersGroup();
 	
-	private static PatternApplier patternApplier = new PatternApplier();
+	//private static PatternApplier patternApplier = new PatternApplier();
 	
 	public static void readXML(File file, MainApp mainApp) throws FileNotFoundException, XMLStreamException {
 		layersGroup.clear();
@@ -33,9 +33,10 @@ public class XmlDecoder {
 		xif.setProperty(XMLInputFactory.IS_SUPPORTING_EXTERNAL_ENTITIES, Boolean.FALSE);
 		XMLEventReader  reader = xif.createXMLEventReader(new FileInputStream(file));
 	    XMLEvent event;
-		ArrayList<String> layerNames = new ArrayList<>();
+		ArrayList<String> layerNames = new ArrayList<String>();
+		ArrayList<CustomShape> drawnShape = new ArrayList<CustomShape>();
 	    while (reader.hasNext()) {
-	    	Shape sh = null;
+	    	CustomShape sh = null;
 			event = reader.nextEvent();
 			if (!event.isStartElement()) {
 				continue;
@@ -46,41 +47,45 @@ public class XmlDecoder {
 			}
 			sh = ShapeFactory.build(se.getAttributeByName(new QName("shapeType")).getValue());
 			if(sh != null) {
-				sh.setAccessibleText(se.getAttributeByName(new QName("shapeType")).getValue());
+				sh.getDraw().setAccessibleText(se.getAttributeByName(new QName("shapeType")).getValue());
 				String name = se.getAttributeByName(new QName("layer")).getValue();
 				if(!layerNames.contains(name)) {
 					Layer a = new GridLayer(name);
 					layerNames.add(name);
 					layersGroup.createNewLayer(a);
 				}
-				layersGroup.getLayers().get(layerNames.indexOf(name)).getPane().getChildren().add(sh);
+				layersGroup.getLayers().get(layerNames.indexOf(name)).getPane().getChildren().add(sh.getDraw());
+				mainApp.getDrawingZoneController().drawnShapes.add(sh);
 				reader.nextEvent();
+				drawnShape.add(sh);
+				sh.read(reader);
+				/*
 				event = reader.nextEvent();
-				((Transformable)sh).setXPosTool(Double.valueOf(event.asCharacters().getData()));
-				reader.nextEvent();
-				reader.nextEvent();
-				event = reader.nextEvent();
-				((Transformable)sh).setYPosTool(Double.valueOf(event.asCharacters().getData()));
-				reader.nextEvent();
-				reader.nextEvent();
-				event = reader.nextEvent();
-				((Transformable)sh).setWidthTool(Double.valueOf(event.asCharacters().getData()));
+				((CustomShape)sh).setXPosTool(Double.valueOf(event.asCharacters().getData()));
 				reader.nextEvent();
 				reader.nextEvent();
 				event = reader.nextEvent();
-				((Transformable)sh).setHeightTool(Double.valueOf(event.asCharacters().getData()));
+				((CustomShape)sh).setYPosTool(Double.valueOf(event.asCharacters().getData()));
 				reader.nextEvent();
 				reader.nextEvent();
 				event = reader.nextEvent();
-				((Transformable)sh).setRadiusTool(Double.valueOf(event.asCharacters().getData()));
+				((CustomShape)sh).setWidthTool(Double.valueOf(event.asCharacters().getData()));
 				reader.nextEvent();
 				reader.nextEvent();
 				event = reader.nextEvent();
-				((Transformable)sh).setLengthTool(Double.valueOf(event.asCharacters().getData()));
+				((CustomShape)sh).setHeightTool(Double.valueOf(event.asCharacters().getData()));
 				reader.nextEvent();
 				reader.nextEvent();
 				event = reader.nextEvent();
-				((Transformable)sh).setRotationTool(Double.valueOf(event.asCharacters().getData()));
+				((CustomShape)sh).setRadiusTool(Double.valueOf(event.asCharacters().getData()));
+				reader.nextEvent();
+				reader.nextEvent();
+				event = reader.nextEvent();
+				((CustomShape)sh).setLengthTool(Double.valueOf(event.asCharacters().getData()));
+				reader.nextEvent();
+				reader.nextEvent();
+				event = reader.nextEvent();
+				((CustomShape)sh).setRotationTool(Double.valueOf(event.asCharacters().getData()));
 				reader.nextEvent();
 				reader.nextEvent();
 				event = reader.nextEvent();
@@ -92,9 +97,9 @@ public class XmlDecoder {
 				reader.nextEvent();
 				reader.nextEvent();
 				event = reader.nextEvent();
-				sh.setStrokeWidth(Double.valueOf(event.asCharacters().getData()));
-				Shape sh2 = sh;
-				sh.setOnMouseClicked(t2 -> {
+				sh.setStrokeWidth(Double.valueOf(event.asCharacters().getData()));*/
+				CustomShape sh2 = sh;
+				sh.getDraw().setOnMouseClicked(t2 -> {
 					mainApp.getTool().setShape(sh2);
 					mainApp.getPaletteCouleurController().setLineWidth(sh2.getStrokeWidth());
 					mainApp.getPaletteCouleurController().setStroke((Color) (sh2.getStroke()));

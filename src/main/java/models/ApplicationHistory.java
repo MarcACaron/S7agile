@@ -65,12 +65,12 @@ public class ApplicationHistory {
 			
 			ObservableList<Node> paneChilds = layer.getPane().getChildrenUnmodifiable();
 			Pane newPane = new Pane();
-			
+			/*
 			for (int j = 0; j < paneChilds.size(); ++j) {
-				Transformable shape = (Transformable)paneChilds.get(j);
+				CustomShape shape = (CustomShape)paneChilds.get(j);
 				Shape newShape = shape.duplicate();
 				newPane.getChildren().add(newShape);
-			}
+			}*///TODO: Reparer...
 			
 			Layer newLayer = new GridLayer("Layer " + i);
 			newLayer.setPane(newPane);

@@ -17,6 +17,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.shape.Shape;
 import javafx.scene.transform.Scale;
 import models.ApplicationHistory;
+import models.CustomShape;
 import models.Layer;
 import models.LayersGroup;
 
@@ -29,8 +30,9 @@ public class DrawingZoneController {
 	@FXML
 	private GridPane gridPane;
 	private MainApp mainApp;
+	public ArrayList<CustomShape> drawnShapes = new ArrayList<CustomShape>();
 	
-	private ArrayList<Shape> shapesCopy;
+	private CustomShape shapeCopy;
 	ApplicationHistory history = ApplicationHistory.getInstance();
 	
 	private Point2D finalPoint = new Point2D(0.0,0.0);
@@ -136,13 +138,13 @@ public class DrawingZoneController {
 			orgX = t.getX();
 			orgY = t.getY();
 			childIndex = anchorPane.getChildren().size();
-			childIndex = this.mainApp.getTool().mousePressed(this.mainApp.getPaletteDetailController(), layersGroup.getCurrentLayer().getPane());
+			childIndex = this.mainApp.getTool().mousePressed(this.mainApp.getPaletteDetailController(), layersGroup.getCurrentLayer().getPane(), drawnShapes);
 			getNearestGridPoint(orgX, orgY);
 			setNearestGridPoint();
 		});
 		anchorPane.setOnMouseDragged(t -> this.mainApp.getTool().mouseDragged(orgX, orgY, t.getX(), t.getY()));
 		
-		anchorPane.setOnMouseReleased(t -> this.mainApp.getTool().mouseReleased(mainApp, layersGroup.getCurrentLayer().getPane(), this.mainApp.getPaletteCouleurController(), this.mainApp.getPaletteDetailController()));
+		anchorPane.setOnMouseReleased(t -> this.mainApp.getTool().mouseReleased(mainApp, layersGroup.getCurrentLayer().getPane(), this.mainApp.getPaletteCouleurController(), this.mainApp.getPaletteDetailController(), drawnShapes));
 		updateLayers(true);
     }
 	
@@ -211,16 +213,15 @@ public class DrawingZoneController {
     }
 	
 	public void saveShape() {
-		
-		shapesCopy = (ArrayList<Shape>) mainApp.getTool().getShapes().clone();
+		//TODO: reparer
+		//shapeCopy = (CustomShape) mainApp.getTool().getShape().clone(); ???
 
 	}
 	
 	public void pasteShape() {
-		if (shapesCopy != null) {
-			shapesCopy.forEach(shape -> {
-				this.applyToCurrentPane(shape); 
-			});
+		if (shapeCopy != null) {
+			this.applyToCurrentPane(shapeCopy.getDraw());
+			this.drawnShapes.add(shapeCopy);
 			
 		}
 	}
