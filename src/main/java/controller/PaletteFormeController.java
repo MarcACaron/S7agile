@@ -4,6 +4,7 @@ import adraw4us.MainApp;
 import adraw4us.Tool;
 import javafx.fxml.FXML;
 import javafx.scene.control.ToggleButton;
+import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import models.CircleTool;
@@ -28,6 +29,8 @@ public class PaletteFormeController {
     private ToggleButton ptDepart;
 	@FXML
 	private ImageView ptDepartImage;
+	@FXML
+	private Tooltip ptDepartToolTip;
 	
 	@FXML
 	private void choosePointer() {
@@ -82,9 +85,11 @@ public class PaletteFormeController {
 	private void choosePtDepart() {
 		if(ptDepart.isSelected()) {
 			ptDepartImage.setImage(new Image("images/corner.png"));
+			ptDepartToolTip.setText("Click to Draw from Center");
 			Tool.setStartFromCenter(false);
 		}else {
 			ptDepartImage.setImage(new Image("images/center.png"));
+			ptDepartToolTip.setText("Click to Draw from Corner");
 			Tool.setStartFromCenter(true);
 		}
 	}

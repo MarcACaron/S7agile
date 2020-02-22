@@ -54,11 +54,11 @@ public class PaletteCouleurController {
 		
 	@FXML
 	private void verticalFlip() {
-		mainApp.getDrawingZoneController().FlipCurrentShape(0);
+		mainApp.getDrawingZoneController().FlipCurrentShape(1);
 	}
 	@FXML
 	private void horizontalFlip() {
-		mainApp.getDrawingZoneController().FlipCurrentShape(1);
+		mainApp.getDrawingZoneController().FlipCurrentShape(0);
 	}
 	@FXML
 	private void zoomIn() {
