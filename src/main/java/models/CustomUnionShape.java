@@ -39,9 +39,9 @@ public class CustomUnionShape extends CustomShape {
 	}
 	
 	@Override
-	public void setFill(Paint value) {
+	public void setFill(Paint value, String fillName) {
 		listOfShape.forEach(sh -> {
-			sh.setFill(value);
+			sh.setFill(value, fillName);
 		});
 	}
 	
@@ -83,6 +83,14 @@ public class CustomUnionShape extends CustomShape {
 
 	public void add(CustomShape customShape) {
 		this.listOfShape.add(customShape);
+		updateBoudingBox();
 	}
-
+	
+	private void updateBoudingBox() {
+		double xMin = this.listOfShape.get(0).getXPos();
+		double yMin = this.listOfShape.get(0).getXPos();
+		double xMax = this.listOfShape.get(0).getXPos();
+		double yMax = this.listOfShape.get(0).getXPos();
+		
+	}
 }

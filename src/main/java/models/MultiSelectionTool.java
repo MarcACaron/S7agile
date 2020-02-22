@@ -56,9 +56,9 @@ public class MultiSelectionTool extends Tool {
 		this.shape = new CustomUnionShape();
 	}
 	@Override
-	public int mousePressed(DetailPaletteController detailPaletteController, Pane pane, ArrayList<CustomShape> drawnShapes) {
+	public int mousePressed(DetailPaletteController detailPaletteController, Layer layer, ArrayList<CustomShape> drawnShapes) {
 		this.reset();
-		int index = pane.getChildren().size();
+		int index = layer.getPane().getChildren().size();
 		this.selection = new Rectangle();
 		selection.setStroke(Color.DARKGREY);
 		selection.setStrokeWidth(5.0);
@@ -66,7 +66,7 @@ public class MultiSelectionTool extends Tool {
 		selection.getStrokeDashArray().addAll(25d, 20d, 5d, 20d);
 		System.out.println("....");
 		if(selection!=null)
-			pane.getChildren().add(selection);
+			layer.getPane().getChildren().add(selection);
 		
 		return index;
 	}

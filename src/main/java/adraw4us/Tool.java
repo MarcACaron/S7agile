@@ -9,6 +9,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import models.CustomShape;
+import models.Layer;
 
 public abstract class Tool {
 	protected static Paint fill;
@@ -50,7 +51,7 @@ public abstract class Tool {
 	
 	public void fillShape() {
 		if(this.shape!=null) {
-			this.shape.setFill(fill);
+			this.shape.setFill(fill, fillName);
 		}
 	}
 	public abstract void reset();
@@ -76,11 +77,12 @@ public abstract class Tool {
 	}
 	
 	
-	public int mousePressed(DetailPaletteController detailPaletteController, Pane pane, ArrayList<CustomShape> drawnShapes) {
-		int index = pane.getChildren().size();
+	public int mousePressed(DetailPaletteController detailPaletteController, Layer layer, ArrayList<CustomShape> drawnShapes) {
+		int index = layer.getPane().getChildren().size();
 		this.reset();
+		shape.setLayer(layer.getId());
 		drawnShapes.add(shape);
-		pane.getChildren().add(shape.getDraw());
+		layer.getPane().getChildren().add(shape.getDraw());
 		return index;
 	}
 	

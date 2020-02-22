@@ -28,8 +28,9 @@ public abstract class CustomShape {
 		this.shape.setStrokeWidth(strokeWidth);
 		
 	}
-	public void setFill(Paint value) {
+	public void setFill(Paint value, String fillName) {
 		this.shape.setFill(value);
+		this.shape.setAccessibleText(fillName);
 	}
 	public void setRotate(double value) {
 		this.shape.setRotate(value);
@@ -109,25 +110,31 @@ public abstract class CustomShape {
 	public void read(XMLEventReader reader) throws XMLStreamException {
 		PatternApplier patternApplier = new PatternApplier();
 		XMLEvent event;
-		event = reader.nextEvent();
+		//reader.nextEvent();
+		//reader.nextEvent();
 		event = reader.nextEvent();
 		this.setXPos(Double.valueOf(event.asCharacters().getData()));
+		System.out.println(Double.valueOf(event.asCharacters().getData()));
 		reader.nextEvent();
 		reader.nextEvent();
 		event = reader.nextEvent();
 		this.setYPos(Double.valueOf(event.asCharacters().getData()));
+		System.out.println(Double.valueOf(event.asCharacters().getData()));
 		reader.nextEvent();
 		reader.nextEvent();
 		event = reader.nextEvent();
 		this.setWidth(Double.valueOf(event.asCharacters().getData()));
+		System.out.println(Double.valueOf(event.asCharacters().getData()));
 		reader.nextEvent();
 		reader.nextEvent();
 		event = reader.nextEvent();
 		this.setHeight(Double.valueOf(event.asCharacters().getData()));
+		System.out.println(Double.valueOf(event.asCharacters().getData()));
 		reader.nextEvent();
 		reader.nextEvent();
 		event = reader.nextEvent();
 		this.setRotate(Double.valueOf(event.asCharacters().getData()));
+		System.out.println(Double.valueOf(event.asCharacters().getData()));
 		reader.nextEvent();
 		reader.nextEvent();
 		event = reader.nextEvent();
@@ -140,6 +147,9 @@ public abstract class CustomShape {
 		reader.nextEvent();
 		event = reader.nextEvent();
 		this.setStrokeWidth(Double.valueOf(event.asCharacters().getData()));
+	}
+	public void setLayer(String id) {
+		this.layer = id;
 	}
 	
 

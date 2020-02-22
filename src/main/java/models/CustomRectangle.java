@@ -10,13 +10,13 @@ public class CustomRectangle extends CustomShape {
 	@Override
 	public CustomShape duplicateAndOffset() {
 		CustomRectangle newRectangle = new CustomRectangle();
-		newRectangle.setStroke(this.getStroke());
+		/*newRectangle.setStroke(this.getStroke());
 		newRectangle.setStrokeWidth(this.getStrokeWidth());
 		newRectangle.setFill(this.getFill());
 		newRectangle.setXPos(this.getXPos() + XCOPYOFFSET);
 		newRectangle.setYPos(this.getYPos() + YCOPYOFFSET);
 		newRectangle.setWidth(this.getWidth());
-		newRectangle.setHeight(this.getHeight());
+		newRectangle.setHeight(this.getHeight());*/
 		
 		return newRectangle;
 	}
@@ -25,13 +25,13 @@ public class CustomRectangle extends CustomShape {
 	@Override
 	public CustomShape duplicate() {
 		CustomRectangle newRectangle = new CustomRectangle();
-		newRectangle.setStroke(this.getStroke());
+		/*newRectangle.setStroke(this.getStroke());
 		newRectangle.setStrokeWidth(this.getStrokeWidth());
 		newRectangle.setFill(this.getFill());
 		newRectangle.setXPos(this.getXPos());
 		newRectangle.setYPos(this.getYPos());
 		newRectangle.setWidth(this.getWidth());
-		newRectangle.setHeight(this.getHeight());
+		newRectangle.setHeight(this.getHeight());*/
 		
 		return newRectangle;
 	}

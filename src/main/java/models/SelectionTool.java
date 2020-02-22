@@ -28,8 +28,8 @@ public class SelectionTool extends Tool {
 	}
 	
 	@Override
-	public int mousePressed(DetailPaletteController detailPaletteController, Pane pane, ArrayList<CustomShape> drawnShapes) {
-		int index = pane.getChildren().size()-1;
+	public int mousePressed(DetailPaletteController detailPaletteController, Layer layer, ArrayList<CustomShape> drawnShapes) {
+		int index = layer.getPane().getChildren().size()-1;
 		if(index<0)
 			index=0;
 		this.fillDetails(detailPaletteController, null).apply(null);
