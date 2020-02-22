@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
 import adraw4us.Tool;
+import javafx.geometry.Point2D;
 import models.CustomLine;
 import models.CustomRectangle;
 import models.RectangleTool;
@@ -71,4 +72,28 @@ public class TestRectangleTool {
 		assertEquals(true, rect.getHeight() == rectClone.getHeight());
 		
 	}
+	
+	@Test
+	public void testOutline() {
+		double PosX = 50, PosY = 50, size = 100;
+		CustomRectangle rect = new CustomRectangle(PosX, PosY, size, size);
+		double outline[] = rect.getOutlineCoords();
+		
+		assertEquals(true, outline[0] < PosX);
+		assertEquals(true, outline[1] < PosY);
+		assertEquals(true, outline[2] > PosX+size);
+		assertEquals(true, outline[3] > PosX+size);
+	}
+	
+	@Test
+	public void testCenterCoord() {
+		double PosX = 50, PosY = 50, size = 100;
+		CustomRectangle rect = new CustomRectangle(PosX, PosY, size, size);
+		Point2D center = rect.getCenterCoord();
+		
+		assertEquals(center.getX(), PosX + (size/2));
+		assertEquals(center.getY(), PosY + (size/2));
+		
+	}
+
 }

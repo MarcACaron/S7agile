@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import org.junit.jupiter.api.Test;
 
 import adraw4us.Tool;
+import javafx.geometry.Point2D;
 import models.CustomCircle;
 import models.CustomLine;
 import models.LineTool;;
@@ -74,6 +75,29 @@ public class TestLineTool {
 		assertEquals(true, line.getFill() == lineClone.getFill());
 		assertEquals(true, line.getLength() == lineClone.getLength());
 		assertEquals(true, line.getRotation() == lineClone.getRotation());
+		
+	}
+	
+	@Test
+	public void testOutline() {
+		double startX = 50, startY = 50, endX = 100, endY = 100;
+		CustomLine line = new CustomLine(startX, startY, endX, endY);
+		double outline[] = line.getOutlineCoords();
+		
+		assertEquals(true, outline[0] < startX);
+		assertEquals(true, outline[1] < startY);
+		assertEquals(true, outline[2] > endX);
+		assertEquals(true, outline[3] > endY);
+	}
+	
+	@Test
+	public void testCenterCoord() {
+		double startX = 50, startY = 50, endX = 100, endY = 100;
+		CustomLine line = new CustomLine(startX, startY, endX, endY);
+		Point2D center = line.getCenterCoord();
+		
+		assertEquals(center.getX(), startX + (endX - startX)/2);
+		assertEquals(center.getY(), startY + (endY - startY)/2);
 		
 	}
 

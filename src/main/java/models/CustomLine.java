@@ -170,7 +170,18 @@ public class CustomLine extends Line implements Transformable{
 	@Override
 	public double[] getOutlineCoords() {
 		double array[] = {0,0,0,0};
-		//Not used in our case	
+		if (this.getRotation() < 90) {
+			array[0] = this.getStartX() - selectionShapeOffset;
+			array[1] = this.getStartY() - selectionShapeOffset;
+			array[2] = this.getEndX() + selectionShapeOffset;
+			array[3] = this.getEndY() + selectionShapeOffset;
+		}else {
+			array[0] = this.getStartX() - selectionShapeOffset;
+			array[1] = this.getEndY() + selectionShapeOffset;
+			array[2] = this.getEndX() - selectionShapeOffset;
+			array[3] = this.getStartY() + selectionShapeOffset;
+		}
+		
 		return array;
 	}
 	
