@@ -1,6 +1,7 @@
 package models;
 
 
+import javafx.geometry.Point2D;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Shape;
 
@@ -171,5 +172,12 @@ public class CustomLine extends Line implements Transformable{
 		double array[] = {0,0,0,0};
 		//Not used in our case	
 		return array;
+	}
+	
+	@Override
+	public Point2D getCenterCoord() {
+		double 	xCenterOffset = ((this.getEndX()-this.getStartX())/2), 
+				yCenterOffset = ((this.getEndY()-this.getStartY())/2);
+		return (new Point2D(this.getStartX() + xCenterOffset, this.getStartY() + yCenterOffset));
 	}
 }

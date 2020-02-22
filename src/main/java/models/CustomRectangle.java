@@ -1,5 +1,6 @@
 package models;
 
+import javafx.geometry.Point2D;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
@@ -157,5 +158,9 @@ public class CustomRectangle extends Rectangle implements Transformable {
 		array[3] = this.getYPos() + this.getHeight() + selectionShapeOffset;
 		
 		return array;
+	}
+	@Override
+	public Point2D getCenterCoord() {
+		return (new Point2D(this.getXPos() + (this.getWidth()/2), this.getYPos() + (this.getHeight()/2)));
 	}
 }

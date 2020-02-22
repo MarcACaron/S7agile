@@ -1,5 +1,6 @@
 package models;
 
+import javafx.geometry.Point2D;
 import javafx.scene.shape.Shape;
 
 public interface Transformable {
@@ -31,5 +32,6 @@ public interface Transformable {
 	public boolean isSelected(double xStart, double yStart, double xEnd, double yEnd);
 	
 	public double[] getOutlineCoords();
+	public Point2D getCenterCoord();
 	
 }

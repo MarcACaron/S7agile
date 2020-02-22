@@ -1,6 +1,7 @@
 package models;
 
 
+import javafx.geometry.Point2D;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Shape;
@@ -170,5 +171,10 @@ public class CustomCircle extends Circle implements Transformable {
 		array[3] = this.getYPos() + this.getRadius() + selectionShapeOffset;
 		
 		return array;
+	}
+	
+	@Override
+	public Point2D getCenterCoord() {
+		return (new Point2D(this.getXPos(), this.getYPos()));
 	}
 }

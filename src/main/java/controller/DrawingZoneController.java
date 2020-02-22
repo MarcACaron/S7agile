@@ -10,6 +10,7 @@ import javafx.fxml.FXML;
 import javafx.geometry.Point2D;
 import javafx.scene.Node;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.effect.Reflection;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
@@ -17,7 +18,12 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
+import javafx.scene.transform.Affine;
+import javafx.scene.transform.NonInvertibleTransformException;
+import javafx.scene.transform.Rotate;
 import javafx.scene.transform.Scale;
+import javafx.scene.transform.Transform;
+import javafx.scene.transform.Translate;
 import models.ApplicationHistory;
 import models.Layer;
 import models.LayersGroup;
@@ -237,6 +243,7 @@ public class DrawingZoneController {
 	public void addSelectionShape(double coords[]) {
 		Shape shapeToAdd = new Rectangle(coords[0], coords[1], coords[2]-coords[0], coords[3]-coords[1]); //startX, startY, EndX, EndY
 		shapeToAdd.setStroke(outlineColor);
+		shapeToAdd.getStrokeDashArray().addAll(2d, 5d);
 		shapeToAdd.setStrokeWidth(2);
 		shapeToAdd.setFill(Color.TRANSPARENT);
 		selectionLayoutPane.getChildren().add(shapeToAdd);
@@ -254,5 +261,27 @@ public class DrawingZoneController {
 	
 	public void clearSelectionLayer() {
 		selectionLayoutPane.getChildren().clear();
+	}
+	
+	public void FlipCurrentShape(int flipVorH) {
+		//flipVorH = 1 is HFlip, 0 is VFlip
+		Transformable shape = (Transformable)mainApp.getTool().getShapes().get(0);
+		mainApp.getTool().getShapes().get(0).getTransforms().add(transformIntoReflection(shape.getCenterCoord(), flipVorH));
+	}
+	
+	private Transform transformIntoReflection(Point2D p1, int flipXorY) {
+		//flipXorY = 1 is X-Flip, 0 is Y-Flip
+	    Translate translation = new Translate(-p1.getX(), -p1.getY());
+	    Scale scale;
+	    if (flipXorY == 1) {
+	    	scale = new Scale(1, -1);
+	    }else{
+	    	scale = new Scale(-1, 1);
+	    }
+	    Affine reflection = new Affine();
+	    reflection.append(translation.createInverse());
+	    reflection.append(scale);
+	    reflection.append(translation);
+	    return reflection ;
 	}
 }
