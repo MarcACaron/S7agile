@@ -1,10 +1,13 @@
 package models;
 
 
+import javafx.geometry.Point2D;
+import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 
 public class CustomCircle extends CustomShape {
+	private final static int selectionShapeOffset = 10;
 
 	public CustomCircle() {
 		this.shape = new Circle();
@@ -97,7 +100,16 @@ public class CustomCircle extends CustomShape {
 		this.setWidth(cote*2);
 		this.setXPos(startX);
 		this.setYPos(startY);
+	@Override
+	public double[] getOutlineCoords() {
+		double array[] = {0,0,0,0};
 		
+		array[0] = this.getXPos() - this.getRadius() - selectionShapeOffset;
+		array[1] = this.getYPos() - this.getRadius() - selectionShapeOffset;
+		array[2] = this.getXPos() + this.getRadius() + selectionShapeOffset;
+		array[3] = this.getYPos() + this.getRadius() + selectionShapeOffset;
+		
+		return array;
 	}
 	@Override
 	public String getType() {

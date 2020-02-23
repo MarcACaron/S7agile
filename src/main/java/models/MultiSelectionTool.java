@@ -94,6 +94,11 @@ public class MultiSelectionTool extends Tool {
 				
 		}
 	}
+	
+	@Override
+	protected void showSelectedShape(MainApp mainApp, Transformable inputShape) {
+		mainApp.getDrawingZoneController().clearSelectionLayer();
+	}
 
 	@Override
 	public String getToolType() {

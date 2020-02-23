@@ -1,7 +1,6 @@
 package controller;
 
-
-
+import java.awt.Transparency;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,17 +10,30 @@ import javafx.fxml.FXML;
 import javafx.geometry.Point2D;
 import javafx.scene.Node;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.effect.Reflection;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
+import javafx.scene.transform.Affine;
+import javafx.scene.transform.NonInvertibleTransformException;
+import javafx.scene.transform.Rotate;
 import javafx.scene.transform.Scale;
+import javafx.scene.transform.Transform;
+import javafx.scene.transform.Translate;
 import models.ApplicationHistory;
 import models.CustomShape;
 import models.Layer;
 import models.LayersGroup;
+import models.Transformable;
 
 public class DrawingZoneController {
+	
+	private final Color outlineColor = Color.DARKBLUE, 
+						inlineColor = Color.LIGHTBLUE;
 		
 	@FXML
 	private ScrollPane scrollPane;
@@ -29,6 +41,9 @@ public class DrawingZoneController {
 	private AnchorPane anchorPane;
 	@FXML
 	private GridPane gridPane;
+	@FXML
+	private AnchorPane selectionLayoutPane;
+	
 	private MainApp mainApp;
 	public ArrayList<CustomShape> drawnShapes = new ArrayList<CustomShape>();
 	
@@ -224,5 +239,50 @@ public class DrawingZoneController {
 			this.drawnShapes.add(shapeCopy);
 			
 		}
+	}
+	
+	public void addSelectionShape(double coords[]) {
+		Shape shapeToAdd = new Rectangle(coords[0], coords[1], coords[2]-coords[0], coords[3]-coords[1]); //startX, startY, EndX, EndY
+		shapeToAdd.setStroke(outlineColor);
+		shapeToAdd.getStrokeDashArray().addAll(2d, 5d);
+		shapeToAdd.setStrokeWidth(2);
+		shapeToAdd.setFill(Color.TRANSPARENT);
+		selectionLayoutPane.getChildren().add(shapeToAdd);
+		
+		Shape dots[] = {new Circle(coords[0], coords[1], 5),
+						new Circle(coords[2], coords[1], 5),
+						new Circle(coords[0], coords[3], 5),
+						new Circle(coords[2], coords[3], 5)};
+		for (int i = 0; i < dots.length; i++) {
+			dots[i].setStroke(outlineColor);
+			dots[i].setFill(inlineColor);
+			selectionLayoutPane.getChildren().add(dots[i]);
+		}
+	}
+	
+	public void clearSelectionLayer() {
+		selectionLayoutPane.getChildren().clear();
+	}
+	
+	public void FlipCurrentShape(int flipVorH) {
+		//flipVorH = 1 is VFlip, 0 is HFlip
+		Transformable shape = (Transformable)mainApp.getTool().getShapes().get(0);
+		mainApp.getTool().getShapes().get(0).getTransforms().add(transformIntoReflection(shape.getCenterCoord(), flipVorH));
+	}
+	
+	private Transform transformIntoReflection(Point2D p1, int flipXorY) {
+		//flipXorY = 1 is Y-Flip, 0 is X-Flip
+	    Translate translation = new Translate(-p1.getX(), -p1.getY());
+	    Scale scale;
+	    if (flipXorY == 1) {
+	    	scale = new Scale(1, -1);
+	    }else{
+	    	scale = new Scale(-1, 1);
+	    }
+	    Affine reflection = new Affine();
+	    reflection.append(translation.createInverse());
+	    reflection.append(scale);
+	    reflection.append(translation);
+	    return reflection ;
 	}
 }

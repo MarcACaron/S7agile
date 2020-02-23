@@ -18,5 +18,5 @@ public class TestSelectionTool {
 		
 		assertNotEquals(null, selTool);
 	}
-
+	
 }

@@ -42,9 +42,15 @@ public class SelectionTool extends Tool {
 	}
 
 	@Override
-	public void mouseReleased(MainApp mainApp, Pane pane, PaletteCouleurController paletteCouleurController, DetailPaletteController pc, ArrayList<CustomShape> drawnShapes) {
-		//
+	public void mouseReleased(MainApp mainApp, Pane pane, PaletteCouleurController paletteCouleurController, DetailPaletteController pc) {
+		mainApp.getDrawingZoneController().clearSelectionLayer();
+		//showSelectedShape(mainApp, inputShape);
 	}
+	
+	@Override
+	protected void showSelectedShape(MainApp mainApp, Transformable inputShape) {
+		mainApp.getDrawingZoneController().clearSelectionLayer();
+		mainApp.getDrawingZoneController().addSelectionShape(((Transformable)this.getShapes().get(0)).getOutlineCoords());	}
 	
 	@Override
 	public String getToolType() {

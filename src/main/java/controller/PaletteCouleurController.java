@@ -4,6 +4,7 @@ import adraw4us.MainApp;
 import adraw4us.Tool;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
+import javafx.geometry.Point2D;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ColorPicker;
@@ -14,6 +15,7 @@ import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
+import models.Transformable;
 
 public class PaletteCouleurController {
 	
@@ -43,10 +45,21 @@ public class PaletteCouleurController {
     private Button zoomIn;
 	@FXML
     private Button zoomOut;
+	@FXML
+	private Button vFlipButton;
+	@FXML
+	private Button hFlipButton;
 	
 	private MainApp mainApp;
 		
-	
+	@FXML
+	private void verticalFlip() {
+		mainApp.getDrawingZoneController().FlipCurrentShape(1);
+	}
+	@FXML
+	private void horizontalFlip() {
+		mainApp.getDrawingZoneController().FlipCurrentShape(0);
+	}
 	@FXML
 	private void zoomIn() {
 		this.mainApp.getDrawingZoneController().zoomIn(1.1);

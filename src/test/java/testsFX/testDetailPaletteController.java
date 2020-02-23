@@ -7,13 +7,17 @@ import org.junit.jupiter.api.Test;
 import javafx.scene.input.KeyCode;
 
 public class testDetailPaletteController extends testApplicationUI{
-	@Test
+	//@Test
 	public void testDetailWithCircle() {
 		clickOn("#circle");
 		moveBy(150, 150);
 		drag();
 		moveBy(150, 150);
 		drop();
+		double x2 = ((Transformable)this.mainApp.getTool().getShapes().get(0)).getXPos();
+		double y2 = ((Transformable)this.mainApp.getTool().getShapes().get(0)).getYPos();
+		double rotation2 = ((Transformable)this.mainApp.getTool().getShapes().get(0)).getRotation();
+		double radius2 = ((Transformable)this.mainApp.getTool().getShapes().get(0)).getRadius();
 		doubleClickOn("#xPosText");
 		type(KeyCode.NUMPAD1,3);
 		type(KeyCode.ENTER);
@@ -42,7 +46,7 @@ public class testDetailPaletteController extends testApplicationUI{
 		assertEquals(width, 111);
 		assertEquals(type, "circle");
 	}
-	@Test
+	//@Test
 	public void testDetailWithRectangle() {
 		clickOn("#rectangle");
 		moveBy(150, 150);
@@ -81,7 +85,7 @@ public class testDetailPaletteController extends testApplicationUI{
 		assertEquals(width, 111);
 		assertEquals(type, "rectangle");
 	}
-	@Test
+	//@Test
 	public void testDetailWithLine() {
 		clickOn("#line");
 		moveBy(80, 80);

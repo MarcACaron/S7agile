@@ -1,6 +1,7 @@
 package models;
 
 
+import javafx.geometry.Point2D;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
 
@@ -132,5 +133,30 @@ public class CustomLine extends CustomShape{
 		this.setWidth(width*2);
 		this.setHeight(height*2);
 		
+	}
+	
+	@Override
+	public double[] getOutlineCoords() {
+		double array[] = {0,0,0,0};
+		if (this.getRotation() < 90) {
+			array[0] = this.getStartX() - selectionShapeOffset;
+			array[1] = this.getStartY() - selectionShapeOffset;
+			array[2] = this.getEndX() + selectionShapeOffset;
+			array[3] = this.getEndY() + selectionShapeOffset;
+		}else {
+			array[0] = this.getStartX() - selectionShapeOffset;
+			array[1] = this.getEndY() + selectionShapeOffset;
+			array[2] = this.getEndX() - selectionShapeOffset;
+			array[3] = this.getStartY() + selectionShapeOffset;
+		}
+		
+		return array;
+	}
+	
+	@Override
+	public Point2D getCenterCoord() {
+		double 	xCenterOffset = ((this.getEndX()-this.getStartX())/2), 
+				yCenterOffset = ((this.getEndY()-this.getStartY())/2);
+		return (new Point2D(this.getStartX() + xCenterOffset, this.getStartY() + yCenterOffset));
 	}
 }

@@ -7,8 +7,10 @@ import org.junit.jupiter.api.Test;
 
 import adraw4us.Tool;
 import javafx.scene.shape.Circle;
+import javafx.geometry.Point2D;
 import models.CircleTool;
 import models.CustomCircle;
+import models.CustomRectangle;
 
 
 
@@ -66,6 +68,29 @@ public class TestCircleTool {
 		assertEquals(circle.getFill() == circleClone.getFill(), true);
 		assertEquals(circle.getWidth() == circleClone.getWidth(), true);
 		assertEquals(circle.getRotate() == circleClone.getRotate(), true);
+		
+	}
+	
+	@Test
+	public void testOutline() {
+		double PosX = 50, PosY = 50, radius = 100;
+		CustomCircle circ = new CustomCircle(PosX, PosY, radius);
+		double outline[] = circ.getOutlineCoords();
+		
+		assertEquals(true, outline[0] < PosX - radius);
+		assertEquals(true, outline[1] < PosY - radius);
+		assertEquals(true, outline[2] > PosX + radius);
+		assertEquals(true, outline[3] > PosY + radius);
+	}
+	
+	@Test
+	public void testCenterCoord() {
+		double PosX = 50, PosY = 50, radius = 100;
+		CustomCircle circ = new CustomCircle(PosX, PosY, radius);
+		Point2D center = circ.getCenterCoord();
+		
+		assertEquals(center.getX(), PosX);
+		assertEquals(center.getY(), PosY);
 		
 	}
 
