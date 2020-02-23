@@ -27,24 +27,23 @@ public class TestRectangleTool {
 	
 	@Test
 	public void testAdjustOnDrag1() {
-		/*
+
+		Tool.setStartFromCenter(false);
 		rectTool.ajustOnDrag(2.0, 2.0, 4.0, 4.0);
 		
-		double width = ((CustomRectangle)rectTool.getShape()).getWidth();
-		double height = ((CustomRectangle)rectTool.getShape()).getHeight();
-		double posX = ((CustomRectangle)rectTool.getShape()).getX();
-		double posY = ((CustomRectangle)rectTool.getShape()).getY();
-		
-		assertEquals(2.0, width);
-		assertEquals(2.0, height);
-		assertEquals(2.0, posX);
-		assertEquals(2.0, posY);
-		*/
+		double width = rectTool.getShape().getWidth();
+		double height = rectTool.getShape().getHeight();
+		double posX = rectTool.getShape().getXPos();
+		double posY = rectTool.getShape().getYPos();
+		assertTrue(1.999<width && width<2.01);
+		assertTrue(1.999<height && height<2.01);
+		assertTrue(1.999<posX && posX<2.01);
+		assertTrue(1.999<posY && posY<2.01);
 	}
 	
 	@Test
 	public void testAdjustOnDrag2() {
-		
+
 		Tool.setStartFromCenter(true);
 		rectTool.ajustOnDrag(2.0, 2.0, 4.0, 4.0);
 		
@@ -53,6 +52,12 @@ public class TestRectangleTool {
 		double posX = ((Rectangle)rectTool.getShape().getDraw()).getX();
 		double posY = ((Rectangle)rectTool.getShape().getDraw()).getY();
 		
+
+		
+		assertTrue(3.999<width && width<4.001);
+		assertTrue(3.999<height && height<4.001);
+		assertTrue(-0.001<posX && posX<0.001);
+		assertTrue(-0.001<posY && posY<0.001);
 		assertEquals(4.0, width);
 		assertEquals(4.0, height);
 		assertEquals(0.0, posX);

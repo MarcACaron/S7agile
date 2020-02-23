@@ -131,6 +131,9 @@ public class CustomLine extends CustomShape{
 		this.setYPos(startY);
 		this.setWidth(width*2);
 		this.setHeight(height*2);
-		
+		((Line)shape).setStartX(2*posXStart-posXEnd);
+		((Line)shape).setStartY(2*posYStart-posYEnd);
+		((Line)shape).setEndX(posXEnd);
+		((Line)shape).setEndY(posYEnd);
 	}
 }

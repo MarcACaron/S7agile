@@ -1,5 +1,7 @@
 package testsFX;
 
+import java.io.File;
+
 import org.testfx.framework.junit5.ApplicationTest;
 import adraw4us.MainApp;
 import javafx.scene.Node;
@@ -18,5 +20,10 @@ public class testApplicationUI extends ApplicationTest{
 	
 	public <T extends Node> T find(final String query) {
 		return lookup(query).query();
+	}
+	
+	public void delPersistance() {
+		File persistanceFile = new File("persistance.ini");
+		persistanceFile.delete();
 	}
 }

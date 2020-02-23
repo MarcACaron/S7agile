@@ -1,12 +1,16 @@
 package testsFX;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Order;
 import javafx.scene.input.KeyCode;
 
 
 public class TestMenuController extends testApplicationUI{
-	
+	@BeforeEach
+	public void supprime() {
+		this.delPersistance();
+	}
 	@Test
 	public void testFileNew() {
 		clickOn("#MenuBarFile");
@@ -17,7 +21,6 @@ public class TestMenuController extends testApplicationUI{
 	@Test
 	@Order(1)
 	public void testFileSave() {
-		//TODO: Supprimer le fichier avant de faire ce test
 		clickOn("#MenuBarFile");
 		clickOn("#menuItemSave");
 		type(KeyCode.T);
@@ -55,18 +58,12 @@ public class TestMenuController extends testApplicationUI{
 		//TODO: Tester si on a bien la même chose qu'avant la sauvegarde
 	}
 	@Test
-	public void testEdit() {
-		clickOn("#MenuBarEdit");
-		
-	}
-	@Test
 	public void testLayoutGrid() {
 		clickOn("#MenuBarLayout");
 		clickOn("#menuShowGridLines");
-		pause(3);
 		clickOn("#MenuBarLayout");
 		clickOn("#menuShowGridLines");
-		pause(2);//TODO: Verifier qu'on a bien les grilles
+		//TODO: Verifier qu'on a bien les grilles
 	}
 	@Test
 	public void testLayoutLayers() {
