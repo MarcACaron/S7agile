@@ -9,7 +9,7 @@ public class CustomRectangle extends CustomShape {
 	}
 	@Override
 	public CustomShape duplicateAndOffset() {
-		CustomRectangle newRectangle = new CustomRectangle();
+		CustomRectangle newRectangle = new CustomRectangle();//TODO: reparer
 		/*newRectangle.setStroke(this.getStroke());
 		newRectangle.setStrokeWidth(this.getStrokeWidth());
 		newRectangle.setFill(this.getFill());
@@ -24,7 +24,7 @@ public class CustomRectangle extends CustomShape {
 	
 	@Override
 	public CustomShape duplicate() {
-		CustomRectangle newRectangle = new CustomRectangle();
+		CustomRectangle newRectangle = new CustomRectangle();//TODO: REPARER
 		/*newRectangle.setStroke(this.getStroke());
 		newRectangle.setStrokeWidth(this.getStrokeWidth());
 		newRectangle.setFill(this.getFill());

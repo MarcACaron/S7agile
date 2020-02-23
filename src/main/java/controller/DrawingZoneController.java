@@ -132,7 +132,6 @@ public class DrawingZoneController {
         		finalPoint = listPoints.get(i);
         	}
     	}
-    	System.out.print("\n"+finalPoint);
     }
     
     public void setNearestGridPoint() {
