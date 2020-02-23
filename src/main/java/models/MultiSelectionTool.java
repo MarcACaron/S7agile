@@ -63,7 +63,6 @@ public class MultiSelectionTool extends Tool {
 		selection.setStrokeWidth(5.0);
 		selection.setFill(null);
 		selection.getStrokeDashArray().addAll(25d, 20d, 5d, 20d);
-		System.out.println("....");
 		if(selection!=null)
 			layer.getPane().getChildren().add(selection);
 		
@@ -77,7 +76,6 @@ public class MultiSelectionTool extends Tool {
 
 	@Override
 	public void mouseReleased(MainApp mainApp, Pane pane, PaletteCouleurController paletteCouleurController, DetailPaletteController pc, ArrayList<CustomShape> drawnShapes) {
-		System.out.println("dfsmlsldlsghlk");
 		double xStart = selection.getX();
 		double yStart = selection.getY();
 		double xEnd = selection.getX()+selection.getWidth();
@@ -85,10 +83,6 @@ public class MultiSelectionTool extends Tool {
 		pane.getChildren().remove(pane.getChildren().size()-1);
 		for(int i=0; i<drawnShapes.size();i++) {
 			if((drawnShapes.get(i)).isSelected(xStart, yStart, xEnd, yEnd)) {
-				System.out.println("jkh");
-				System.out.println((CustomUnionShape)this.shape==null);
-				System.out.println(drawnShapes==null);
-				System.out.println(drawnShapes.get(i)==null);
 				((CustomUnionShape)this.shape).add(drawnShapes.get(i));//NULL
 			}
 				

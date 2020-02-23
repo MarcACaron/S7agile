@@ -7,7 +7,6 @@ public class RectangleTool extends Tool {
 
 	public RectangleTool() {
 		super(new CustomRectangle());
-		System.out.println("ok");
 	}
 
 	@Override

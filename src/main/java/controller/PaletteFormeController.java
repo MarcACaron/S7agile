@@ -83,7 +83,6 @@ public class PaletteFormeController {
 	}
 	@FXML
 	private void choosePtDepart() {
-		System.out.println("hmjmkm");
 		if(ptDepart.isSelected()) {
 			ptDepartImage.setImage(new Image("images/corner.png"));
 			ptDepartToolTip.setText("Click to Draw from Center");
