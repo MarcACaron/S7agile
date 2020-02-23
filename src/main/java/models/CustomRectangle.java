@@ -113,20 +113,5 @@ public class CustomRectangle extends CustomShape {
 		((Rectangle)this.shape).setHeight(value);
 		this.boundingBox.setHeight(value);
 	}
-	
-	@Override
-	public double[] getOutlineCoords() {
-		double array[] = {0,0,0,0};
-		
-		array[0] = this.getXPos() - selectionShapeOffset;
-		array[1] = this.getYPos()  - selectionShapeOffset;
-		array[2] = this.getXPos() + this.getWidth() + selectionShapeOffset;
-		array[3] = this.getYPos() + this.getHeight() + selectionShapeOffset;
-		
-		return array;
-	}
-	@Override
-	public Point2D getCenterCoord() {
-		return (new Point2D(this.getXPos() + (this.getWidth()/2), this.getYPos() + (this.getHeight()/2)));
-	}
+
 }

@@ -5,6 +5,7 @@ import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamWriter;
 import javax.xml.stream.events.XMLEvent;
 
+import javafx.geometry.Point2D;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
@@ -13,6 +14,7 @@ import javafx.scene.shape.Shape;
 public abstract class CustomShape {
 	public final int XCOPYOFFSET = 50;
 	public final int YCOPYOFFSET = 50;
+	public final double SELECTIONSHAPEOFFSET = 10.0;
 	protected Rectangle boundingBox;
 	protected Shape shape;
 	protected String layer;
@@ -153,7 +155,20 @@ public abstract class CustomShape {
 	public void setLayer(String id) {
 		this.layer = id;
 	}
+    public final double[] getOutlineCoords() {
+        double array[] = {0,0,0,0};
+        
+        array[0] = this.getXPos() - SELECTIONSHAPEOFFSET;
+        array[1] = this.getYPos() - SELECTIONSHAPEOFFSET;
+        array[2] = this.getXPos() + this.getWidth() + SELECTIONSHAPEOFFSET;
+        array[3] = this.getYPos() + this.getHeight() + SELECTIONSHAPEOFFSET;
+        
+        return array;
+    }
+    
+    public final Point2D getCenterCoord() {
+        return (new Point2D(this.getXPos(), this.getYPos()));
+    }
+	    
 	
-	
-
 }

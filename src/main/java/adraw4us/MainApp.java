@@ -62,7 +62,7 @@ public class MainApp extends Application {
 
         showMainOverview();
         Persistance persi = new Persistance(toolApp);
-        setTool(persi.readState());
+        //setTool(persi.readState()); TODO: réparer
         
         persi.setOnClosedEvent(primaryStage);
     }

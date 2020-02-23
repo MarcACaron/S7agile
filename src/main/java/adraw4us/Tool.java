@@ -14,7 +14,6 @@ import models.Layer;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
-import models.Transformable;
 
 public abstract class Tool {
 		
@@ -110,12 +109,12 @@ public abstract class Tool {
 			pc.setLineWidth(shape2.getStrokeWidth());
 			pc.setStroke((Color) (shape2.getStroke()));
 			
-			mainApp.getTool().showSelectedShape(mainApp, (Transformable)shape2);
+			mainApp.getTool().showSelectedShape(mainApp, shape2);
 			mainApp.getTool().fillDetails(dp, shape2).apply(null);
 			
 		});
 		fillDetails(dp, shape2).apply(null);
-		this.showSelectedShape(mainApp, (Transformable)shape2);
+		this.showSelectedShape(mainApp, shape2);
 	}
 		public static Paint getFill() {
 		return fill;
@@ -165,7 +164,7 @@ public abstract class Tool {
 		Tool.startFromCenter = startFromCenter;
 	}
 	
-	protected abstract void showSelectedShape(MainApp mainApp, Transformable inputShape);
+	protected abstract void showSelectedShape(MainApp mainApp, CustomShape inputShape);
 	
 	public abstract String getToolType();
 }

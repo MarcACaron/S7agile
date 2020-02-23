@@ -20,9 +20,9 @@ public class RectangleTool extends Tool {
 	}
 	
 	@Override
-	protected void showSelectedShape(MainApp mainApp, Transformable inputShape) {
+	protected void showSelectedShape(MainApp mainApp, CustomShape inputShape) {
 		mainApp.getDrawingZoneController().clearSelectionLayer();
-		mainApp.getDrawingZoneController().addSelectionShape(((Transformable)this.getShapes().get(0)).getOutlineCoords());
+		mainApp.getDrawingZoneController().addSelectionShape(this.getShape().getOutlineCoords());
 		
 	}
 	

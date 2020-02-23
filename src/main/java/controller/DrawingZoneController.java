@@ -28,7 +28,6 @@ import models.ApplicationHistory;
 import models.CustomShape;
 import models.Layer;
 import models.LayersGroup;
-import models.Transformable;
 
 public class DrawingZoneController {
 	
@@ -266,8 +265,8 @@ public class DrawingZoneController {
 	
 	public void FlipCurrentShape(int flipVorH) {
 		//flipVorH = 1 is VFlip, 0 is HFlip
-		Transformable shape = (Transformable)mainApp.getTool().getShapes().get(0);
-		mainApp.getTool().getShapes().get(0).getTransforms().add(transformIntoReflection(shape.getCenterCoord(), flipVorH));
+		CustomShape shape = mainApp.getTool().getShape();
+		mainApp.getTool().getShape().getDraw().getTransforms().add(transformIntoReflection(shape.getCenterCoord(), flipVorH));
 	}
 	
 	private Transform transformIntoReflection(Point2D p1, int flipXorY) {

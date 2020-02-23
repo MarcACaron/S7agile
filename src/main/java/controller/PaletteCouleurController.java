@@ -15,7 +15,6 @@ import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
-import models.Transformable;
 
 public class PaletteCouleurController {
 	
