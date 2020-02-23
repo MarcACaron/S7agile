@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import org.junit.jupiter.api.Test;
 
 import adraw4us.Tool;
+import javafx.scene.shape.Line;
 import javafx.geometry.Point2D;
 import models.CustomCircle;
 import models.CustomLine;
@@ -17,11 +18,11 @@ public class TestLineTool {
 	
 	@Test
 	public void testToolReset() {
-		lineTool.getShapes().get(0).setAccessibleHelp("test");
+		lineTool.getShape().getDraw().setAccessibleHelp("test");
 		
 		lineTool.reset();
 		
-		assertNotEquals("test", lineTool.getShapes().get(0).getAccessibleHelp());
+		assertNotEquals("test", lineTool.getShape().getDraw().getAccessibleHelp());
 	}
 	/*
 	@Test
@@ -47,15 +48,15 @@ public class TestLineTool {
 		Tool.setStartFromCenter(true);
 		lineTool.ajustOnDrag(2.0, 2.0, 4.0, 4.0);
 		
-		double startX = ((CustomLine)lineTool.getShapes().get(0)).getStartX();
-		double startY = ((CustomLine)lineTool.getShapes().get(0)).getStartY();
-		double endX = ((CustomLine)lineTool.getShapes().get(0)).getEndX();
-		double endY = ((CustomLine)lineTool.getShapes().get(0)).getEndY();
+		double startX = ((Line)lineTool.getShape().getDraw()).getStartX();
+		double startY = ((Line)lineTool.getShape().getDraw()).getStartY();
+		double endX = ((Line)lineTool.getShape().getDraw()).getEndX();
+		double endY = ((Line)lineTool.getShape().getDraw()).getEndY();
 		
-		assertEquals(4.0, startX);
-		assertEquals(4.0, startY);
-		assertEquals(0.0, endX);
-		assertEquals(0.0, endY);
+		assertEquals(0.0, startX);
+		assertEquals(0.0, startY);
+		assertEquals(4.0, endX);
+		assertEquals(4.0, endY);
 		
 	}
 	
@@ -63,21 +64,22 @@ public class TestLineTool {
 	public void testDuplicateMethod() {
 		CustomLine line = new CustomLine();
 		
-		line.setStartX(0);
-		line.setStartY(0);
-		line.setEndX(40);
-		line.setEndY(45);
+		((Line) line.getDraw()).setStartX(0);
+		((Line) line.getDraw()).setStartY(0);
+		((Line) line.getDraw()).setEndX(40);
+		((Line) line.getDraw()).setEndY(45);
 		
 		CustomLine lineClone = (CustomLine) line.duplicateAndOffset();
 
 		assertEquals(true, line.getStroke() == lineClone.getStroke());
 		assertEquals(true, line.getStrokeWidth() == lineClone.getStrokeWidth());
 		assertEquals(true, line.getFill() == lineClone.getFill());
-		assertEquals(true, line.getLength() == lineClone.getLength());
-		assertEquals(true, line.getRotation() == lineClone.getRotation());
+		assertEquals(true, line.getWidth() == lineClone.getWidth());
+		assertEquals(true, line.getHeight() == lineClone.getHeight());
+		assertEquals(true, line.getRotate() == lineClone.getRotate());
 		
 	}
-	
+	/*
 	@Test
 	public void testOutline() {
 		double startX = 50, startY = 50, endX = 100, endY = 100;
@@ -99,6 +101,6 @@ public class TestLineTool {
 		assertEquals(center.getX(), startX + (endX - startX)/2);
 		assertEquals(center.getY(), startY + (endY - startY)/2);
 		
-	}
+	}*/
 
 }

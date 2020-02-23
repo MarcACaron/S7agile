@@ -51,18 +51,6 @@
                   <TextField fx:id="heightText" alignment="CENTER_RIGHT" onAction="#onHeightChange" prefHeight="31.0" prefWidth="87.0" HBox.hgrow="NEVER" />
                </children>
             </HBox>
-            <HBox fx:id="radius" alignment="CENTER" prefHeight="60.0" prefWidth="124.0">
-               <children>
-                  <Label prefHeight="60.0" prefWidth="50.0" text="Radius:" />
-                  <TextField fx:id="radiusText" alignment="CENTER_RIGHT" onAction="#onRadiusChange" prefHeight="31.0" prefWidth="87.0" HBox.hgrow="NEVER" />
-               </children>
-            </HBox>
-            <HBox fx:id="length" alignment="CENTER" prefHeight="60.0" prefWidth="124.0">
-               <children>
-                  <Label prefHeight="60.0" prefWidth="50.0" text="Length:" />
-                  <TextField fx:id="lengthText" alignment="CENTER_RIGHT" onAction="#onLengthChange" prefHeight="31.0" prefWidth="87.0" HBox.hgrow="NEVER" />
-               </children>
-            </HBox>
          </children>
       </VBox>
       <VBox fx:id="angleSection" prefHeight="82.0" prefWidth="124.0">

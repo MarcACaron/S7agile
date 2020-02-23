@@ -1,119 +1,66 @@
 package models;
 
 
-import javafx.geometry.Point2D;
 import javafx.scene.shape.Line;
-import javafx.scene.shape.Shape;
+import javafx.scene.shape.Rectangle;
 
-public class CustomLine extends Line implements Transformable{
+public class CustomLine extends CustomShape{
 
 	public CustomLine() {
+		this.shape = new Line();
+		this.boundingBox = new Rectangle();
 	}
-
-	public CustomLine(double startX, double startY, double endX, double endY) {
-		super(startX, startY, endX, endY);
-	}
-	
-	@Override
-	public void setXPosTool(double value) {
-		double xL = this.getEndX() - this.getStartX();
+	public void setXPos(double value) {
+		double decalageStart = ((Line)this.shape).getStartX()-this.boundingBox.getX();
+		double decalageEnd = ((Line)this.shape).getEndX()-this.boundingBox.getX();
+		this.boundingBox.setX(value);
+		((Line)this.shape).setStartX(value+decalageStart);
+		((Line)this.shape).setEndX(value+decalageEnd);
+		/*double xL = this.getEndX() - this.getStartX();
 		this.setStartX(value);
-		this.setEndX(value + xL);
+		this.setEndX(value + xL);*/
 	}
 
-	@Override
-	public void setYPosTool(double value) {
+	public void setYPos(double value) {
+		double decalageStart = ((Line)this.shape).getStartY()-this.boundingBox.getY();
+		double decalageEnd = ((Line)this.shape).getEndY()-this.boundingBox.getY();
+		this.boundingBox.setY(value);
+		((Line)this.shape).setStartY(value+decalageStart);
+		((Line)this.shape).setEndY(value+decalageEnd);
+		/*
 		double yL = this.getEndY() - this.getStartY();
 		this.setStartY(value);
-		this.setEndY(value + yL);
+		this.setEndY(value + yL);*/
 	}
 
 	@Override
-	public void setWidthTool(double value) {
-		//Don't have width
+	public void setWidth(double value) {
+		this.boundingBox.setWidth(value);
+		if(((Line)this.shape).getStartX()>((Line)this.shape).getEndX())
+			((Line)this.shape).setStartX(value + ((Line)this.shape).getEndX());
+		else
+			((Line)this.shape).setEndX(value + ((Line)this.shape).getStartX());
+		//((Line)this.shape).setEndX(value);
 	}
 
 	@Override
-	public void setHeightTool(double value) {
-		//Don't have height
+	public void setHeight(double value) {
+		this.boundingBox.setHeight(value);
+		if(((Line)this.shape).getStartY()>((Line)this.shape).getEndY())
+			((Line)this.shape).setStartY(value + ((Line)this.shape).getEndY());
+		else
+			((Line)this.shape).setEndY(value + ((Line)this.shape).getStartY());
 	}
 
-	@Override
-	public void setRadiusTool(double value) {
-		//Don't have radius
-	}
-
-	@Override
-	public void setLengthTool(double value) {
-		double length = this.getLength();
-		this.setEndX((this.getEndX()-this.getStartX())*value/length+this.getStartX());
-		this.setEndY((this.getEndY()-this.getStartY())*value/length+this.getStartY());
+	public void updateLineLength() {
+		//double length = this.getLength();
+		/*this.setEndX((this.getEndX()-this.getStartX())*value/length+this.getStartX());
+		this.setEndY((this.getEndY()-this.getStartY())*value/length+this.getStartY());*/
 	}
 	
-	@Override
-	public void setRotationTool(double value) {
-		this.setRotate(value);
-		
-	}
-
-	@Override
-	public double getXPos() {
-		return this.getStartX();
-	}
-
-	@Override
-	public double getYPos() {
-		return this.getStartY();
-	}
-
-	@Override
-	public double getWidth() {
-		return 0;
-	}
-
-	@Override
-	public double getHeight() {
-		return 0;
-	}
-
-	@Override
-	public double getRadius() {
-		return 0;
-	}
-
-	@Override
-	public double getLength() {
-		return Math.sqrt(Math.pow(this.getStartX() - this.getEndX(), 2) + Math.pow(this.getStartY() - this.getEndY(), 2));
-	}
-
-	@Override
-	public double getRotation() {
-		return this.getRotate();
-	}
-
-	@Override
-	public boolean widthToolisNeeded() {
-		return false;
-	}
-
-	@Override
-	public boolean heightToolisNeeded() {
-		return false;
-	}
-
-	@Override
-	public boolean radiusToolisNeeded() {
-		return false;
-	}
-
-	@Override
-	public boolean lengthToolisNeeded() {
-		return true;
-	}
-	
-	public Shape duplicateAndOffset() {
+	public CustomShape duplicateAndOffset() {//TODO: Réparer
 		CustomLine newLine = new CustomLine();
-		newLine.setStroke(this.getStroke());
+		/*newLine.setStroke(this.getStroke());
 		newLine.setStrokeWidth(this.getStrokeWidth());
 		newLine.setFill(this.getFill());
 		newLine.setStartX(this.getStartX() + XCOPYOFFSET);
@@ -121,14 +68,14 @@ public class CustomLine extends Line implements Transformable{
 		newLine.setEndX(this.getEndX() + XCOPYOFFSET);
 		newLine.setEndY(this.getEndY() + YCOPYOFFSET);
 		newLine.setLengthTool(this.getLength());
-		newLine.setRotationTool(this.getRotation());
+		newLine.setRotationTool(this.getRotation());*/
 		
 		return newLine;
 	}
 	
-	public Shape duplicate() {
+	public CustomShape duplicate() {//TODO: Réparer
 		CustomLine newLine = new CustomLine();
-		newLine.setStroke(this.getStroke());
+		/*newLine.setStroke(this.getStroke());
 		newLine.setStrokeWidth(this.getStrokeWidth());
 		newLine.setFill(this.getFill());
 		newLine.setStartX(this.getStartX());
@@ -136,7 +83,7 @@ public class CustomLine extends Line implements Transformable{
 		newLine.setEndX(this.getEndX());
 		newLine.setEndY(this.getEndY());
 		newLine.setLengthTool(this.getLength());
-		newLine.setRotationTool(this.getRotation());
+		newLine.setRotationTool(this.getRotation());*/
 		
 		return newLine;
 	}
@@ -145,50 +92,45 @@ public class CustomLine extends Line implements Transformable{
 	public String getType() {
 		return "line";
 	}
-
 	@Override
-	public boolean isSelected(double xStart, double yStart, double xEnd, double yEnd) {
-		if(this.getStartX()<xStart)
-			return false;
-		if(this.getEndX()<xStart)
-			return false;
-		if(this.getStartY()<yStart)
-			return false;
-		if(this.getEndY()<yStart)
-			return false;
-		if(this.getStartX()>xEnd)
-			return false;
-		if(this.getEndX()>xEnd)
-			return false;
-		if(this.getStartY()>yEnd)
-			return false;
-		if(this.getEndY()>yEnd)
-			return false;
-		return true;
+	public void ajustOnDragFromCorner(double posXStart, double posYStart, double posXEnd, double posYEnd) {
+		double startX=Math.min(posXStart, posXEnd);
+		double startY=Math.min(posYStart, posYEnd);
+		double width = Math.abs(posXStart - posXEnd);
+		double height = Math.abs(posYStart - posYEnd);
+		this.boundingBox.setX(startX);
+		this.boundingBox.setY(startY);
+		this.boundingBox.setWidth(width);
+		this.boundingBox.setHeight(height);
+		((Line)shape).setStartX(posXStart);
+		((Line)shape).setStartY(posYStart);
+		((Line)shape).setEndX(posXEnd);
+		((Line)shape).setEndY(posYEnd);
 	}
-	
 	@Override
-	public double[] getOutlineCoords() {
-		double array[] = {0,0,0,0};
-		if (this.getRotation() < 90) {
-			array[0] = this.getStartX() - selectionShapeOffset;
-			array[1] = this.getStartY() - selectionShapeOffset;
-			array[2] = this.getEndX() + selectionShapeOffset;
-			array[3] = this.getEndY() + selectionShapeOffset;
+	public void ajustOnDragFromCenter(double posXStart, double posYStart, double posXEnd, double posYEnd) {
+		double startX;
+		double startY;
+		double width;
+		double height;
+		if(posXStart<posXEnd) {
+			width = posXEnd-posXStart;
+			startX=posXStart-width;
 		}else {
-			array[0] = this.getStartX() - selectionShapeOffset;
-			array[1] = this.getEndY() + selectionShapeOffset;
-			array[2] = this.getEndX() - selectionShapeOffset;
-			array[3] = this.getStartY() + selectionShapeOffset;
+			startX=posXEnd;
+			width = posXStart-posXEnd;
 		}
+		if(posYStart<posYEnd) {
+			height = posYEnd-posYStart;
+			startY=posYStart-height;
+		}else {
+			startY=posYEnd;
+			height = posYStart-posYEnd;
+		}
+		this.setXPos(startX);
+		this.setYPos(startY);
+		this.setWidth(width*2);
+		this.setHeight(height*2);
 		
-		return array;
-	}
-	
-	@Override
-	public Point2D getCenterCoord() {
-		double 	xCenterOffset = ((this.getEndX()-this.getStartX())/2), 
-				yCenterOffset = ((this.getEndY()-this.getStartY())/2);
-		return (new Point2D(this.getStartX() + xCenterOffset, this.getStartY() + yCenterOffset));
 	}
 }

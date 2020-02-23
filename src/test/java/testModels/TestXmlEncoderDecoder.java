@@ -1,22 +1,12 @@
 package testModels;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import java.io.File;
 
 import org.junit.*;
-import org.junit.jupiter.api.Test;
-
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.scene.Node;
-import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import models.CustomCircle;
 import models.CustomLine;
 import models.CustomRectangle;
-import models.XmlDecoder;
-import models.XmlEncoder;
 
 public class TestXmlEncoderDecoder {
 	
@@ -28,9 +18,9 @@ public class TestXmlEncoderDecoder {
 	File file;
 	
 	public TestXmlEncoderDecoder() {
-		circle.setAccessibleText("rouge");
-		rectangle.setAccessibleText("rouge");
-		line.setAccessibleText("rouge");
+		circle.getDraw().setAccessibleText("rouge");
+		rectangle.getDraw().setAccessibleText("rouge");
+		line.getDraw().setAccessibleText("rouge");
 		
 		circle.setStroke(Color.BLACK);
 		rectangle.setStroke(Color.BLACK);

@@ -1,12 +1,7 @@
 package testsFX;
 
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import org.junit.jupiter.api.Order;
-import org.testfx.util.WaitForAsyncUtils;
-
-import javafx.scene.control.MenuBar;
 import javafx.scene.input.KeyCode;
 
 

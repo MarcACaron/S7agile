@@ -15,7 +15,7 @@ public class TestPatternApplier {
 	public void testFillRed() {
 		CustomCircle shape = new CustomCircle();
 		
-		patternApplier.fillShape(shape, "rouge");
+		patternApplier.fillShape(shape.getDraw(), "rouge");
 		
 		assertEquals(Color.RED, shape.getFill());
 	}

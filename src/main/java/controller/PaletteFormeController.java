@@ -35,7 +35,7 @@ public class PaletteFormeController {
 	@FXML
 	private void choosePointer() {
 		if(pointeur.isSelected()) {
-			this.mainApp.setTool(new SelectionTool(this.mainApp.getTool().getShapes()));
+			this.mainApp.setTool(new SelectionTool(this.mainApp.getTool().getShape()));
 		}else {
 			pointeur.setSelected(true);
 		}
@@ -56,7 +56,7 @@ public class PaletteFormeController {
 		if(rectangle.isSelected()) {
 			this.mainApp.setTool(new RectangleTool());
 		}else {
-			this.mainApp.setTool(new SelectionTool(this.mainApp.getTool().getShapes()));
+			this.mainApp.setTool(new SelectionTool(this.mainApp.getTool().getShape()));
 			pointeur.setSelected(true);
 		}
 		
@@ -66,7 +66,7 @@ public class PaletteFormeController {
 		if(circle.isSelected()) {
 			this.mainApp.setTool(new CircleTool());
 		}else {
-			this.mainApp.setTool(new SelectionTool(this.mainApp.getTool().getShapes()));
+			this.mainApp.setTool(new SelectionTool(this.mainApp.getTool().getShape()));
 			pointeur.setSelected(true);
 		}
 		
@@ -76,13 +76,14 @@ public class PaletteFormeController {
 		if(line.isSelected()) {
 			this.mainApp.setTool(new LineTool());
 		}else {
-			this.mainApp.setTool(new SelectionTool(this.mainApp.getTool().getShapes()));
+			this.mainApp.setTool(new SelectionTool(this.mainApp.getTool().getShape()));
 			pointeur.setSelected(true);
 		}
 		
 	}
 	@FXML
 	private void choosePtDepart() {
+		System.out.println("hmjmkm");
 		if(ptDepart.isSelected()) {
 			ptDepartImage.setImage(new Image("images/corner.png"));
 			ptDepartToolTip.setText("Click to Draw from Center");

@@ -15,7 +15,6 @@ import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
-import models.Transformable;
 
 public class PaletteCouleurController {
 	
@@ -94,8 +93,7 @@ public class PaletteCouleurController {
 			    Tool.setFill(radialGradient);
 			}
 		    Tool.setFillName(value);
-			if(this.mainApp.getTool().getShapes()!=null) {
-				
+			if(this.mainApp.getTool().getShape()!=null) {
 			    this.mainApp.getTool().fillShape();
 			}
 		}
@@ -111,20 +109,16 @@ public class PaletteCouleurController {
 
 	@FXML
 	private void changeStrokeColor() {
-		if(this.mainApp.getTool().getShapes()!=null) {
-			this.mainApp.getTool().getShapes().forEach(shape ->{
-				shape.setStroke(stroke.getValue());
-			});
+		if(this.mainApp.getTool().getShape()!=null) {
+			this.mainApp.getTool().getShape().setStroke(stroke.getValue());
 		}
 		Tool.setStroke(stroke.getValue());
 	}
 	
 	@FXML
 	private void changeLineWidth() {
-		if(this.mainApp.getTool().getShapes()!=null) {
-			this.mainApp.getTool().getShapes().forEach(shape ->{
-				shape.setStrokeWidth(lineWidth.getValue().doubleValue());
-			});
+		if(this.mainApp.getTool().getShape()!=null) {
+			this.mainApp.getTool().getShape().setStrokeWidth(lineWidth.getValue().doubleValue());
 		}
 		Tool.setLineWidth(lineWidth.getValue().doubleValue());
 	}
