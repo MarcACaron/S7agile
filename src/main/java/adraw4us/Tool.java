@@ -72,7 +72,7 @@ public abstract class Tool {
 		this.shape = shape;
 	}
 	
-	public Function<Object, Object> fillDetails(DetailPaletteController dp, CustomShape nd){
+	public Function<Object, Object> fillDetails(DetailPaletteController dp, CustomShape nd, MainApp mainApp){
 		return y -> {
 			if(nd == null) 
 				dp.paletteDisable(true);
@@ -80,13 +80,14 @@ public abstract class Tool {
 				CustomShape tShape = (CustomShape) nd;
 				dp.select(tShape);
 				dp.setTextField(tShape);
+				showSelectedShape(mainApp, nd);
 			}
 			return y;
 			};
 	}
 	
 	
-	public int mousePressed(DetailPaletteController detailPaletteController, Layer layer, ArrayList<CustomShape> drawnShapes) {
+	public int mousePressed(DetailPaletteController detailPaletteController, Layer layer, ArrayList<CustomShape> drawnShapes, MainApp mainApp) {
 		int index = layer.getPane().getChildren().size();
 		this.reset();
 		shape.setLayer(layer.getId());
@@ -109,11 +110,10 @@ public abstract class Tool {
 			pc.setLineWidth(shape2.getStrokeWidth());
 			pc.setStroke((Color) (shape2.getStroke()));
 			
-			mainApp.getTool().showSelectedShape(mainApp, shape2);
-			mainApp.getTool().fillDetails(dp, shape2).apply(null);
+			mainApp.getTool().fillDetails(dp, shape2, mainApp).apply(null);
 			
 		});
-		fillDetails(dp, shape2).apply(null);
+		fillDetails(dp, shape2, mainApp).apply(null);
 		this.showSelectedShape(mainApp, shape2);
 	}
 		public static Paint getFill() {
@@ -164,7 +164,9 @@ public abstract class Tool {
 		Tool.startFromCenter = startFromCenter;
 	}
 	
-	protected abstract void showSelectedShape(MainApp mainApp, CustomShape inputShape);
-	
+	protected final void showSelectedShape(MainApp mainApp, CustomShape inputShape) {
+		mainApp.getDrawingZoneController().clearSelectionLayer();
+		mainApp.getDrawingZoneController().addSelectionShape(this.getShape().getOutlineCoords());
+	}
 	public abstract String getToolType();
 }

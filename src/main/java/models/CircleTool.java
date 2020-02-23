@@ -15,14 +15,7 @@ public class CircleTool extends Tool{
 		shape.setStroke(stroke);
 		shape.setStrokeWidth(lineWidth);
 	}
-	
-	@Override
-	protected void showSelectedShape(MainApp mainApp, CustomShape inputShape) {
-		mainApp.getDrawingZoneController().clearSelectionLayer();
-		mainApp.getDrawingZoneController().addSelectionShape(this.getShape().getOutlineCoords());
-		
-	}
-	
+
 	@Override
 	public String getToolType() {
 		return "circle";

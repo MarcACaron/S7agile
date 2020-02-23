@@ -58,52 +58,13 @@ public class XmlDecoder {
 				reader.nextEvent();
 				drawnShape.add(sh);
 				sh.read(reader);
-				/*
-				event = reader.nextEvent();
-				((CustomShape)sh).setXPosTool(Double.valueOf(event.asCharacters().getData()));
-				reader.nextEvent();
-				reader.nextEvent();
-				event = reader.nextEvent();
-				((CustomShape)sh).setYPosTool(Double.valueOf(event.asCharacters().getData()));
-				reader.nextEvent();
-				reader.nextEvent();
-				event = reader.nextEvent();
-				((CustomShape)sh).setWidthTool(Double.valueOf(event.asCharacters().getData()));
-				reader.nextEvent();
-				reader.nextEvent();
-				event = reader.nextEvent();
-				((CustomShape)sh).setHeightTool(Double.valueOf(event.asCharacters().getData()));
-				reader.nextEvent();
-				reader.nextEvent();
-				event = reader.nextEvent();
-				((CustomShape)sh).setRadiusTool(Double.valueOf(event.asCharacters().getData()));
-				reader.nextEvent();
-				reader.nextEvent();
-				event = reader.nextEvent();
-				((CustomShape)sh).setLengthTool(Double.valueOf(event.asCharacters().getData()));
-				reader.nextEvent();
-				reader.nextEvent();
-				event = reader.nextEvent();
-				((CustomShape)sh).setRotationTool(Double.valueOf(event.asCharacters().getData()));
-				reader.nextEvent();
-				reader.nextEvent();
-				event = reader.nextEvent();
-				patternApplier.fillShape(sh, event.asCharacters().getData());
-				reader.nextEvent();
-				reader.nextEvent();
-				event = reader.nextEvent();
-				sh.setStroke(Color.valueOf(event.asCharacters().getData()));
-				reader.nextEvent();
-				reader.nextEvent();
-				event = reader.nextEvent();
-				sh.setStrokeWidth(Double.valueOf(event.asCharacters().getData()));*/
 				CustomShape sh2 = sh;
 				sh.getDraw().setOnMouseClicked(t2 -> {
 					mainApp.getTool().setShape(sh2);
 					mainApp.getPaletteCouleurController().setLineWidth(sh2.getStrokeWidth());
 					mainApp.getPaletteCouleurController().setStroke((Color) (sh2.getStroke()));
 					
-					mainApp.getTool().fillDetails(mainApp.getPaletteDetailController(), sh2).apply(null);
+					mainApp.getTool().fillDetails(mainApp.getPaletteDetailController(), sh2, mainApp).apply(null);
 				});
 			}				
 		}

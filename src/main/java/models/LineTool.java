@@ -17,12 +17,6 @@ public class LineTool extends Tool{
 	}
 	
 	@Override
-	protected void showSelectedShape(MainApp mainApp, CustomShape inputShape) {
-		mainApp.getDrawingZoneController().clearSelectionLayer();
-		//Not used in our case
-	}
-	
-	@Override
 	public String getToolType() {
 		return "line";
 	}

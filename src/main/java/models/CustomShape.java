@@ -167,7 +167,7 @@ public abstract class CustomShape {
     }
     
     public final Point2D getCenterCoord() {
-        return (new Point2D(this.getXPos(), this.getYPos()));
+        return (new Point2D(this.getXPos()+this.getWidth()/2, this.getYPos()+this.getHeight()/2));
     }
 	    
 	

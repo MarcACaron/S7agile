@@ -55,7 +55,7 @@ public class MultiSelectionTool extends Tool {
 		this.shape = new CustomUnionShape();
 	}
 	@Override
-	public int mousePressed(DetailPaletteController detailPaletteController, Layer layer, ArrayList<CustomShape> drawnShapes) {
+	public int mousePressed(DetailPaletteController detailPaletteController, Layer layer, ArrayList<CustomShape> drawnShapes, MainApp mainApp) {
 		this.reset();
 		int index = layer.getPane().getChildren().size();
 		this.selection = new Rectangle();
@@ -93,11 +93,6 @@ public class MultiSelectionTool extends Tool {
 			}
 				
 		}
-	}
-	
-	@Override
-	protected void showSelectedShape(MainApp mainApp, CustomShape inputShape) {
-		mainApp.getDrawingZoneController().clearSelectionLayer();
 	}
 
 	@Override

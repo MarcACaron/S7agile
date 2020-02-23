@@ -20,13 +20,6 @@ public class RectangleTool extends Tool {
 	}
 	
 	@Override
-	protected void showSelectedShape(MainApp mainApp, CustomShape inputShape) {
-		mainApp.getDrawingZoneController().clearSelectionLayer();
-		mainApp.getDrawingZoneController().addSelectionShape(this.getShape().getOutlineCoords());
-		
-	}
-	
-	@Override
 	public String getToolType() {
 		return "rectangle";
 	}
