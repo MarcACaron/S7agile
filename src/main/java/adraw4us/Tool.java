@@ -9,6 +9,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Shape;
+import models.LayersGroup;
 import models.Transformable;
 
 public abstract class Tool {
@@ -19,6 +20,8 @@ public abstract class Tool {
 	protected static double lineStyle;
 	protected static boolean startFromCenter;
 	protected ArrayList<Shape> shapes;
+	
+	protected LayersGroup layerGroup = LayersGroup.getLayersGroup();
 	
 	public Tool() {
 		this.shapes=new ArrayList<>();
@@ -85,6 +88,12 @@ public abstract class Tool {
 	public void mouseReleased(MainApp mainApp, Pane pane, PaletteCouleurController pc, DetailPaletteController dp) {
 		Shape shape2 = (Shape) pane.getChildren().get(pane.getChildren().size()-1);
 		pane.getChildren().remove(pane.getChildren().size()-1);
+		
+		Pane currentPane = layerGroup.getCurrentLayer().getPane();
+		int sizePane = currentPane.getChildren().size();
+		
+		shape2.setId("Shape" + sizePane );
+		
 		mainApp.getDrawingZoneController().applyToCurrentPane(shape2);
 		
 		shape2.setOnMouseClicked(t2 -> {
