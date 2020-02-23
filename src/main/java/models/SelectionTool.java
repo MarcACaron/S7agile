@@ -25,7 +25,6 @@ public class SelectionTool extends Tool {
 	@Override
 	public void reset() {
 	}
-	
 	@Override
 	public int mousePressed(DetailPaletteController detailPaletteController, Layer layer, ArrayList<CustomShape> drawnShapes, MainApp mainApp) {
 		int index = layer.getPane().getChildren().size()-1;
