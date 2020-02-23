@@ -16,7 +16,7 @@ public class testPaletteFormController extends testApplicationUI {
 	@Test
 	public void testPointeur() {
 		clickOn("#pointeur");
-		assertEquals("pointeur", this.mainApp.getTool().getToolType());
+		assertEquals("selection", this.mainApp.getTool().getToolType());
 	}
 	@Test
 	public void testMultiPointeur() {
