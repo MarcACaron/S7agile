@@ -27,7 +27,8 @@ public class TestRectangleTool {
 	
 	@Test
 	public void testAdjustOnDrag1() {
-		
+
+		Tool.setStartFromCenter(false);
 		rectTool.ajustOnDrag(2.0, 2.0, 4.0, 4.0);
 		
 		double width = rectTool.getShape().getWidth();
@@ -43,7 +44,7 @@ public class TestRectangleTool {
 	
 	@Test
 	public void testAdjustOnDrag2() {
-		
+
 		Tool.setStartFromCenter(true);
 		rectTool.ajustOnDrag(2.0, 2.0, 4.0, 4.0);
 		
