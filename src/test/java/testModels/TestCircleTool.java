@@ -7,10 +7,8 @@ import org.junit.jupiter.api.Test;
 
 import adraw4us.Tool;
 import javafx.scene.shape.Circle;
-import javafx.geometry.Point2D;
 import models.CircleTool;
 import models.CustomCircle;
-import models.CustomRectangle;
 
 
 

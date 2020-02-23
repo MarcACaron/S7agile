@@ -2,8 +2,6 @@ package testsFX;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import org.junit.jupiter.api.Test;
-
 import javafx.scene.input.KeyCode;
 
 public class testDetailPaletteController extends testApplicationUI{

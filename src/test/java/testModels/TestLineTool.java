@@ -7,8 +7,6 @@ import org.junit.jupiter.api.Test;
 
 import adraw4us.Tool;
 import javafx.scene.shape.Line;
-import javafx.geometry.Point2D;
-import models.CustomCircle;
 import models.CustomLine;
 import models.LineTool;;
 

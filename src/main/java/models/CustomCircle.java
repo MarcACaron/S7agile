@@ -1,8 +1,6 @@
 package models;
 
 
-import javafx.geometry.Point2D;
-import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 

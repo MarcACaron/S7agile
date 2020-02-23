@@ -2,7 +2,6 @@ package models;
 
 import java.util.ArrayList;
 
-import javafx.geometry.Point2D;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
 

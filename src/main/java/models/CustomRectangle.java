@@ -1,7 +1,5 @@
 package models;
 
-import javafx.geometry.Point2D;
-import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
 
 public class CustomRectangle extends CustomShape {

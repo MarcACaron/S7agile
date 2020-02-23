@@ -4,16 +4,12 @@ import java.util.ArrayList;
 import java.util.function.Function;
 
 import controller.DetailPaletteController;
-import controller.DrawingZoneController;
 import controller.PaletteCouleurController;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import models.CustomShape;
 import models.Layer;
-import javafx.scene.shape.Circle;
-import javafx.scene.shape.Rectangle;
-import javafx.scene.shape.Shape;
 
 public abstract class Tool {
 		

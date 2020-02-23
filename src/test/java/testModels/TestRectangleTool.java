@@ -6,8 +6,6 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
 import adraw4us.Tool;
-import javafx.geometry.Point2D;
-import models.CustomLine;
 import javafx.scene.shape.Rectangle;
 import models.CustomRectangle;
 import models.RectangleTool;
