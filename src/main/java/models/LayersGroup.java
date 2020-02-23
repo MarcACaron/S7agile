@@ -4,8 +4,10 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import javafx.collections.ObservableList;
 import javafx.scene.Node;
 import javafx.scene.layout.Pane;
+import javafx.scene.shape.Shape;
 
 
 public class LayersGroup implements Container {
@@ -88,24 +90,36 @@ public class LayersGroup implements Container {
 	
 	public int downShapeList(int shapeIndex) {
 		
-		if (shapeIndex != layers.get(0).getPane().getChildren().size() - 1) {
-			Collections.swap(layers.get(0).getPane().getChildren(), shapeIndex, shapeIndex + 1);
+		ObservableList<Node> a = layers.get(0).getPane().getChildren();
+		
+		if (shapeIndex < a.size() - 1) {
+			
+			int realIndex = a.size() - 1 - shapeIndex;
+			Node shape = a.get(realIndex);
+			a.remove(shape);
+			a.add(realIndex - 1, shape);
+			
+			return shapeIndex + 1;
 		}
 		
-		return shapeIndex + 1;
+		return -1;
 	}
 	
 	public int upShapeList(int shapeIndex) {
 		
-		if (shapeIndex != layers.get(0).getPane().getChildren().size()) {
-			Node shape = layers.get(0).getPane().getChildren().get(shapeIndex);
-			//(Shape)shape.setId
-			layers.get(0).getPane().getChildren().remove(shape);
-			layers.get(0).getPane().getChildren().add(shapeIndex - 1, shape);
-			//Collections.swap(layers.get(0).getPane().getChildren(), shapeIndex, shapeIndex - 1);
+		ObservableList<Node> a = layers.get(0).getPane().getChildren();
+		
+		if (shapeIndex != 0) {
+
+			int realIndex = a.size() - 1 - shapeIndex;
+			Node shape = a.get(realIndex);
+			a.remove(shape);
+			a.add(realIndex + 1, shape);
+			
+			return shapeIndex - 1;
 		}
 		
-		return shapeIndex - 1;
+		return -1;
 	}
 	
 	public void replaceLayers(List<Layer> newLayers) {
@@ -118,7 +132,7 @@ public class LayersGroup implements Container {
 	
 	private class ShapeIterator implements Iterator {
 
-	      private int index;
+	      private int index = layers.get(0).getPane().getChildren().size()-1;
 	      
 	      public int getIndex() {
 	    	  return this.index;
@@ -127,7 +141,7 @@ public class LayersGroup implements Container {
 	      @Override
 	      public boolean hasNext() {
 	      
-	         if(index < layers.get(0).getPane().getChildren().size() ){
+	         if(index >= 0 ){
 	            return true;
 	         }
 	         return false;
@@ -137,7 +151,7 @@ public class LayersGroup implements Container {
 	      public Object next() {
 	      
 	         if(this.hasNext()){
-	            return layers.get(0).getPane().getChildren().get(index++);
+	            return layers.get(0).getPane().getChildren().get(index--);
 	         }
 	         return null;
 	      }		
