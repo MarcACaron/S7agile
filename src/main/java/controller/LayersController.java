@@ -18,6 +18,7 @@ public class LayersController {
 	@FXML private Button deleteButton;
 	
 	@FXML private Button hideButton;
+	@FXML private Button expandButton;
 	
 	@FXML private ListView<Label> layerListView = new ListView<>();
 	
@@ -52,7 +53,7 @@ public class LayersController {
 			String current = layerListView.getSelectionModel().getSelectedItem().getText();
 			
 			for (int i = 0; i < layerGroup.getLayers().size(); ++i) {
-				if (layerGroup.getLayers().get(i).getId().equals(current)) {
+				if (current == null || layerGroup.getLayers().get(i).getId().equals(current)) {
 					int newIndex = layerGroup.upList(layerGroup.getLayers().get(i));
 					updateList();
 					layerListView.getSelectionModel().select(newIndex);
@@ -93,6 +94,16 @@ public class LayersController {
 					break;
 				}
 			}
+			
+		});
+		
+		expandButton.setOnAction(t -> {
+			Label currentLabel = layerListView.getSelectionModel().getSelectedItem();
+			
+			if (currentLabel == null) {
+				return;
+			}
+			
 			
 		});
 		

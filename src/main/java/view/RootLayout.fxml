@@ -39,7 +39,8 @@
               <MenuItem fx:id="menuItemMagnetism" mnemonicParsing="false" text="Turn Autogrid off" />
               <MenuItem mnemonicParsing="false" text="Show rules" />
               <MenuItem fx:id="menuShowGridLines" mnemonicParsing="false" text="Show gridlines" />
-              <MenuItem fx:id="menuItemLayers" mnemonicParsing="false" text="Layers" />           
+              <MenuItem fx:id="menuItemLayers" mnemonicParsing="false" text="Layers" />
+              <MenuItem fx:id="menuItemShapeOrder" mnemonicParsing="false" text="Shape Order" />           
 			</items>
           </Menu>
           

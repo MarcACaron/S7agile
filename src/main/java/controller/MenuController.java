@@ -42,6 +42,8 @@ public class MenuController {
 	
 	@FXML private MenuItem menuItemRedo;
 	
+	@FXML private MenuItem menuItemShapeOrder;
+	
 	private Logger loggerMenuController;
 	
 	@FXML
@@ -122,6 +124,27 @@ public class MenuController {
 			try {
 				FXMLLoader loader = new FXMLLoader();
 				loader.setLocation(getClass().getResource("../view/LayerWindow.fxml"));
+	            root = loader.load();
+	            Stage stage = new Stage();
+	            stage.initModality(Modality.WINDOW_MODAL);
+	            stage.initOwner(mainApp.getPrimaryStage().getScene().getWindow());
+	            stage.setScene(new Scene(root));
+	            stage.showAndWait();
+	            mainApp.getDrawingZoneController().updateLayers(true);
+	            
+	        }
+	        catch (IOException ex) {
+	        	loggerMenuController.log(Level.SEVERE, "Exeption: "+ex.getMessage()+"; Fonction: initialize():MenuController;");
+	        }
+			
+		});
+		
+		menuItemShapeOrder.setOnAction(e -> {
+
+			Parent root;
+			try {
+				FXMLLoader loader = new FXMLLoader();
+				loader.setLocation(getClass().getResource("../view/LayerShapeWindow.fxml"));
 	            root = loader.load();
 	            Stage stage = new Stage();
 	            stage.initModality(Modality.WINDOW_MODAL);
