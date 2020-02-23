@@ -25,7 +25,11 @@ public abstract class Tool {
 	}
 	
 	public void ajustOnDrag(double posXStart, double posYStart, double posXEnd, double posYEnd) {
-		double startX;
+		if(startFromCenter)
+			this.shape.ajustOnDragFromCenter(posXStart, posYStart, posXEnd, posYEnd);
+		else
+			this.shape.ajustOnDragFromCorner(posXStart, posYStart, posXEnd, posYEnd);
+		/*double startX;
 		double startY;
 		double width;
 		double height;
@@ -46,7 +50,7 @@ public abstract class Tool {
 		this.shape.setXPos(startX);
 		this.shape.setYPos(startY);
 		this.shape.setWidth(width);
-		this.shape.setHeight(height);
+		this.shape.setHeight(height);*/
 	}
 	
 	public void fillShape() {

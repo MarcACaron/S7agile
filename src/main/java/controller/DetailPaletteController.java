@@ -41,37 +41,36 @@ public class DetailPaletteController {
 	@FXML 
 	private void onXPosChange(){
 		this.mainApp.getTool().getShape().setXPos(Double.valueOf(xPosText.getText()));
-		this.mainApp.getTool().fillDetails(this, this.mainApp.getTool().getShape());
+		this.mainApp.getTool().fillDetails(this, this.mainApp.getTool().getShape()).apply(null);
 	}
 
 	@FXML 
 	private void onYPosChange(){
 		this.mainApp.getTool().getShape().setYPos(Double.valueOf(yPosText.getText()));
-		this.mainApp.getTool().fillDetails(this, this.mainApp.getTool().getShape());
+		this.mainApp.getTool().fillDetails(this, this.mainApp.getTool().getShape()).apply(null);
 	}
 
 	@FXML 
 	private void onWidthChange(){
 		this.mainApp.getTool().getShape().setWidth(Double.valueOf(widthText.getText()));
-		this.mainApp.getTool().fillDetails(this, this.mainApp.getTool().getShape());
+		this.mainApp.getTool().fillDetails(this, this.mainApp.getTool().getShape()).apply(null);
 	}
 
 	@FXML 
 	private void onHeightChange(){
-		((CustomShape)this.mainApp.getTool().getShape()).setHeight(Double.valueOf(heightText.getText()));
-		this.mainApp.getTool().fillDetails(this, this.mainApp.getTool().getShape());
+		this.mainApp.getTool().getShape().setHeight(Double.valueOf(heightText.getText()));
+		this.mainApp.getTool().fillDetails(this, this.mainApp.getTool().getShape()).apply(null);
 	}
 
 	@FXML 
 	private void onRotateChange(){
-		((CustomShape)this.mainApp.getTool().getShape()).setRotate(Double.valueOf(angleText.getText()));
-		this.mainApp.getTool().fillDetails(this, this.mainApp.getTool().getShape());
+		this.mainApp.getTool().getShape().setRotate(Double.valueOf(angleText.getText()));
+		this.mainApp.getTool().fillDetails(this, this.mainApp.getTool().getShape()).apply(null);
 	}
 	
 	public void setMainApp(MainApp inputMain){mainApp = inputMain;}
 
 	public void setTextField(CustomShape tShape) {
-		
 		setXPosText(String.valueOf(Math.floor(tShape.getXPos() * 100) / 100));
 		setYPosText(String.valueOf(Math.floor(tShape.getYPos() * 100) / 100));
 		setWidthText(String.valueOf(Math.floor(tShape.getWidth() * 100) / 100));

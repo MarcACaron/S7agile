@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
 import adraw4us.Tool;
-import models.CustomLine;
+import javafx.scene.shape.Rectangle;
 import models.CustomRectangle;
 import models.RectangleTool;
 
@@ -17,11 +17,11 @@ public class TestRectangleTool {
 	
 	@Test
 	public void testToolReset() {
-		rectTool.getShapes().get(0).setAccessibleHelp("test");
+		rectTool.getShape().getDraw().setAccessibleHelp("test");
 		
 		rectTool.reset();
 		
-		assertNotEquals("test", rectTool.getShapes().get(0).getAccessibleHelp());
+		assertNotEquals("test", rectTool.getShape().getDraw().getAccessibleHelp());
 	}
 	
 	@Test
@@ -47,10 +47,10 @@ public class TestRectangleTool {
 		Tool.setStartFromCenter(true);
 		rectTool.ajustOnDrag(2.0, 2.0, 4.0, 4.0);
 		
-		double width = ((CustomRectangle)rectTool.getShapes().get(0)).getWidth();
-		double height = ((CustomRectangle)rectTool.getShapes().get(0)).getHeight();
-		double posX = ((CustomRectangle)rectTool.getShapes().get(0)).getX();
-		double posY = ((CustomRectangle)rectTool.getShapes().get(0)).getY();
+		double width = ((Rectangle)rectTool.getShape().getDraw()).getWidth();
+		double height = ((Rectangle)rectTool.getShape().getDraw()).getHeight();
+		double posX = ((Rectangle)rectTool.getShape().getDraw()).getX();
+		double posY = ((Rectangle)rectTool.getShape().getDraw()).getY();
 		
 		assertEquals(4.0, width);
 		assertEquals(4.0, height);

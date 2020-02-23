@@ -6,8 +6,8 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import org.junit.jupiter.api.Test;
 
 import adraw4us.Tool;
+import javafx.scene.shape.Circle;
 import models.CircleTool;
-import models.CustomShape;
 import models.CustomCircle;
 
 
@@ -18,11 +18,11 @@ public class TestCircleTool {
 	@Test
 	public void testToolReset() {
 		
-		circTool.getShapes().get(0).setAccessibleHelp("test");
+		circTool.getShape().getDraw().setAccessibleHelp("test");
 		
 		circTool.reset();
 		
-		assertNotEquals("test", circTool.getShapes().get(0).getAccessibleHelp());
+		assertNotEquals("test", circTool.getShape().getDraw().getAccessibleHelp());
 	}
 	/*
 	@Test
@@ -46,9 +46,9 @@ public class TestCircleTool {
 		Tool.setStartFromCenter(false);
 		circTool.ajustOnDrag(2.0, 2.0, 4.0, 4.0);
 		
-		double centerX = ((CustomCircle)circTool.getShapes().get(0)).getCenterX();
-		double centerY = ((CustomCircle)circTool.getShapes().get(0)).getCenterY();
-		double radius = ((CustomCircle)circTool.getShapes().get(0)).getRadius();
+		double centerX = ((Circle)circTool.getShape().getDraw()).getCenterX();
+		double centerY = ((Circle)circTool.getShape().getDraw()).getCenterY();
+		double radius = ((Circle)circTool.getShape().getDraw()).getRadius();
 		
 		assertEquals(3.0, centerX);
 		assertEquals(3.0, centerY);
@@ -64,8 +64,8 @@ public class TestCircleTool {
 		assertEquals(circle.getStroke() == circleClone.getStroke(), true);
 		assertEquals(circle.getStrokeWidth() == circleClone.getStrokeWidth(), true);
 		assertEquals(circle.getFill() == circleClone.getFill(), true);
-		assertEquals(circle.getRadius() == circleClone.getRadius(), true);
-		assertEquals(circle.getRotation() == circleClone.getRotation(), true);
+		assertEquals(circle.getWidth() == circleClone.getWidth(), true);
+		assertEquals(circle.getRotate() == circleClone.getRotate(), true);
 		
 	}
 

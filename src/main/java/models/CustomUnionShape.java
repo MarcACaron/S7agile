@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
-import javafx.scene.shape.Shape;
 
 public class CustomUnionShape extends CustomShape {
 	ArrayList<CustomShape> listOfShape;
@@ -86,11 +85,23 @@ public class CustomUnionShape extends CustomShape {
 		updateBoudingBox();
 	}
 	
-	private void updateBoudingBox() {
+	private void updateBoudingBox() {//TODO: Conserver pour la suite
 		double xMin = this.listOfShape.get(0).getXPos();
 		double yMin = this.listOfShape.get(0).getXPos();
 		double xMax = this.listOfShape.get(0).getXPos();
 		double yMax = this.listOfShape.get(0).getXPos();
+		
+	}
+
+	@Override
+	public void ajustOnDragFromCorner(double posXStart, double posYStart, double posXEnd, double posYEnd) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void ajustOnDragFromCenter(double posXStart, double posYStart, double posXEnd, double posYEnd) {
+		// TODO Auto-generated method stub
 		
 	}
 }

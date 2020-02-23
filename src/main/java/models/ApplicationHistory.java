@@ -6,7 +6,6 @@ import java.util.List;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
 import javafx.scene.layout.Pane;
-import javafx.scene.shape.Shape;
 
 public class ApplicationHistory {
 	

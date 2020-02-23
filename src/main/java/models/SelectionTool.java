@@ -7,7 +7,6 @@ import adraw4us.Tool;
 import controller.DetailPaletteController;
 import controller.PaletteCouleurController;
 import javafx.scene.layout.Pane;
-import javafx.scene.shape.Shape;
 
 public class SelectionTool extends Tool {
 

@@ -15,7 +15,6 @@ import javax.xml.stream.events.XMLEvent;
 import adraw4us.MainApp;
 import adraw4us.ShapeFactory;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Shape;
 
 public class XmlDecoder {
 	

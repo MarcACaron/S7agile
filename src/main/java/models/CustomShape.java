@@ -148,9 +148,12 @@ public abstract class CustomShape {
 		event = reader.nextEvent();
 		this.setStrokeWidth(Double.valueOf(event.asCharacters().getData()));
 	}
+	public abstract void ajustOnDragFromCorner(double posXStart, double posYStart, double posXEnd, double posYEnd);
+	public abstract void ajustOnDragFromCenter(double posXStart, double posYStart, double posXEnd, double posYEnd);
 	public void setLayer(String id) {
 		this.layer = id;
 	}
+	
 	
 
 }
