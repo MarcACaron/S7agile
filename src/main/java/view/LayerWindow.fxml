@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LayersController">
+<AnchorPane prefHeight="500.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LayersController">
    <children>
       <ListView fx:id="layerListView" prefHeight="350.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="180.0" AnchorPane.topAnchor="0.0" />
       <Button fx:id="downButton" layoutX="252.0" layoutY="80.0" mnemonicParsing="false" text="Down" AnchorPane.rightAnchor="57.0" />
@@ -13,5 +13,6 @@
       <Button fx:id="newButton" layoutX="257.0" layoutY="224.0" mnemonicParsing="false" text="New" AnchorPane.bottomAnchor="87.0" AnchorPane.rightAnchor="63.0" />
       <Button fx:id="deleteButton" layoutX="249.0" layoutY="275.0" mnemonicParsing="false" text="Delete" AnchorPane.bottomAnchor="36.0" AnchorPane.rightAnchor="55.0" />
       <Button fx:id="hideButton" layoutX="224.0" layoutY="163.0" mnemonicParsing="false" text="Hide/Unhide" AnchorPane.bottomAnchor="148.0" AnchorPane.rightAnchor="30.0" />
+      <Button fx:id="expandButton" layoutX="268.0" layoutY="250.0" mnemonicParsing="false" text="Expand" AnchorPane.bottomAnchor="211.0" />
    </children>
 </AnchorPane>

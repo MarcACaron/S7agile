@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="500.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ShapeLayerController">
+   <children>
+      <ListView fx:id="shapeListView" prefHeight="350.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="180.0" AnchorPane.topAnchor="0.0" />
+      <Button fx:id="downButton" layoutX="252.0" layoutY="80.0" mnemonicParsing="false" text="Down" AnchorPane.rightAnchor="57.0" AnchorPane.topAnchor="95.0" />
+      <Button fx:id="upButton" layoutX="264.0" layoutY="31.0" mnemonicParsing="false" text="Up" AnchorPane.rightAnchor="69.0" AnchorPane.topAnchor="31.0" />
+   </children>
+</AnchorPane>
