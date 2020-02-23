@@ -54,7 +54,7 @@ public class TestCircleTool {
 		
 		assertEquals(3.0, centerX);
 		assertEquals(3.0, centerY);
-		assertEquals(true, 1.40 < radius && radius < 1.42);
+		assertEquals(true, 0.99 < radius && radius < 1.001);
 		
 	}
 	

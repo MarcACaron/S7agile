@@ -14,10 +14,6 @@ public class testDetailPaletteController extends testApplicationUI{
 		drag();
 		moveBy(150, 150);
 		drop();
-		double x2 = ((Transformable)this.mainApp.getTool().getShapes().get(0)).getXPos();
-		double y2 = ((Transformable)this.mainApp.getTool().getShapes().get(0)).getYPos();
-		double rotation2 = ((Transformable)this.mainApp.getTool().getShapes().get(0)).getRotation();
-		double radius2 = ((Transformable)this.mainApp.getTool().getShapes().get(0)).getRadius();
 		doubleClickOn("#xPosText");
 		type(KeyCode.NUMPAD1,3);
 		type(KeyCode.ENTER);

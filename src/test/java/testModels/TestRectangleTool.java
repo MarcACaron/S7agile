@@ -1,3 +1,4 @@
+
 package testModels;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -73,7 +74,7 @@ public class TestRectangleTool {
 		assertEquals(true, rect.getHeight() == rectClone.getHeight());
 		
 	}
-	
+	/*
 	@Test
 	public void testOutline() {
 		double PosX = 50, PosY = 50, size = 100;
@@ -95,6 +96,6 @@ public class TestRectangleTool {
 		assertEquals(center.getX(), PosX + (size/2));
 		assertEquals(center.getY(), PosY + (size/2));
 		
-	}
+	}*/
 
 }
