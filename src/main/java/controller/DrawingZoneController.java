@@ -197,15 +197,20 @@ public class DrawingZoneController {
 	public void clearDrawing() {
 		layersGroup.reset();
 		
+		updateLayers(true);
+		
 		ObservableList<Node> paneList = anchorPane.getChildren();
 		
-		for (int i = 0; i < paneList.size(); ++i) {
+		for (int i = 1; i < paneList.size(); ++i) {
 			
-			if ( !gridPane.getId().equals(paneList.get(i).getId()) ) {
+			if ( !gridPane.getId().equals(paneList.get(i).getId()) && !selectionLayoutPane.getId().equals(paneList.get(i).getId()) ) {
 				((Pane)(paneList.get(i))).getChildren().clear();
 				anchorPane.getChildren().remove(i);
+				paneList = anchorPane.getChildren();
 			}
 		}
+		
+		selectionLayoutPane.getChildren().clear();
 	}
 	
 	public void applyToCurrentPane(Shape shape) {
