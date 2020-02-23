@@ -8,6 +8,7 @@ import controller.PaletteCouleurController;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
+import models.LayersGroup;
 import models.CustomShape;
 import models.Layer;
 
@@ -21,8 +22,10 @@ public abstract class Tool {
 	protected static boolean startFromCenter;
 	protected CustomShape shape;
 	
+	protected LayersGroup layerGroup = LayersGroup.getLayersGroup();
+	
 	public Tool(CustomShape shape) {
-		this.shape=shape;
+		this.shape = shape;
 	}
 	
 	public void ajustOnDrag(double posXStart, double posYStart, double posXEnd, double posYEnd) {
@@ -99,6 +102,12 @@ public abstract class Tool {
 	public void mouseReleased(MainApp mainApp, Pane pane, PaletteCouleurController pc, DetailPaletteController dp, ArrayList<CustomShape> drawnShapes) {
 		CustomShape shape2 = this.shape;
 		pane.getChildren().remove(pane.getChildren().size()-1);
+		
+		Pane currentPane = layerGroup.getCurrentLayer().getPane();
+		int sizePane = currentPane.getChildren().size();
+		
+		shape2.getDraw().setId("Shape" + sizePane );
+		
 		mainApp.getDrawingZoneController().applyToCurrentPane(shape2.getDraw());
 		
 		shape2.getDraw().setOnMouseClicked(t2 -> {

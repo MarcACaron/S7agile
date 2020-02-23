@@ -3,6 +3,7 @@ package testsFX;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import adraw4us.Tool;
 import javafx.scene.input.KeyCode;
@@ -10,6 +11,10 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 
 public class testPaletteCouleur extends testApplicationUI{
+	@BeforeEach
+	public void supprime() {
+		this.delPersistance();
+	}
 	@Test
 	public void testSelectFillColor() {
 		clickOn("#fillAnanas");
@@ -58,5 +63,6 @@ public class testPaletteCouleur extends testApplicationUI{
 	public void testZoom() {
 		clickOn("#zoomOut");
 		clickOn("#zoomIn");
+		//TODO:tester qu'on a le bon zoom
 	}
 }
