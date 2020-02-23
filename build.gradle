@@ -118,7 +118,7 @@ sourceSets {
 	test {
 		java {
 			srcDirs= ["src/test/java"]
-			exclude("src/test/java/testsFX")
+			//exclude("src/test/java/testsFX")
 		}
 		resources {
 			srcDirs= ["src/test/java"]
@@ -136,7 +136,7 @@ jacocoTestReport {
 
 task copyDependencies(type: Copy) {
    from configurations.testCompile
-   into '.\bin'
+   into './bin'
    doLast {
    		println 'Export of dependencies to lib folder done !'
    }
