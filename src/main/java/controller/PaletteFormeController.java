@@ -11,6 +11,8 @@ import models.CircleTool;
 import models.LineTool;
 import models.MultiSelectionTool;
 import models.RectangleTool;
+import models.TriangleHorizontalTool;
+import models.TriangleVerticalTool;
 import models.SelectionTool;
 
 public class PaletteFormeController {
@@ -23,6 +25,10 @@ public class PaletteFormeController {
     private ToggleButton rectangle;
 	@FXML
     private ToggleButton circle;
+	@FXML
+    private ToggleButton triangleHorizontal;
+	@FXML
+    private ToggleButton triangleVertical;
 	@FXML
     private ToggleButton line;
 	@FXML
@@ -71,6 +77,30 @@ public class PaletteFormeController {
 		}
 		
 	}
+	
+	@FXML
+	private void chooseTriangleHorizontal() {
+		if(triangleHorizontal.isSelected()) {
+			System.out.print("je fais un bo TH");
+			this.mainApp.setTool(new TriangleHorizontalTool());
+		}else {
+			this.mainApp.setTool(new SelectionTool(this.mainApp.getTool().getShape()));
+			pointeur.setSelected(true);
+		}
+		
+	}
+	
+	@FXML
+	private void chooseTriangleVertical() {
+		if(triangleVertical.isSelected()) {
+			System.out.print("je fais un bo TV");
+			this.mainApp.setTool(new TriangleVerticalTool());
+		}else {
+			this.mainApp.setTool(new SelectionTool(this.mainApp.getTool().getShape()));
+			pointeur.setSelected(true);
+		}
+		
+	}	
 	@FXML
 	private void chooseLine() {
 		if(line.isSelected()) {
