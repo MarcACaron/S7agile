@@ -35,10 +35,10 @@ public class TestRectangleTool {
 		double height = rectTool.getShape().getHeight();
 		double posX = rectTool.getShape().getXPos();
 		double posY = rectTool.getShape().getYPos();
-		assertTrue(1.999<width && width<2.001);
-		assertTrue(1.999<height && height<2.001);
-		assertTrue(1.999<posX && posX<2.001);
-		assertTrue(1.999<posY && posY<2.001);
+		assertTrue(1.999<width && width<2.01);
+		assertTrue(1.999<height && height<2.01);
+		assertTrue(1.999<posX && posX<2.01);
+		assertTrue(1.999<posY && posY<2.01);
 	}
 	
 	@Test
