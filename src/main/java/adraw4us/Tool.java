@@ -24,6 +24,10 @@ public abstract class Tool {
 	
 	protected LayersGroup layerGroup = LayersGroup.getLayersGroup();
 	
+	public Tool(CustomShape shape) {
+		this.shape = shape;
+	}
+	
 	public void ajustOnDrag(double posXStart, double posYStart, double posXEnd, double posYEnd) {
 		if(startFromCenter)
 			this.shape.ajustOnDragFromCenter(posXStart, posYStart, posXEnd, posYEnd);
@@ -102,7 +106,7 @@ public abstract class Tool {
 		Pane currentPane = layerGroup.getCurrentLayer().getPane();
 		int sizePane = currentPane.getChildren().size();
 		
-		shape2.setId("Shape" + sizePane );
+		shape2.getDraw().setId("Shape" + sizePane );
 		
 		mainApp.getDrawingZoneController().applyToCurrentPane(shape2.getDraw());
 		
