@@ -2,9 +2,15 @@ package testsFX;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import org.junit.jupiter.api.BeforeEach;
+
 import javafx.scene.input.KeyCode;
 
 public class testDetailPaletteController extends testApplicationUI{
+	@BeforeEach
+	public void supprime() {
+		this.delPersistance();
+	}
 	//@Test
 	public void testDetailWithCircle() {
 		clickOn("#circle");

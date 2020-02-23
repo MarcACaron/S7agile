@@ -27,19 +27,18 @@ public class TestRectangleTool {
 	
 	@Test
 	public void testAdjustOnDrag1() {
-		/*
+		
 		rectTool.ajustOnDrag(2.0, 2.0, 4.0, 4.0);
 		
-		double width = ((CustomRectangle)rectTool.getShape()).getWidth();
-		double height = ((CustomRectangle)rectTool.getShape()).getHeight();
-		double posX = ((CustomRectangle)rectTool.getShape()).getX();
-		double posY = ((CustomRectangle)rectTool.getShape()).getY();
+		double width = rectTool.getShape().getWidth();
+		double height = rectTool.getShape().getHeight();
+		double posX = rectTool.getShape().getXPos();
+		double posY = rectTool.getShape().getYPos();
 		
 		assertEquals(2.0, width);
 		assertEquals(2.0, height);
 		assertEquals(2.0, posX);
 		assertEquals(2.0, posY);
-		*/
 	}
 	
 	@Test
