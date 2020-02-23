@@ -8,20 +8,18 @@ import controller.DetailPaletteController;
 import controller.PaletteCouleurController;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Shape;
+import javafx.scene.shape.Rectangle;
 
 public class MultiSelectionTool extends Tool {
-	protected CustomRectangle selection;
-	public MultiSelectionTool() {
-		super();
-	}
+	protected Rectangle selection;
 
-	public MultiSelectionTool(Shape shape) {
+	public MultiSelectionTool(CustomShape shape) {
 		super(shape);
+		this.selection = new Rectangle();
 	}
-	
-	public MultiSelectionTool(ArrayList<Shape> shapes) {
-		super(shapes);
+	public MultiSelectionTool() {
+		super(null);
+		this.selection = new Rectangle();
 	}
 
 
@@ -53,21 +51,21 @@ public class MultiSelectionTool extends Tool {
 
 	@Override
 	public void reset() {
-		this.shapes.clear();
-		this.selection = null;
+		this.selection = new Rectangle();
+		this.shape = new CustomUnionShape();
 	}
-	
-	public int mousePressed(DetailPaletteController dp, Pane pane) {
+	@Override
+	public int mousePressed(DetailPaletteController detailPaletteController, Layer layer, ArrayList<CustomShape> drawnShapes, MainApp mainApp) {
 		this.reset();
-		int index = pane.getChildren().size();
-		this.selection = new CustomRectangle();
+		int index = layer.getPane().getChildren().size();
+		this.selection = new Rectangle();
 		selection.setStroke(Color.DARKGREY);
 		selection.setStrokeWidth(5.0);
 		selection.setFill(null);
 		selection.getStrokeDashArray().addAll(25d, 20d, 5d, 20d);
 		System.out.println("....");
 		if(selection!=null)
-			pane.getChildren().add(selection);
+			layer.getPane().getChildren().add(selection);
 		
 		return index;
 	}
@@ -78,22 +76,23 @@ public class MultiSelectionTool extends Tool {
 	}
 
 	@Override
-	public void mouseReleased(MainApp mainApp, Pane pane, PaletteCouleurController paletteCouleurController, DetailPaletteController pc) {double xStart = selection.getX();
+	public void mouseReleased(MainApp mainApp, Pane pane, PaletteCouleurController paletteCouleurController, DetailPaletteController pc, ArrayList<CustomShape> drawnShapes) {
+		System.out.println("dfsmlsldlsghlk");
+		double xStart = selection.getX();
 		double yStart = selection.getY();
 		double xEnd = selection.getX()+selection.getWidth();
 		double yEnd = selection.getY()+selection.getHeight();
 		pane.getChildren().remove(pane.getChildren().size()-1);
-		for(int i=0; i<pane.getChildren().size();i++) {
-			if(((Transformable)pane.getChildren().get(i)).isSelected(xStart, yStart, xEnd, yEnd)) {
-				this.shapes.add((Shape)pane.getChildren().get(i));
+		for(int i=0; i<drawnShapes.size();i++) {
+			if((drawnShapes.get(i)).isSelected(xStart, yStart, xEnd, yEnd)) {
+				System.out.println("jkh");
+				System.out.println((CustomUnionShape)this.shape==null);
+				System.out.println(drawnShapes==null);
+				System.out.println(drawnShapes.get(i)==null);
+				((CustomUnionShape)this.shape).add(drawnShapes.get(i));//NULL
 			}
 				
 		}
-	}
-	
-	@Override
-	protected void showSelectedShape(MainApp mainApp, Transformable inputShape) {
-		mainApp.getDrawingZoneController().clearSelectionLayer();
 	}
 
 	@Override

@@ -7,37 +7,31 @@ import adraw4us.Tool;
 import controller.DetailPaletteController;
 import controller.PaletteCouleurController;
 import javafx.scene.layout.Pane;
-import javafx.scene.shape.Shape;
 
 public class SelectionTool extends Tool {
 
-	public SelectionTool() {
-	}
-
-	public SelectionTool(Shape tool) {
-		super(tool);
+	public SelectionTool(CustomShape shape) {
+		super(shape);
 	}
 	
-	public SelectionTool(ArrayList<Shape> shapes) {
-		super(shapes);
+	public SelectionTool() {
+		super(null);
 	}
 
 	@Override
 	public void ajustOnDrag(double posXStart, double posYStart, double posXEnd, double posYEnd) {
-		//No need as he might not draw for now
 	}
 
 	@Override
 	public void reset() {
-		this.shapes.clear();
 	}
 	
 	@Override
-	public int mousePressed(DetailPaletteController dp, Pane pane) {
-		int index = pane.getChildren().size()-1;
+	public int mousePressed(DetailPaletteController detailPaletteController, Layer layer, ArrayList<CustomShape> drawnShapes, MainApp mainApp) {
+		int index = layer.getPane().getChildren().size()-1;
 		if(index<0)
 			index=0;
-		this.fillDetails(dp, null).apply(null);
+		this.fillDetails(detailPaletteController, null, mainApp).apply(null);
 		this.reset();
 		return index;
 	}
@@ -48,15 +42,10 @@ public class SelectionTool extends Tool {
 	}
 
 	@Override
-	public void mouseReleased(MainApp mainApp, Pane pane, PaletteCouleurController paletteCouleurController, DetailPaletteController pc) {
+	public void mouseReleased(MainApp mainApp, Pane pane, PaletteCouleurController pc, DetailPaletteController dp, ArrayList<CustomShape> drawnShapes) {
 		mainApp.getDrawingZoneController().clearSelectionLayer();
 		//showSelectedShape(mainApp, inputShape);
 	}
-	
-	@Override
-	protected void showSelectedShape(MainApp mainApp, Transformable inputShape) {
-		mainApp.getDrawingZoneController().clearSelectionLayer();
-		mainApp.getDrawingZoneController().addSelectionShape(((Transformable)this.getShapes().get(0)).getOutlineCoords());	}
 	
 	@Override
 	public String getToolType() {
