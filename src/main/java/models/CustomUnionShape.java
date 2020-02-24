@@ -7,34 +7,63 @@ import javafx.scene.shape.Rectangle;
 
 public class CustomUnionShape extends CustomShape {
 	ArrayList<CustomShape> listOfShape;
+	boolean scale;
 	public CustomUnionShape(ArrayList<CustomShape> listOfShape) {
 		this.boundingBox = new Rectangle();
 		this.listOfShape = listOfShape;
+		scale = false;
 	}
 
 	public CustomUnionShape() {
 		this.boundingBox = new Rectangle();
 		this.listOfShape = new ArrayList<CustomShape>();
+		scale = false;
 	}
 
 	@Override
 	public void setXPos(double value) {
-		// On ne fait rien, on ne sait pas à laquelle il faut le faire
+		double deplacement= value-this.boundingBox.getX();
+		listOfShape.forEach(sh -> {
+			sh.setXPos(deplacement+sh.getXPos());
+		});
+		this.boundingBox.setX(value);
 	}
 
 	@Override
 	public void setYPos(double value) {
-		// On ne fait rien, on ne sait pas à laquelle il faut le faire
+		double deplacement= value-this.boundingBox.getY();
+		listOfShape.forEach(sh -> {
+			sh.setYPos(deplacement+sh.getYPos());
+		});
+		this.boundingBox.setY(value);
 	}
 
 	@Override
 	public void setWidth(double value) {
-		// On ne fait rien, on ne sait pas à laquelle il faut le faire
+		double rapportWidth = value/this.boundingBox.getWidth();
+		listOfShape.forEach(sh -> {
+			sh.setWidth(rapportWidth*sh.getWidth());
+			double rapportDeplacement = (sh.getXPos()-this.boundingBox.getX())/this.boundingBox.getWidth();
+			sh.setXPos(this.boundingBox.getX() + rapportDeplacement*value);
+			if(scale) {
+				setHeight(value * getHeight()/getWidth()+ getHeight());
+			}
+		});
+		this.boundingBox.setWidth(value);
 	}
 
 	@Override
 	public void setHeight(double value) {
-		// On ne fait rien, on ne sait pas à laquelle il faut le faire
+		double rapportWidth= value/this.boundingBox.getHeight();
+		listOfShape.forEach(sh -> {
+			sh.setHeight(rapportWidth*sh.getHeight());
+			double rapportDeplacement = (sh.getYPos()-this.boundingBox.getY())/this.boundingBox.getHeight();
+			sh.setYPos(this.boundingBox.getY() + rapportDeplacement*value);
+			if(scale) {
+				setWidth(value * getWidth()/getHeight()+ getWidth());
+			}
+		});
+		this.boundingBox.setHeight(value);
 	}
 	
 	@Override
@@ -82,15 +111,40 @@ public class CustomUnionShape extends CustomShape {
 
 	public void add(CustomShape customShape) {
 		this.listOfShape.add(customShape);
-		updateBoudingBox();
+		if(customShape.getType()=="circle") {
+			scale=true;
+		}
 	}
 	
-	private void updateBoudingBox() {//TODO: Conserver pour la suite
-		double xMin = this.listOfShape.get(0).getXPos();
-		double yMin = this.listOfShape.get(0).getXPos();
-		double xMax = this.listOfShape.get(0).getXPos();
-		double yMax = this.listOfShape.get(0).getXPos();
-		
+	public boolean updateBoudingBox() {//TODO: Conserver pour la suite
+		double xMin = 0;
+		double yMin = 0;
+		double xMax = 0;
+		double yMax = 0;
+		boolean ok = !listOfShape.isEmpty();
+		if(ok) {
+			xMin = this.listOfShape.get(0).getXPos();
+			yMin = this.listOfShape.get(0).getYPos();
+			xMax = this.listOfShape.get(0).getXPos()+this.listOfShape.get(0).getWidth();
+			yMax = this.listOfShape.get(0).getYPos()+this.listOfShape.get(0).getHeight();
+		}
+		for(int i=0; i<listOfShape.size();i++) {
+			xMin=Math.min(xMin, this.listOfShape.get(i).getXPos());	
+			yMin=Math.min(yMin, this.listOfShape.get(i).getYPos());	
+			xMax=Math.max(xMax, this.listOfShape.get(i).getXPos()+this.listOfShape.get(i).getWidth());	
+			yMax=Math.max(yMax, this.listOfShape.get(i).getYPos()+this.listOfShape.get(i).getHeight());	
+		}
+		this.boundingBox.setX(xMin);
+		this.boundingBox.setY(yMin);
+		this.boundingBox.setWidth(xMax-xMin);
+		this.boundingBox.setHeight(yMax-yMin);
+		if(ok) {
+			System.out.println(xMin);
+			System.out.println(yMin);
+			System.out.println(xMax);
+			System.out.println(yMax);
+		}
+		return ok;
 	}
 
 	@Override

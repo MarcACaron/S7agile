@@ -83,9 +83,11 @@ public class MultiSelectionTool extends Tool {
 		pane.getChildren().remove(pane.getChildren().size()-1);
 		for(int i=0; i<drawnShapes.size();i++) {
 			if((drawnShapes.get(i)).isSelected(xStart, yStart, xEnd, yEnd)) {
-				((CustomUnionShape)this.shape).add(drawnShapes.get(i));//NULL
-			}
-				
+				((CustomUnionShape)this.shape).add(drawnShapes.get(i));
+			}	
+		}
+		if(((CustomUnionShape)this.shape).updateBoudingBox()) {
+			fillDetails(mainApp.getPaletteDetailController(), this.shape, mainApp).apply(null);
 		}
 	}
 
