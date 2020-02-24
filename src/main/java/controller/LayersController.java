@@ -50,50 +50,17 @@ public class LayersController {
 		});
 		
 		upButton.setOnAction(t -> {
-			String current = layerListView.getSelectionModel().getSelectedItem().getText();
-			
-			for (int i = 0; i < layerGroup.getLayers().size(); ++i) {
-				if (current == null || layerGroup.getLayers().get(i).getId().equals(current)) {
-					int newIndex = layerGroup.upList(layerGroup.getLayers().get(i));
-					updateList();
-					layerListView.getSelectionModel().select(newIndex);
-
-					break;
-				}
-			}
+			setupUpButton();
 
 		});
 		
 		downButton.setOnAction(t -> {
-			String current = layerListView.getSelectionModel().getSelectedItem().getText();
-			
-			for (int i = 0; i < layerGroup.getLayers().size(); ++i) {
-				if (current == null || layerGroup.getLayers().get(i).getId().equals(current)) {
-					int newIndex = layerGroup.downList(layerGroup.getLayers().get(i));
-					updateList();
-					layerListView.getSelectionModel().select(newIndex);
-
-					break;
-				}
-			}
+			setupDownButton();
 
 		});
 		
 		hideButton.setOnAction(t -> {
-			Label currentLabel = layerListView.getSelectionModel().getSelectedItem();
-			currentLabel.setDisable(!currentLabel.isDisabled());
-			
-			
-			for (int i = 0; i < layerGroup.getLayers().size(); ++i) {
-				
-				if (layerGroup.getLayers().get(i).getId().equals(currentLabel.getText())) {
-					Pane selectedPane = layerGroup.getLayers().get(i).getPane();
-					selectedPane.setVisible(!selectedPane.isVisible());
-					
-					
-					break;
-				}
-			}
+			setupHideButton();
 			
 		});
 		
@@ -119,5 +86,51 @@ public class LayersController {
 			layerListView.getItems().add(new Label(a.getId()));
 		}
 	}
+	
+	private void setupHideButton() {
+		Label currentLabel = layerListView.getSelectionModel().getSelectedItem();
+		currentLabel.setDisable(!currentLabel.isDisabled());
+		
+		
+		for (int i = 0; i < layerGroup.getLayers().size(); ++i) {
+			
+			if (layerGroup.getLayers().get(i).getId().equals(currentLabel.getText())) {
+				Pane selectedPane = layerGroup.getLayers().get(i).getPane();
+				selectedPane.setVisible(!selectedPane.isVisible());
+				
+				
+				break;
+			}
+		}
+	}
+	
+	private void setupDownButton() {
+		String current = layerListView.getSelectionModel().getSelectedItem().getText();
+		
+		for (int i = 0; i < layerGroup.getLayers().size(); ++i) {
+			if (current == null || layerGroup.getLayers().get(i).getId().equals(current)) {
+				int newIndex = layerGroup.downList(layerGroup.getLayers().get(i));
+				updateList();
+				layerListView.getSelectionModel().select(newIndex);
+
+				break;
+			}
+		}
+	}
+	
+	private void setupUpButton() {
+		String current = layerListView.getSelectionModel().getSelectedItem().getText();
+		
+		for (int i = 0; i < layerGroup.getLayers().size(); ++i) {
+			if (current == null || layerGroup.getLayers().get(i).getId().equals(current)) {
+				int newIndex = layerGroup.upList(layerGroup.getLayers().get(i));
+				updateList();
+				layerListView.getSelectionModel().select(newIndex);
+
+				break;
+			}
+		}
+	}
+	
 
 }

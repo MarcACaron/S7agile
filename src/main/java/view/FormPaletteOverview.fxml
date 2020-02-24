@@ -66,9 +66,15 @@
             <Tooltip text="Draw Circle" />
          </tooltip></ToggleButton>
          
-      <ToggleButton fx:id="triangleHorizontal" onAction="#chooseTriangleHorizontal" mnemonicParsing="false" prefHeight="40.0" prefWidth="100.0" text="TH" />
+      <ToggleButton fx:id="triangleHorizontal" mnemonicParsing="false" onAction="#chooseTriangleHorizontal" prefHeight="40.0" prefWidth="100.0" text="TH">
+         <tooltip>
+            <Tooltip text="Horizontal Triangle" />
+         </tooltip></ToggleButton>
       
-      <ToggleButton fx:id="triangleVertical" onAction="#chooseTriangleVertical" mnemonicParsing="false" prefHeight="40.0" prefWidth="100.0" text="TV" />
+      <ToggleButton fx:id="triangleVertical" mnemonicParsing="false" onAction="#chooseTriangleVertical" prefHeight="40.0" prefWidth="100.0" text="TV">
+         <tooltip>
+            <Tooltip text="Vertical Triangle" />
+         </tooltip></ToggleButton>
          
       <ToggleButton fx:id="line" mnemonicParsing="false" onAction="#chooseLine" prefHeight="40.0" prefWidth="100.0" toggleGroup="$formToggleGroup">
          <graphic>

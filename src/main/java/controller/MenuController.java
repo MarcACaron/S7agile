@@ -61,16 +61,7 @@ public class MenuController {
 		
 		menuItemNew.setOnAction(e -> {
 			
-			LayersGroup layersGroup = this.mainApp.getDrawingZoneController().layersGroup;
-
-			try {
-				if (Boolean.TRUE.equals(fileController.askToSave(mainApp.getPrimaryStage(), layersGroup, mainApp.getDrawingZoneController().drawnShapes))) {
-					this.mainApp.getDrawingZoneController().clearDrawing();
-					fileController.clearFile();
-				}
-			} catch (FileNotFoundException | XMLStreamException e1) {
-				loggerMenuController.log(Level.SEVERE, "Exeption:menuItemNew: "+e1.getMessage()+"; Fonction: initialize():MenuController:menuItemNew;");
-			}
+			
 			
 		});
 		
@@ -120,43 +111,13 @@ public class MenuController {
 		
 		menuItemLayers.setOnAction(e -> {
 
-			Parent root;
-			try {
-				FXMLLoader loader = new FXMLLoader();
-				loader.setLocation(getClass().getResource("../view/LayerWindow.fxml"));
-	            root = loader.load();
-	            Stage stage = new Stage();
-	            stage.initModality(Modality.WINDOW_MODAL);
-	            stage.initOwner(mainApp.getPrimaryStage().getScene().getWindow());
-	            stage.setScene(new Scene(root));
-	            stage.showAndWait();
-	            mainApp.getDrawingZoneController().updateLayers(true);
-	            
-	        }
-	        catch (IOException ex) {
-	        	loggerMenuController.log(Level.SEVERE, "Exeption: "+ex.getMessage()+"; Fonction: initialize():MenuController;");
-	        }
+			actionLayers();
 			
 		});
 		
 		menuItemShapeOrder.setOnAction(e -> {
 
-			Parent root;
-			try {
-				FXMLLoader loader = new FXMLLoader();
-				loader.setLocation(getClass().getResource("../view/LayerShapeWindow.fxml"));
-	            root = loader.load();
-	            Stage stage = new Stage();
-	            stage.initModality(Modality.WINDOW_MODAL);
-	            stage.initOwner(mainApp.getPrimaryStage().getScene().getWindow());
-	            stage.setScene(new Scene(root));
-	            stage.showAndWait();
-	            mainApp.getDrawingZoneController().updateLayers(true);
-	            
-	        }
-	        catch (IOException ex) {
-	        	loggerMenuController.log(Level.SEVERE, "Exeption: "+ex.getMessage()+"; Fonction: initialize():MenuController;");
-	        }
+			actionShapeOrder();
 			
 		});
 		
@@ -194,6 +155,44 @@ public class MenuController {
 	@FXML private void resetDrawing() {
 		mainApp.getDrawingZoneController().clearDrawing();
 		mainApp.getDrawingZoneController().updateLayers(true);
+	}
+	
+	private void actionShapeOrder() {
+		Parent root;
+		try {
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(getClass().getResource("../view/LayerShapeWindow.fxml"));
+            root = loader.load();
+            Stage stage = new Stage();
+            stage.initModality(Modality.WINDOW_MODAL);
+            stage.initOwner(mainApp.getPrimaryStage().getScene().getWindow());
+            stage.setScene(new Scene(root));
+            stage.showAndWait();
+            mainApp.getDrawingZoneController().updateLayers(true);
+            
+        }
+        catch (IOException ex) {
+        	loggerMenuController.log(Level.SEVERE, "Exeption: "+ex.getMessage()+"; Fonction: initialize():MenuController;");
+        }
+	}
+	
+	private void actionLayers() {
+		Parent root;
+		try {
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(getClass().getResource("../view/LayerWindow.fxml"));
+            root = loader.load();
+            Stage stage = new Stage();
+            stage.initModality(Modality.WINDOW_MODAL);
+            stage.initOwner(mainApp.getPrimaryStage().getScene().getWindow());
+            stage.setScene(new Scene(root));
+            stage.showAndWait();
+            mainApp.getDrawingZoneController().updateLayers(true);
+            
+        }
+        catch (IOException ex) {
+        	loggerMenuController.log(Level.SEVERE, "Exeption: "+ex.getMessage()+"; Fonction: initialize():MenuController;");
+        }
 	}
 	
 	
