@@ -12,9 +12,9 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
 
 public abstract class CustomShape {
-	public final int XCOPYOFFSET = 50;
-	public final int YCOPYOFFSET = 50;
-	public final double SELECTIONSHAPEOFFSET = 10.0;
+	public static final int XCOPYOFFSET = 50;
+	public static final int YCOPYOFFSET = 50;
+	public static final double SELECTIONSHAPEOFFSET = 10.0;
 	protected Rectangle boundingBox;
 	protected Shape shape;
 	protected String layer;
@@ -73,13 +73,9 @@ public abstract class CustomShape {
 	public abstract CustomShape duplicateAndOffset();
 	public abstract CustomShape duplicate();
 	public boolean isSelected(double xStart, double yStart, double xEnd, double yEnd) {
-		if(this.boundingBox.getX()<xStart)
-			return false;
-		if(this.boundingBox.getY()<yStart)
-			return false;
-		if(this.boundingBox.getX()+this.getWidth()>xEnd)
-			return false;
-		if(this.boundingBox.getY()+this.getHeight()>yEnd)
+
+		if(this.boundingBox.getY()+this.getHeight()>yEnd || this.boundingBox.getX()+this.getWidth()>xEnd
+				|| this.boundingBox.getY()<yStart || this.boundingBox.getX()<xStart)
 			return false;
 		return true;
 	}
@@ -151,7 +147,7 @@ public abstract class CustomShape {
 		this.layer = id;
 	}
     public final double[] getOutlineCoords() {
-        double array[] = {0,0,0,0};
+        double[] array = {0,0,0,0};
         
         array[0] = this.getXPos() - SELECTIONSHAPEOFFSET;
         array[1] = this.getYPos() - SELECTIONSHAPEOFFSET;

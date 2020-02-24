@@ -27,8 +27,9 @@ import models.LayersGroup;
 
 public class DrawingZoneController {
 	
-	private final Color outlineColor = Color.DARKBLUE, 
-						inlineColor = Color.LIGHTBLUE;
+	private static final Color outlineColor = Color.DARKBLUE;
+	private static final Color inlineColor = Color.LIGHTBLUE;
+						
 		
 	@FXML
 	private ScrollPane scrollPane;
@@ -40,7 +41,7 @@ public class DrawingZoneController {
 	private AnchorPane selectionLayoutPane;
 	
 	private MainApp mainApp;
-	public ArrayList<CustomShape> drawnShapes = new ArrayList<CustomShape>();
+	private List<CustomShape> drawnShapes = new ArrayList<>();
 	
 	private CustomShape shapeCopy;
 	ApplicationHistory history = ApplicationHistory.getInstance();
@@ -49,7 +50,7 @@ public class DrawingZoneController {
 	
 	LayersGroup layersGroup = LayersGroup.getLayersGroup();
 	
-	ArrayList<Pane> paneList = new ArrayList<>();
+	List<Pane> paneList = new ArrayList<>();
 	List<Point2D> listPoints = new ArrayList<>();
 	
 	double orgX;
@@ -59,6 +60,10 @@ public class DrawingZoneController {
 	int childIndex;
 	boolean gridPaneBoolean;
 	boolean magnetismState = false;
+	
+	public List<CustomShape> getDrawnShapes() {
+		return this.drawnShapes;
+	}
 	
 	public void redo() {
 		clearDrawing();
@@ -107,9 +112,9 @@ public class DrawingZoneController {
     
 	public void createGridPoints() {
 		for (int i=0; i<100; i++) {
-			pointGridX = i * 50;
+			pointGridX = i * 50.0;
 			for (int j=0; j<100; j++) {
-				pointGridY = j * 50;	
+				pointGridY = j * 50.0;	
 				listPoints.add(new Point2D(pointGridX, pointGridY));
 			}
 		}
@@ -135,7 +140,7 @@ public class DrawingZoneController {
     }
     
     public void setNearestGridPoint() {
-    	if (magnetismState == true) {
+    	if (magnetismState) {
     		orgX = finalPoint.getX();
     		orgY = finalPoint.getY();
     	}
@@ -147,13 +152,13 @@ public class DrawingZoneController {
 			orgX = t.getX();
 			orgY = t.getY();
 			childIndex = anchorPane.getChildren().size();
-			childIndex = this.mainApp.getTool().mousePressed(this.mainApp.getPaletteDetailController(), layersGroup.getCurrentLayer(), drawnShapes, mainApp);
+			childIndex = this.mainApp.getTool().mousePressed(this.mainApp.getPaletteDetailController(), layersGroup.getCurrentLayer(), (ArrayList<CustomShape>)drawnShapes, mainApp);
 			getNearestGridPoint(orgX, orgY);
 			setNearestGridPoint();
 		});
 		anchorPane.setOnMouseDragged(t -> this.mainApp.getTool().mouseDragged(orgX, orgY, t.getX(), t.getY()));
 		
-		anchorPane.setOnMouseReleased(t -> this.mainApp.getTool().mouseReleased(mainApp, layersGroup.getCurrentLayer().getPane(), this.mainApp.getPaletteCouleurController(), this.mainApp.getPaletteDetailController(), drawnShapes));
+		anchorPane.setOnMouseReleased(t -> this.mainApp.getTool().mouseReleased(mainApp, layersGroup.getCurrentLayer().getPane(), this.mainApp.getPaletteCouleurController(), this.mainApp.getPaletteDetailController(), (ArrayList<CustomShape>)drawnShapes));
 		updateLayers(true);
     }
 	
@@ -199,14 +204,14 @@ public class DrawingZoneController {
 		
 		updateLayers(true);
 		
-		ObservableList<Node> paneList = anchorPane.getChildren();
+		ObservableList<Node> paneListTemp = anchorPane.getChildren();
 		
-		for (int i = 1; i < paneList.size(); ++i) {
+		for (int i = 1; i < paneListTemp.size(); ++i) {
 			
-			if ( !gridPane.getId().equals(paneList.get(i).getId()) && !selectionLayoutPane.getId().equals(paneList.get(i).getId()) ) {
-				((Pane)(paneList.get(i))).getChildren().clear();
+			if ( !gridPane.getId().equals(paneListTemp.get(i).getId()) && !selectionLayoutPane.getId().equals(paneListTemp.get(i).getId()) ) {
+				((Pane)(paneListTemp.get(i))).getChildren().clear();
 				anchorPane.getChildren().remove(i);
-				paneList = anchorPane.getChildren();
+				paneListTemp = anchorPane.getChildren();
 			}
 		}
 		
@@ -240,7 +245,7 @@ public class DrawingZoneController {
 		}
 	}
 	
-	public void addSelectionShape(double coords[]) {
+	public void addSelectionShape(double[] coords) {
 		Shape shapeToAdd = new Rectangle(coords[0], coords[1], coords[2]-coords[0], coords[3]-coords[1]); //startX, startY, EndX, EndY
 		shapeToAdd.setStroke(outlineColor);
 		shapeToAdd.getStrokeDashArray().addAll(2d, 5d);
@@ -248,7 +253,7 @@ public class DrawingZoneController {
 		shapeToAdd.setFill(Color.TRANSPARENT);
 		selectionLayoutPane.getChildren().add(shapeToAdd);
 		
-		Shape dots[] = {new Circle(coords[0], coords[1], 5),
+		Shape[] dots = {new Circle(coords[0], coords[1], 5),
 						new Circle(coords[2], coords[1], 5),
 						new Circle(coords[0], coords[3], 5),
 						new Circle(coords[2], coords[3], 5)};
@@ -263,7 +268,7 @@ public class DrawingZoneController {
 		selectionLayoutPane.getChildren().clear();
 	}
 	
-	public void FlipCurrentShape(int flipVorH) {
+	public void flipCurrentShape(int flipVorH) {
 		//flipVorH = 1 is VFlip, 0 is HFlip
 		CustomShape shape = mainApp.getTool().getShape();
 		mainApp.getTool().getShape().getDraw().getTransforms().add(transformIntoReflection(shape.getCenterCoord(), flipVorH));

@@ -49,20 +49,11 @@ public class LayersController {
 			layerListView.getItems().remove(layerListView.getSelectionModel().getSelectedItem());
 		});
 		
-		upButton.setOnAction(t -> {
-			setupUpButton();
-
-		});
+		upButton.setOnAction(t -> setupUpButton());
 		
-		downButton.setOnAction(t -> {
-			setupDownButton();
-
-		});
+		downButton.setOnAction(t -> setupDownButton());
 		
-		hideButton.setOnAction(t -> {
-			setupHideButton();
-			
-		});
+		hideButton.setOnAction(t -> setupHideButton());
 		
 		expandButton.setOnAction(t -> {
 			Label currentLabel = layerListView.getSelectionModel().getSelectedItem();

@@ -1,6 +1,6 @@
 package adraw4us;
 
-import java.util.ArrayList;
+import java.util.List;
 import java.util.function.Function;
 
 import controller.DetailPaletteController;
@@ -8,9 +8,9 @@ import controller.PaletteCouleurController;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
-import models.LayersGroup;
 import models.CustomShape;
 import models.Layer;
+import models.LayersGroup;
 
 public abstract class Tool {
 		
@@ -33,28 +33,6 @@ public abstract class Tool {
 			this.shape.ajustOnDragFromCenter(posXStart, posYStart, posXEnd, posYEnd);
 		else
 			this.shape.ajustOnDragFromCorner(posXStart, posYStart, posXEnd, posYEnd);
-		/*double startX;
-		double startY;
-		double width;
-		double height;
-		if(posXStart<posXEnd) {
-			startX=posXStart;
-			width = posXEnd-posXStart;
-		}else {
-			startX=posXEnd;
-			width = posXStart-posXEnd;
-		}
-		if(posYStart<posYEnd) {
-			startY=posYStart;
-			height = posYEnd-posYStart;
-		}else {
-			startY=posYEnd;
-			height = posYStart-posYEnd;
-		}
-		this.shape.setXPos(startX);
-		this.shape.setYPos(startY);
-		this.shape.setWidth(width);
-		this.shape.setHeight(height);*/
 	}
 	
 	public void fillShape() {
@@ -86,7 +64,7 @@ public abstract class Tool {
 	}
 	
 	
-	public int mousePressed(DetailPaletteController detailPaletteController, Layer layer, ArrayList<CustomShape> drawnShapes, MainApp mainApp) {
+	public int mousePressed(DetailPaletteController detailPaletteController, Layer layer, List<CustomShape> drawnShapes, MainApp mainApp) {
 		int index = layer.getPane().getChildren().size();
 		this.reset();
 		shape.setLayer(layer.getId());
@@ -99,7 +77,7 @@ public abstract class Tool {
 		this.ajustOnDrag(posXStart, posYStart, posXEnd, posYEnd);
 	}
 	
-	public void mouseReleased(MainApp mainApp, Pane pane, PaletteCouleurController pc, DetailPaletteController dp, ArrayList<CustomShape> drawnShapes) {
+	public void mouseReleased(MainApp mainApp, Pane pane, PaletteCouleurController pc, DetailPaletteController dp, List<CustomShape> drawnShapes) {
 		CustomShape shape2 = this.shape;
 		pane.getChildren().remove(pane.getChildren().size()-1);
 		

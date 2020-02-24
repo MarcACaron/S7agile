@@ -13,13 +13,6 @@ public class CustomTriangleHorizontal extends CustomShape {
 	@Override
 	public CustomShape duplicateAndOffset() {
 		CustomTriangleHorizontal newTriangleHorizontal = new CustomTriangleHorizontal();//TODO: reparer
-		/*newRectangle.setStroke(this.getStroke());
-		newRectangle.setStrokeWidth(this.getStrokeWidth());
-		newRectangle.setFill(this.getFill());
-		newRectangle.setXPos(this.getXPos() + XCOPYOFFSET);
-		newRectangle.setYPos(this.getYPos() + YCOPYOFFSET);
-		newRectangle.setWidth(this.getWidth());
-		newRectangle.setHeight(this.getHeight());*/
 		
 		return newTriangleHorizontal;
 	}
@@ -28,13 +21,6 @@ public class CustomTriangleHorizontal extends CustomShape {
 	@Override
 	public CustomShape duplicate() {
 		CustomTriangleHorizontal newTriangleHorizontal = new CustomTriangleHorizontal();//TODO: REPARER
-		/*newRectangle.setStroke(this.getStroke());
-		newRectangle.setStrokeWidth(this.getStrokeWidth());
-		newRectangle.setFill(this.getFill());
-		newRectangle.setXPos(this.getXPos());
-		newRectangle.setYPos(this.getYPos());
-		newRectangle.setWidth(this.getWidth());
-		newRectangle.setHeight(this.getHeight());*/
 		
 		return newTriangleHorizontal;
 	}

@@ -33,13 +33,6 @@ public class CustomCircle extends CustomShape {
 	@Override
 	public CustomShape duplicateAndOffset() {
 		CustomCircle newCircle = new CustomCircle();
-		/*newCircle.setStroke(this.getStroke());
-		newCircle.setStrokeWidth(this.getStrokeWidth());
-		newCircle.setFill(this.getFill());
-		newCircle.setCenterX(this.getCenterX() + XCOPYOFFSET);
-		newCircle.setCenterY(this.getCenterY() + YCOPYOFFSET);
-		newCircle.setRadiusTool(this.getRadius());
-		newCircle.setRotationTool(this.getRotation());*/
 		
 		return newCircle;
 	}
@@ -47,13 +40,6 @@ public class CustomCircle extends CustomShape {
 	@Override
 	public CustomShape duplicate() {
 		CustomCircle newCircle = new CustomCircle();
-		/*newCircle.setStroke(this.getStroke());
-		newCircle.setStrokeWidth(this.getStrokeWidth());
-		newCircle.setFill(this.getFill());
-		newCircle.setCenterX(this.getCenterX());
-		newCircle.setCenterY(this.getCenterY());
-		newCircle.setRadiusTool(this.getRadius());
-		newCircle.setRotationTool(this.getRotation());*/
 		
 		return newCircle;
 	}
