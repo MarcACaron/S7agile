@@ -25,6 +25,8 @@ public class CustomCircle extends CustomShape {
 		this.boundingBox.setWidth(value);
 		this.boundingBox.setHeight(value);
 		((Circle)this.shape).setRadius(value/2);
+		this.setXPos(this.boundingBox.getX());
+		this.setYPos(this.boundingBox.getY());
 	}
 
 	public void setHeight(double value) {
