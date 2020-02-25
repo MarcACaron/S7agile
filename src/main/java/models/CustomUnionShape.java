@@ -18,12 +18,12 @@ public class CustomUnionShape extends CustomShape {
 	}
 
 	@Override
-	public void setXPos(double value) {
+	public void setShapeXPos(double value) {
 		// On ne fait rien, on ne sait pas à laquelle il faut le faire
 	}
 
 	@Override
-	public void setYPos(double value) {
+	public void setShapeYPos(double value) {
 		// On ne fait rien, on ne sait pas à laquelle il faut le faire
 	}
 

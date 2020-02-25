@@ -44,8 +44,8 @@ public class CustomTriangleVertical extends CustomShape {
 			startY=posYEnd;
 			height = posYStart-posYEnd;
 		}
-		this.setXPos(startX);
-		this.setYPos(startY);
+		this.setXPosition(startX);
+		this.setYPosition(startY);
 		this.setWidth(width);
 		this.setHeight(height);
 	}
@@ -69,8 +69,8 @@ public class CustomTriangleVertical extends CustomShape {
 			startY=posYEnd;
 			height = posYStart-posYEnd;
 		}
-		this.setXPos(startX);
-		this.setYPos(startY);
+		this.setXPosition(startX);
+		this.setYPosition(startY);
 		this.setWidth(width*2);
 		this.setHeight(height*2);
 		
@@ -82,16 +82,14 @@ public class CustomTriangleVertical extends CustomShape {
 		
 	}
 	@Override
-	public void setXPos(double value) {
-		this.boundingBox.setX(value);
+	public void setShapeXPos(double value) {
 		((Polygon)this.shape).getPoints().set(0, value+this.boundingBox.getWidth());
 		((Polygon)this.shape).getPoints().set(2, value+this.boundingBox.getWidth());
 		((Polygon)this.shape).getPoints().set(4, value);
 	}
 
 	@Override
-	public void setYPos(double value) {
-		this.boundingBox.setY(value);
+	public void setShapeYPos(double value) {
 		((Polygon)this.shape).getPoints().set(1, value);
 		((Polygon)this.shape).getPoints().set(3, value+this.boundingBox.getHeight());
 		((Polygon)this.shape).getPoints().set(5, value+this.boundingBox.getHeight()/2);
@@ -100,13 +98,13 @@ public class CustomTriangleVertical extends CustomShape {
 	@Override
 	public void setWidth(double value) {
 		this.boundingBox.setWidth(value);
-		setXPos(this.boundingBox.getX());
+		setXPosition(this.boundingBox.getX());
 	}
 
 	@Override
 	public void setHeight(double value) {
 		this.boundingBox.setHeight(value);
-		setYPos(this.boundingBox.getY());
+		setYPosition(this.boundingBox.getY());
 	}
 
 }

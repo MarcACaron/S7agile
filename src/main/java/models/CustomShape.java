@@ -5,11 +5,17 @@ import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamWriter;
 import javax.xml.stream.events.XMLEvent;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.geometry.Point2D;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
+import javafx.scene.transform.Affine;
+import javafx.scene.transform.Scale;
+import javafx.scene.transform.Transform;
+import javafx.scene.transform.Translate;
 
 public abstract class CustomShape {
 	public static final int XCOPYOFFSET = 50;
@@ -18,9 +24,22 @@ public abstract class CustomShape {
 	protected Rectangle boundingBox;
 	protected Shape shape;
 	protected String layer;
+	private boolean hFlip = false, vFlip = false;
 	
-	public abstract void setXPos(double value);
-	public abstract void setYPos(double value);
+	public boolean getHFlip() {
+		return hFlip;
+	}
+	public void setHFlip(boolean hFlip) {
+		this.hFlip = hFlip;
+	}
+	public boolean getVFlip() {
+		return vFlip;
+	}
+	public void setVFlip(boolean vFlip) {
+		this.vFlip = vFlip;
+	}
+	public abstract void setShapeXPos(double value);
+	public abstract void setShapeYPos(double value);
 	public abstract void setWidth(double value);
 	public abstract void setHeight(double value);
 	public void setStroke(Paint value) {
@@ -111,11 +130,11 @@ public abstract class CustomShape {
 		//reader.nextEvent();
 		//reader.nextEvent();
 		event = reader.nextEvent();
-		this.setXPos(Double.valueOf(event.asCharacters().getData()));
+		this.setShapeXPos(Double.valueOf(event.asCharacters().getData()));
 		reader.nextEvent();
 		reader.nextEvent();
 		event = reader.nextEvent();
-		this.setYPos(Double.valueOf(event.asCharacters().getData()));
+		this.setShapeYPos(Double.valueOf(event.asCharacters().getData()));
 		reader.nextEvent();
 		reader.nextEvent();
 		event = reader.nextEvent();
@@ -160,6 +179,51 @@ public abstract class CustomShape {
     public final Point2D getCenterCoord() {
         return (new Point2D(this.getXPos()+this.getWidth()/2, this.getYPos()+this.getHeight()/2));
     }
-	    
+    
+    public void setXPosition(double value) {
+    	this.getDraw().getTransforms().clear();
+		this.boundingBox.setX(value);
+		this.setShapeXPos(value);
+		if (this.getHFlip())
+			this.flipShape(0, true);
+    	if (this.getVFlip())
+    		this.flipShape(1, true);
+    }
+	
+    public void setYPosition(double value) {
+    	this.getDraw().getTransforms().clear();
+		this.boundingBox.setY(value);
+		this.setShapeYPos(value);
+		if (this.getHFlip())
+			this.flipShape(0, true);
+    	if (this.getVFlip())
+    		this.flipShape(1, true);
+    }
+    
+    private Transform transformIntoReflection(Point2D p1, int flipXorY) {
+		//flipXorY = 1 is Y-Flip, 0 is X-Flip
+	    Translate translation = new Translate(-p1.getX(), -p1.getY());
+	    Scale scale;
+	    if (flipXorY == 1) {
+	    	scale = new Scale(1, -1);
+	    }else{
+	    	scale = new Scale(-1, 1);
+	    }
+	    Affine reflection = new Affine();
+	    reflection.append(translation.createInverse());
+	    reflection.append(scale);
+	    reflection.append(translation);
+	    return reflection ;
+	}
+    
+    public void flipShape(int flipVorH, boolean cleared) {
+		//flipVorH = 1 is VFlip, 0 is HFlip
+		if (flipVorH == 1 && !cleared) {
+			setVFlip(!getVFlip());
+		}else if (flipVorH == 0 && !cleared){
+			setHFlip(!getHFlip());
+		}
+		this.getDraw().getTransforms().add(transformIntoReflection(this.getCenterCoord(), flipVorH));
+	}
 	
 }

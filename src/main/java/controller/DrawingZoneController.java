@@ -270,23 +270,7 @@ public class DrawingZoneController {
 	
 	public void flipCurrentShape(int flipVorH) {
 		//flipVorH = 1 is VFlip, 0 is HFlip
-		CustomShape shape = mainApp.getTool().getShape();
-		mainApp.getTool().getShape().getDraw().getTransforms().add(transformIntoReflection(shape.getCenterCoord(), flipVorH));
+		mainApp.getTool().getShape().flipShape(flipVorH, false);;
 	}
 	
-	private Transform transformIntoReflection(Point2D p1, int flipXorY) {
-		//flipXorY = 1 is Y-Flip, 0 is X-Flip
-	    Translate translation = new Translate(-p1.getX(), -p1.getY());
-	    Scale scale;
-	    if (flipXorY == 1) {
-	    	scale = new Scale(1, -1);
-	    }else{
-	    	scale = new Scale(-1, 1);
-	    }
-	    Affine reflection = new Affine();
-	    reflection.append(translation.createInverse());
-	    reflection.append(scale);
-	    reflection.append(translation);
-	    return reflection ;
-	}
 }

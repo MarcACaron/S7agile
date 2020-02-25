@@ -11,13 +11,13 @@ public class CustomCircle extends CustomShape {
 		this.boundingBox = new Rectangle();
 	}
 	
-	public void setXPos(double value) {
-		this.boundingBox.setX(value);
+	@Override
+	public void setShapeXPos(double value) {
 		((Circle)this.shape).setCenterX(value + this.boundingBox.getWidth()/2);
 	}
 
-	public void setYPos(double value) {
-		this.boundingBox.setY(value);
+	@Override
+	public void setShapeYPos(double value) {
 		((Circle)this.shape).setCenterY(value + this.boundingBox.getHeight()/2);
 	}
 
@@ -60,8 +60,8 @@ public class CustomCircle extends CustomShape {
 		}
 		this.setWidth(cote);
 		this.setHeight(cote);
-		this.setXPos(startX);
-		this.setYPos(startY);
+		this.setXPosition(startX);
+		this.setYPosition(startY);
 	}
 	
 	@Override
@@ -81,8 +81,8 @@ public class CustomCircle extends CustomShape {
 			startY=posYEnd;
 		}
 		this.setWidth(cote*2);
-		this.setXPos(startX);
-		this.setYPos(startY);
+		this.setXPosition(startX);
+		this.setYPosition(startY);
 	}
 
 	@Override
