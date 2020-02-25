@@ -45,8 +45,21 @@ public class CustomUnionShape extends CustomShape {
 			sh.setWidth(rapportWidth*sh.getWidth());
 			double rapportDeplacement = (sh.getXPos()-this.boundingBox.getX())/this.boundingBox.getWidth();
 			sh.setXPos(this.boundingBox.getX() + rapportDeplacement*value);
-			if(scale) {
-				setHeight(value * getHeight()/getWidth()+ getHeight());
+			
+		});
+		if(scale) {
+			setHeight(value * getHeight()/getWidth(), true);
+		}
+		this.boundingBox.setWidth(value);
+	}
+	
+	private void setWidth(double value, boolean stop) {
+		double rapportWidth = value/this.boundingBox.getWidth();
+		listOfShape.forEach(sh -> {
+			if(sh.getType()!="circle"){
+				sh.setWidth(rapportWidth*sh.getWidth());
+				double rapportDeplacement = (sh.getXPos()-this.boundingBox.getX())/this.boundingBox.getWidth();
+				sh.setXPos(this.boundingBox.getX() + rapportDeplacement*value);
 			}
 		});
 		this.boundingBox.setWidth(value);
@@ -59,8 +72,20 @@ public class CustomUnionShape extends CustomShape {
 			sh.setHeight(rapportWidth*sh.getHeight());
 			double rapportDeplacement = (sh.getYPos()-this.boundingBox.getY())/this.boundingBox.getHeight();
 			sh.setYPos(this.boundingBox.getY() + rapportDeplacement*value);
-			if(scale) {
-				setWidth(value * getWidth()/getHeight()+ getWidth());
+		});
+		if(scale) {
+			setWidth(value * getWidth()/getHeight(), true);
+		}
+		this.boundingBox.setHeight(value);
+	}
+	
+	public void setHeight(double value, boolean stop) {
+		double rapportWidth= value/this.boundingBox.getHeight();
+		listOfShape.forEach(sh -> {
+			if(sh.getType()!="circle"){
+				sh.setHeight(rapportWidth*sh.getHeight());
+				double rapportDeplacement = (sh.getYPos()-this.boundingBox.getY())/this.boundingBox.getHeight();
+				sh.setYPos(this.boundingBox.getY() + rapportDeplacement*value);
 			}
 		});
 		this.boundingBox.setHeight(value);

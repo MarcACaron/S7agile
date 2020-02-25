@@ -268,7 +268,7 @@ public class DrawingZoneController {
 		CustomShape shape = mainApp.getTool().getShape();
 		mainApp.getTool().getShape().getDraw().getTransforms().add(transformIntoReflection(shape.getCenterCoord(), flipVorH));
 	}
-	
+
 	private Transform transformIntoReflection(Point2D p1, int flipXorY) {
 		//flipXorY = 1 is Y-Flip, 0 is X-Flip
 	    Translate translation = new Translate(-p1.getX(), -p1.getY());
