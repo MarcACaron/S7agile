@@ -1,6 +1,8 @@
 package models;
 
+import javafx.collections.ObservableList;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.transform.Transform;
 
 public class CustomRectangle extends CustomShape {
 	public CustomRectangle() {
@@ -54,8 +56,8 @@ public class CustomRectangle extends CustomShape {
 			startY=posYEnd;
 			height = posYStart-posYEnd;
 		}
-		this.setXPos(startX);
-		this.setYPos(startY);
+		this.setXPosition(startX);
+		this.setYPosition(startY);
 		this.setWidth(width);
 		this.setHeight(height);
 	}
@@ -78,8 +80,8 @@ public class CustomRectangle extends CustomShape {
 			startY=posYEnd;
 			height = posYStart-posYEnd;
 		}
-		this.setXPos(startX);
-		this.setYPos(startY);
+		this.setXPosition(startX);
+		this.setYPosition(startY);
 		this.setWidth(width*2);
 		this.setHeight(height*2);
 		
@@ -89,15 +91,13 @@ public class CustomRectangle extends CustomShape {
 		return "rectangle";
 	}
 	@Override
-	public void setXPos(double value) {
+	public void setShapeXPos(double value) {
 		((Rectangle)this.shape).setX(value);
-		this.boundingBox.setX(value);
 	}
 
 	@Override
-	public void setYPos(double value) {
+	public void setShapeYPos(double value) {
 		((Rectangle)this.shape).setY(value);
-		this.boundingBox.setY(value);
 	}
 
 	@Override

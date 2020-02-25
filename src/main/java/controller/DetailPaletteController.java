@@ -40,13 +40,13 @@ public class DetailPaletteController {
 	}
 	@FXML 
 	private void onXPosChange(){
-		this.mainApp.getTool().getShape().setXPos(Double.valueOf(xPosText.getText()));
+		this.mainApp.getTool().getShape().setXPosition(Double.valueOf(xPosText.getText()));
 		this.mainApp.getTool().fillDetails(this, this.mainApp.getTool().getShape(), mainApp).apply(null);
 	}
 
 	@FXML 
 	private void onYPosChange(){
-		this.mainApp.getTool().getShape().setYPos(Double.valueOf(yPosText.getText()));
+		this.mainApp.getTool().getShape().setYPosition(Double.valueOf(yPosText.getText()));
 		this.mainApp.getTool().fillDetails(this, this.mainApp.getTool().getShape(), mainApp).apply(null);
 	}
 

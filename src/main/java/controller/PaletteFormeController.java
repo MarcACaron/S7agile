@@ -81,7 +81,6 @@ public class PaletteFormeController {
 	@FXML
 	private void chooseTriangleHorizontal() {
 		if(triangleHorizontal.isSelected()) {
-			System.out.print("je fais un bo TH");
 			this.mainApp.setTool(new TriangleHorizontalTool());
 		}else {
 			this.mainApp.setTool(new SelectionTool(this.mainApp.getTool().getShape()));
@@ -93,7 +92,6 @@ public class PaletteFormeController {
 	@FXML
 	private void chooseTriangleVertical() {
 		if(triangleVertical.isSelected()) {
-			System.out.print("je fais un bo TV");
 			this.mainApp.setTool(new TriangleVerticalTool());
 		}else {
 			this.mainApp.setTool(new SelectionTool(this.mainApp.getTool().getShape()));

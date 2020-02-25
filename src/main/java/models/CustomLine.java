@@ -10,27 +10,19 @@ public class CustomLine extends CustomShape{
 		this.shape = new Line();
 		this.boundingBox = new Rectangle();
 	}
-	public void setXPos(double value) {
+	@Override
+	public void setShapeXPos(double value) {
 		double decalageStart = ((Line)this.shape).getStartX()-this.boundingBox.getX();
 		double decalageEnd = ((Line)this.shape).getEndX()-this.boundingBox.getX();
-		this.boundingBox.setX(value);
 		((Line)this.shape).setStartX(value+decalageStart);
 		((Line)this.shape).setEndX(value+decalageEnd);
-		/*double xL = this.getEndX() - this.getStartX();
-		this.setStartX(value);
-		this.setEndX(value + xL);*/
 	}
-
-	public void setYPos(double value) {
+	@Override
+	public void setShapeYPos(double value) {
 		double decalageStart = ((Line)this.shape).getStartY()-this.boundingBox.getY();
 		double decalageEnd = ((Line)this.shape).getEndY()-this.boundingBox.getY();
-		this.boundingBox.setY(value);
 		((Line)this.shape).setStartY(value+decalageStart);
 		((Line)this.shape).setEndY(value+decalageEnd);
-		/*
-		double yL = this.getEndY() - this.getStartY();
-		this.setStartY(value);
-		this.setEndY(value + yL);*/
 	}
 
 	@Override
@@ -40,7 +32,6 @@ public class CustomLine extends CustomShape{
 			((Line)this.shape).setStartX(value + ((Line)this.shape).getEndX());
 		else
 			((Line)this.shape).setEndX(value + ((Line)this.shape).getStartX());
-		//((Line)this.shape).setEndX(value);
 	}
 
 	@Override
@@ -53,37 +44,18 @@ public class CustomLine extends CustomShape{
 	}
 
 	public void updateLineLength() {
-		//double length = this.getLength();
-		/*this.setEndX((this.getEndX()-this.getStartX())*value/length+this.getStartX());
-		this.setEndY((this.getEndY()-this.getStartY())*value/length+this.getStartY());*/
+		
+		// Intended to be like this
 	}
 	
 	public CustomShape duplicateAndOffset() {//TODO: Réparer
 		CustomLine newLine = new CustomLine();
-		/*newLine.setStroke(this.getStroke());
-		newLine.setStrokeWidth(this.getStrokeWidth());
-		newLine.setFill(this.getFill());
-		newLine.setStartX(this.getStartX() + XCOPYOFFSET);
-		newLine.setStartY(this.getStartY() + YCOPYOFFSET);
-		newLine.setEndX(this.getEndX() + XCOPYOFFSET);
-		newLine.setEndY(this.getEndY() + YCOPYOFFSET);
-		newLine.setLengthTool(this.getLength());
-		newLine.setRotationTool(this.getRotation());*/
 		
 		return newLine;
 	}
 	
 	public CustomShape duplicate() {//TODO: Réparer
 		CustomLine newLine = new CustomLine();
-		/*newLine.setStroke(this.getStroke());
-		newLine.setStrokeWidth(this.getStrokeWidth());
-		newLine.setFill(this.getFill());
-		newLine.setStartX(this.getStartX());
-		newLine.setStartY(this.getStartY());
-		newLine.setEndX(this.getEndX());
-		newLine.setEndY(this.getEndY());
-		newLine.setLengthTool(this.getLength());
-		newLine.setRotationTool(this.getRotation());*/
 		
 		return newLine;
 	}
@@ -127,8 +99,8 @@ public class CustomLine extends CustomShape{
 			startY=posYEnd;
 			height = posYStart-posYEnd;
 		}
-		this.setXPos(startX);
-		this.setYPos(startY);
+		this.setXPosition(startX);
+		this.setYPosition(startY);
 		this.setWidth(width*2);
 		this.setHeight(height*2);
 		((Line)shape).setStartX(2*posXStart-posXEnd);

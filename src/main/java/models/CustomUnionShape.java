@@ -14,16 +14,16 @@ public class CustomUnionShape extends CustomShape {
 
 	public CustomUnionShape() {
 		this.boundingBox = new Rectangle();
-		this.listOfShape = new ArrayList<CustomShape>();
+		this.listOfShape = new ArrayList<>();
 	}
 
 	@Override
-	public void setXPos(double value) {
+	public void setShapeXPos(double value) {
 		// On ne fait rien, on ne sait pas à laquelle il faut le faire
 	}
 
 	@Override
-	public void setYPos(double value) {
+	public void setShapeYPos(double value) {
 		// On ne fait rien, on ne sait pas à laquelle il faut le faire
 	}
 
@@ -39,30 +39,30 @@ public class CustomUnionShape extends CustomShape {
 	
 	@Override
 	public void setFill(Paint value, String fillName) {
-		listOfShape.forEach(sh -> {
-			sh.setFill(value, fillName);
-		});
+		listOfShape.forEach(sh -> 
+			sh.setFill(value, fillName)
+		);
 	}
 	
 	@Override
 	public void setRotate(double value) {
-		listOfShape.forEach(sh -> {
-			sh.setRotate(value);
-		});
+		listOfShape.forEach(sh -> 
+			sh.setRotate(value)
+		);
 	}
 	
 	@Override
 	public void setStroke(Paint value) {
-		listOfShape.forEach(sh -> {
-			sh.setStroke(value);
-		});
+		listOfShape.forEach(sh -> 
+			sh.setStroke(value)
+		);
 	}
 	
 	@Override
 	public void setStrokeWidth(double strokeWidth) {
-		listOfShape.forEach(sh -> {
-			sh.setStrokeWidth(strokeWidth);
-		});
+		listOfShape.forEach(sh -> 
+			sh.setStrokeWidth(strokeWidth)
+		);
 	} 
 	
 	@Override

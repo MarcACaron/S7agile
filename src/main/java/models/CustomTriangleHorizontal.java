@@ -13,13 +13,6 @@ public class CustomTriangleHorizontal extends CustomShape {
 	@Override
 	public CustomShape duplicateAndOffset() {
 		CustomTriangleHorizontal newTriangleHorizontal = new CustomTriangleHorizontal();//TODO: reparer
-		/*newRectangle.setStroke(this.getStroke());
-		newRectangle.setStrokeWidth(this.getStrokeWidth());
-		newRectangle.setFill(this.getFill());
-		newRectangle.setXPos(this.getXPos() + XCOPYOFFSET);
-		newRectangle.setYPos(this.getYPos() + YCOPYOFFSET);
-		newRectangle.setWidth(this.getWidth());
-		newRectangle.setHeight(this.getHeight());*/
 		
 		return newTriangleHorizontal;
 	}
@@ -28,13 +21,6 @@ public class CustomTriangleHorizontal extends CustomShape {
 	@Override
 	public CustomShape duplicate() {
 		CustomTriangleHorizontal newTriangleHorizontal = new CustomTriangleHorizontal();//TODO: REPARER
-		/*newRectangle.setStroke(this.getStroke());
-		newRectangle.setStrokeWidth(this.getStrokeWidth());
-		newRectangle.setFill(this.getFill());
-		newRectangle.setXPos(this.getXPos());
-		newRectangle.setYPos(this.getYPos());
-		newRectangle.setWidth(this.getWidth());
-		newRectangle.setHeight(this.getHeight());*/
 		
 		return newTriangleHorizontal;
 	}
@@ -59,8 +45,8 @@ public class CustomTriangleHorizontal extends CustomShape {
 		}
 		this.setWidth(width);
 		this.setHeight(height);
-		this.setXPos(startX);
-		this.setYPos(startY);
+		this.setXPosition(startX);
+		this.setYPosition(startY);
 	}
 	
 	public void ajustOnDragFromCenter(double posXStart, double posYStart, double posXEnd, double posYEnd) {
@@ -84,8 +70,8 @@ public class CustomTriangleHorizontal extends CustomShape {
 		}
 		this.setWidth(width*2);
 		this.setHeight(height*2);
-		this.setXPos(startX);
-		this.setYPos(startY);
+		this.setXPosition(startX);
+		this.setYPosition(startY);
 	}
 	
 	@Override
@@ -94,16 +80,14 @@ public class CustomTriangleHorizontal extends CustomShape {
 	}
 	
 	@Override
-	public void setXPos(double value) {
-		this.boundingBox.setX(value);
+	public void setShapeXPos(double value) {
 		((Polygon)this.shape).getPoints().set(0, value);
 		((Polygon)this.shape).getPoints().set(2, value+this.boundingBox.getWidth());
 		((Polygon)this.shape).getPoints().set(4, value+this.boundingBox.getWidth()/2);
 	}
 
 	@Override
-	public void setYPos(double value) {
-		this.boundingBox.setY(value);
+	public void setShapeYPos(double value) {
 		((Polygon)this.shape).getPoints().set(1, value+this.boundingBox.getHeight());
 		((Polygon)this.shape).getPoints().set(3, value+this.boundingBox.getHeight());
 		((Polygon)this.shape).getPoints().set(5, value);		
@@ -112,13 +96,13 @@ public class CustomTriangleHorizontal extends CustomShape {
 	@Override
 	public void setWidth(double value) {
 		this.boundingBox.setWidth(value);
-		setXPos(this.boundingBox.getX());
+		setXPosition(this.boundingBox.getX());
 	}
 
 	@Override
 	public void setHeight(double value) {
 		this.boundingBox.setHeight(value);
-		setYPos(this.boundingBox.getY());
+		setYPosition(this.boundingBox.getY());
 	}
 
 }
