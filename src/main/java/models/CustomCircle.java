@@ -15,19 +15,21 @@ public class CustomCircle extends CustomShape {
 		this.shape = new Circle();
 		this.boundingBox = new Rectangle();
 		this.setXPosition(posX);
-		this.setShapeXPos(posX);
+		this.setXPos(posX);
 		this.setYPosition(posY);
-		this.setShapeYPos(posY);
+		this.setYPos(posY);
 		this.setWidth(2*radius);
 	}
 	
 	@Override
-	public void setShapeXPos(double value) {
+	public void setXPos(double value) {
+		this.boundingBox.setX(value);
 		((Circle)this.shape).setCenterX(value + this.boundingBox.getWidth()/2);
 	}
 
 	@Override
-	public void setShapeYPos(double value) {
+	public void setYPos(double value) {
+		this.boundingBox.setY(value);
 		((Circle)this.shape).setCenterY(value + this.boundingBox.getHeight()/2);
 	}
 

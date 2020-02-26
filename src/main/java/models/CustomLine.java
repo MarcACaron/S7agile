@@ -20,14 +20,16 @@ public class CustomLine extends CustomShape{
 	}
 	
 	@Override
-	public void setShapeXPos(double value) {
+	public void setXPos(double value) {
+		this.boundingBox.setX(value);
 		double decalageStart = ((Line)this.shape).getStartX()-this.boundingBox.getX();
 		double decalageEnd = ((Line)this.shape).getEndX()-this.boundingBox.getX();
 		((Line)this.shape).setStartX(value+decalageStart);
 		((Line)this.shape).setEndX(value+decalageEnd);
 	}
 	@Override
-	public void setShapeYPos(double value) {
+	public void setYPos(double value) {
+		this.boundingBox.setY(value);
 		double decalageStart = ((Line)this.shape).getStartY()-this.boundingBox.getY();
 		double decalageEnd = ((Line)this.shape).getEndY()-this.boundingBox.getY();
 		((Line)this.shape).setStartY(value+decalageStart);
