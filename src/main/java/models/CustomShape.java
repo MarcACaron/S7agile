@@ -82,6 +82,9 @@ public abstract class CustomShape {
 	public Paint getFill() {
 		return this.shape.getFill();
 	}
+	public String getFillName() {
+		return this.shape.getAccessibleText();
+	}
 	public Shape getDraw() {
 		return this.shape;
 	}
@@ -225,5 +228,5 @@ public abstract class CustomShape {
 		}
 		this.getDraw().getTransforms().add(transformIntoReflection(this.getCenterCoord(), flipVorH));
 	}
-	
+		
 }

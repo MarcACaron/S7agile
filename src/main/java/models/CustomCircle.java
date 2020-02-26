@@ -11,6 +11,16 @@ public class CustomCircle extends CustomShape {
 		this.boundingBox = new Rectangle();
 	}
 	
+	public CustomCircle(double posX, double posY, double radius) {
+		this.shape = new Circle();
+		this.boundingBox = new Rectangle();
+		this.setXPosition(posX);
+		this.setShapeXPos(posX);
+		this.setYPosition(posY);
+		this.setShapeYPos(posY);
+		this.setWidth(2*radius);
+	}
+	
 	@Override
 	public void setShapeXPos(double value) {
 		((Circle)this.shape).setCenterX(value + this.boundingBox.getWidth()/2);
@@ -33,14 +43,20 @@ public class CustomCircle extends CustomShape {
 	@Override
 	public CustomShape duplicateAndOffset() {
 		CustomCircle newCircle = new CustomCircle();
-		
+		newCircle.setFill(this.getFill(), this.getFillName());
+		newCircle.setHeight(this.getHeight());
+		newCircle.setStroke(this.getStroke());
+		newCircle.setStrokeWidth(this.getStrokeWidth());
 		return newCircle;
 	}
 	
 	@Override
 	public CustomShape duplicate() {
 		CustomCircle newCircle = new CustomCircle();
-		
+		newCircle.setFill(this.getFill(), this.getFillName());
+		newCircle.setHeight(this.getHeight());
+		newCircle.setStroke(this.getStroke());
+		newCircle.setStrokeWidth(this.getStrokeWidth());
 		return newCircle;
 	}
 	@Override

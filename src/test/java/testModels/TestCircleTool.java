@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import org.junit.jupiter.api.Test;
 
 import adraw4us.Tool;
+import javafx.geometry.Point2D;
 import javafx.scene.shape.Circle;
 import models.CircleTool;
 import models.CustomCircle;
@@ -58,27 +59,27 @@ public class TestCircleTool {
 	
 	@Test
 	public void testDuplicateMethod() {
-		CustomCircle circle = new CustomCircle();
-		CustomCircle circleClone = (CustomCircle) circle.duplicateAndOffset();
+		double PosX = 50, PosY = 50, radius = 100;
+		CustomCircle circ = new CustomCircle(PosX, PosY, radius);
+		CustomCircle circleClone = (CustomCircle) circ.duplicateAndOffset();
 		
-		assertEquals(circle.getStroke() == circleClone.getStroke(), true);
-		assertEquals(circle.getStrokeWidth() == circleClone.getStrokeWidth(), true);
-		assertEquals(circle.getFill() == circleClone.getFill(), true);
-		assertEquals(circle.getWidth() == circleClone.getWidth(), true);
-		assertEquals(circle.getRotate() == circleClone.getRotate(), true);
+		assertEquals(circ.getStroke(), circleClone.getStroke());
+		assertEquals(circ.getStrokeWidth(), circleClone.getStrokeWidth());
+		assertEquals(circ.getFill(), circleClone.getFill());
+		assertEquals(circ.getWidth(), circleClone.getWidth());
+		assertEquals(circ.getRotate(), circleClone.getRotate());
 		
 	}
-	/*
 	@Test
 	public void testOutline() {
-		double PosX = 50, PosY = 50, radius = 100;
+		double PosX = 50, PosY = 50, radius = 10;
 		CustomCircle circ = new CustomCircle(PosX, PosY, radius);
 		double outline[] = circ.getOutlineCoords();
 		
-		assertEquals(true, outline[0] < PosX - radius);
-		assertEquals(true, outline[1] < PosY - radius);
-		assertEquals(true, outline[2] > PosX + radius);
-		assertEquals(true, outline[3] > PosY + radius);
+		assertEquals(true, outline[0] <= PosX - radius);
+		assertEquals(true, outline[1] <= PosY - radius);
+		assertEquals(true, outline[2] >= PosX + radius);
+		assertEquals(true, outline[3] >= PosY + radius);
 	}
 	
 	@Test
@@ -87,9 +88,9 @@ public class TestCircleTool {
 		CustomCircle circ = new CustomCircle(PosX, PosY, radius);
 		Point2D center = circ.getCenterCoord();
 		
-		assertEquals(center.getX(), PosX);
-		assertEquals(center.getY(), PosY);
+		assertEquals(center.getX(), PosX+radius);
+		assertEquals(center.getY(), PosY+radius);
 		
-	}*/
+	}
 
 }

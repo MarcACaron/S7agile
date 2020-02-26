@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
 import adraw4us.Tool;
+import javafx.geometry.Point2D;
 import javafx.scene.shape.Rectangle;
 import models.CustomRectangle;
 import models.RectangleTool;
@@ -67,17 +68,18 @@ public class TestRectangleTool {
 	
 	@Test
 	public void testDuplicateMethod() {
-		CustomRectangle rect = new CustomRectangle();
+		double PosX = 50, PosY = 50, size = 100;
+		CustomRectangle rect = new CustomRectangle(PosX, PosY, size, size);
 		CustomRectangle rectClone = (CustomRectangle) rect.duplicateAndOffset();
-
-		assertEquals(true, rect.getStroke() == rectClone.getStroke());
-		assertEquals(true, rect.getStrokeWidth() == rectClone.getStrokeWidth());
-		assertEquals(true, rect.getFill() == rectClone.getFill());
-		assertEquals(true, rect.getWidth() == rectClone.getWidth());
-		assertEquals(true, rect.getHeight() == rectClone.getHeight());
+		
+		assertEquals(rect.getStroke(), rectClone.getStroke());
+		assertEquals(rect.getStrokeWidth(), rectClone.getStrokeWidth());
+		assertEquals(rect.getFill(), rectClone.getFill());
+		assertEquals(rect.getWidth(), rectClone.getWidth());
+		assertEquals(rect.getHeight(), rectClone.getHeight());
 		
 	}
-	/*
+	
 	@Test
 	public void testOutline() {
 		double PosX = 50, PosY = 50, size = 100;
@@ -99,6 +101,6 @@ public class TestRectangleTool {
 		assertEquals(center.getX(), PosX + (size/2));
 		assertEquals(center.getY(), PosY + (size/2));
 		
-	}*/
+	}
 
 }
