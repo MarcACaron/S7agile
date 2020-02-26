@@ -55,7 +55,7 @@ public class MultiSelectionTool extends Tool {
 		this.shape = new CustomUnionShape();
 	}
 	@Override
-	public int mousePressed(DetailPaletteController detailPaletteController, Layer layer, List<CustomShape> drawnShapes, MainApp mainApp) {
+	public int mousePressed(DetailPaletteController detailPaletteController, Layer layer, MainApp mainApp) {
 		this.reset();
 		int index = layer.getPane().getChildren().size();
 		this.selection = new Rectangle();
@@ -75,15 +75,15 @@ public class MultiSelectionTool extends Tool {
 	}
 
 	@Override
-	public void mouseReleased(MainApp mainApp, Pane pane, PaletteCouleurController paletteCouleurController, DetailPaletteController pc, List<CustomShape> drawnShapes) {
+	public void mouseReleased(MainApp mainApp, Pane pane, PaletteCouleurController paletteCouleurController, DetailPaletteController pc) {
 		double xStart = selection.getX();
 		double yStart = selection.getY();
 		double xEnd = selection.getX()+selection.getWidth();
 		double yEnd = selection.getY()+selection.getHeight();
 		pane.getChildren().remove(pane.getChildren().size()-1);
-		for(int i=0; i<drawnShapes.size();i++) {
-			if((drawnShapes.get(i)).isSelected(xStart, yStart, xEnd, yEnd)) {
-				((CustomUnionShape)this.shape).add(drawnShapes.get(i));
+		for(int i=0; i<DrawnShapes.getDrawnShapes().size();i++) {
+			if((DrawnShapes.getDrawnShapes().get(i)).isSelected(xStart, yStart, xEnd, yEnd)) {
+				((CustomUnionShape)this.shape).add(DrawnShapes.getDrawnShapes().get(i));
 			}	
 		}
 		if(((CustomUnionShape)this.shape).updateBoudingBox()) {

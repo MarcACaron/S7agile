@@ -8,7 +8,8 @@ public class DrawnShapes {
 	private DrawnShapes() {
 	}
 	public static ArrayList<CustomShape> getDrawnShapes() {
-		drawnShapes = new ArrayList<>();
+		if(drawnShapes==null)
+			drawnShapes = new ArrayList<>();
 		return drawnShapes;
 	}
 

@@ -97,6 +97,9 @@ public class LayersGroup implements Container {
 			Node shape = a.get(realIndex);
 			a.remove(shape);
 			a.add(realIndex - 1, shape);
+			
+
+			Collections.swap(DrawnShapes.getDrawnShapes(), shapeIndex, shapeIndex + 1);
 
 			return shapeIndex + 1;
 		}
@@ -114,7 +117,10 @@ public class LayersGroup implements Container {
 			Node shape = a.get(realIndex);
 			a.remove(shape);
 			a.add(realIndex + 1, shape);
+			
 
+			Collections.swap(DrawnShapes.getDrawnShapes(), shapeIndex, shapeIndex - 1);
+			
 			return shapeIndex - 1;
 		}
 
