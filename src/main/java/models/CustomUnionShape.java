@@ -19,22 +19,22 @@ public class CustomUnionShape extends CustomShape {
 
 	@Override
 	public void setShapeXPos(double value) {
-		// On ne fait rien, on ne sait pas à laquelle il faut le faire
+		// On ne fait rien, on ne sait pas a laquelle il faut le faire
 	}
 
 	@Override
 	public void setShapeYPos(double value) {
-		// On ne fait rien, on ne sait pas à laquelle il faut le faire
+		// On ne fait rien, on ne sait pas a laquelle il faut le faire
 	}
 
 	@Override
 	public void setWidth(double value) {
-		// On ne fait rien, on ne sait pas à laquelle il faut le faire
+		// On ne fait rien, on ne sait pas a laquelle il faut le faire
 	}
 
 	@Override
 	public void setHeight(double value) {
-		// On ne fait rien, on ne sait pas à laquelle il faut le faire
+		// On ne fait rien, on ne sait pas a laquelle il faut le faire
 	}
 	
 	@Override

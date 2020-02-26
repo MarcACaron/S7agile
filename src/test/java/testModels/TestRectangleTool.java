@@ -68,7 +68,7 @@ public class TestRectangleTool {
 	@Test
 	public void testDuplicateMethod() {
 		CustomRectangle rect = new CustomRectangle();
-		CustomRectangle rectClone = (CustomRectangle) rect.duplicateAndOffset();
+		CustomRectangle rectClone = (CustomRectangle) rect.duplicate(10,10);
 
 		assertEquals(true, rect.getStroke() == rectClone.getStroke());
 		assertEquals(true, rect.getStrokeWidth() == rectClone.getStrokeWidth());
