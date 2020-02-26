@@ -20,16 +20,6 @@ import models.LayersGroup;
 import models.XmlDecoder;
 import models.XmlEncoder;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-
-import javax.xml.stream.XMLStreamException;
-
-import adraw4us.MainApp;
-
 public class FileController {
 
 	private static FileController instance = new FileController();
