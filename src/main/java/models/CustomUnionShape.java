@@ -56,11 +56,11 @@ public class CustomUnionShape extends CustomShape {
 	private void setWidth(double value, boolean stop) {
 		double rapportWidth = value/this.boundingBox.getWidth();
 		listOfShape.forEach(sh -> {
+			double rapportDeplacement = (sh.getXPos()-this.boundingBox.getX())/this.boundingBox.getWidth();
 			if(sh.getType()!="circle"){
-				double rapportDeplacement = (sh.getXPos()-this.boundingBox.getX())/this.boundingBox.getWidth();
-				sh.setXPos(this.boundingBox.getX() + rapportDeplacement*value);
 				sh.setWidth(rapportWidth*sh.getWidth());
 			}
+			sh.setXPos(this.boundingBox.getX() + rapportDeplacement*value);
 		});
 		this.boundingBox.setWidth(value);
 	}
@@ -82,11 +82,11 @@ public class CustomUnionShape extends CustomShape {
 	public void setHeight(double value, boolean stop) {
 		double rapportWidth= value/this.boundingBox.getHeight();
 		listOfShape.forEach(sh -> {
+			double rapportDeplacement = (sh.getYPos()-this.boundingBox.getY())/this.boundingBox.getHeight();
 			if(sh.getType()!="circle"){
-				double rapportDeplacement = (sh.getYPos()-this.boundingBox.getY())/this.boundingBox.getHeight();
-				sh.setYPos(this.boundingBox.getY() + rapportDeplacement*value);
 				sh.setHeight(rapportWidth*sh.getHeight());
 			}
+			sh.setYPos(this.boundingBox.getY() + rapportDeplacement*value);
 		});
 		this.boundingBox.setHeight(value);
 	}
