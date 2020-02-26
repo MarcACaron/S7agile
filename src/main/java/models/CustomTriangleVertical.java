@@ -8,6 +8,8 @@ public class CustomTriangleVertical extends CustomShape {
 		this.shape = new Polygon();
 		((Polygon) this.shape).getPoints().addAll(0.0, 0.0, 0.0, 0.0, 0.0 , 0.0);
 		this.boundingBox = new Rectangle();
+		this.scale=false;
+		this.type = "triangleHorizontal";
 	}
 	
 	@Override
@@ -67,12 +69,7 @@ public class CustomTriangleVertical extends CustomShape {
 		this.setYPosition(startY);
 		
 	}
-	
-	@Override
-	public String getType() {
-		return "triangleHorizontal";
-		
-	}
+
 	@Override
 	public void setXPos(double value) {
 		this.boundingBox.setX(value);

@@ -11,6 +11,7 @@ import javafx.scene.paint.Paint;
 import models.CustomShape;
 import models.Layer;
 import models.LayersGroup;
+import models.ShapeName;
 
 public abstract class Tool {
 		
@@ -51,13 +52,16 @@ public abstract class Tool {
 	
 	public Function<Object, Object> fillDetails(DetailPaletteController dp, CustomShape nd, MainApp mainApp){
 		return y -> {
-			if(nd == null) 
+			if(nd == null) {
 				dp.paletteDisable(true);
+				ShapeName.getShapeName().name = null;
+			}
 			else {
 				CustomShape tShape = (CustomShape) nd;
 				dp.select(tShape);
 				dp.setTextField(tShape);
 				showSelectedShape(mainApp);
+				ShapeName.getShapeName().name = nd.getType();
 			}
 			return y;
 			};
@@ -149,7 +153,6 @@ public abstract class Tool {
 	protected final void showSelectedShape(MainApp mainApp) {
 		mainApp.getDrawingZoneController().clearSelectionLayer();
 		mainApp.getDrawingZoneController().addSelectionShape(this.getShape().getOutlineCoords());
-		System.out.println("ici");
 	}
 	public abstract String getToolType();
 }

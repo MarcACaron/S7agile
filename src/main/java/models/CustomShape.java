@@ -22,8 +22,10 @@ public abstract class CustomShape {
 	protected Rectangle boundingBox;
 	protected Shape shape;
 	protected String layer;
-	private boolean hFlip = false;
-	private boolean vFlip = false;
+	protected boolean hFlip = false;
+	protected boolean vFlip = false;
+	protected boolean scale;
+	protected String type = "Shape";
 	
 	public boolean getHFlip() {
 		return hFlip;
@@ -87,7 +89,14 @@ public abstract class CustomShape {
 	public Shape getDraw() {
 		return this.shape;
 	}
-	public abstract String getType();
+	public void setType(String type) {
+		if(type!=null) {
+			this.type = type;
+		}
+	}
+	public String getType() {
+		return this.type;
+	}
 	public String getLayer() {
 		return layer;
 	}
@@ -225,5 +234,11 @@ public abstract class CustomShape {
 			setHFlip(!getHFlip());
 		}
 		this.getDraw().getTransforms().add(transformIntoReflection(this.getCenterCoord(), flipVorH));
+	}
+	public boolean isScale() {
+		return scale;
+	}
+	public void setScale(boolean scale) {
+		this.scale = scale;
 	}
 }

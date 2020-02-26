@@ -6,6 +6,8 @@ public class CustomRectangle extends CustomShape {
 	public CustomRectangle() {
 		this.shape = new Rectangle();
 		this.boundingBox = new Rectangle();
+		this.scale=false;
+		this.type = "rectangle";
 	}
 	
 	public CustomRectangle(double posX, double posY, double width, double height) {
@@ -16,6 +18,8 @@ public class CustomRectangle extends CustomShape {
 		this.setYPosition(posY);
 		this.setWidth(width);
 		this.setHeight(height);
+		this.scale=false;
+		this.type = "rectangle";
 	}
 	
 	@Override
@@ -82,10 +86,7 @@ public class CustomRectangle extends CustomShape {
 		this.setHeight(height*2);
 		
 	}
-	@Override
-	public String getType() {
-		return "rectangle";
-	}
+
 	@Override
 	public void setXPos(double value) {
 		this.boundingBox.setX(value);
