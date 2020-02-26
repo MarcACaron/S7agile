@@ -22,8 +22,10 @@ public abstract class CustomShape {
 	protected Rectangle boundingBox;
 	protected Shape shape;
 	protected String layer;
-	private boolean hFlip = false;
-	private boolean vFlip = false;
+	protected boolean hFlip = false;
+	protected boolean vFlip = false;
+	protected boolean scale;
+	protected String type = "Shape";
 	
 	public boolean getHFlip() {
 		return hFlip;
@@ -37,8 +39,8 @@ public abstract class CustomShape {
 	public void setVFlip(boolean vFlip) {
 		this.vFlip = vFlip;
 	}
-	public abstract void setShapeXPos(double value);
-	public abstract void setShapeYPos(double value);
+	public abstract void setXPos(double value);
+	public abstract void setYPos(double value);
 	public abstract void setWidth(double value);
 	public abstract void setHeight(double value);
 	public void setStroke(Paint value) {
@@ -87,7 +89,14 @@ public abstract class CustomShape {
 	public Shape getDraw() {
 		return this.shape;
 	}
-	public abstract String getType();
+	public void setType(String type) {
+		if(type!=null) {
+			this.type = type;
+		}
+	}
+	public String getType() {
+		return this.type;
+	}
 	public String getLayer() {
 		return layer;
 	}
@@ -131,11 +140,11 @@ public abstract class CustomShape {
 		//reader.nextEvent();
 		//reader.nextEvent();
 		event = reader.nextEvent();
-		this.setShapeXPos(Double.valueOf(event.asCharacters().getData()));
+		this.setXPos(Double.valueOf(event.asCharacters().getData()));
 		reader.nextEvent();
 		reader.nextEvent();
 		event = reader.nextEvent();
-		this.setShapeYPos(Double.valueOf(event.asCharacters().getData()));
+		this.setYPos(Double.valueOf(event.asCharacters().getData()));
 		reader.nextEvent();
 		reader.nextEvent();
 		event = reader.nextEvent();
@@ -184,7 +193,7 @@ public abstract class CustomShape {
     public void setXPosition(double value) {
     	this.getDraw().getTransforms().clear();
 		this.boundingBox.setX(value);
-		this.setShapeXPos(value);
+		this.setXPos(value);
 		if (this.getHFlip())
 			this.flipShape(0, true);
     	if (this.getVFlip())
@@ -194,7 +203,7 @@ public abstract class CustomShape {
     public void setYPosition(double value) {
     	this.getDraw().getTransforms().clear();
 		this.boundingBox.setY(value);
-		this.setShapeYPos(value);
+		this.setYPos(value);
 		if (this.getHFlip())
 			this.flipShape(0, true);
     	if (this.getVFlip())
@@ -225,5 +234,11 @@ public abstract class CustomShape {
 			setHFlip(!getHFlip());
 		}
 		this.getDraw().getTransforms().add(transformIntoReflection(this.getCenterCoord(), flipVorH));
+	}
+	public boolean isScale() {
+		return scale;
+	}
+	public void setScale(boolean scale) {
+		this.scale = scale;
 	}
 }

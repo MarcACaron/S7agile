@@ -9,6 +9,8 @@ public class CustomLine extends CustomShape{
 	public CustomLine() {
 		this.shape = new Line();
 		this.boundingBox = new Rectangle();
+		this.scale=false;
+		this.type = "line";
 	}
 	public CustomLine(double startX, double startY, double endX, double endY) {
 		this.shape = new Line();
@@ -17,17 +19,21 @@ public class CustomLine extends CustomShape{
 		this.setYPosition(startY);
 		this.setWidth(endX - startX);
 		this.setHeight(endY - startY);
+		this.scale=false;
+		this.type = "line";
 	}
 	
 	@Override
-	public void setShapeXPos(double value) {
+	public void setXPos(double value) {
+		this.boundingBox.setX(value);
 		double decalageStart = ((Line)this.shape).getStartX()-this.boundingBox.getX();
 		double decalageEnd = ((Line)this.shape).getEndX()-this.boundingBox.getX();
 		((Line)this.shape).setStartX(value+decalageStart);
 		((Line)this.shape).setEndX(value+decalageEnd);
 	}
 	@Override
-	public void setShapeYPos(double value) {
+	public void setYPos(double value) {
+		this.boundingBox.setY(value);
 		double decalageStart = ((Line)this.shape).getStartY()-this.boundingBox.getY();
 		double decalageEnd = ((Line)this.shape).getEndY()-this.boundingBox.getY();
 		((Line)this.shape).setStartY(value+decalageStart);
@@ -70,10 +76,6 @@ public class CustomLine extends CustomShape{
 		return newLine;
 	}
 	
-	@Override
-	public String getType() {
-		return "line";
-	}
 	@Override
 	public void ajustOnDragFromCorner(double posXStart, double posYStart, double posXEnd, double posYEnd) {
 		double startX=Math.min(posXStart, posXEnd);

@@ -2,7 +2,6 @@ package controller;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -17,7 +16,6 @@ import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import models.CustomShape;
 import models.LayersGroup;
 
 
@@ -46,7 +44,9 @@ public class MenuController {
 	
 	@FXML private MenuItem menuItemShapeOrder;
 	
-	private Logger loggerMenuController;
+	@FXML private MenuItem menuItemGroupShapes;
+	
+	private Logger loggerMenuController = Logger.getLogger("MenuController");
 	
 	@FXML
 	private void clear() {
@@ -66,7 +66,7 @@ public class MenuController {
 			LayersGroup layersGroup = this.mainApp.getDrawingZoneController().layersGroup;
 
 			try {
-				if (Boolean.TRUE.equals(fileController.askToSave(mainApp.getPrimaryStage(), layersGroup, mainApp.getDrawingZoneController().getDrawnShapes()))) {
+				if (Boolean.TRUE.equals(fileController.askToSave(mainApp.getPrimaryStage(), layersGroup))) {
 					this.mainApp.getDrawingZoneController().clearDrawing();
 					fileController.clearFile();
 				}
@@ -82,7 +82,7 @@ public class MenuController {
 			
 			if (Boolean.TRUE.equals(fileController.askForFile(mainApp.getPrimaryStage()))) {
 				try {
-					fileController.saveDrawing(layersGroup, (ArrayList<CustomShape>)mainApp.getDrawingZoneController().getDrawnShapes());
+					fileController.saveDrawing(layersGroup);
 				} catch (FileNotFoundException | XMLStreamException e1) {
 					loggerMenuController.log(Level.SEVERE, "Exeption:menuItemSaveAs: "+e1.getMessage()+"; Fonction: initialize():MenuController:menuItemSaveAs;");
 				}
@@ -98,7 +98,7 @@ public class MenuController {
 			if (fileController.getCurrentFile() == null && fileController.askForFile(mainApp.getPrimaryStage())) {
 				
 				try {
-					fileController.saveDrawing(layersGroup, (ArrayList<CustomShape>)mainApp.getDrawingZoneController().getDrawnShapes());
+					fileController.saveDrawing(layersGroup);
 				} catch (FileNotFoundException | XMLStreamException e1) {
 					loggerMenuController.log(Level.SEVERE, "Exeption:menuItemSave: "+e1.getMessage()+"; Fonction: initialize():MenuController:menuItemSave;");
 				}
@@ -120,7 +120,10 @@ public class MenuController {
 		
 		menuItemMagnetism.setOnAction(e -> 
 			mainApp.getDrawingZoneController().inverseMagnetism()
-
+		);
+		
+		menuItemGroupShapes.setOnAction(e -> 
+			group()
 		);
 		
     }
@@ -149,7 +152,10 @@ public class MenuController {
 		mainApp.getDrawingZoneController().clearDrawing();
 		mainApp.getDrawingZoneController().updateLayers(true);
 	}
-	
+	@FXML private void group() {
+
+		openModal("../view/GroupingWindow.fxml");
+	}
 	private void actionShapeOrder() {
 		
 		openModal("../view/LayerShapeWindow.fxml");
@@ -184,7 +190,7 @@ public class MenuController {
 		FileController fileController = FileController.getInstance();
 		
 		try {
-			if (Boolean.TRUE.equals(fileController.askToSave(mainApp.getPrimaryStage(), LayersGroup.getLayersGroup(), (ArrayList<CustomShape>)mainApp.getDrawingZoneController().getDrawnShapes()))) {
+			if (Boolean.TRUE.equals(fileController.askToSave(mainApp.getPrimaryStage(), LayersGroup.getLayersGroup()))) {
 				fileController.openFile(mainApp.getPrimaryStage(), mainApp);
 				this.mainApp.getDrawingZoneController().updateLayers(true);
 					

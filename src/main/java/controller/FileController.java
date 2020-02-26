@@ -3,7 +3,6 @@ package controller;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.List;
 import java.util.Optional;
 
 import javax.xml.stream.XMLStreamException;
@@ -15,7 +14,6 @@ import javafx.scene.control.ButtonBar.ButtonData;
 import javafx.scene.control.ButtonType;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import models.CustomShape;
 import models.LayersGroup;
 import models.XmlDecoder;
 import models.XmlEncoder;
@@ -54,8 +52,8 @@ public class FileController {
 
 	}
 
-	public void saveDrawing(LayersGroup layersGroupe, List<CustomShape> drawnShape) throws FileNotFoundException, XMLStreamException {
-		XmlEncoder.createXML(layersGroupe, drawnShape, currentFile);
+	public void saveDrawing(LayersGroup layersGroupe) throws FileNotFoundException, XMLStreamException {
+		XmlEncoder.createXML(layersGroupe, currentFile);
 	}
 	
 	public File getCurrentFile() {
@@ -66,7 +64,7 @@ public class FileController {
 		currentFile = null;
 	}
 	
-	public Boolean askToSave(Stage stage, LayersGroup layersGroup, List<CustomShape> drawnShape) throws FileNotFoundException, XMLStreamException {
+	public Boolean askToSave(Stage stage, LayersGroup layersGroup) throws FileNotFoundException, XMLStreamException {
 		Alert alert = new Alert(AlertType.WARNING);
 		alert.setTitle("");
 		alert.setHeaderText("");
@@ -85,7 +83,7 @@ public class FileController {
 			}
 			
 			if (getCurrentFile() != null) {
-				saveDrawing(layersGroup, drawnShape);
+				saveDrawing(layersGroup);
 			} else {
 				return false;
 			}

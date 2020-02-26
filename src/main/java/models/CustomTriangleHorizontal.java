@@ -8,6 +8,8 @@ public class CustomTriangleHorizontal extends CustomShape {
 		this.shape = new Polygon();
 		((Polygon) this.shape).getPoints().addAll(0.0, 0.0, 0.0, 0.0, 0.0 , 0.0);
 		this.boundingBox = new Rectangle();
+		this.scale=false;
+		this.type = "triangleHorizontal";
 	}
 
 	
@@ -23,13 +25,6 @@ public class CustomTriangleHorizontal extends CustomShape {
 		double startY;
 		double width;
 		double height;
-		if(posXStart<posXEnd) {
-			startX=posXStart;
-			width = posXEnd-posXStart;
-		}else {
-			startX=posXEnd;
-			width = posXStart-posXEnd;
-		}
 		if(posYStart<posYEnd) {
 			startY=posYStart;
 			height = posYEnd-posYStart;
@@ -37,10 +32,17 @@ public class CustomTriangleHorizontal extends CustomShape {
 			startY=posYEnd;
 			height = posYStart-posYEnd;
 		}
+		if(posXStart<posXEnd) {
+			startX=posXStart;
+			width = posXEnd-posXStart;
+		}else {
+			startX=posXEnd;
+			width = posXStart-posXEnd;
+		}
 		this.setWidth(width);
 		this.setHeight(height);
-		this.setXPosition(startX);
 		this.setYPosition(startY);
+		this.setXPosition(startX);
 	}
 	
 	public void ajustOnDragFromCenter(double posXStart, double posYStart, double posXEnd, double posYEnd) {
@@ -48,13 +50,7 @@ public class CustomTriangleHorizontal extends CustomShape {
 		double startY;
 		double width;
 		double height;
-		if(posXStart<posXEnd) {
-			width = posXEnd-posXStart;
-			startX=posXStart-width;
-		}else {
-			startX=posXEnd;
-			width = posXStart-posXEnd;
-		}
+
 		if(posYStart<posYEnd) {
 			height = posYEnd-posYStart;
 			startY=posYStart-height;
@@ -62,26 +58,31 @@ public class CustomTriangleHorizontal extends CustomShape {
 			startY=posYEnd;
 			height = posYStart-posYEnd;
 		}
+		if(posXStart<posXEnd) {
+			width = posXEnd-posXStart;
+			startX=posXStart-width;
+		}else {
+			startX=posXEnd;
+			width = posXStart-posXEnd;
+		}
 		this.setWidth(width*2);
 		this.setHeight(height*2);
 		this.setXPosition(startX);
 		this.setYPosition(startY);
 	}
 	
-	@Override
-	public String getType() {
-		return "triangleHorizontal";
-	}
 	
 	@Override
-	public void setShapeXPos(double value) {
+	public void setXPos(double value) {
+		this.boundingBox.setX(value);
 		((Polygon)this.shape).getPoints().set(0, value);
 		((Polygon)this.shape).getPoints().set(2, value+this.boundingBox.getWidth());
 		((Polygon)this.shape).getPoints().set(4, value+this.boundingBox.getWidth()/2);
 	}
 
 	@Override
-	public void setShapeYPos(double value) {
+	public void setYPos(double value) {
+		this.boundingBox.setY(value);
 		((Polygon)this.shape).getPoints().set(1, value+this.boundingBox.getHeight());
 		((Polygon)this.shape).getPoints().set(3, value+this.boundingBox.getHeight());
 		((Polygon)this.shape).getPoints().set(5, value);		

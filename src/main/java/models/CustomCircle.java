@@ -9,25 +9,31 @@ public class CustomCircle extends CustomShape {
 	public CustomCircle() {
 		this.shape = new Circle();
 		this.boundingBox = new Rectangle();
+		this.scale=false;
+		this.type = "circle";
 	}
 	
 	public CustomCircle(double posX, double posY, double radius) {
 		this.shape = new Circle();
 		this.boundingBox = new Rectangle();
 		this.setXPosition(posX);
-		this.setShapeXPos(posX);
+		this.setXPos(posX);
 		this.setYPosition(posY);
-		this.setShapeYPos(posY);
+		this.setYPos(posY);
 		this.setWidth(2*radius);
+		this.scale=false;
+		this.type = "circle";
 	}
 	
 	@Override
-	public void setShapeXPos(double value) {
+	public void setXPos(double value) {
+		this.boundingBox.setX(value);
 		((Circle)this.shape).setCenterX(value + this.boundingBox.getWidth()/2);
 	}
 
 	@Override
-	public void setShapeYPos(double value) {
+	public void setYPos(double value) {
+		this.boundingBox.setY(value);
 		((Circle)this.shape).setCenterY(value + this.boundingBox.getHeight()/2);
 	}
 
@@ -35,12 +41,13 @@ public class CustomCircle extends CustomShape {
 		this.boundingBox.setWidth(value);
 		this.boundingBox.setHeight(value);
 		((Circle)this.shape).setRadius(value/2);
+		this.setXPos(this.boundingBox.getX());
+		this.setYPos(this.boundingBox.getY());
 	}
 
 	public void setHeight(double value) {
 		this.setWidth(value);
 	}
-	
 	@Override
 	public CustomShape duplicate(int offsetX, int offsetY) {
 		CustomCircle newCircle = new CustomCircle();
@@ -52,6 +59,7 @@ public class CustomCircle extends CustomShape {
 		newCircle.setStrokeWidth(this.getStrokeWidth());
 		return newCircle;
 	}
+	
 	@Override
 	public void ajustOnDragFromCorner(double posXStart, double posYStart, double posXEnd, double posYEnd) {//TODO: refaire
 		double cote = Math.min(Math.abs(posXEnd-posXStart), Math.abs(posYEnd-posYStart));
@@ -79,23 +87,10 @@ public class CustomCircle extends CustomShape {
 		double startY;
 		double cote;
 		cote = Math.min(Math.abs(posXEnd-posXStart), Math.abs(posYEnd-posYStart));
-		if(posXStart<posXEnd) {
-			startX=posXStart-cote;
-		}else {
-			startX=posXEnd;
-		}
-		if(posYStart<posYEnd) {
-			startY=posYStart-cote;
-		}else {
-			startY=posYEnd;
-		}
+		startX=posXStart-cote;
+		startY=posYStart-cote;
 		this.setWidth(cote*2);
 		this.setXPosition(startX);
 		this.setYPosition(startY);
-	}
-
-	@Override
-	public String getType() {
-		return "circle";
 	}
 }

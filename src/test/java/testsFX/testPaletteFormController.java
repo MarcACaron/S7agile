@@ -1,11 +1,10 @@
 package testsFX;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import javafx.scene.input.MouseButton;
 
 
 public class testPaletteFormController extends testApplicationUI {
@@ -22,22 +21,22 @@ public class testPaletteFormController extends testApplicationUI {
 	public void testMultiPointeur() {
 		clickOn("#rectangle");
 		assertEquals("rectangle", this.mainApp.getTool().getToolType());
-		moveBy(80, 80);
+		moveBy(100, 0);
 		drag();
 		moveBy(2, 2);
 		drop();
 		clickOn("#line");
-		moveBy(80, 80);
+		moveBy(100, 0);
 		drag();
 		moveBy(2, 2);
 		drop();
 		clickOn("#circle");
-		moveBy(80, 80);
+		moveBy(100, 0);
 		drag();
 		moveBy(2, 2);
 		drop();
 		clickOn("#multiSelection");
-		moveBy(80, 80);
+		moveBy(100, 0);
 		drag();
 		moveBy(200, 200);
 		drop();
@@ -45,26 +44,58 @@ public class testPaletteFormController extends testApplicationUI {
 	@Test
 	public void testRectangle() {
 		clickOn("#rectangle");
-		moveBy(150, 150);
+		moveBy(150, 50);
 		drag();
 		moveBy(150, 150);
 		drop();
+		assertEquals("rectangle", this.mainApp.getTool().getToolType());
+		assertTrue(299.999<this.mainApp.getTool().getShape().getWidth() && 301>this.mainApp.getTool().getShape().getWidth());
+		assertTrue(299.999<this.mainApp.getTool().getShape().getWidth() && 301>this.mainApp.getTool().getShape().getHeight());
+
 	}
 	@Test
 	public void testCircle() {
 		clickOn("#circle");
-		moveBy(150, 150);
+		moveBy(150, 50);
 		drag();
 		moveBy(150, 150);
 		drop();
+		assertEquals("circle", this.mainApp.getTool().getToolType());
+		assertTrue(299.999<this.mainApp.getTool().getShape().getWidth() && 301>this.mainApp.getTool().getShape().getWidth());
+		assertTrue(299.999<this.mainApp.getTool().getShape().getWidth() && 301>this.mainApp.getTool().getShape().getHeight());
 	}
 	@Test
 	public void testLine() {
 		clickOn("#line");
-		moveBy(150, 150);
+		moveBy(150, -50);
 		drag();
 		moveBy(150, 150);
 		drop();
+		assertEquals("line", this.mainApp.getTool().getToolType());
+		assertTrue(299.999<this.mainApp.getTool().getShape().getWidth() && 301>this.mainApp.getTool().getShape().getWidth());
+		assertTrue(299.999<this.mainApp.getTool().getShape().getWidth() && 301>this.mainApp.getTool().getShape().getHeight());
+	}
+	@Test
+	public void testTriangleHorizontal() {
+		clickOn("#triangleHorizontal");
+		moveBy(150, 0);
+		drag();
+		moveBy(100, 100);
+		drop();
+		assertEquals("triangleHorizontal", this.mainApp.getTool().getToolType());
+		assertTrue(199.999<this.mainApp.getTool().getShape().getWidth() && 201>this.mainApp.getTool().getShape().getWidth());
+		assertTrue(199.999<this.mainApp.getTool().getShape().getWidth() && 201>this.mainApp.getTool().getShape().getHeight());
+	}
+	@Test
+	public void testTriangleVertical() {
+		clickOn("#triangleVertical");
+		moveBy(150, 0);
+		drag();
+		moveBy(100, 100);
+		drop();
+		assertEquals("triangleVertical", this.mainApp.getTool().getToolType());
+		assertTrue(199.999<this.mainApp.getTool().getShape().getWidth() && 201>this.mainApp.getTool().getShape().getWidth());
+		assertTrue(199.999<this.mainApp.getTool().getShape().getWidth() && 201>this.mainApp.getTool().getShape().getHeight());
 	}
 	@Test
 	public void testStartPoint() {
@@ -72,8 +103,7 @@ public class testPaletteFormController extends testApplicationUI {
 		testLine();
 		testCircle();
 		testRectangle();
-		clickOn("#pointeur");
-		moveBy(250, 250);
-		clickOn(MouseButton.PRIMARY);
+		testTriangleHorizontal();
+		testTriangleVertical();
 	}
 }

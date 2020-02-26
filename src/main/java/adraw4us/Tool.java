@@ -11,8 +11,10 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import models.CustomContextMenu;
 import models.CustomShape;
+import models.DrawnShapes;
 import models.Layer;
 import models.LayersGroup;
+import models.ShapeName;
 
 public abstract class Tool {
 
@@ -53,24 +55,27 @@ public abstract class Tool {
 
 	public Function<Object, Object> fillDetails(DetailPaletteController dp, CustomShape nd, MainApp mainApp){
 		return y -> {
-			if(nd == null) 
+			if(nd == null) {
 				dp.paletteDisable(true);
+				ShapeName.getShapeName().name = null;
+			}
 			else {
 				CustomShape tShape = (CustomShape) nd;
 				dp.select(tShape);
 				dp.setTextField(tShape);
 				showSelectedShape(mainApp);
+				ShapeName.getShapeName().name = nd.getType();
 			}
 			return y;
 		};
 	}
-
-
-	public int mousePressed(DetailPaletteController detailPaletteController, Layer layer, List<CustomShape> drawnShapes, MainApp mainApp) {
+	
+	
+	public int mousePressed(DetailPaletteController detailPaletteController, Layer layer, MainApp mainApp) {
 		int index = layer.getPane().getChildren().size();
 		this.reset();
 		shape.setLayer(layer.getId());
-		drawnShapes.add(shape);
+		DrawnShapes.getDrawnShapes().add(shape);
 		layer.getPane().getChildren().add(shape.getDraw());
 		return index;
 	}
@@ -78,8 +83,8 @@ public abstract class Tool {
 	public void mouseDragged(double posXStart, double posYStart, double posXEnd, double posYEnd) {
 		this.ajustOnDrag(posXStart, posYStart, posXEnd, posYEnd);
 	}
-
-	public void mouseReleased(MainApp mainApp, Pane pane, PaletteCouleurController pc, DetailPaletteController dp, List<CustomShape> drawnShapes) {
+	
+	public void mouseReleased(MainApp mainApp, Pane pane, PaletteCouleurController pc, DetailPaletteController dp) {
 		CustomShape shape2 = this.shape;
 		pane.getChildren().remove(pane.getChildren().size()-1);
 
@@ -109,7 +114,6 @@ public abstract class Tool {
 		});
 
 		fillDetails(dp, shape2, mainApp).apply(null);
-		this.showSelectedShape(mainApp);
 	}
 	public static Paint getFill() {
 		return fill;
