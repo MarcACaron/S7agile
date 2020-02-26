@@ -17,6 +17,7 @@ import javafx.scene.paint.ImagePattern;
 import models.AbstractShapeTranfo;
 import models.FlipHTransfo;
 import models.FlipVTransfo;
+import models.CustomShape;
 
 public class PaletteCouleurController {
 	
@@ -56,12 +57,15 @@ public class PaletteCouleurController {
 	private FlipHTransfo rootflipH;
 		
 	@FXML
-	private void verticalFlip() {
-		if (mainApp.getTool().getShape() != null)
-			rootflipH.transfoShape(AbstractShapeTranfo.FLIPV, mainApp.getTool().getShape());
+	public void verticalFlip() {
+		if (mainApp.getTool().getShape() != null) {
+			CustomShape a = mainApp.getTool().getShape();
+			rootflipH.transfoShape(AbstractShapeTranfo.FLIPV, a);
+		}
+			
 	}
 	@FXML
-	private void horizontalFlip() {
+	public void horizontalFlip() {
 		if (mainApp.getTool().getShape() != null)
 			rootflipH.transfoShape(AbstractShapeTranfo.FLIPH, mainApp.getTool().getShape());
 	}
