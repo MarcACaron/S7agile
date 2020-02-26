@@ -35,6 +35,8 @@ public class CustomCircle extends CustomShape {
 		this.boundingBox.setWidth(value);
 		this.boundingBox.setHeight(value);
 		((Circle)this.shape).setRadius(value/2);
+		this.setXPos(this.boundingBox.getX());
+		this.setYPos(this.boundingBox.getY());
 	}
 
 	public void setHeight(double value) {
@@ -79,16 +81,8 @@ public class CustomCircle extends CustomShape {
 		double startY;
 		double cote;
 		cote = Math.min(Math.abs(posXEnd-posXStart), Math.abs(posYEnd-posYStart));
-		if(posXStart<posXEnd) {
-			startX=posXStart-cote;
-		}else {
-			startX=posXEnd;
-		}
-		if(posYStart<posYEnd) {
-			startY=posYStart-cote;
-		}else {
-			startY=posYEnd;
-		}
+		startX=posXStart-cote;
+		startY=posYStart-cote;
 		this.setWidth(cote*2);
 		this.setXPosition(startX);
 		this.setYPosition(startY);
