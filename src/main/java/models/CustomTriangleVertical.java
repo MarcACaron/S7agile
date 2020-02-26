@@ -76,9 +76,9 @@ public class CustomTriangleVertical extends CustomShape {
 	@Override
 	public void setXPos(double value) {
 		this.boundingBox.setX(value);
-		((Polygon)this.shape).getPoints().set(0, value+this.boundingBox.getWidth());
-		((Polygon)this.shape).getPoints().set(2, value+this.boundingBox.getWidth());
-		((Polygon)this.shape).getPoints().set(4, value);
+		((Polygon)this.shape).getPoints().set(0, value);
+		((Polygon)this.shape).getPoints().set(2, value);
+		((Polygon)this.shape).getPoints().set(4, value+this.boundingBox.getWidth());
 	}
 
 	@Override
