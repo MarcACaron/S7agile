@@ -15,19 +15,21 @@ public class CustomCircle extends CustomShape {
 		this.shape = new Circle();
 		this.boundingBox = new Rectangle();
 		this.setXPosition(posX);
-		this.setShapeXPos(posX);
+		this.setXPos(posX);
 		this.setYPosition(posY);
-		this.setShapeYPos(posY);
+		this.setYPos(posY);
 		this.setWidth(2*radius);
 	}
 	
 	@Override
-	public void setShapeXPos(double value) {
+	public void setXPos(double value) {
+		this.boundingBox.setX(value);
 		((Circle)this.shape).setCenterX(value + this.boundingBox.getWidth()/2);
 	}
 
 	@Override
-	public void setShapeYPos(double value) {
+	public void setYPos(double value) {
+		this.boundingBox.setY(value);
 		((Circle)this.shape).setCenterY(value + this.boundingBox.getHeight()/2);
 	}
 
@@ -43,13 +45,15 @@ public class CustomCircle extends CustomShape {
 		this.setWidth(value);
 	}
 	@Override
-	public CustomShape duplicateAndOffset() {
-		return new CustomCircle();
-	}
-	
-	@Override
-	public CustomShape duplicate() {
-		return new CustomCircle();
+	public CustomShape duplicate(int offsetX, int offsetY) {
+		CustomCircle newCircle = new CustomCircle();
+		newCircle.setFill(this.getFill(), this.getFillName());
+		newCircle.setXPosition(this.getXPos() + offsetX);
+		newCircle.setYPosition(this.getYPos() + offsetY);
+		newCircle.setHeight(this.getHeight());
+		newCircle.setStroke(this.getStroke());
+		newCircle.setStrokeWidth(this.getStrokeWidth());
+		return newCircle;
 	}
 	
 	@Override

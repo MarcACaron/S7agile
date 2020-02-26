@@ -24,8 +24,8 @@ public class CustomRectangle extends CustomShape {
 		newRectangle.setStroke(this.getStroke());
 		newRectangle.setStrokeWidth(this.getStrokeWidth());
 		newRectangle.setFill(this.getFill(), this.shape.getAccessibleText());
-		newRectangle.setShapeXPos(this.getXPos() + offsetX);
-		newRectangle.setShapeYPos(this.getYPos() + offsetY);
+		newRectangle.setXPos(this.getXPos() + offsetX);
+		newRectangle.setYPos(this.getYPos() + offsetY);
 		newRectangle.setWidth(this.getWidth());
 		newRectangle.setHeight(this.getHeight());
 		
@@ -87,12 +87,14 @@ public class CustomRectangle extends CustomShape {
 		return "rectangle";
 	}
 	@Override
-	public void setShapeXPos(double value) {
+	public void setXPos(double value) {
+		this.boundingBox.setX(value);
 		((Rectangle)this.shape).setX(value);
 	}
 
 	@Override
-	public void setShapeYPos(double value) {
+	public void setYPos(double value) {
+		this.boundingBox.setY(value);
 		((Rectangle)this.shape).setY(value);
 	}
 

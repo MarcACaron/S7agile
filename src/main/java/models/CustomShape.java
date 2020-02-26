@@ -37,8 +37,8 @@ public abstract class CustomShape {
 	public void setVFlip(boolean vFlip) {
 		this.vFlip = vFlip;
 	}
-	public abstract void setShapeXPos(double value);
-	public abstract void setShapeYPos(double value);
+	public abstract void setXPos(double value);
+	public abstract void setYPos(double value);
 	public abstract void setWidth(double value);
 	public abstract void setHeight(double value);
 	public void setStroke(Paint value) {
@@ -131,11 +131,11 @@ public abstract class CustomShape {
 		//reader.nextEvent();
 		//reader.nextEvent();
 		event = reader.nextEvent();
-		this.setShapeXPos(Double.valueOf(event.asCharacters().getData()));
+		this.setXPos(Double.valueOf(event.asCharacters().getData()));
 		reader.nextEvent();
 		reader.nextEvent();
 		event = reader.nextEvent();
-		this.setShapeYPos(Double.valueOf(event.asCharacters().getData()));
+		this.setYPos(Double.valueOf(event.asCharacters().getData()));
 		reader.nextEvent();
 		reader.nextEvent();
 		event = reader.nextEvent();
@@ -184,7 +184,7 @@ public abstract class CustomShape {
     public void setXPosition(double value) {
     	this.getDraw().getTransforms().clear();
 		this.boundingBox.setX(value);
-		this.setShapeXPos(value);
+		this.setXPos(value);
 		if (this.getHFlip())
 			this.flipShape(0, true);
     	if (this.getVFlip())
@@ -194,7 +194,7 @@ public abstract class CustomShape {
     public void setYPosition(double value) {
     	this.getDraw().getTransforms().clear();
 		this.boundingBox.setY(value);
-		this.setShapeYPos(value);
+		this.setYPos(value);
 		if (this.getHFlip())
 			this.flipShape(0, true);
     	if (this.getVFlip())
