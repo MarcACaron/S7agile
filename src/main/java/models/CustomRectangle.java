@@ -1,8 +1,6 @@
 package models;
 
-import javafx.collections.ObservableList;
 import javafx.scene.shape.Rectangle;
-import javafx.scene.transform.Transform;
 
 public class CustomRectangle extends CustomShape {
 	public CustomRectangle() {
@@ -12,13 +10,13 @@ public class CustomRectangle extends CustomShape {
 	@Override
 	public CustomShape duplicateAndOffset() {
 		CustomRectangle newRectangle = new CustomRectangle();//TODO: reparer
-		/*newRectangle.setStroke(this.getStroke());
+		newRectangle.setStroke(this.getStroke());
 		newRectangle.setStrokeWidth(this.getStrokeWidth());
-		newRectangle.setFill(this.getFill());
-		newRectangle.setXPos(this.getXPos() + XCOPYOFFSET);
-		newRectangle.setYPos(this.getYPos() + YCOPYOFFSET);
+		newRectangle.setFill(this.getFill(), this.shape.getAccessibleText());
+		newRectangle.setShapeXPos(this.getXPos() + XCOPYOFFSET);
+		newRectangle.setShapeYPos(this.getYPos() + YCOPYOFFSET);
 		newRectangle.setWidth(this.getWidth());
-		newRectangle.setHeight(this.getHeight());*/
+		newRectangle.setHeight(this.getHeight());
 		
 		return newRectangle;
 	}
@@ -27,13 +25,13 @@ public class CustomRectangle extends CustomShape {
 	@Override
 	public CustomShape duplicate() {
 		CustomRectangle newRectangle = new CustomRectangle();//TODO: REPARER
-		/*newRectangle.setStroke(this.getStroke());
+		newRectangle.setStroke(this.getStroke());
 		newRectangle.setStrokeWidth(this.getStrokeWidth());
-		newRectangle.setFill(this.getFill());
-		newRectangle.setXPos(this.getXPos());
-		newRectangle.setYPos(this.getYPos());
+		newRectangle.setFill(this.getFill(),this.shape.getAccessibleText());
+		newRectangle.setShapeXPos(this.getXPos());
+		newRectangle.setShapeYPos(this.getYPos());
 		newRectangle.setWidth(this.getWidth());
-		newRectangle.setHeight(this.getHeight());*/
+		newRectangle.setHeight(this.getHeight());
 		
 		return newRectangle;
 	}

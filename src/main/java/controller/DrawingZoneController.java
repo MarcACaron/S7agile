@@ -16,10 +16,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
-import javafx.scene.transform.Affine;
 import javafx.scene.transform.Scale;
-import javafx.scene.transform.Transform;
-import javafx.scene.transform.Translate;
 import models.ApplicationHistory;
 import models.CustomShape;
 import models.Layer;
@@ -233,7 +230,7 @@ public class DrawingZoneController {
 	
 	public void saveShape() {
 		//TODO: reparer
-		//shapeCopy = (CustomShape) mainApp.getTool().getShape().clone(); ???
+		shapeCopy = (CustomShape) mainApp.getTool().getShape().duplicateAndOffset();
 
 	}
 	
