@@ -11,15 +11,7 @@ public class CustomTriangleVertical extends CustomShape {
 	}
 	
 	@Override
-	public CustomShape duplicateAndOffset() {
-		CustomTriangleVertical newTriangleVertical = new CustomTriangleVertical();//TODO: reparer
-		
-		return newTriangleVertical;
-	}
-
-	
-	@Override
-	public CustomShape duplicate() {
+	public CustomShape duplicate(int offsetX, int offsetY) {
 		CustomTriangleVertical newTriangleVertical = new CustomTriangleVertical();//TODO: REPARER
 		
 		return newTriangleVertical;

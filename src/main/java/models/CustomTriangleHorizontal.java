@@ -9,21 +9,15 @@ public class CustomTriangleHorizontal extends CustomShape {
 		((Polygon) this.shape).getPoints().addAll(0.0, 0.0, 0.0, 0.0, 0.0 , 0.0);
 		this.boundingBox = new Rectangle();
 	}
-	
-	@Override
-	public CustomShape duplicateAndOffset() {
-		CustomTriangleHorizontal newTriangleHorizontal = new CustomTriangleHorizontal();//TODO: reparer
-		
-		return newTriangleHorizontal;
-	}
 
 	
 	@Override
-	public CustomShape duplicate() {
+	public CustomShape duplicate(int offsetX, int offsetY) {
 		CustomTriangleHorizontal newTriangleHorizontal = new CustomTriangleHorizontal();//TODO: REPARER
 		
 		return newTriangleHorizontal;
 	}
+
 	public void ajustOnDragFromCorner(double posXStart, double posYStart, double posXEnd, double posYEnd) {
 		double startX;
 		double startY;

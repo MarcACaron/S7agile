@@ -231,7 +231,7 @@ public class DrawingZoneController {
 	
 	public void saveShape() {
 		//TODO: reparer
-		//shapeCopy = (CustomShape) mainApp.getTool().getShape().clone(); ???
+		shapeCopy = mainApp.getTool().getShape().duplicate(10, 10);
 
 	}
 	
