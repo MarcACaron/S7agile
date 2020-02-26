@@ -38,7 +38,7 @@ public class DrawingZoneController {
 	private AnchorPane selectionLayoutPane;
 	
 	private MainApp mainApp;
-	private List<CustomShape> drawnShapes = new ArrayList<>();
+	private ArrayList<CustomShape> drawnShapes = new ArrayList<>();
 	
 	private CustomShape shapeCopy;
 	ApplicationHistory history = ApplicationHistory.getInstance();
@@ -58,7 +58,7 @@ public class DrawingZoneController {
 	boolean gridPaneBoolean;
 	boolean magnetismState = false;
 	
-	public List<CustomShape> getDrawnShapes() {
+	public ArrayList<CustomShape> getDrawnShapes() {
 		return this.drawnShapes;
 	}
 	

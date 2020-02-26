@@ -3,6 +3,7 @@ package models;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.xml.stream.XMLOutputFactory;
@@ -16,7 +17,7 @@ public class XmlEncoder {
 		
 	}
 	
-	public static void createXML(LayersGroup layersGroup, List<CustomShape> drawnShape, File file) throws FileNotFoundException, XMLStreamException {
+	public static void createXML(LayersGroup layersGroup, ArrayList<CustomShape> drawnShape, File file) throws FileNotFoundException, XMLStreamException {
 		XMLOutputFactory factory = XMLOutputFactory.newInstance();
 		XMLStreamWriter writer = factory.createXMLStreamWriter(new FileOutputStream(file));
 		writer.writeStartDocument();
