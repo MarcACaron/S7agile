@@ -19,6 +19,7 @@ import javafx.scene.shape.Shape;
 import javafx.scene.transform.Scale;
 import models.ApplicationHistory;
 import models.CustomShape;
+import models.DrawnShapes;
 import models.Layer;
 import models.LayersGroup;
 
@@ -38,7 +39,6 @@ public class DrawingZoneController {
 	private AnchorPane selectionLayoutPane;
 	
 	private MainApp mainApp;
-	private List<CustomShape> drawnShapes = new ArrayList<>();
 	
 	private CustomShape shapeCopy;
 	ApplicationHistory history = ApplicationHistory.getInstance();
@@ -57,10 +57,6 @@ public class DrawingZoneController {
 	int childIndex;
 	boolean gridPaneBoolean;
 	boolean magnetismState = false;
-	
-	public List<CustomShape> getDrawnShapes() {
-		return this.drawnShapes;
-	}
 	
 	public void redo() {
 		clearDrawing();
@@ -149,13 +145,13 @@ public class DrawingZoneController {
 			orgX = t.getX();
 			orgY = t.getY();
 			childIndex = anchorPane.getChildren().size();
-			childIndex = this.mainApp.getTool().mousePressed(this.mainApp.getPaletteDetailController(), layersGroup.getCurrentLayer(), (ArrayList<CustomShape>)drawnShapes, mainApp);
+			childIndex = this.mainApp.getTool().mousePressed(this.mainApp.getPaletteDetailController(), layersGroup.getCurrentLayer(), mainApp);
 			getNearestGridPoint(orgX, orgY);
 			setNearestGridPoint();
 		});
 		anchorPane.setOnMouseDragged(t -> this.mainApp.getTool().mouseDragged(orgX, orgY, t.getX(), t.getY()));
 		
-		anchorPane.setOnMouseReleased(t -> this.mainApp.getTool().mouseReleased(mainApp, layersGroup.getCurrentLayer().getPane(), this.mainApp.getPaletteCouleurController(), this.mainApp.getPaletteDetailController(), (ArrayList<CustomShape>)drawnShapes));
+		anchorPane.setOnMouseReleased(t -> this.mainApp.getTool().mouseReleased(mainApp, layersGroup.getCurrentLayer().getPane(), this.mainApp.getPaletteCouleurController(), this.mainApp.getPaletteDetailController()));
 		updateLayers(true);
     }
 	
@@ -238,7 +234,7 @@ public class DrawingZoneController {
 	public void pasteShape() {
 		if (shapeCopy != null) {
 			this.applyToCurrentPane(shapeCopy.getDraw());
-			this.drawnShapes.add(shapeCopy);
+			DrawnShapes.getDrawnShapes().add(shapeCopy);
 			
 		}
 	}

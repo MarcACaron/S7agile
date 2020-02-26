@@ -1,10 +1,14 @@
 package controller;
 
+import java.util.ArrayList;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.shape.Shape;
+import models.CustomShape;
+import models.DrawnShapes;
 import models.Iterator;
 import models.LayersGroup;
 
@@ -58,10 +62,15 @@ public class ShapeLayerController {
 
 	private void updateList() {
 		shapeListView.getItems().clear();
-
+		ArrayList<CustomShape> drawnShapes = DrawnShapes.getDrawnShapes();
+		/*
 		for (Iterator iter = layerGroup.getIterator(); iter.hasNext();) {
 			Shape a = (Shape)iter.next();
 			shapeListView.getItems().add(new Label(a.getId()));
+		}*/
+		for (java.util.Iterator<CustomShape> iter = drawnShapes.iterator(); iter.hasNext();) {
+			CustomShape a = (CustomShape)iter.next();
+			shapeListView.getItems().add(new Label("L: "+a.getLayer()+"; "+a.getDraw().getId()+": "+a.getType()));
 		}
 
 	}

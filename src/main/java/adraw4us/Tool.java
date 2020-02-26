@@ -9,6 +9,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import models.CustomShape;
+import models.DrawnShapes;
 import models.Layer;
 import models.LayersGroup;
 import models.ShapeName;
@@ -68,11 +69,11 @@ public abstract class Tool {
 	}
 	
 	
-	public int mousePressed(DetailPaletteController detailPaletteController, Layer layer, List<CustomShape> drawnShapes, MainApp mainApp) {
+	public int mousePressed(DetailPaletteController detailPaletteController, Layer layer, MainApp mainApp) {
 		int index = layer.getPane().getChildren().size();
 		this.reset();
 		shape.setLayer(layer.getId());
-		drawnShapes.add(shape);
+		DrawnShapes.getDrawnShapes().add(shape);
 		layer.getPane().getChildren().add(shape.getDraw());
 		return index;
 	}
@@ -81,7 +82,7 @@ public abstract class Tool {
 		this.ajustOnDrag(posXStart, posYStart, posXEnd, posYEnd);
 	}
 	
-	public void mouseReleased(MainApp mainApp, Pane pane, PaletteCouleurController pc, DetailPaletteController dp, List<CustomShape> drawnShapes) {
+	public void mouseReleased(MainApp mainApp, Pane pane, PaletteCouleurController pc, DetailPaletteController dp) {
 		CustomShape shape2 = this.shape;
 		pane.getChildren().remove(pane.getChildren().size()-1);
 		

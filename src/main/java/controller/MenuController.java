@@ -68,7 +68,7 @@ public class MenuController {
 			LayersGroup layersGroup = this.mainApp.getDrawingZoneController().layersGroup;
 
 			try {
-				if (Boolean.TRUE.equals(fileController.askToSave(mainApp.getPrimaryStage(), layersGroup, mainApp.getDrawingZoneController().getDrawnShapes()))) {
+				if (Boolean.TRUE.equals(fileController.askToSave(mainApp.getPrimaryStage(), layersGroup))) {
 					this.mainApp.getDrawingZoneController().clearDrawing();
 					fileController.clearFile();
 				}
@@ -84,7 +84,7 @@ public class MenuController {
 			
 			if (Boolean.TRUE.equals(fileController.askForFile(mainApp.getPrimaryStage()))) {
 				try {
-					fileController.saveDrawing(layersGroup, (ArrayList<CustomShape>)mainApp.getDrawingZoneController().getDrawnShapes());
+					fileController.saveDrawing(layersGroup);
 				} catch (FileNotFoundException | XMLStreamException e1) {
 					loggerMenuController.log(Level.SEVERE, "Exeption:menuItemSaveAs: "+e1.getMessage()+"; Fonction: initialize():MenuController:menuItemSaveAs;");
 				}
@@ -100,7 +100,7 @@ public class MenuController {
 			if (fileController.getCurrentFile() == null && fileController.askForFile(mainApp.getPrimaryStage())) {
 				
 				try {
-					fileController.saveDrawing(layersGroup, (ArrayList<CustomShape>)mainApp.getDrawingZoneController().getDrawnShapes());
+					fileController.saveDrawing(layersGroup);
 				} catch (FileNotFoundException | XMLStreamException e1) {
 					loggerMenuController.log(Level.SEVERE, "Exeption:menuItemSave: "+e1.getMessage()+"; Fonction: initialize():MenuController:menuItemSave;");
 				}
@@ -192,7 +192,7 @@ public class MenuController {
 		FileController fileController = FileController.getInstance();
 		
 		try {
-			if (Boolean.TRUE.equals(fileController.askToSave(mainApp.getPrimaryStage(), LayersGroup.getLayersGroup(), (ArrayList<CustomShape>)mainApp.getDrawingZoneController().getDrawnShapes()))) {
+			if (Boolean.TRUE.equals(fileController.askToSave(mainApp.getPrimaryStage(), LayersGroup.getLayersGroup()))) {
 				fileController.openFile(mainApp.getPrimaryStage(), mainApp);
 				this.mainApp.getDrawingZoneController().updateLayers(true);
 					

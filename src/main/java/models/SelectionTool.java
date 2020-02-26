@@ -30,7 +30,7 @@ public class SelectionTool extends Tool {
 		//Intended to be empty
 	}
 	@Override
-	public int mousePressed(DetailPaletteController detailPaletteController, Layer layer, List<CustomShape> drawnShapes, MainApp mainApp) {
+	public int mousePressed(DetailPaletteController detailPaletteController, Layer layer, MainApp mainApp) {
 		int index = layer.getPane().getChildren().size()-1;
 		if(index<0)
 			index=0;
@@ -45,7 +45,7 @@ public class SelectionTool extends Tool {
 	}
 
 	@Override
-	public void mouseReleased(MainApp mainApp, Pane pane, PaletteCouleurController pc, DetailPaletteController dp, List<CustomShape> drawnShapes) {
+	public void mouseReleased(MainApp mainApp, Pane pane, PaletteCouleurController pc, DetailPaletteController dp) {
 		mainApp.getDrawingZoneController().clearSelectionLayer();
 		//showSelectedShape(mainApp, inputShape);
 	}
