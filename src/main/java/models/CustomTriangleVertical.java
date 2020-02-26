@@ -13,13 +13,6 @@ public class CustomTriangleVertical extends CustomShape {
 	@Override
 	public CustomShape duplicateAndOffset() {
 		CustomTriangleVertical newTriangleVertical = new CustomTriangleVertical();//TODO: reparer
-		/*newRectangle.setStroke(this.getStroke());
-		newRectangle.setStrokeWidth(this.getStrokeWidth());
-		newRectangle.setFill(this.getFill());
-		newRectangle.setXPos(this.getXPos() + XCOPYOFFSET);
-		newRectangle.setYPos(this.getYPos() + YCOPYOFFSET);
-		newRectangle.setWidth(this.getWidth());
-		newRectangle.setHeight(this.getHeight());*/
 		
 		return newTriangleVertical;
 	}
@@ -28,13 +21,6 @@ public class CustomTriangleVertical extends CustomShape {
 	@Override
 	public CustomShape duplicate() {
 		CustomTriangleVertical newTriangleVertical = new CustomTriangleVertical();//TODO: REPARER
-		/*newRectangle.setStroke(this.getStroke());
-		newRectangle.setStrokeWidth(this.getStrokeWidth());
-		newRectangle.setFill(this.getFill());
-		newRectangle.setXPos(this.getXPos());
-		newRectangle.setYPos(this.getYPos());
-		newRectangle.setWidth(this.getWidth());
-		newRectangle.setHeight(this.getHeight());*/
 		
 		return newTriangleVertical;
 	}

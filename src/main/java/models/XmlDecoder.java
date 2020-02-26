@@ -54,7 +54,7 @@ public class XmlDecoder {
 					layersGroup.createNewLayer(a);
 				}
 				layersGroup.getLayers().get(layerNames.indexOf(name)).getPane().getChildren().add(sh.getDraw());
-				mainApp.getDrawingZoneController().drawnShapes.add(sh);
+				mainApp.getDrawingZoneController().getDrawnShapes().add(sh);
 				reader.nextEvent();
 				drawnShape.add(sh);
 				sh.read(reader);

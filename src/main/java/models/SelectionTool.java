@@ -1,6 +1,6 @@
 package models;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import adraw4us.MainApp;
 import adraw4us.Tool;
@@ -20,13 +20,17 @@ public class SelectionTool extends Tool {
 
 	@Override
 	public void ajustOnDrag(double posXStart, double posYStart, double posXEnd, double posYEnd) {
+		
+		//Intended to be empty
 	}
 
 	@Override
 	public void reset() {
+		
+		//Intended to be empty
 	}
 	@Override
-	public int mousePressed(DetailPaletteController detailPaletteController, Layer layer, ArrayList<CustomShape> drawnShapes, MainApp mainApp) {
+	public int mousePressed(DetailPaletteController detailPaletteController, Layer layer, List<CustomShape> drawnShapes, MainApp mainApp) {
 		int index = layer.getPane().getChildren().size()-1;
 		if(index<0)
 			index=0;
@@ -41,7 +45,7 @@ public class SelectionTool extends Tool {
 	}
 
 	@Override
-	public void mouseReleased(MainApp mainApp, Pane pane, PaletteCouleurController pc, DetailPaletteController dp, ArrayList<CustomShape> drawnShapes) {
+	public void mouseReleased(MainApp mainApp, Pane pane, PaletteCouleurController pc, DetailPaletteController dp, List<CustomShape> drawnShapes) {
 		mainApp.getDrawingZoneController().clearSelectionLayer();
 		//showSelectedShape(mainApp, inputShape);
 	}

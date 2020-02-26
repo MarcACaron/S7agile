@@ -35,13 +35,6 @@ public class CustomCircle extends CustomShape {
 	@Override
 	public CustomShape duplicateAndOffset() {
 		CustomCircle newCircle = new CustomCircle();
-		/*newCircle.setStroke(this.getStroke());
-		newCircle.setStrokeWidth(this.getStrokeWidth());
-		newCircle.setFill(this.getFill());
-		newCircle.setCenterX(this.getCenterX() + XCOPYOFFSET);
-		newCircle.setCenterY(this.getCenterY() + YCOPYOFFSET);
-		newCircle.setRadiusTool(this.getRadius());
-		newCircle.setRotationTool(this.getRotation());*/
 		
 		return newCircle;
 	}
@@ -49,13 +42,6 @@ public class CustomCircle extends CustomShape {
 	@Override
 	public CustomShape duplicate() {
 		CustomCircle newCircle = new CustomCircle();
-		/*newCircle.setStroke(this.getStroke());
-		newCircle.setStrokeWidth(this.getStrokeWidth());
-		newCircle.setFill(this.getFill());
-		newCircle.setCenterX(this.getCenterX());
-		newCircle.setCenterY(this.getCenterY());
-		newCircle.setRadiusTool(this.getRadius());
-		newCircle.setRotationTool(this.getRotation());*/
 		
 		return newCircle;
 	}
@@ -86,16 +72,8 @@ public class CustomCircle extends CustomShape {
 		double startY;
 		double cote;
 		cote = Math.min(Math.abs(posXEnd-posXStart), Math.abs(posYEnd-posYStart));
-		if(posXStart<posXEnd) {
-			startX=posXStart-cote;
-		}else {
-			startX=posXEnd;
-		}
-		if(posYStart<posYEnd) {
-			startY=posYStart-cote;
-		}else {
-			startY=posYEnd;
-		}
+		startX=posXStart-cote;
+		startY=posYStart-cote;
 		this.setWidth(cote*2);
 		this.setXPos(startX);
 		this.setYPos(startY);

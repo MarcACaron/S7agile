@@ -42,9 +42,9 @@ public class CustomUnionShape extends CustomShape {
 	public void setWidth(double value) {
 		double rapportWidth = value/this.boundingBox.getWidth();
 		listOfShape.forEach(sh -> {
-			sh.setWidth(rapportWidth*sh.getWidth());
 			double rapportDeplacement = (sh.getXPos()-this.boundingBox.getX())/this.boundingBox.getWidth();
 			sh.setXPos(this.boundingBox.getX() + rapportDeplacement*value);
+			sh.setWidth(rapportWidth*sh.getWidth());
 			
 		});
 		if(scale) {
@@ -57,9 +57,9 @@ public class CustomUnionShape extends CustomShape {
 		double rapportWidth = value/this.boundingBox.getWidth();
 		listOfShape.forEach(sh -> {
 			if(sh.getType()!="circle"){
-				sh.setWidth(rapportWidth*sh.getWidth());
 				double rapportDeplacement = (sh.getXPos()-this.boundingBox.getX())/this.boundingBox.getWidth();
 				sh.setXPos(this.boundingBox.getX() + rapportDeplacement*value);
+				sh.setWidth(rapportWidth*sh.getWidth());
 			}
 		});
 		this.boundingBox.setWidth(value);
@@ -69,9 +69,9 @@ public class CustomUnionShape extends CustomShape {
 	public void setHeight(double value) {
 		double rapportWidth= value/this.boundingBox.getHeight();
 		listOfShape.forEach(sh -> {
-			sh.setHeight(rapportWidth*sh.getHeight());
 			double rapportDeplacement = (sh.getYPos()-this.boundingBox.getY())/this.boundingBox.getHeight();
 			sh.setYPos(this.boundingBox.getY() + rapportDeplacement*value);
+			sh.setHeight(rapportWidth*sh.getHeight());
 		});
 		if(scale) {
 			setWidth(value * getWidth()/getHeight(), true);
@@ -83,9 +83,9 @@ public class CustomUnionShape extends CustomShape {
 		double rapportWidth= value/this.boundingBox.getHeight();
 		listOfShape.forEach(sh -> {
 			if(sh.getType()!="circle"){
-				sh.setHeight(rapportWidth*sh.getHeight());
 				double rapportDeplacement = (sh.getYPos()-this.boundingBox.getY())/this.boundingBox.getHeight();
 				sh.setYPos(this.boundingBox.getY() + rapportDeplacement*value);
+				sh.setHeight(rapportWidth*sh.getHeight());
 			}
 		});
 		this.boundingBox.setHeight(value);
@@ -93,30 +93,30 @@ public class CustomUnionShape extends CustomShape {
 	
 	@Override
 	public void setFill(Paint value, String fillName) {
-		listOfShape.forEach(sh -> {
-			sh.setFill(value, fillName);
-		});
+		listOfShape.forEach(sh -> 
+			sh.setFill(value, fillName)
+		);
 	}
 	
 	@Override
 	public void setRotate(double value) {
-		listOfShape.forEach(sh -> {
-			sh.setRotate(value);
-		});
+		listOfShape.forEach(sh -> 
+			sh.setRotate(value)
+		);
 	}
 	
 	@Override
 	public void setStroke(Paint value) {
-		listOfShape.forEach(sh -> {
-			sh.setStroke(value);
-		});
+		listOfShape.forEach(sh -> 
+			sh.setStroke(value)
+		);
 	}
 	
 	@Override
 	public void setStrokeWidth(double strokeWidth) {
-		listOfShape.forEach(sh -> {
-			sh.setStrokeWidth(strokeWidth);
-		});
+		listOfShape.forEach(sh -> 
+			sh.setStrokeWidth(strokeWidth)
+		);
 	} 
 	
 	@Override

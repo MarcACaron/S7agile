@@ -1,15 +1,11 @@
 package controller;
 
 import javafx.fxml.FXML;
-import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
-import javafx.scene.layout.Pane;
 import javafx.scene.shape.Shape;
-import models.GridLayer;
 import models.Iterator;
-import models.Layer;
 import models.LayersGroup;
 
 public class ShapeLayerController {

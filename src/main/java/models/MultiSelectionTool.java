@@ -1,6 +1,6 @@
 package models;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import adraw4us.MainApp;
 import adraw4us.Tool;
@@ -55,7 +55,7 @@ public class MultiSelectionTool extends Tool {
 		this.shape = new CustomUnionShape();
 	}
 	@Override
-	public int mousePressed(DetailPaletteController detailPaletteController, Layer layer, ArrayList<CustomShape> drawnShapes, MainApp mainApp) {
+	public int mousePressed(DetailPaletteController detailPaletteController, Layer layer, List<CustomShape> drawnShapes, MainApp mainApp) {
 		this.reset();
 		int index = layer.getPane().getChildren().size();
 		this.selection = new Rectangle();
@@ -63,8 +63,8 @@ public class MultiSelectionTool extends Tool {
 		selection.setStrokeWidth(5.0);
 		selection.setFill(null);
 		selection.getStrokeDashArray().addAll(25d, 20d, 5d, 20d);
-		if(selection!=null)
-			layer.getPane().getChildren().add(selection);
+
+		layer.getPane().getChildren().add(selection);
 		
 		return index;
 	}
@@ -75,7 +75,7 @@ public class MultiSelectionTool extends Tool {
 	}
 
 	@Override
-	public void mouseReleased(MainApp mainApp, Pane pane, PaletteCouleurController paletteCouleurController, DetailPaletteController pc, ArrayList<CustomShape> drawnShapes) {
+	public void mouseReleased(MainApp mainApp, Pane pane, PaletteCouleurController paletteCouleurController, DetailPaletteController pc, List<CustomShape> drawnShapes) {
 		double xStart = selection.getX();
 		double yStart = selection.getY();
 		double xEnd = selection.getX()+selection.getWidth();
