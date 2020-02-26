@@ -32,17 +32,14 @@ public class CustomCircle extends CustomShape {
 	}
 	@Override
 	public CustomShape duplicateAndOffset() {
-		CustomCircle newCircle = new CustomCircle();
-		
-		return newCircle;
+		return new CustomCircle();
 	}
 	
 	@Override
 	public CustomShape duplicate() {
-		CustomCircle newCircle = new CustomCircle();
-		
-		return newCircle;
+		return new CustomCircle();
 	}
+	
 	@Override
 	public void ajustOnDragFromCorner(double posXStart, double posYStart, double posXEnd, double posYEnd) {//TODO: refaire
 		double cote = Math.min(Math.abs(posXEnd-posXStart), Math.abs(posYEnd-posYStart));

@@ -26,10 +26,10 @@ public class CustomTriangleVertical extends CustomShape {
 	}
 	
 	public void ajustOnDragFromCorner(double posXStart, double posYStart, double posXEnd, double posYEnd) {
-		double startX;
-		double startY;
 		double width;
 		double height;
+		double startX;
+		double startY;
 		if(posXStart<posXEnd) {
 			startX=posXStart;
 			width = posXEnd-posXStart;
@@ -51,10 +51,10 @@ public class CustomTriangleVertical extends CustomShape {
 	}
 	
 	public void ajustOnDragFromCenter(double posXStart, double posYStart, double posXEnd, double posYEnd) {
-		double startX;
-		double startY;
 		double width;
 		double height;
+		double startX;
+		double startY;
 		if(posXStart<posXEnd) {
 			width = posXEnd-posXStart;
 			startX=posXStart-width;
@@ -69,10 +69,10 @@ public class CustomTriangleVertical extends CustomShape {
 			startY=posYEnd;
 			height = posYStart-posYEnd;
 		}
-		this.setXPosition(startX);
-		this.setYPosition(startY);
 		this.setWidth(width*2);
 		this.setHeight(height*2);
+		this.setXPosition(startX);
+		this.setYPosition(startY);
 		
 	}
 	

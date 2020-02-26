@@ -90,7 +90,6 @@ public class CustomUnionShape extends CustomShape {
 		double yMin = this.listOfShape.get(0).getXPos();
 		double xMax = this.listOfShape.get(0).getXPos();
 		double yMax = this.listOfShape.get(0).getXPos();
-		
 	}
 
 	@Override
