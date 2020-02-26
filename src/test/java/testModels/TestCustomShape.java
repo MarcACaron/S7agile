@@ -13,15 +13,7 @@ import models.CustomShape;
 class TestCustomShape {
 	private static CustomShape shape;
 	double PosX = 50, PosY = 50, size = 100;
-	@Test
-	void test() {
-		/*shape.duplicate()
-		shape.duplicateAndOffset()
-		shape.getDraw()
-		shape.getType()*/
-		
-	}
-	
+
 	@BeforeAll
 	public static void setShape() {
 		double PosX = 50, PosY = 50, size = 100;
