@@ -18,6 +18,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import models.Persistance;
+import models.ShapeName;
 
 public class MainApp extends Application {
 
@@ -59,12 +60,13 @@ public class MainApp extends Application {
         
         
         initRootLayout();
-
+        ShapeName.init(this);
         showMainOverview();
         Persistance persi = new Persistance(toolApp);
         //setTool(persi.readState()); TODO: réparer
         
         persi.setOnClosedEvent(primaryStage);
+        
     }
     
     /**

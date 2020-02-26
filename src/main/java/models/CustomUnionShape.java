@@ -7,17 +7,27 @@ import javafx.scene.shape.Rectangle;
 
 public class CustomUnionShape extends CustomShape {
 	ArrayList<CustomShape> listOfShape;
-	boolean scale;
 	public CustomUnionShape(ArrayList<CustomShape> listOfShape) {
 		this.boundingBox = new Rectangle();
 		this.listOfShape = listOfShape;
 		scale = false;
+		this.listOfShape.forEach(customShape->{
+			if(customShape.isScale()) {
+				this.scale=true;
+			}
+		});
+		this.type = "CustomShape";
 	}
 
 	public CustomUnionShape() {
 		this.boundingBox = new Rectangle();
 		this.listOfShape = new ArrayList<CustomShape>();
-		scale = false;
+		this.listOfShape.forEach(customShape->{
+			if(customShape.isScale()) {
+				this.scale=true;
+			}
+		});
+		this.type = "CustomShape";
 	}
 
 	@Override
@@ -57,7 +67,7 @@ public class CustomUnionShape extends CustomShape {
 		double rapportWidth = value/this.boundingBox.getWidth();
 		listOfShape.forEach(sh -> {
 			double rapportDeplacement = (sh.getXPos()-this.boundingBox.getX())/this.boundingBox.getWidth();
-			if(sh.getType()!="circle"){
+			if(sh.isScale()){
 				sh.setWidth(rapportWidth*sh.getWidth());
 			}
 			sh.setXPos(this.boundingBox.getX() + rapportDeplacement*value);
@@ -83,7 +93,7 @@ public class CustomUnionShape extends CustomShape {
 		double rapportWidth= value/this.boundingBox.getHeight();
 		listOfShape.forEach(sh -> {
 			double rapportDeplacement = (sh.getYPos()-this.boundingBox.getY())/this.boundingBox.getHeight();
-			if(sh.getType()!="circle"){
+			if(sh.isScale()){
 				sh.setHeight(rapportWidth*sh.getHeight());
 			}
 			sh.setYPos(this.boundingBox.getY() + rapportDeplacement*value);
@@ -120,18 +130,13 @@ public class CustomUnionShape extends CustomShape {
 	} 
 	
 	@Override
-	public String getType() {
-		return null;
-	}
-
-	@Override
 	public CustomShape duplicate(int offsetX, int offsetY) {
 		return null;
 	}
 
 	public void add(CustomShape customShape) {
 		this.listOfShape.add(customShape);
-		if(customShape.getType()=="circle") {
+		if(customShape.isScale()) {
 			scale=true;
 		}
 	}
@@ -158,17 +163,11 @@ public class CustomUnionShape extends CustomShape {
 		this.boundingBox.setY(yMin);
 		this.boundingBox.setWidth(xMax-xMin);
 		this.boundingBox.setHeight(yMax-yMin);
-		if(ok) {
-			System.out.println(xMin);
-			System.out.println(yMin);
-			System.out.println(xMax);
-			System.out.println(yMax);
-		}
 		return ok;
 	}
 	
-	public void group() {
-		
+	public void group(String name) {
+		System.out.println("groupement");
 	}
 	@Override
 	public void ajustOnDragFromCorner(double posXStart, double posYStart, double posXEnd, double posYEnd) {
@@ -180,5 +179,11 @@ public class CustomUnionShape extends CustomShape {
 	public void ajustOnDragFromCenter(double posXStart, double posYStart, double posXEnd, double posYEnd) {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	@Override
+	public void setType(String type) {
+		super.setType(type);
+		group(type);
 	}
 }

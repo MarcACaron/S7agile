@@ -9,6 +9,8 @@ public class CustomLine extends CustomShape{
 	public CustomLine() {
 		this.shape = new Line();
 		this.boundingBox = new Rectangle();
+		this.scale=false;
+		this.type = "line";
 	}
 	public CustomLine(double startX, double startY, double endX, double endY) {
 		this.shape = new Line();
@@ -17,6 +19,8 @@ public class CustomLine extends CustomShape{
 		this.setYPosition(startY);
 		this.setWidth(endX - startX);
 		this.setHeight(endY - startY);
+		this.scale=false;
+		this.type = "line";
 	}
 	
 	@Override
@@ -72,10 +76,6 @@ public class CustomLine extends CustomShape{
 		return newLine;
 	}
 	
-	@Override
-	public String getType() {
-		return "line";
-	}
 	@Override
 	public void ajustOnDragFromCorner(double posXStart, double posYStart, double posXEnd, double posYEnd) {
 		double startX=Math.min(posXStart, posXEnd);

@@ -46,7 +46,9 @@ public class MenuController {
 	
 	@FXML private MenuItem menuItemShapeOrder;
 	
-	private Logger loggerMenuController;
+	@FXML private MenuItem menuItemGroupShapes;
+	
+	private Logger loggerMenuController = Logger.getLogger("MenuController");
 	
 	@FXML
 	private void clear() {
@@ -120,7 +122,10 @@ public class MenuController {
 		
 		menuItemMagnetism.setOnAction(e -> 
 			mainApp.getDrawingZoneController().inverseMagnetism()
-
+		);
+		
+		menuItemGroupShapes.setOnAction(e -> 
+			group()
 		);
 		
     }
@@ -149,7 +154,10 @@ public class MenuController {
 		mainApp.getDrawingZoneController().clearDrawing();
 		mainApp.getDrawingZoneController().updateLayers(true);
 	}
-	
+	@FXML private void group() {
+
+		openModal("../view/GroupingWindow.fxml");
+	}
 	private void actionShapeOrder() {
 		
 		openModal("../view/LayerShapeWindow.fxml");

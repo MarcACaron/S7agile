@@ -9,6 +9,8 @@ public class CustomCircle extends CustomShape {
 	public CustomCircle() {
 		this.shape = new Circle();
 		this.boundingBox = new Rectangle();
+		this.scale=false;
+		this.type = "circle";
 	}
 	
 	public CustomCircle(double posX, double posY, double radius) {
@@ -19,6 +21,8 @@ public class CustomCircle extends CustomShape {
 		this.setYPosition(posY);
 		this.setYPos(posY);
 		this.setWidth(2*radius);
+		this.scale=false;
+		this.type = "circle";
 	}
 	
 	@Override
@@ -88,10 +92,5 @@ public class CustomCircle extends CustomShape {
 		this.setWidth(cote*2);
 		this.setXPosition(startX);
 		this.setYPosition(startY);
-	}
-
-	@Override
-	public String getType() {
-		return "circle";
 	}
 }
