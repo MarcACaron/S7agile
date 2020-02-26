@@ -59,9 +59,10 @@ public class TestCircleTool {
 	
 	@Test
 	public void testDuplicateMethod() {
+
 		double PosX = 50, PosY = 50, radius = 100;
 		CustomCircle circ = new CustomCircle(PosX, PosY, radius);
-		CustomCircle circleClone = (CustomCircle) circ.duplicateAndOffset();
+		CustomCircle circleClone = (CustomCircle) circ.duplicate(10, 10);
 		
 		assertEquals(circ.getStroke(), circleClone.getStroke());
 		assertEquals(circ.getStrokeWidth(), circleClone.getStrokeWidth());

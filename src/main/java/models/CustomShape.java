@@ -5,8 +5,6 @@ import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamWriter;
 import javax.xml.stream.events.XMLEvent;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.geometry.Point2D;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
@@ -24,7 +22,8 @@ public abstract class CustomShape {
 	protected Rectangle boundingBox;
 	protected Shape shape;
 	protected String layer;
-	private boolean hFlip = false, vFlip = false;
+	private boolean hFlip = false;
+	private boolean vFlip = false;
 	
 	public boolean getHFlip() {
 		return hFlip;
@@ -92,8 +91,7 @@ public abstract class CustomShape {
 	public String getLayer() {
 		return layer;
 	}
-	public abstract CustomShape duplicateAndOffset();
-	public abstract CustomShape duplicate();
+	public abstract CustomShape duplicate(int offsetX, int offsetY);
 	public boolean isSelected(double xStart, double yStart, double xEnd, double yEnd) {
 
 		if(this.boundingBox.getY()+this.getHeight()>yEnd || this.boundingBox.getX()+this.getWidth()>xEnd
@@ -228,5 +226,4 @@ public abstract class CustomShape {
 		}
 		this.getDraw().getTransforms().add(transformIntoReflection(this.getCenterCoord(), flipVorH));
 	}
-		
 }

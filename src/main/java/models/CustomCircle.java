@@ -40,20 +40,13 @@ public class CustomCircle extends CustomShape {
 	public void setHeight(double value) {
 		this.setWidth(value);
 	}
-	@Override
-	public CustomShape duplicateAndOffset() {
-		CustomCircle newCircle = new CustomCircle();
-		newCircle.setFill(this.getFill(), this.getFillName());
-		newCircle.setHeight(this.getHeight());
-		newCircle.setStroke(this.getStroke());
-		newCircle.setStrokeWidth(this.getStrokeWidth());
-		return newCircle;
-	}
 	
 	@Override
-	public CustomShape duplicate() {
+	public CustomShape duplicate(int offsetX, int offsetY) {
 		CustomCircle newCircle = new CustomCircle();
 		newCircle.setFill(this.getFill(), this.getFillName());
+		newCircle.setXPosition(this.getXPos() + offsetX);
+		newCircle.setYPosition(this.getYPos() + offsetY);
 		newCircle.setHeight(this.getHeight());
 		newCircle.setStroke(this.getStroke());
 		newCircle.setStrokeWidth(this.getStrokeWidth());

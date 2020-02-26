@@ -57,24 +57,14 @@ public class CustomLine extends CustomShape{
 		// Intended to be like this
 	}
 	
-	public CustomShape duplicateAndOffset() {
-		CustomLine newLine = new CustomLine();
-		newLine.setStroke(this.getStroke());
-		newLine.setStrokeWidth(this.getStrokeWidth());
-		newLine.setXPosition(this.getXPos());
-		newLine.setYPosition(this.getYPos());
-		newLine.setWidth(this.getWidth());
-		newLine.setRotate(this.getRotate());
-		
-		return newLine;
-	}
+
 	
-	public CustomShape duplicate() {
+	public CustomShape duplicate(int offsetX, int offsetY) {
 		CustomLine newLine = new CustomLine();
 		newLine.setStroke(this.getStroke());
 		newLine.setStrokeWidth(this.getStrokeWidth());
-		newLine.setXPosition(this.getXPos());
-		newLine.setYPosition(this.getYPos());
+		newLine.setXPosition(this.getXPos() + offsetX);
+		newLine.setYPosition(this.getYPos() + offsetY);
 		newLine.setWidth(this.getWidth());
 		newLine.setRotate(this.getRotate());
 		return newLine;

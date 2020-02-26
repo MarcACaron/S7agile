@@ -70,7 +70,7 @@ public class TestRectangleTool {
 	public void testDuplicateMethod() {
 		double PosX = 50, PosY = 50, size = 100;
 		CustomRectangle rect = new CustomRectangle(PosX, PosY, size, size);
-		CustomRectangle rectClone = (CustomRectangle) rect.duplicateAndOffset();
+		CustomRectangle rectClone = (CustomRectangle) rect.duplicate(10, 10);
 		
 		assertEquals(rect.getStroke(), rectClone.getStroke());
 		assertEquals(rect.getStrokeWidth(), rectClone.getStrokeWidth());

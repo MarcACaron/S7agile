@@ -96,7 +96,7 @@ class TestCustomShape {
 	
 	@Test
 	public void testDuplicate() {
-		CustomShape cloneShape = shape.duplicate();
+		CustomShape cloneShape = shape.duplicate(10, 10);
 		
 		assertEquals(shape.getStroke(), cloneShape.getStroke());
 		assertEquals(shape.getStrokeWidth(), cloneShape.getStrokeWidth());

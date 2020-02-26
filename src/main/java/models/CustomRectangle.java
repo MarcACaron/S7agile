@@ -1,8 +1,6 @@
 package models;
 
-import javafx.collections.ObservableList;
 import javafx.scene.shape.Rectangle;
-import javafx.scene.transform.Transform;
 
 public class CustomRectangle extends CustomShape {
 	public CustomRectangle() {
@@ -19,14 +17,15 @@ public class CustomRectangle extends CustomShape {
 		this.setWidth(width);
 		this.setHeight(height);
 	}
+	
 	@Override
-	public CustomShape duplicateAndOffset() {
+	public CustomShape duplicate(int offsetX, int offsetY) {
 		CustomRectangle newRectangle = new CustomRectangle();
 		newRectangle.setStroke(this.getStroke());
 		newRectangle.setStrokeWidth(this.getStrokeWidth());
-		newRectangle.setFill(this.getFill(), this.getFillName());
-		newRectangle.setXPosition(this.getXPos() + XCOPYOFFSET);
-		newRectangle.setYPosition(this.getYPos() + YCOPYOFFSET);
+		newRectangle.setFill(this.getFill(), this.shape.getAccessibleText());
+		newRectangle.setShapeXPos(this.getXPos() + offsetX);
+		newRectangle.setShapeYPos(this.getYPos() + offsetY);
 		newRectangle.setWidth(this.getWidth());
 		newRectangle.setHeight(this.getHeight());
 		
@@ -34,19 +33,6 @@ public class CustomRectangle extends CustomShape {
 	}
 
 	
-	@Override
-	public CustomShape duplicate() {
-		CustomRectangle newRectangle = new CustomRectangle();
-		newRectangle.setStroke(this.getStroke());
-		newRectangle.setStrokeWidth(this.getStrokeWidth());
-		newRectangle.setFill(this.getFill(), this.getFillName());
-		newRectangle.setXPosition(this.getXPos());
-		newRectangle.setYPosition(this.getYPos());
-		newRectangle.setWidth(this.getWidth());
-		newRectangle.setHeight(this.getHeight());
-		
-		return newRectangle;
-	}
 	public void ajustOnDragFromCorner(double posXStart, double posYStart, double posXEnd, double posYEnd) {
 		double startX;
 		double startY;
