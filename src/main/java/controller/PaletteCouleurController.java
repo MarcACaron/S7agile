@@ -14,6 +14,10 @@ import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
+import models.AbstractShapeTranfo;
+import models.FlipHTransfo;
+import models.FlipVTransfo;
+import models.CustomShape;
 
 public class PaletteCouleurController {
 	
@@ -49,16 +53,21 @@ public class PaletteCouleurController {
 	private Button hFlipButton;
 	
 	private MainApp mainApp;
+	
+	private FlipHTransfo rootflipH;
 		
 	@FXML
-	private void verticalFlip() {
-		if (mainApp.getTool().getShape() != null)
-			mainApp.getDrawingZoneController().flipCurrentShape(1);
+	public void verticalFlip() {
+		if (mainApp.getTool().getShape() != null) {
+			CustomShape a = mainApp.getTool().getShape();
+			rootflipH.transfoShape(AbstractShapeTranfo.FLIPV, a);
+		}
+			
 	}
 	@FXML
-	private void horizontalFlip() {
+	public void horizontalFlip() {
 		if (mainApp.getTool().getShape() != null)
-			mainApp.getDrawingZoneController().flipCurrentShape(0);
+			rootflipH.transfoShape(AbstractShapeTranfo.FLIPH, mainApp.getTool().getShape());
 	}
 	@FXML
 	private void zoomIn() {
@@ -128,6 +137,10 @@ public class PaletteCouleurController {
     private void initialize() {
 		lineWidth.setItems(FXCollections.observableArrayList(1.0,3.0, 5.0, 7.0, 9.0));
 		lineWidth.setOnAction(t-> changeLineWidth());
+		
+		rootflipH = new FlipHTransfo();
+		FlipVTransfo flipV = new FlipVTransfo();
+		rootflipH.setNextTransfo(flipV);
     }
 	
 	public void setMainApp(MainApp mainApp) {

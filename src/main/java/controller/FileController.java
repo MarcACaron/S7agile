@@ -3,7 +3,6 @@ package controller;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
 import java.util.Optional;
 
 import javax.xml.stream.XMLStreamException;
@@ -15,7 +14,6 @@ import javafx.scene.control.ButtonBar.ButtonData;
 import javafx.scene.control.ButtonType;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import models.CustomShape;
 import models.LayersGroup;
 import models.XmlDecoder;
 import models.XmlEncoder;
