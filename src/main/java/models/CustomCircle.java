@@ -11,13 +11,23 @@ public class CustomCircle extends CustomShape {
 		this.boundingBox = new Rectangle();
 	}
 	
-	public void setXPos(double value) {
-		this.boundingBox.setX(value);
+	public CustomCircle(double posX, double posY, double radius) {
+		this.shape = new Circle();
+		this.boundingBox = new Rectangle();
+		this.setXPosition(posX);
+		this.setShapeXPos(posX);
+		this.setYPosition(posY);
+		this.setShapeYPos(posY);
+		this.setWidth(2*radius);
+	}
+	
+	@Override
+	public void setShapeXPos(double value) {
 		((Circle)this.shape).setCenterX(value + this.boundingBox.getWidth()/2);
 	}
 
-	public void setYPos(double value) {
-		this.boundingBox.setY(value);
+	@Override
+	public void setShapeYPos(double value) {
 		((Circle)this.shape).setCenterY(value + this.boundingBox.getHeight()/2);
 	}
 
@@ -32,17 +42,16 @@ public class CustomCircle extends CustomShape {
 	public void setHeight(double value) {
 		this.setWidth(value);
 	}
-	@Override
-	public CustomShape duplicateAndOffset() {
-		CustomCircle newCircle = new CustomCircle();
-		
-		return newCircle;
-	}
 	
 	@Override
-	public CustomShape duplicate() {
+	public CustomShape duplicate(int offsetX, int offsetY) {
 		CustomCircle newCircle = new CustomCircle();
-		
+		newCircle.setFill(this.getFill(), this.getFillName());
+		newCircle.setXPosition(this.getXPos() + offsetX);
+		newCircle.setYPosition(this.getYPos() + offsetY);
+		newCircle.setHeight(this.getHeight());
+		newCircle.setStroke(this.getStroke());
+		newCircle.setStrokeWidth(this.getStrokeWidth());
 		return newCircle;
 	}
 	@Override
@@ -62,8 +71,8 @@ public class CustomCircle extends CustomShape {
 		}
 		this.setWidth(cote);
 		this.setHeight(cote);
-		this.setXPos(startX);
-		this.setYPos(startY);
+		this.setXPosition(startX);
+		this.setYPosition(startY);
 	}
 	
 	@Override
@@ -75,8 +84,8 @@ public class CustomCircle extends CustomShape {
 		startX=posXStart-cote;
 		startY=posYStart-cote;
 		this.setWidth(cote*2);
-		this.setXPos(startX);
-		this.setYPos(startY);
+		this.setXPosition(startX);
+		this.setYPosition(startY);
 	}
 
 	@Override

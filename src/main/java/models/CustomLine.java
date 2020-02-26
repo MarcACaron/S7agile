@@ -10,18 +10,26 @@ public class CustomLine extends CustomShape{
 		this.shape = new Line();
 		this.boundingBox = new Rectangle();
 	}
-	public void setXPos(double value) {
+	public CustomLine(double startX, double startY, double endX, double endY) {
+		this.shape = new Line();
+		this.boundingBox = new Rectangle();
+		this.setXPosition(startX);
+		this.setYPosition(startY);
+		this.setWidth(endX - startX);
+		this.setHeight(endY - startY);
+	}
+	
+	@Override
+	public void setShapeXPos(double value) {
 		double decalageStart = ((Line)this.shape).getStartX()-this.boundingBox.getX();
 		double decalageEnd = ((Line)this.shape).getEndX()-this.boundingBox.getX();
-		this.boundingBox.setX(value);
 		((Line)this.shape).setStartX(value+decalageStart);
 		((Line)this.shape).setEndX(value+decalageEnd);
 	}
-
-	public void setYPos(double value) {
+	@Override
+	public void setShapeYPos(double value) {
 		double decalageStart = ((Line)this.shape).getStartY()-this.boundingBox.getY();
 		double decalageEnd = ((Line)this.shape).getEndY()-this.boundingBox.getY();
-		this.boundingBox.setY(value);
 		((Line)this.shape).setStartY(value+decalageStart);
 		((Line)this.shape).setEndY(value+decalageEnd);
 	}
@@ -49,15 +57,16 @@ public class CustomLine extends CustomShape{
 		// Intended to be like this
 	}
 	
-	public CustomShape duplicateAndOffset() {//TODO: Réparer
-		CustomLine newLine = new CustomLine();
-		
-		return newLine;
-	}
+
 	
-	public CustomShape duplicate() {//TODO: Réparer
+	public CustomShape duplicate(int offsetX, int offsetY) {
 		CustomLine newLine = new CustomLine();
-		
+		newLine.setStroke(this.getStroke());
+		newLine.setStrokeWidth(this.getStrokeWidth());
+		newLine.setXPosition(this.getXPos() + offsetX);
+		newLine.setYPosition(this.getYPos() + offsetY);
+		newLine.setWidth(this.getWidth());
+		newLine.setRotate(this.getRotate());
 		return newLine;
 	}
 	
@@ -100,8 +109,8 @@ public class CustomLine extends CustomShape{
 			startY=posYEnd;
 			height = posYStart-posYEnd;
 		}
-		this.setXPos(startX);
-		this.setYPos(startY);
+		this.setXPosition(startX);
+		this.setYPosition(startY);
 		this.setWidth(width*2);
 		this.setHeight(height*2);
 		((Line)shape).setStartX(2*posXStart-posXEnd);

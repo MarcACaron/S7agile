@@ -7,34 +7,32 @@ public class CustomRectangle extends CustomShape {
 		this.shape = new Rectangle();
 		this.boundingBox = new Rectangle();
 	}
+	
+	public CustomRectangle(double posX, double posY, double width, double height) {
+		this.shape = new Rectangle();
+		this.boundingBox = new Rectangle();
+		
+		this.setXPosition(posX);
+		this.setYPosition(posY);
+		this.setWidth(width);
+		this.setHeight(height);
+	}
+	
 	@Override
-	public CustomShape duplicateAndOffset() {
-		CustomRectangle newRectangle = new CustomRectangle();//TODO: reparer
-		/*newRectangle.setStroke(this.getStroke());
+	public CustomShape duplicate(int offsetX, int offsetY) {
+		CustomRectangle newRectangle = new CustomRectangle();
+		newRectangle.setStroke(this.getStroke());
 		newRectangle.setStrokeWidth(this.getStrokeWidth());
-		newRectangle.setFill(this.getFill());
-		newRectangle.setXPos(this.getXPos() + XCOPYOFFSET);
-		newRectangle.setYPos(this.getYPos() + YCOPYOFFSET);
+		newRectangle.setFill(this.getFill(), this.shape.getAccessibleText());
+		newRectangle.setShapeXPos(this.getXPos() + offsetX);
+		newRectangle.setShapeYPos(this.getYPos() + offsetY);
 		newRectangle.setWidth(this.getWidth());
-		newRectangle.setHeight(this.getHeight());*/
+		newRectangle.setHeight(this.getHeight());
 		
 		return newRectangle;
 	}
 
 	
-	@Override
-	public CustomShape duplicate() {
-		CustomRectangle newRectangle = new CustomRectangle();//TODO: REPARER
-		/*newRectangle.setStroke(this.getStroke());
-		newRectangle.setStrokeWidth(this.getStrokeWidth());
-		newRectangle.setFill(this.getFill());
-		newRectangle.setXPos(this.getXPos());
-		newRectangle.setYPos(this.getYPos());
-		newRectangle.setWidth(this.getWidth());
-		newRectangle.setHeight(this.getHeight());*/
-		
-		return newRectangle;
-	}
 	public void ajustOnDragFromCorner(double posXStart, double posYStart, double posXEnd, double posYEnd) {
 		double startX;
 		double startY;
@@ -54,8 +52,8 @@ public class CustomRectangle extends CustomShape {
 			startY=posYEnd;
 			height = posYStart-posYEnd;
 		}
-		this.setXPos(startX);
-		this.setYPos(startY);
+		this.setXPosition(startX);
+		this.setYPosition(startY);
 		this.setWidth(width);
 		this.setHeight(height);
 	}
@@ -78,8 +76,8 @@ public class CustomRectangle extends CustomShape {
 			startY=posYEnd;
 			height = posYStart-posYEnd;
 		}
-		this.setXPos(startX);
-		this.setYPos(startY);
+		this.setXPosition(startX);
+		this.setYPosition(startY);
 		this.setWidth(width*2);
 		this.setHeight(height*2);
 		
@@ -89,15 +87,13 @@ public class CustomRectangle extends CustomShape {
 		return "rectangle";
 	}
 	@Override
-	public void setXPos(double value) {
+	public void setShapeXPos(double value) {
 		((Rectangle)this.shape).setX(value);
-		this.boundingBox.setX(value);
 	}
 
 	@Override
-	public void setYPos(double value) {
+	public void setShapeYPos(double value) {
 		((Rectangle)this.shape).setY(value);
-		this.boundingBox.setY(value);
 	}
 
 	@Override

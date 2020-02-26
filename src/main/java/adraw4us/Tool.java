@@ -57,7 +57,7 @@ public abstract class Tool {
 				CustomShape tShape = (CustomShape) nd;
 				dp.select(tShape);
 				dp.setTextField(tShape);
-				showSelectedShape(mainApp, nd);
+				showSelectedShape(mainApp);
 			}
 			return y;
 			};
@@ -146,7 +146,7 @@ public abstract class Tool {
 		Tool.startFromCenter = startFromCenter;
 	}
 	
-	protected final void showSelectedShape(MainApp mainApp, CustomShape inputShape) {
+	protected final void showSelectedShape(MainApp mainApp) {
 		mainApp.getDrawingZoneController().clearSelectionLayer();
 		mainApp.getDrawingZoneController().addSelectionShape(this.getShape().getOutlineCoords());
 		System.out.println("ici");

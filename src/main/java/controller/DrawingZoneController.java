@@ -16,10 +16,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
-import javafx.scene.transform.Affine;
 import javafx.scene.transform.Scale;
-import javafx.scene.transform.Transform;
-import javafx.scene.transform.Translate;
 import models.ApplicationHistory;
 import models.CustomShape;
 import models.Layer;
@@ -233,7 +230,7 @@ public class DrawingZoneController {
 	
 	public void saveShape() {
 		//TODO: reparer
-		//shapeCopy = (CustomShape) mainApp.getTool().getShape().clone(); ???
+		shapeCopy = mainApp.getTool().getShape().duplicate(10, 10);
 
 	}
 	
@@ -270,23 +267,7 @@ public class DrawingZoneController {
 	
 	public void flipCurrentShape(int flipVorH) {
 		//flipVorH = 1 is VFlip, 0 is HFlip
-		CustomShape shape = mainApp.getTool().getShape();
-		mainApp.getTool().getShape().getDraw().getTransforms().add(transformIntoReflection(shape.getCenterCoord(), flipVorH));
+		mainApp.getTool().getShape().flipShape(flipVorH, false);
 	}
-
-	private Transform transformIntoReflection(Point2D p1, int flipXorY) {
-		//flipXorY = 1 is Y-Flip, 0 is X-Flip
-	    Translate translation = new Translate(-p1.getX(), -p1.getY());
-	    Scale scale;
-	    if (flipXorY == 1) {
-	    	scale = new Scale(1, -1);
-	    }else{
-	    	scale = new Scale(-1, 1);
-	    }
-	    Affine reflection = new Affine();
-	    reflection.append(translation.createInverse());
-	    reflection.append(scale);
-	    reflection.append(translation);
-	    return reflection ;
-	}
+	
 }
