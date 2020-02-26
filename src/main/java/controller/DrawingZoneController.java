@@ -230,7 +230,7 @@ public class DrawingZoneController {
 	
 	public void saveShape() {
 		//TODO: reparer
-		shapeCopy = (CustomShape) mainApp.getTool().getShape().duplicateAndOffset();
+		shapeCopy = mainApp.getTool().getShape().duplicate(10, 10);
 
 	}
 	
@@ -267,7 +267,7 @@ public class DrawingZoneController {
 	
 	public void flipCurrentShape(int flipVorH) {
 		//flipVorH = 1 is VFlip, 0 is HFlip
-		mainApp.getTool().getShape().flipShape(flipVorH, false);;
+		mainApp.getTool().getShape().flipShape(flipVorH, false);
 	}
 	
 }

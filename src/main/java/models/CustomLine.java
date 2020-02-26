@@ -48,13 +48,8 @@ public class CustomLine extends CustomShape{
 		// Intended to be like this
 	}
 	
-	public CustomShape duplicateAndOffset() {//TODO: Réparer
-		CustomLine newLine = new CustomLine();
-		
-		return newLine;
-	}
 	
-	public CustomShape duplicate() {//TODO: Réparer
+	public CustomShape duplicate(int offsetX, int offsetY) {//TODO: Réparer
 		CustomLine newLine = new CustomLine();
 		
 		return newLine;

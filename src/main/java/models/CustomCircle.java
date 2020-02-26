@@ -30,15 +30,9 @@ public class CustomCircle extends CustomShape {
 	public void setHeight(double value) {
 		this.setWidth(value);
 	}
-	@Override
-	public CustomShape duplicateAndOffset() {
-		CustomCircle newCircle = new CustomCircle();
-		
-		return newCircle;
-	}
 	
 	@Override
-	public CustomShape duplicate() {
+	public CustomShape duplicate(int offsetX, int offsetY) {
 		CustomCircle newCircle = new CustomCircle();
 		
 		return newCircle;

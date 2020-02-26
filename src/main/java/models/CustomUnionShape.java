@@ -71,12 +71,7 @@ public class CustomUnionShape extends CustomShape {
 	}
 
 	@Override
-	public CustomShape duplicateAndOffset() {
-		return null;
-	}
-
-	@Override
-	public CustomShape duplicate() {
+	public CustomShape duplicate(int offsetX, int offsetY) {
 		return null;
 	}
 

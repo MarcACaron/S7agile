@@ -22,7 +22,8 @@ public abstract class CustomShape {
 	protected Rectangle boundingBox;
 	protected Shape shape;
 	protected String layer;
-	private boolean hFlip = false, vFlip = false;
+	private boolean hFlip = false;
+	private boolean vFlip = false;
 	
 	public boolean getHFlip() {
 		return hFlip;
@@ -87,8 +88,7 @@ public abstract class CustomShape {
 	public String getLayer() {
 		return layer;
 	}
-	public abstract CustomShape duplicateAndOffset();
-	public abstract CustomShape duplicate();
+	public abstract CustomShape duplicate(int offsetX, int offsetY);
 	public boolean isSelected(double xStart, double yStart, double xEnd, double yEnd) {
 
 		if(this.boundingBox.getY()+this.getHeight()>yEnd || this.boundingBox.getX()+this.getWidth()>xEnd
@@ -222,6 +222,10 @@ public abstract class CustomShape {
 			setHFlip(!getHFlip());
 		}
 		this.getDraw().getTransforms().add(transformIntoReflection(this.getCenterCoord(), flipVorH));
+	}
+	public CustomShape duplicate() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 }

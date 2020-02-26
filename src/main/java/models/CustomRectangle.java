@@ -8,7 +8,7 @@ public class CustomRectangle extends CustomShape {
 		this.boundingBox = new Rectangle();
 	}
 	@Override
-	public CustomShape duplicateAndOffset() {
+	public CustomShape duplicate(int offsetX, int offsetY) {
 		CustomRectangle newRectangle = new CustomRectangle();//TODO: reparer
 		newRectangle.setStroke(this.getStroke());
 		newRectangle.setStrokeWidth(this.getStrokeWidth());
@@ -22,19 +22,6 @@ public class CustomRectangle extends CustomShape {
 	}
 
 	
-	@Override
-	public CustomShape duplicate() {
-		CustomRectangle newRectangle = new CustomRectangle();//TODO: REPARER
-		newRectangle.setStroke(this.getStroke());
-		newRectangle.setStrokeWidth(this.getStrokeWidth());
-		newRectangle.setFill(this.getFill(),this.shape.getAccessibleText());
-		newRectangle.setShapeXPos(this.getXPos());
-		newRectangle.setShapeYPos(this.getYPos());
-		newRectangle.setWidth(this.getWidth());
-		newRectangle.setHeight(this.getHeight());
-		
-		return newRectangle;
-	}
 	public void ajustOnDragFromCorner(double posXStart, double posYStart, double posXEnd, double posYEnd) {
 		double startX;
 		double startY;
