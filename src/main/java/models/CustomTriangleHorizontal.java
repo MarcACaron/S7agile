@@ -23,13 +23,6 @@ public class CustomTriangleHorizontal extends CustomShape {
 		double startY;
 		double width;
 		double height;
-		if(posXStart<posXEnd) {
-			startX=posXStart;
-			width = posXEnd-posXStart;
-		}else {
-			startX=posXEnd;
-			width = posXStart-posXEnd;
-		}
 		if(posYStart<posYEnd) {
 			startY=posYStart;
 			height = posYEnd-posYStart;
@@ -37,10 +30,17 @@ public class CustomTriangleHorizontal extends CustomShape {
 			startY=posYEnd;
 			height = posYStart-posYEnd;
 		}
+		if(posXStart<posXEnd) {
+			startX=posXStart;
+			width = posXEnd-posXStart;
+		}else {
+			startX=posXEnd;
+			width = posXStart-posXEnd;
+		}
 		this.setWidth(width);
 		this.setHeight(height);
-		this.setXPosition(startX);
 		this.setYPosition(startY);
+		this.setXPosition(startX);
 	}
 	
 	public void ajustOnDragFromCenter(double posXStart, double posYStart, double posXEnd, double posYEnd) {
@@ -48,19 +48,20 @@ public class CustomTriangleHorizontal extends CustomShape {
 		double startY;
 		double width;
 		double height;
-		if(posXStart<posXEnd) {
-			width = posXEnd-posXStart;
-			startX=posXStart-width;
-		}else {
-			startX=posXEnd;
-			width = posXStart-posXEnd;
-		}
+
 		if(posYStart<posYEnd) {
 			height = posYEnd-posYStart;
 			startY=posYStart-height;
 		}else {
 			startY=posYEnd;
 			height = posYStart-posYEnd;
+		}
+		if(posXStart<posXEnd) {
+			width = posXEnd-posXStart;
+			startX=posXStart-width;
+		}else {
+			startX=posXEnd;
+			width = posXStart-posXEnd;
 		}
 		this.setWidth(width*2);
 		this.setHeight(height*2);

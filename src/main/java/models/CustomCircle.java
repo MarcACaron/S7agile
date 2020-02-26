@@ -44,18 +44,16 @@ public class CustomCircle extends CustomShape {
 	public void setHeight(double value) {
 		this.setWidth(value);
 	}
+	@Override
+	public CustomShape duplicateAndOffset() {
+		return new CustomCircle();
+	}
 	
 	@Override
-	public CustomShape duplicate(int offsetX, int offsetY) {
-		CustomCircle newCircle = new CustomCircle();
-		newCircle.setFill(this.getFill(), this.getFillName());
-		newCircle.setXPosition(this.getXPos() + offsetX);
-		newCircle.setYPosition(this.getYPos() + offsetY);
-		newCircle.setHeight(this.getHeight());
-		newCircle.setStroke(this.getStroke());
-		newCircle.setStrokeWidth(this.getStrokeWidth());
-		return newCircle;
+	public CustomShape duplicate() {
+		return new CustomCircle();
 	}
+	
 	@Override
 	public void ajustOnDragFromCorner(double posXStart, double posYStart, double posXEnd, double posYEnd) {//TODO: refaire
 		double cote = Math.min(Math.abs(posXEnd-posXStart), Math.abs(posYEnd-posYStart));

@@ -208,6 +208,7 @@ public class DrawingZoneController {
 			if ( !gridPane.getId().equals(paneListTemp.get(i).getId()) && !selectionLayoutPane.getId().equals(paneListTemp.get(i).getId()) ) {
 				((Pane)(paneListTemp.get(i))).getChildren().clear();
 				anchorPane.getChildren().remove(i);
+				i--;
 				paneListTemp = anchorPane.getChildren();
 			}
 		}
