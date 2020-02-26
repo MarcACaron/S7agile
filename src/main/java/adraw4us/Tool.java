@@ -84,7 +84,7 @@ public abstract class Tool {
 		Pane currentPane = layerGroup.getCurrentLayer().getPane();
 		int sizePane = currentPane.getChildren().size();
 		
-		shape2.getDraw().setId("Shape" + sizePane );
+		shape2.getDraw().setId(shape2.getType() + sizePane );
 		
 		mainApp.getDrawingZoneController().applyToCurrentPane(shape2.getDraw());
 		

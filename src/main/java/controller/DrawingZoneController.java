@@ -265,9 +265,4 @@ public class DrawingZoneController {
 		selectionLayoutPane.getChildren().clear();
 	}
 	
-	public void flipCurrentShape(int flipVorH) {
-		//flipVorH = 1 is VFlip, 0 is HFlip
-		mainApp.getTool().getShape().flipShape(flipVorH, false);
-	}
-	
 }
