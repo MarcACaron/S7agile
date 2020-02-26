@@ -97,7 +97,6 @@ public abstract class Tool {
 			
 		});
 		fillDetails(dp, shape2, mainApp).apply(null);
-		this.showSelectedShape(mainApp);
 	}
 		public static Paint getFill() {
 		return fill;
@@ -150,6 +149,7 @@ public abstract class Tool {
 	protected final void showSelectedShape(MainApp mainApp) {
 		mainApp.getDrawingZoneController().clearSelectionLayer();
 		mainApp.getDrawingZoneController().addSelectionShape(this.getShape().getOutlineCoords());
+		System.out.println("ici");
 	}
 	public abstract String getToolType();
 }
