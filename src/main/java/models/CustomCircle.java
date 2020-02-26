@@ -9,7 +9,7 @@ public class CustomCircle extends CustomShape {
 	public CustomCircle() {
 		this.shape = new Circle();
 		this.boundingBox = new Rectangle();
-		this.scale=false;
+		this.scale=true;
 		this.type = "circle";
 	}
 	
@@ -21,7 +21,7 @@ public class CustomCircle extends CustomShape {
 		this.setYPosition(posY);
 		this.setYPos(posY);
 		this.setWidth(2*radius);
-		this.scale=false;
+		this.scale=true;
 		this.type = "circle";
 	}
 	

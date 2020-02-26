@@ -67,7 +67,7 @@ public class CustomUnionShape extends CustomShape {
 		double rapportWidth = value/this.boundingBox.getWidth();
 		listOfShape.forEach(sh -> {
 			double rapportDeplacement = (sh.getXPos()-this.boundingBox.getX())/this.boundingBox.getWidth();
-			if(sh.isScale()){
+			if(!sh.isScale()){
 				sh.setWidth(rapportWidth*sh.getWidth());
 			}
 			sh.setXPos(this.boundingBox.getX() + rapportDeplacement*value);
@@ -84,6 +84,7 @@ public class CustomUnionShape extends CustomShape {
 			sh.setHeight(rapportWidth*sh.getHeight());
 		});
 		if(scale) {
+			System.out.println("hhhh");
 			setWidth(value * getWidth()/getHeight(), true);
 		}
 		this.boundingBox.setHeight(value);
@@ -93,7 +94,7 @@ public class CustomUnionShape extends CustomShape {
 		double rapportWidth= value/this.boundingBox.getHeight();
 		listOfShape.forEach(sh -> {
 			double rapportDeplacement = (sh.getYPos()-this.boundingBox.getY())/this.boundingBox.getHeight();
-			if(sh.isScale()){
+			if(!sh.isScale()){
 				sh.setHeight(rapportWidth*sh.getHeight());
 			}
 			sh.setYPos(this.boundingBox.getY() + rapportDeplacement*value);
@@ -167,7 +168,10 @@ public class CustomUnionShape extends CustomShape {
 	}
 	
 	public void group(String name) {
-		System.out.println("groupement");
+		listOfShape.forEach(sh->{
+			System.out.println(DrawnShapes.getDrawnShapes().indexOf(sh));
+			System.out.println(LayersGroup.getLayersGroup().getCurrentLayer().getPane().getChildren().indexOf(sh.getDraw()));
+		});
 	}
 	@Override
 	public void ajustOnDragFromCorner(double posXStart, double posYStart, double posXEnd, double posYEnd) {

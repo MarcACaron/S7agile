@@ -99,7 +99,7 @@ public class LayersGroup implements Container {
 			a.add(realIndex - 1, shape);
 			
 
-			Collections.swap(DrawnShapes.getDrawnShapes(), shapeIndex, shapeIndex + 1);
+			Collections.swap(DrawnShapes.getDrawnShapes(), DrawnShapes.getDrawnShapes().size()-shapeIndex-1, DrawnShapes.getDrawnShapes().size()-shapeIndex-2);
 
 			return shapeIndex + 1;
 		}
@@ -119,7 +119,7 @@ public class LayersGroup implements Container {
 			a.add(realIndex + 1, shape);
 			
 
-			Collections.swap(DrawnShapes.getDrawnShapes(), shapeIndex, shapeIndex - 1);
+			Collections.swap(DrawnShapes.getDrawnShapes(), DrawnShapes.getDrawnShapes().size()-shapeIndex-1, DrawnShapes.getDrawnShapes().size()-shapeIndex);
 			
 			return shapeIndex - 1;
 		}
