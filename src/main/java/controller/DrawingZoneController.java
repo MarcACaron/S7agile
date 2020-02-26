@@ -16,10 +16,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
-import javafx.scene.transform.Affine;
 import javafx.scene.transform.Scale;
-import javafx.scene.transform.Transform;
-import javafx.scene.transform.Translate;
 import models.ApplicationHistory;
 import models.CustomShape;
 import models.Layer;
@@ -211,6 +208,7 @@ public class DrawingZoneController {
 			if ( !gridPane.getId().equals(paneListTemp.get(i).getId()) && !selectionLayoutPane.getId().equals(paneListTemp.get(i).getId()) ) {
 				((Pane)(paneListTemp.get(i))).getChildren().clear();
 				anchorPane.getChildren().remove(i);
+				i--;
 				paneListTemp = anchorPane.getChildren();
 			}
 		}
@@ -233,7 +231,7 @@ public class DrawingZoneController {
 	
 	public void saveShape() {
 		//TODO: reparer
-		//shapeCopy = (CustomShape) mainApp.getTool().getShape().clone(); ???
+		shapeCopy = mainApp.getTool().getShape().duplicate(10, 10);
 
 	}
 	
@@ -270,7 +268,7 @@ public class DrawingZoneController {
 	
 	public void flipCurrentShape(int flipVorH) {
 		//flipVorH = 1 is VFlip, 0 is HFlip
-		mainApp.getTool().getShape().flipShape(flipVorH, false);;
+		mainApp.getTool().getShape().flipShape(flipVorH, false);
 	}
 	
 }

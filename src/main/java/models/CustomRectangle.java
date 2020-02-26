@@ -1,42 +1,38 @@
 package models;
 
-import javafx.collections.ObservableList;
 import javafx.scene.shape.Rectangle;
-import javafx.scene.transform.Transform;
 
 public class CustomRectangle extends CustomShape {
 	public CustomRectangle() {
 		this.shape = new Rectangle();
 		this.boundingBox = new Rectangle();
 	}
+	
+	public CustomRectangle(double posX, double posY, double width, double height) {
+		this.shape = new Rectangle();
+		this.boundingBox = new Rectangle();
+		
+		this.setXPosition(posX);
+		this.setYPosition(posY);
+		this.setWidth(width);
+		this.setHeight(height);
+	}
+	
 	@Override
-	public CustomShape duplicateAndOffset() {
-		CustomRectangle newRectangle = new CustomRectangle();//TODO: reparer
-		/*newRectangle.setStroke(this.getStroke());
+	public CustomShape duplicate(int offsetX, int offsetY) {
+		CustomRectangle newRectangle = new CustomRectangle();
+		newRectangle.setStroke(this.getStroke());
 		newRectangle.setStrokeWidth(this.getStrokeWidth());
-		newRectangle.setFill(this.getFill());
-		newRectangle.setXPos(this.getXPos() + XCOPYOFFSET);
-		newRectangle.setYPos(this.getYPos() + YCOPYOFFSET);
+		newRectangle.setFill(this.getFill(), this.shape.getAccessibleText());
+		newRectangle.setShapeXPos(this.getXPos() + offsetX);
+		newRectangle.setShapeYPos(this.getYPos() + offsetY);
 		newRectangle.setWidth(this.getWidth());
-		newRectangle.setHeight(this.getHeight());*/
+		newRectangle.setHeight(this.getHeight());
 		
 		return newRectangle;
 	}
 
 	
-	@Override
-	public CustomShape duplicate() {
-		CustomRectangle newRectangle = new CustomRectangle();//TODO: REPARER
-		/*newRectangle.setStroke(this.getStroke());
-		newRectangle.setStrokeWidth(this.getStrokeWidth());
-		newRectangle.setFill(this.getFill());
-		newRectangle.setXPos(this.getXPos());
-		newRectangle.setYPos(this.getYPos());
-		newRectangle.setWidth(this.getWidth());
-		newRectangle.setHeight(this.getHeight());*/
-		
-		return newRectangle;
-	}
 	public void ajustOnDragFromCorner(double posXStart, double posYStart, double posXEnd, double posYEnd) {
 		double startX;
 		double startY;

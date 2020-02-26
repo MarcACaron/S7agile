@@ -22,22 +22,22 @@ public class testPaletteFormController extends testApplicationUI {
 	public void testMultiPointeur() {
 		clickOn("#rectangle");
 		assertEquals("rectangle", this.mainApp.getTool().getToolType());
-		moveBy(80, 80);
+		moveBy(100, 0);
 		drag();
 		moveBy(2, 2);
 		drop();
 		clickOn("#line");
-		moveBy(80, 80);
+		moveBy(100, 0);
 		drag();
 		moveBy(2, 2);
 		drop();
 		clickOn("#circle");
-		moveBy(80, 80);
+		moveBy(100, 0);
 		drag();
 		moveBy(2, 2);
 		drop();
 		clickOn("#multiSelection");
-		moveBy(80, 80);
+		moveBy(100, 0);
 		drag();
 		moveBy(200, 200);
 		drop();
@@ -45,7 +45,7 @@ public class testPaletteFormController extends testApplicationUI {
 	@Test
 	public void testRectangle() {
 		clickOn("#rectangle");
-		moveBy(150, 150);
+		moveBy(150, 50);
 		drag();
 		moveBy(150, 150);
 		drop();
@@ -53,7 +53,7 @@ public class testPaletteFormController extends testApplicationUI {
 	@Test
 	public void testCircle() {
 		clickOn("#circle");
-		moveBy(150, 150);
+		moveBy(150, 50);
 		drag();
 		moveBy(150, 150);
 		drop();
@@ -61,7 +61,23 @@ public class testPaletteFormController extends testApplicationUI {
 	@Test
 	public void testLine() {
 		clickOn("#line");
+		moveBy(150, -50);
+		drag();
 		moveBy(150, 150);
+		drop();
+	}
+	@Test
+	public void testTriangleHorizontal() {
+		clickOn("#triangleHorizontal");
+		moveBy(150, 0);
+		drag();
+		moveBy(150, 150);
+		drop();
+	}
+	@Test
+	public void testTriangleVertical() {
+		clickOn("#triangleVertical");
+		moveBy(150, 0);
 		drag();
 		moveBy(150, 150);
 		drop();
@@ -72,8 +88,10 @@ public class testPaletteFormController extends testApplicationUI {
 		testLine();
 		testCircle();
 		testRectangle();
+		testTriangleHorizontal();
+		testTriangleVertical();
 		clickOn("#pointeur");
-		moveBy(250, 250);
+		moveBy(-50, 250);
 		clickOn(MouseButton.PRIMARY);
 	}
 }

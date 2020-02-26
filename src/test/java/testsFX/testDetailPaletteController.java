@@ -39,12 +39,12 @@ public class testDetailPaletteController extends testApplicationUI{
 		double width = this.mainApp.getTool().getShape().getWidth();
 		double rotation = this.mainApp.getTool().getShape().getRotate();
 		String type = this.mainApp.getTool().getShape().getType();
-		assertEquals(x, 111);
-		assertEquals(y, 111);
-		assertEquals(rotation, 111);
-		assertEquals(height, 111);
-		assertEquals(width, 111);
-		assertEquals(type, "circle");
+		assertEquals(111, x);
+		assertEquals(111, y);
+		assertEquals(111, rotation);
+		assertEquals(111, height);
+		assertEquals(111, width);
+		assertEquals("circle", type);
 	}
 	//@Test
 	public void testDetailWithRectangle() {
@@ -78,12 +78,12 @@ public class testDetailPaletteController extends testApplicationUI{
 		double width = this.mainApp.getTool().getShape().getWidth();
 		double rotation = this.mainApp.getTool().getShape().getRotate();
 		String type = this.mainApp.getTool().getShape().getType();
-		assertEquals(x, 111);
-		assertEquals(y, 111);
-		assertEquals(rotation, 111);
-		assertEquals(height, 111);
-		assertEquals(width, 111);
-		assertEquals(type, "rectangle");
+		assertEquals(111, x);
+		assertEquals(111, y);
+		assertEquals(111, rotation);
+		assertEquals(111, height);
+		assertEquals(111, width);
+		assertEquals("rectangle",type);
 	}
 	//@Test
 	public void testDetailWithLine() {
@@ -117,11 +117,11 @@ public class testDetailPaletteController extends testApplicationUI{
 		double width = this.mainApp.getTool().getShape().getWidth();
 		double rotation = this.mainApp.getTool().getShape().getRotate();
 		String type = this.mainApp.getTool().getShape().getType();
-		assertEquals(x, 111);
-		assertEquals(y, 111);
-		assertEquals(height, 111);
-		assertEquals(width, 111);
-		assertEquals(rotation, 111);
-		assertEquals(type, "line");
+		assertEquals(111, x);
+		assertEquals(111, y);
+		assertEquals(111, height);
+		assertEquals(111, width);
+		assertEquals(111, rotation);
+		assertEquals("line", type);
 	}
 }
