@@ -166,7 +166,10 @@ public class CustomUnionShape extends CustomShape {
 		}
 		return ok;
 	}
-
+	
+	public void group() {
+		
+	}
 	@Override
 	public void ajustOnDragFromCorner(double posXStart, double posYStart, double posXEnd, double posYEnd) {
 		// TODO Auto-generated method stub
