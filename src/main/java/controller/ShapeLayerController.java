@@ -70,7 +70,7 @@ public class ShapeLayerController {
 		}*/
 		for (java.util.Iterator<CustomShape> iter = drawnShapes.iterator(); iter.hasNext();) {
 			CustomShape a = (CustomShape)iter.next();
-			shapeListView.getItems().add(new Label(a.getDraw().getId()+": "+a.getType()));
+			shapeListView.getItems().add(new Label("L: "+a.getLayer()+"; "+a.getDraw().getId()+": "+a.getType()));
 		}
 
 	}
