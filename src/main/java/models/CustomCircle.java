@@ -45,13 +45,15 @@ public class CustomCircle extends CustomShape {
 		this.setWidth(value);
 	}
 	@Override
-	public CustomShape duplicateAndOffset() {
-		return new CustomCircle();
-	}
-	
-	@Override
-	public CustomShape duplicate() {
-		return new CustomCircle();
+	public CustomShape duplicate(int offsetX, int offsetY) {
+		CustomCircle newCircle = new CustomCircle();
+		newCircle.setFill(this.getFill(), this.getFillName());
+		newCircle.setXPosition(this.getXPos() + offsetX);
+		newCircle.setYPosition(this.getYPos() + offsetY);
+		newCircle.setHeight(this.getHeight());
+		newCircle.setStroke(this.getStroke());
+		newCircle.setStrokeWidth(this.getStrokeWidth());
+		return newCircle;
 	}
 	
 	@Override
