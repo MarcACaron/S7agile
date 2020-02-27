@@ -228,26 +228,6 @@ public abstract class CustomShape {
         return (new Point2D(this.getXPos()+this.getWidth()/2, this.getYPos()+this.getHeight()/2));
     }
     
-    /*public void setXPosition(double value) {
-    	this.getDraw().getTransforms().clear();
-		this.boundingBox.setX(value);
-		this.setXPos(value);
-		if (this.getHFlip())
-			this.flipShape(0, true);
-    	if (this.getVFlip())
-    		this.flipShape(1, true);
-    }
-	
-    public void setYPosition(double value) {
-    	this.getDraw().getTransforms().clear();
-		this.boundingBox.setY(value);
-		this.setYPos(value);
-		if (this.getHFlip())
-			this.flipShape(0, true);
-    	if (this.getVFlip())
-    		this.flipShape(1, true);
-    }*/
-    
     private Transform transformIntoReflection(Point2D p1, int flipXorY) {
 		//flipXorY = 1 is Y-Flip, 0 is X-Flip
 	    Translate translation = new Translate(-p1.getX(), -p1.getY());
