@@ -39,8 +39,8 @@ public class CustomTriangleVertical extends CustomShape {
 			startY=posYEnd;
 			height = posYStart-posYEnd;
 		}
-		this.setXPosition(startX);
-		this.setYPosition(startY);
+		this.setXPos(startX);
+		this.setYPos(startY);
 		this.setWidth(width);
 		this.setHeight(height);
 	}
@@ -66,37 +66,47 @@ public class CustomTriangleVertical extends CustomShape {
 		}
 		this.setWidth(width*2);
 		this.setHeight(height*2);
-		this.setXPosition(startX);
-		this.setYPosition(startY);
+		this.setXPos(startX);
+		this.setYPos(startY);
 		
 	}
 
 	@Override
 	public void setXPos(double value) {
+    	this.getDraw().getTransforms().clear();
 		this.boundingBox.setX(value);
 		((Polygon)this.shape).getPoints().set(0, value);
 		((Polygon)this.shape).getPoints().set(2, value);
 		((Polygon)this.shape).getPoints().set(4, value+this.boundingBox.getWidth());
+		if (this.getHFlip())
+			this.flipShape(0, true);
+    	if (this.getVFlip())
+    		this.flipShape(1, true);
 	}
 
 	@Override
 	public void setYPos(double value) {
+    	this.getDraw().getTransforms().clear();
 		this.boundingBox.setY(value);
 		((Polygon)this.shape).getPoints().set(1, value);
 		((Polygon)this.shape).getPoints().set(3, value+this.boundingBox.getHeight());
 		((Polygon)this.shape).getPoints().set(5, value+this.boundingBox.getHeight()/2);
+		if (this.getHFlip())
+			this.flipShape(0, true);
+    	if (this.getVFlip())
+    		this.flipShape(1, true);
 	}
 
 	@Override
 	public void setWidth(double value) {
 		this.boundingBox.setWidth(value);
-		setXPosition(this.boundingBox.getX());
+		setXPos(this.boundingBox.getX());
 	}
 
 	@Override
 	public void setHeight(double value) {
 		this.boundingBox.setHeight(value);
-		setYPosition(this.boundingBox.getY());
+		setYPos(this.boundingBox.getY());
 	}
 
 }

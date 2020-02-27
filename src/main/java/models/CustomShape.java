@@ -107,8 +107,8 @@ public abstract class CustomShape {
 	public abstract CustomShape duplicate(int offsetX, int offsetY, MainApp mainApp);
 	protected CustomShape applyValues(CustomShape newShape, int offsetX, int offsetY, MainApp mainApp) {
 		newShape.setFill(this.getFill(), this.getFillName());
-		newShape.setXPosition(this.getXPos() + offsetX);
-		newShape.setYPosition(this.getYPos() + offsetY);
+		newShape.setXPos(this.getXPos() + offsetX);
+		newShape.setYPos(this.getYPos() + offsetY);
 		newShape.setHeight(this.getHeight());
 		newShape.setWidth(this.getWidth());
 		newShape.setStroke(this.getStroke());
@@ -116,6 +116,7 @@ public abstract class CustomShape {
 		newShape.hFlip=this.hFlip;
 		newShape.vFlip=this.vFlip;
 		newShape.setOnMouseClicked(newShape, mainApp);
+		newShape.type=this.type;
 		
 		return newShape;
 		
@@ -227,7 +228,7 @@ public abstract class CustomShape {
         return (new Point2D(this.getXPos()+this.getWidth()/2, this.getYPos()+this.getHeight()/2));
     }
     
-    public void setXPosition(double value) {
+    /*public void setXPosition(double value) {
     	this.getDraw().getTransforms().clear();
 		this.boundingBox.setX(value);
 		this.setXPos(value);
@@ -245,7 +246,7 @@ public abstract class CustomShape {
 			this.flipShape(0, true);
     	if (this.getVFlip())
     		this.flipShape(1, true);
-    }
+    }*/
     
     private Transform transformIntoReflection(Point2D p1, int flipXorY) {
 		//flipXorY = 1 is Y-Flip, 0 is X-Flip

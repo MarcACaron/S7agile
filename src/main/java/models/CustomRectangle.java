@@ -15,8 +15,8 @@ public class CustomRectangle extends CustomShape {
 		this.shape = new Rectangle();
 		this.boundingBox = new Rectangle();
 		
-		this.setXPosition(posX);
-		this.setYPosition(posY);
+		this.setXPos(posX);
+		this.setYPos(posY);
 		this.setWidth(width);
 		this.setHeight(height);
 		this.scale=false;
@@ -51,8 +51,8 @@ public class CustomRectangle extends CustomShape {
 			startY=posYEnd;
 			height = posYStart-posYEnd;
 		}
-		this.setXPosition(startX);
-		this.setYPosition(startY);
+		this.setXPos(startX);
+		this.setYPos(startY);
 		this.setWidth(width);
 		this.setHeight(height);
 	}
@@ -75,8 +75,8 @@ public class CustomRectangle extends CustomShape {
 			startY=posYEnd;
 			height = posYStart-posYEnd;
 		}
-		this.setXPosition(startX);
-		this.setYPosition(startY);
+		this.setXPos(startX);
+		this.setYPos(startY);
 		this.setWidth(width*2);
 		this.setHeight(height*2);
 		
@@ -84,14 +84,24 @@ public class CustomRectangle extends CustomShape {
 
 	@Override
 	public void setXPos(double value) {
+		this.getDraw().getTransforms().clear();
 		this.boundingBox.setX(value);
 		((Rectangle)this.shape).setX(value);
+		if (this.getHFlip())
+			this.flipShape(0, true);
+    	if (this.getVFlip())
+    		this.flipShape(1, true);
 	}
 
 	@Override
 	public void setYPos(double value) {
+    	this.getDraw().getTransforms().clear();
 		this.boundingBox.setY(value);
 		((Rectangle)this.shape).setY(value);
+		if (this.getHFlip())
+			this.flipShape(0, true);
+    	if (this.getVFlip())
+    		this.flipShape(1, true);
 	}
 
 	@Override
