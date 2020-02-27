@@ -183,7 +183,7 @@ public class MenuController {
             
         }
         catch (IOException ex) {
-        	loggerMenuController.log(Level.SEVERE, "Exeption: "+ex.getMessage()+"; Fonction: initialize():MenuController;");
+        	loggerMenuController.log(Level.SEVERE, "Exeption: "+ex.getMessage()+"; Fonction: openModal("+path+"):MenuController;");
         }
 	}
 	

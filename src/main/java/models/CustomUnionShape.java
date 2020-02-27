@@ -2,6 +2,8 @@ package models;
 
 import java.util.ArrayList;
 
+import javafx.collections.ObservableList;
+import javafx.scene.Node;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
@@ -171,13 +173,12 @@ public class CustomUnionShape extends CustomShape {
 	public void group(String name) {
 		listOfShape.forEach(sh->{
 			int index = LayersGroup.getLayersGroup().getCurrentLayer().getDrawnShapes().indexOf(sh);
-			/*DrawnShapes.getDrawnShapes().remove(index);
-			*/
-
-
-			
+			LayersGroup.getLayersGroup().getCurrentLayer().getDrawnShapes().remove(index);
+			LayersGroup.getLayersGroup().getCurrentLayer().getPane().getChildren().remove(index);
+			LayersGroup.getLayersGroup().getCurrentLayer().getPane().getChildren().add(sh.getDraw());
 		});
 		LayersGroup.getLayersGroup().getCurrentLayer().getDrawnShapes().add(this);
+		setLayer(LayersGroup.getLayersGroup().getCurrentLayer().getId());
 	}
 	@Override
 	public void ajustOnDragFromCorner(double posXStart, double posYStart, double posXEnd, double posYEnd) {
@@ -200,5 +201,23 @@ public class CustomUnionShape extends CustomShape {
 	@Override
 	public int size() {
 		return this.listOfShape.size();
+	}
+	@Override
+	public void up(int collectionLength2, int index1, ObservableList<Node> a) {
+		for(int i=0; i<size(); i++) {
+			listOfShape.get(i).up(collectionLength2, index1+i+listOfShape.size()-1, a);
+		}	
+	}
+	
+	@Override
+	public void down(int collectionLength2, int index1, ObservableList<Node> a) {
+		for(int i=0; i<size(); i++) {
+			listOfShape.get(i).down(collectionLength2, index1+i, a);
+		}	
+	}
+	
+	@Override
+	public String toString() {
+		return "L: "+this.getLayer()+"; ShapeGrp: "+this.getType();
 	}
 }

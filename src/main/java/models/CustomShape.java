@@ -5,7 +5,9 @@ import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamWriter;
 import javax.xml.stream.events.XMLEvent;
 
+import javafx.collections.ObservableList;
 import javafx.geometry.Point2D;
+import javafx.scene.Node;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
@@ -244,4 +246,19 @@ public abstract class CustomShape {
 	public int size() {
 		return 1;
 	}
+	public void up(int collectionLength2, int index1, ObservableList<Node> a) {
+		a.remove(shape);
+		System.out.println(index1+"+"+collectionLength2);
+		a.add(index1 + (collectionLength2), shape);
+	}
+	public void down(int collectionLength2, int index1, ObservableList<Node> a) {
+		a.remove(shape);
+		System.out.println(index1+"-"+collectionLength2);
+		a.add(index1 - (collectionLength2), shape);
+	}
+	@Override
+	public String toString() {
+		return "L: "+this.getLayer()+"; "+this.getDraw().getId()+": "+this.getType();
+	}
+	
 }
