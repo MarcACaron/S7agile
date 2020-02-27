@@ -1,6 +1,7 @@
 package models;
 
 
+import adraw4us.MainApp;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
 
@@ -65,14 +66,9 @@ public class CustomLine extends CustomShape{
 	
 
 	
-	public CustomShape duplicate(int offsetX, int offsetY) {
+	public CustomShape duplicate(int offsetX, int offsetY, MainApp mainApp) {
 		CustomLine newLine = new CustomLine();
-		newLine.setStroke(this.getStroke());
-		newLine.setStrokeWidth(this.getStrokeWidth());
-		newLine.setXPosition(this.getXPos() + offsetX);
-		newLine.setYPosition(this.getYPos() + offsetY);
-		newLine.setWidth(this.getWidth());
-		newLine.setRotate(this.getRotate());
+		applyValues(newLine, offsetX, offsetY, mainApp);
 		return newLine;
 	}
 	

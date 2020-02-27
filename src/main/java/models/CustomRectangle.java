@@ -1,5 +1,6 @@
 package models;
 
+import adraw4us.MainApp;
 import javafx.scene.shape.Rectangle;
 
 public class CustomRectangle extends CustomShape {
@@ -23,15 +24,9 @@ public class CustomRectangle extends CustomShape {
 	}
 	
 	@Override
-	public CustomShape duplicate(int offsetX, int offsetY) {
+	public CustomShape duplicate(int offsetX, int offsetY, MainApp mainApp) {
 		CustomRectangle newRectangle = new CustomRectangle();
-		newRectangle.setStroke(this.getStroke());
-		newRectangle.setStrokeWidth(this.getStrokeWidth());
-		newRectangle.setFill(this.getFill(), this.shape.getAccessibleText());
-		newRectangle.setXPos(this.getXPos() + offsetX);
-		newRectangle.setYPos(this.getYPos() + offsetY);
-		newRectangle.setWidth(this.getWidth());
-		newRectangle.setHeight(this.getHeight());
+		applyValues(newRectangle, offsetX, offsetY, mainApp);
 		
 		return newRectangle;
 	}

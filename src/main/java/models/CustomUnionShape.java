@@ -148,8 +148,15 @@ public class CustomUnionShape extends CustomShape {
 	} 
 	
 	@Override
-	public CustomShape duplicate(int offsetX, int offsetY) {
-		return null;
+	public CustomShape duplicate(int offsetX, int offsetY, MainApp mainApp) {
+		CustomUnionShape newUnion = new CustomUnionShape();
+		for(int i=0; i<listOfShape.size(); i++) {
+			CustomShape sh = listOfShape.get(i).duplicate(offsetX, offsetY, mainApp);
+			sh.setOnMouseClicked(newUnion, mainApp);
+			newUnion.add(sh);
+		}
+		newUnion.updateBoudingBox();
+		return newUnion;
 	}
 
 	public void add(CustomShape customShape) {
@@ -191,21 +198,7 @@ public class CustomUnionShape extends CustomShape {
 			LayersGroup.getLayersGroup().getCurrentLayer().getPane().getChildren().remove(index);
 			LayersGroup.getLayersGroup().getCurrentLayer().getPane().getChildren().add(sh.getDraw());
 			CustomShape thisGroup = this;
-			sh.getDraw().setOnMouseClicked(t2 -> {
-				MouseButton button = t2.getButton();
-				if ( button == MouseButton.PRIMARY ) {
-					mainApp.getTool().setShape(thisGroup);
-
-					mainApp.getTool().fillDetails(mainApp.getPaletteDetailController(), thisGroup, mainApp).apply(null);
-				}
-				else if ( button == MouseButton.SECONDARY ) {
-					CustomContextMenu contextMenu = new CustomContextMenu(mainApp, thisGroup);
-
-					contextMenu.setItems();	
-					contextMenu.setY(t2.getScreenY()); contextMenu.setX(t2.getScreenX()); contextMenu.show(sh.getDraw().getScene().getWindow());
-				}
-
-			});
+			sh.setOnMouseClicked(thisGroup, mainApp);
 			
 			
 		});
@@ -255,5 +248,12 @@ public class CustomUnionShape extends CustomShape {
 			isSelected = listOfShape.get(i).isSelected(xStart, yStart, xEnd, yEnd) && isSelected;
 		}
 		return super.isSelected(xStart, yStart, xEnd, yEnd);
+	}
+	
+	@Override
+	public void draw(Layer layer) {
+		listOfShape.forEach(sg->{
+			sg.draw(layer);
+		});
 	}
 }

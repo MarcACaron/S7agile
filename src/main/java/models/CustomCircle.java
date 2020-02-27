@@ -1,6 +1,7 @@
 package models;
 
 
+import adraw4us.MainApp;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 
@@ -49,14 +50,9 @@ public class CustomCircle extends CustomShape {
 		this.setWidth(value);
 	}
 	@Override
-	public CustomShape duplicate(int offsetX, int offsetY) {
+	public CustomShape duplicate(int offsetX, int offsetY, MainApp mainApp) {
 		CustomCircle newCircle = new CustomCircle();
-		newCircle.setFill(this.getFill(), this.getFillName());
-		newCircle.setXPosition(this.getXPos() + offsetX);
-		newCircle.setYPosition(this.getYPos() + offsetY);
-		newCircle.setHeight(this.getHeight());
-		newCircle.setStroke(this.getStroke());
-		newCircle.setStrokeWidth(this.getStrokeWidth());
+		applyValues(newCircle, offsetX, offsetY, mainApp);
 		return newCircle;
 	}
 	

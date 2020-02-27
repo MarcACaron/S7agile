@@ -53,7 +53,7 @@ public class MultiSelectionTool extends Tool {
 		this.shape = new CustomUnionShape();
 	}
 	@Override
-	public int mousePressed(DetailPaletteController detailPaletteController, Layer layer, MainApp mainApp) {
+	public int mousePressed(DetailPaletteController detailPaletteController, Layer layer) {
 		this.reset();
 		int index = layer.getPane().getChildren().size();
 		this.selection = new Rectangle();
@@ -73,7 +73,7 @@ public class MultiSelectionTool extends Tool {
 	}
 
 	@Override
-	public void mouseReleased(MainApp mainApp, Pane pane, PaletteCouleurController paletteCouleurController, DetailPaletteController pc) {
+	public void mouseReleased(Pane pane, PaletteCouleurController paletteCouleurController, DetailPaletteController pc) {
 		double xStart = selection.getX();
 		double yStart = selection.getY();
 		double xEnd = selection.getX()+selection.getWidth();
@@ -85,7 +85,7 @@ public class MultiSelectionTool extends Tool {
 			}	
 		}
 		if(((CustomUnionShape)this.shape).updateBoudingBox()) {
-			fillDetails(mainApp.getPaletteDetailController(), this.shape, mainApp).apply(null);
+			fillDetails(mainApp.getPaletteDetailController(), this.shape).apply(null);
 		}
 	}
 
