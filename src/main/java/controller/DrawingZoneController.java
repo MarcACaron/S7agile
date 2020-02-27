@@ -43,8 +43,6 @@ public class DrawingZoneController {
 	private CustomShape shapeCopy;
 	ApplicationHistory history = ApplicationHistory.getInstance();
 
-	private Point2D finalPoint = new Point2D(0.0,0.0);
-
 	LayersGroup layersGroup = LayersGroup.getLayersGroup();
 
 	List<Pane> paneList = new ArrayList<>();
@@ -113,31 +111,7 @@ public class DrawingZoneController {
 		}
 	}
 
-	private void getNearestGridPoint(double pointX, double pointY){
 
-		List<Double> listDistancePoints = new ArrayList<>();
-		Point2D comparedPoint = new Point2D(pointX,pointY); 
-
-		double distanceMin = 200.0;
-
-		createGridPoints();
-
-		for(int i=0; i<10000; i++) {
-			listDistancePoints.add(comparedPoint.distance(listPoints.get(i)));
-
-			if (listDistancePoints.get(i) < distanceMin) {
-				distanceMin = listDistancePoints.get(i);
-				finalPoint = listPoints.get(i);
-			}
-		}
-	}
-
-	public void setNearestGridPoint() {
-		if (magnetismState) {
-			orgX = finalPoint.getX();
-			orgY = finalPoint.getY();
-		}
-	}
 
 	@FXML
 	private void initialize() {
@@ -147,17 +121,30 @@ public class DrawingZoneController {
 			if ( button == MouseButton.PRIMARY ) {
 				orgX = t.getX();
 				orgY = t.getY();
+				orgX = (int)orgX/50 *50;
+				orgY = (int)orgY/50 *50;
 				childIndex = anchorPane.getChildren().size();
 				childIndex = this.mainApp.getTool().mousePressed(this.mainApp.getPaletteDetailController(), layersGroup.getCurrentLayer(), mainApp);
-				getNearestGridPoint(orgX, orgY);
-				setNearestGridPoint();
 			}
 		});
 
 		anchorPane.setOnMouseDragged(t -> {
 			MouseButton button = t.getButton();
 			if ( button == MouseButton.PRIMARY ) {
-				this.mainApp.getTool().mouseDragged(orgX, orgY, t.getX(), t.getY());
+				double xEnd=t.getX();
+				double yEnd=t.getY();
+				if (magnetismState) {if(orgX<xEnd) {
+					xEnd+=50;
+				}
+				if(orgY<yEnd) {
+					yEnd+=50;
+				}
+				xEnd = (int)xEnd/50 *50;
+				yEnd = (int)yEnd/50 *50;
+					
+				}
+				
+				this.mainApp.getTool().mouseDragged(orgX, orgY, xEnd, yEnd);
 			}
 		});
 
