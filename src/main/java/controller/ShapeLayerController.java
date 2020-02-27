@@ -7,7 +7,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import models.CustomShape;
-import models.DrawnShapes;
 import models.LayersGroup;
 
 public class ShapeLayerController {
@@ -27,12 +26,16 @@ public class ShapeLayerController {
 			if ( shapeListView.getSelectionModel().getSelectedIndex() == -1 ) {
 				return;
 			}
-			
-			int newIndex = layerGroup.upShapeList(shapeListView.getSelectionModel().getSelectedIndex());
+
+			int index = shapeListView.getSelectionModel().getSelectedIndex();
+			boolean hasPrevious = layerGroup.upShapeList(index);
 			updateList();
 			
-			if( newIndex != -1 ) {
-				shapeListView.getSelectionModel().select(newIndex);
+			if(hasPrevious) {
+				shapeListView.getSelectionModel().select(index-1);
+				System.out.println("gneu");
+			}else {
+				shapeListView.getSelectionModel().select(index);
 			}
 
 
@@ -43,12 +46,14 @@ public class ShapeLayerController {
 			if ( shapeListView.getSelectionModel().getSelectedIndex() == -1 ) {
 				return;
 			}
-			
-			int newIndex = layerGroup.downShapeList(shapeListView.getSelectionModel().getSelectedIndex());
+			int index = shapeListView.getSelectionModel().getSelectedIndex();
+			boolean hasNext = layerGroup.downShapeList(index);
 			updateList();
 			
-			if( newIndex != -1 ) {
-				shapeListView.getSelectionModel().select(newIndex);
+			if( hasNext ) {
+				shapeListView.getSelectionModel().select(index+1);
+			}else {
+				shapeListView.getSelectionModel().select(index);
 			}
 			
 		});
@@ -60,20 +65,19 @@ public class ShapeLayerController {
 
 	private void updateList() {
 		shapeListView.getItems().clear();
-		ArrayList<CustomShape> drawnShapes = DrawnShapes.getDrawnShapes();
+		
 		/*
 		for (Iterator iter = layerGroup.getIterator(); iter.hasNext();) {
 			Shape a = (Shape)iter.next();
 			shapeListView.getItems().add(new Label(a.getId()));
 		}*/
-		for(int index = drawnShapes.size()-1; index>=0;index--) {
-			
-			shapeListView.getItems().add(new Label("L: "+drawnShapes.get(index).getLayer()+"; "+drawnShapes.get(index).getDraw().getId()+": "+drawnShapes.get(index).getType()));
+		for(int layerIndex = 0; layerIndex<LayersGroup.getLayersGroup().size(); layerIndex++) { //TODO: a faire
+			ArrayList<CustomShape> drawnShapes = LayersGroup.getLayersGroup().getLayers().get(layerIndex).getDrawnShapes();
+			for(int index = drawnShapes.size()-1; index>=0;index--) {
+				
+				shapeListView.getItems().add(new Label("L: "+drawnShapes.get(index).getLayer()+"; "+drawnShapes.get(index).getDraw().getId()+": "+drawnShapes.get(index).getType()));
+			}
 		}
-		/*for (java.util.Iterator<CustomShape> iter = drawnShapes.iterator(); iter.hasNext();) {
-			CustomShape a = (CustomShape)iter.next();
-			shapeListView.getItems().add(new Label("L: "+a.getLayer()+"; "+a.getDraw().getId()+": "+a.getType()));
-		}*/
 
 	}
 

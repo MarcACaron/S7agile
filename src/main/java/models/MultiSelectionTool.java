@@ -1,7 +1,5 @@
 package models;
 
-import java.util.List;
-
 import adraw4us.MainApp;
 import adraw4us.Tool;
 import controller.DetailPaletteController;
@@ -81,9 +79,9 @@ public class MultiSelectionTool extends Tool {
 		double xEnd = selection.getX()+selection.getWidth();
 		double yEnd = selection.getY()+selection.getHeight();
 		pane.getChildren().remove(pane.getChildren().size()-1);
-		for(int i=0; i<DrawnShapes.getDrawnShapes().size();i++) {
-			if((DrawnShapes.getDrawnShapes().get(i)).isSelected(xStart, yStart, xEnd, yEnd)) {
-				((CustomUnionShape)this.shape).add(DrawnShapes.getDrawnShapes().get(i));
+		for(int i=0; i<LayersGroup.getLayersGroup().getCurrentLayer().getDrawnShapes().size();i++) {
+			if((LayersGroup.getLayersGroup().getCurrentLayer().getDrawnShapes().get(i)).isSelected(xStart, yStart, xEnd, yEnd)) {
+				((CustomUnionShape)this.shape).add(LayersGroup.getLayersGroup().getCurrentLayer().getDrawnShapes().get(i));
 			}	
 		}
 		if(((CustomUnionShape)this.shape).updateBoudingBox()) {

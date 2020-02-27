@@ -20,7 +20,6 @@ import javafx.scene.shape.Shape;
 import javafx.scene.transform.Scale;
 import models.ApplicationHistory;
 import models.CustomShape;
-import models.DrawnShapes;
 import models.Layer;
 import models.LayersGroup;
 
@@ -251,7 +250,7 @@ public class DrawingZoneController {
 	public void pasteShape() {
 		if (shapeCopy != null) {
 			this.applyToCurrentPane(shapeCopy.getDraw());
-			DrawnShapes.getDrawnShapes().add(shapeCopy);
+			LayersGroup.getLayersGroup().getCurrentLayer().getDrawnShapes().add(shapeCopy);
 		}
 	}
 

@@ -1,6 +1,5 @@
 package adraw4us;
 
-import java.util.List;
 import java.util.function.Function;
 
 import controller.DetailPaletteController;
@@ -11,7 +10,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import models.CustomContextMenu;
 import models.CustomShape;
-import models.DrawnShapes;
 import models.Layer;
 import models.LayersGroup;
 import models.ShapeName;
@@ -75,7 +73,7 @@ public abstract class Tool {
 		int index = layer.getPane().getChildren().size();
 		this.reset();
 		shape.setLayer(layer.getId());
-		DrawnShapes.getDrawnShapes().add(shape);
+		LayersGroup.getLayersGroup().getCurrentLayer().getDrawnShapes().add(shape);
 		layer.getPane().getChildren().add(shape.getDraw());
 		return index;
 	}
