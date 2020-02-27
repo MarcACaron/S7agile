@@ -2,12 +2,15 @@ package controller;
 
 import adraw4us.MainApp;
 import adraw4us.Tool;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import models.CircleTool;
+import models.CustomDrawTool;
+import models.CustomShape;
 import models.LineTool;
 import models.MultiSelectionTool;
 import models.RectangleTool;
@@ -37,6 +40,22 @@ public class PaletteFormeController {
 	private ImageView ptDepartImage;
 	@FXML
 	private Tooltip ptDepartToolTip;
+	@FXML
+    private ToggleButton customShape1;
+	@FXML
+	private Tooltip customShape1Tooltip;
+	@FXML
+    private ToggleButton customShape2;
+	@FXML
+	private Tooltip customShape2Tooltip;
+	@FXML
+    private ToggleButton customShape3;
+	@FXML
+	private Tooltip customShape3Tooltip;
+	@FXML
+    private ToggleButton customShape4;
+	@FXML
+	private Tooltip customShape4Tooltip;
 	
 	@FXML
 	private void choosePointer() {
@@ -122,6 +141,75 @@ public class PaletteFormeController {
 		}
 	}
 	
+	@FXML private void drawCustom(ActionEvent event) {
+		ToggleButton tg = (ToggleButton) event.getSource();
+		if(tg.getId().contentEquals("customShape1")) {
+			if(tg.getUserData()==null) {
+				if(mainApp.getTool().getShape()!=null) {
+					customShape1Tooltip.setText(mainApp.getTool().getShape().getType());
+					tg.setUserData(mainApp.getTool().getShape().duplicate(0, 0, mainApp));
+					System.out.println("Enregistrement");
+				}else {
+					System.out.println("Pas de Shape");
+				}
+				tg.setSelected(false);
+			}else {
+				System.out.println("Préparation de la shape custom: +customShape1Tooltip.getText()");
+				this.mainApp.setTool(new CustomDrawTool((CustomShape) tg.getUserData()));
+				System.out.println(mainApp.getTool().getToolType());
+				System.out.println(mainApp.getTool().getShape().getType());
+			}
+		}else if(tg.getId().contentEquals("customShape2")) {
+			if(tg.getUserData()==null) {
+				if(mainApp.getTool().getShape()!=null) {
+					customShape2Tooltip.setText(mainApp.getTool().getShape().getType());
+					tg.setUserData(mainApp.getTool().getShape().duplicate(0, 0, mainApp));
+					System.out.println("Enregistrement");
+				}else {
+					System.out.println("Pas de Shape");
+				}
+				tg.setSelected(false);
+			}else {
+				System.out.println("Préparation de la shape custom: +customShape1Tooltip.getText()");
+				this.mainApp.setTool(new CustomDrawTool((CustomShape) tg.getUserData()));
+				System.out.println(mainApp.getTool().getToolType());
+				System.out.println(mainApp.getTool().getShape().getType());
+			}
+		}else if(tg.getId().contentEquals("customShape3")) {
+			if(tg.getUserData()==null) {
+				if(mainApp.getTool().getShape()!=null) {
+					customShape3Tooltip.setText(mainApp.getTool().getShape().getType());
+					tg.setUserData(mainApp.getTool().getShape().duplicate(0, 0, mainApp));
+					System.out.println("Enregistrement");
+				}else {
+					System.out.println("Pas de Shape");
+				}
+				tg.setSelected(false);
+			}else {
+				System.out.println("Préparation de la shape custom: +customShape1Tooltip.getText()");
+				this.mainApp.setTool(new CustomDrawTool((CustomShape) tg.getUserData()));
+				System.out.println(mainApp.getTool().getToolType());
+				System.out.println(mainApp.getTool().getShape().getType());
+			}
+		}else if(tg.getId().contentEquals("customShape4")) {
+			if(tg.getUserData()==null) {
+				if(mainApp.getTool().getShape()!=null) {
+					customShape4Tooltip.setText(mainApp.getTool().getShape().getType());
+					tg.setUserData(mainApp.getTool().getShape().duplicate(0, 0, mainApp));
+					System.out.println("Enregistrement");
+				}else {
+					System.out.println("Pas de Shape");
+				}
+				tg.setSelected(false);
+			}else {
+				System.out.println("Préparation de la shape custom: +customShape1Tooltip.getText()");
+				this.mainApp.setTool(new CustomDrawTool((CustomShape) tg.getUserData()));
+				System.out.println(mainApp.getTool().getToolType());
+				System.out.println(mainApp.getTool().getShape().getType());
+			}
+		}
+				
+	}
 	private MainApp mainApp;
 	
 	

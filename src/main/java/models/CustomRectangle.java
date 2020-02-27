@@ -1,5 +1,6 @@
 package models;
 
+import adraw4us.MainApp;
 import javafx.scene.shape.Rectangle;
 
 public class CustomRectangle extends CustomShape {
@@ -14,8 +15,8 @@ public class CustomRectangle extends CustomShape {
 		this.shape = new Rectangle();
 		this.boundingBox = new Rectangle();
 		
-		this.setXPosition(posX);
-		this.setYPosition(posY);
+		this.setXPos(posX);
+		this.setYPos(posY);
 		this.setWidth(width);
 		this.setHeight(height);
 		this.scale=false;
@@ -23,15 +24,9 @@ public class CustomRectangle extends CustomShape {
 	}
 	
 	@Override
-	public CustomShape duplicate(int offsetX, int offsetY) {
+	public CustomShape duplicate(int offsetX, int offsetY, MainApp mainApp) {
 		CustomRectangle newRectangle = new CustomRectangle();
-		newRectangle.setStroke(this.getStroke());
-		newRectangle.setStrokeWidth(this.getStrokeWidth());
-		newRectangle.setFill(this.getFill(), this.shape.getAccessibleText());
-		newRectangle.setXPos(this.getXPos() + offsetX);
-		newRectangle.setYPos(this.getYPos() + offsetY);
-		newRectangle.setWidth(this.getWidth());
-		newRectangle.setHeight(this.getHeight());
+		applyValues(newRectangle, offsetX, offsetY, mainApp);
 		
 		return newRectangle;
 	}
@@ -56,8 +51,8 @@ public class CustomRectangle extends CustomShape {
 			startY=posYEnd;
 			height = posYStart-posYEnd;
 		}
-		this.setXPosition(startX);
-		this.setYPosition(startY);
+		this.setXPos(startX);
+		this.setYPos(startY);
 		this.setWidth(width);
 		this.setHeight(height);
 	}
@@ -80,8 +75,8 @@ public class CustomRectangle extends CustomShape {
 			startY=posYEnd;
 			height = posYStart-posYEnd;
 		}
-		this.setXPosition(startX);
-		this.setYPosition(startY);
+		this.setXPos(startX);
+		this.setYPos(startY);
 		this.setWidth(width*2);
 		this.setHeight(height*2);
 		
@@ -89,14 +84,24 @@ public class CustomRectangle extends CustomShape {
 
 	@Override
 	public void setXPos(double value) {
+		this.getDraw().getTransforms().clear();
 		this.boundingBox.setX(value);
 		((Rectangle)this.shape).setX(value);
+		if (this.getHFlip())
+			this.flipShape(0, true);
+    	if (this.getVFlip())
+    		this.flipShape(1, true);
 	}
 
 	@Override
 	public void setYPos(double value) {
+    	this.getDraw().getTransforms().clear();
 		this.boundingBox.setY(value);
 		((Rectangle)this.shape).setY(value);
+		if (this.getHFlip())
+			this.flipShape(0, true);
+    	if (this.getVFlip())
+    		this.flipShape(1, true);
 	}
 
 	@Override

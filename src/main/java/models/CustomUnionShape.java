@@ -6,7 +6,6 @@ import adraw4us.MainApp;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
 import javafx.scene.input.MouseButton;
-import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
 
@@ -32,7 +31,7 @@ public class CustomUnionShape extends CustomShape {
 				this.scale=true;
 			}
 		});
-		this.type = "CustomShape";
+		this.type = "CustomUnionShape";
 	}
 
 	@Override
@@ -148,8 +147,16 @@ public class CustomUnionShape extends CustomShape {
 	} 
 	
 	@Override
-	public CustomShape duplicate(int offsetX, int offsetY) {
-		return null;
+	public CustomShape duplicate(int offsetX, int offsetY, MainApp mainApp) {
+		CustomUnionShape newUnion = new CustomUnionShape();
+		for(int i=0; i<listOfShape.size(); i++) {
+			CustomShape sh = listOfShape.get(i).duplicate(offsetX, offsetY, mainApp);
+			sh.setOnMouseClicked(newUnion, mainApp);
+			newUnion.add(sh);
+		}
+		newUnion.type=this.type;
+		newUnion.updateBoudingBox();
+		return newUnion;
 	}
 
 	public void add(CustomShape customShape) {
@@ -191,21 +198,7 @@ public class CustomUnionShape extends CustomShape {
 			LayersGroup.getLayersGroup().getCurrentLayer().getPane().getChildren().remove(index);
 			LayersGroup.getLayersGroup().getCurrentLayer().getPane().getChildren().add(sh.getDraw());
 			CustomShape thisGroup = this;
-			sh.getDraw().setOnMouseClicked(t2 -> {
-				MouseButton button = t2.getButton();
-				if ( button == MouseButton.PRIMARY ) {
-					mainApp.getTool().setShape(thisGroup);
-
-					mainApp.getTool().fillDetails(mainApp.getPaletteDetailController(), thisGroup, mainApp).apply(null);
-				}
-				else if ( button == MouseButton.SECONDARY ) {
-					CustomContextMenu contextMenu = new CustomContextMenu(mainApp, thisGroup);
-
-					contextMenu.setItems();	
-					contextMenu.setY(t2.getScreenY()); contextMenu.setX(t2.getScreenX()); contextMenu.show(sh.getDraw().getScene().getWindow());
-				}
-
-			});
+			sh.setOnMouseClicked(thisGroup, mainApp);
 			
 			
 		});
@@ -214,14 +207,55 @@ public class CustomUnionShape extends CustomShape {
 	}
 	@Override
 	public void ajustOnDragFromCorner(double posXStart, double posYStart, double posXEnd, double posYEnd) {
-		// TODO Auto-generated method stub
+		double startX;
+		double startY;
+		double width;
+		double height;
+		if(posXStart<posXEnd) {
+			startX=posXStart;
+			width = posXEnd-posXStart;
+		}else {
+			startX=posXEnd;
+			width = posXStart-posXEnd;
+		}
+		if(posYStart<posYEnd) {
+			startY=posYStart;
+			height = posYEnd-posYStart;
+		}else {
+			startY=posYEnd;
+			height = posYStart-posYEnd;
+		}
+		this.setXPos(startX);
+		this.setYPos(startY);
+		this.setWidth(width);
+		this.setHeight(height);
 		
 	}
 
 	@Override
 	public void ajustOnDragFromCenter(double posXStart, double posYStart, double posXEnd, double posYEnd) {
-		// TODO Auto-generated method stub
-		
+		double startX;
+		double startY;
+		double width;
+		double height;
+		if(posXStart<posXEnd) {
+			width = posXEnd-posXStart;
+			startX=posXStart-width;
+		}else {
+			startX=posXEnd;
+			width = posXStart-posXEnd;
+		}
+		if(posYStart<posYEnd) {
+			height = posYEnd-posYStart;
+			startY=posYStart-height;
+		}else {
+			startY=posYEnd;
+			height = posYStart-posYEnd;
+		}
+		this.setXPos(startX);
+		this.setYPos(startY);
+		this.setWidth(width*2);
+		this.setHeight(height*2);
 	}
 	
 	@Override
@@ -255,5 +289,20 @@ public class CustomUnionShape extends CustomShape {
 			isSelected = listOfShape.get(i).isSelected(xStart, yStart, xEnd, yEnd) && isSelected;
 		}
 		return super.isSelected(xStart, yStart, xEnd, yEnd);
+	}
+	
+	@Override
+	public void draw(Layer layer) {
+		listOfShape.forEach(sg->{
+			sg.draw(layer);
+		});
+	}
+	
+	@Override
+	public void setOnMouseClicked(CustomShape shapeToSelect, MainApp mainApp) {
+		listOfShape.forEach(sh->{
+			sh.setOnMouseClicked(shapeToSelect, mainApp);
+		});
+		
 	}
 }

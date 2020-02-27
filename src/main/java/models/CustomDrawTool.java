@@ -11,7 +11,7 @@ public class CustomDrawTool extends Tool {
 
 	@Override
 	public void reset() {
-		setShape(base);//TODO: copy
+		setShape(base.duplicate(0, 0, mainApp));
 	}
 	
 	@Override

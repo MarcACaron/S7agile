@@ -1,6 +1,7 @@
 package models;
 
 
+import adraw4us.MainApp;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 
@@ -16,9 +17,7 @@ public class CustomCircle extends CustomShape {
 	public CustomCircle(double posX, double posY, double radius) {
 		this.shape = new Circle();
 		this.boundingBox = new Rectangle();
-		this.setXPosition(posX);
 		this.setXPos(posX);
-		this.setYPosition(posY);
 		this.setYPos(posY);
 		this.setWidth(2*radius);
 		this.scale=true;
@@ -27,14 +26,24 @@ public class CustomCircle extends CustomShape {
 	
 	@Override
 	public void setXPos(double value) {
+		this.getDraw().getTransforms().clear();
 		this.boundingBox.setX(value);
 		((Circle)this.shape).setCenterX(value + this.boundingBox.getWidth()/2);
+		if (this.getHFlip())
+			this.flipShape(0, true);
+    	if (this.getVFlip())
+    		this.flipShape(1, true);
 	}
 
 	@Override
 	public void setYPos(double value) {
+		this.getDraw().getTransforms().clear();
 		this.boundingBox.setY(value);
 		((Circle)this.shape).setCenterY(value + this.boundingBox.getHeight()/2);
+		if (this.getHFlip())
+			this.flipShape(0, true);
+    	if (this.getVFlip())
+    		this.flipShape(1, true);
 	}
 
 	public void setWidth(double value) {
@@ -49,14 +58,9 @@ public class CustomCircle extends CustomShape {
 		this.setWidth(value);
 	}
 	@Override
-	public CustomShape duplicate(int offsetX, int offsetY) {
+	public CustomShape duplicate(int offsetX, int offsetY, MainApp mainApp) {
 		CustomCircle newCircle = new CustomCircle();
-		newCircle.setFill(this.getFill(), this.getFillName());
-		newCircle.setXPosition(this.getXPos() + offsetX);
-		newCircle.setYPosition(this.getYPos() + offsetY);
-		newCircle.setHeight(this.getHeight());
-		newCircle.setStroke(this.getStroke());
-		newCircle.setStrokeWidth(this.getStrokeWidth());
+		applyValues(newCircle, offsetX, offsetY, mainApp);
 		return newCircle;
 	}
 	
@@ -77,8 +81,8 @@ public class CustomCircle extends CustomShape {
 		}
 		this.setWidth(cote);
 		this.setHeight(cote);
-		this.setXPosition(startX);
-		this.setYPosition(startY);
+		this.setXPos(startX);
+		this.setYPos(startY);
 	}
 	
 	@Override
@@ -90,7 +94,7 @@ public class CustomCircle extends CustomShape {
 		startX=posXStart-cote;
 		startY=posYStart-cote;
 		this.setWidth(cote*2);
-		this.setXPosition(startX);
-		this.setYPosition(startY);
+		this.setXPos(startX);
+		this.setYPos(startY);
 	}
 }

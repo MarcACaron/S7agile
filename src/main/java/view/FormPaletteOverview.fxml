@@ -7,39 +7,46 @@
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
 <VBox prefWidth="100.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.PaletteFormeController">
    <children>
-      <ToggleButton fx:id="pointeur" mnemonicParsing="false" onAction="#choosePointer" prefWidth="100.0">
-         <toggleGroup>
-            <ToggleGroup fx:id="formToggleGroup" />
-         </toggleGroup>
-         <graphic>
-            <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-            	<image>
-            		<Image url="@../images/Pointer.png" />
-            	</image>
-            </ImageView>
-         </graphic>
-         <tooltip>
-            <Tooltip text="Select Item" />
-         </tooltip>
-      </ToggleButton>
-      <ToggleButton fx:id="multiSelection" mnemonicParsing="false" onAction="#chooseMultiSelection" prefWidth="100.0" toggleGroup="$formToggleGroup">
-         <graphic>
-            <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../images/MultiSelection.png.png" />
-               </image>
-            </ImageView>
-         </graphic>
-         <tooltip>
-            <Tooltip text="Select Group" />
-         </tooltip>
-      </ToggleButton>
+      <HBox prefHeight="40.0" prefWidth="200.0">
+         <children>
+            <ToggleButton fx:id="pointeur" mnemonicParsing="false" onAction="#choosePointer" prefWidth="50.0">
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                  	<image>
+                  		<Image url="@../images/Pointer.png" />
+                  	</image>
+                  </ImageView>
+               </graphic>
+               <tooltip>
+                  <Tooltip text="Select Item" />
+               </tooltip>
+               <toggleGroup>
+                  <ToggleGroup fx:id="formToggleGroup" />
+               </toggleGroup>
+            </ToggleButton>
+            <ToggleButton fx:id="multiSelection" mnemonicParsing="false" onAction="#chooseMultiSelection" prefWidth="50.0" toggleGroup="$formToggleGroup">
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/MultiSelection.png.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <tooltip>
+                  <Tooltip text="Select Group" />
+               </tooltip>
+            </ToggleButton>
+         </children>
+      </HBox>
       <Separator prefWidth="200.0" />
       
       <ToggleButton fx:id="rectangle" mnemonicParsing="false" onAction="#chooseRectangle" prefWidth="100.0" toggleGroup="$formToggleGroup">
@@ -66,17 +73,7 @@
             <Tooltip text="Draw Circle" />
          </tooltip></ToggleButton>
          
-      <ToggleButton fx:id="triangleHorizontal" mnemonicParsing="false" onAction="#chooseTriangleHorizontal" prefHeight="40.0" prefWidth="100.0" toggleGroup="$formToggleGroup" text="TH">
-         <tooltip>
-            <Tooltip text="Horizontal Triangle" />
-         </tooltip></ToggleButton>
-      
-      <ToggleButton fx:id="triangleVertical" mnemonicParsing="false" onAction="#chooseTriangleVertical" prefHeight="40.0" prefWidth="100.0" toggleGroup="$formToggleGroup" text="TV">
-         <tooltip>
-            <Tooltip text="Vertical Triangle" />
-         </tooltip></ToggleButton>
-         
-      <ToggleButton fx:id="line" mnemonicParsing="false" onAction="#chooseLine" prefHeight="40.0" prefWidth="100.0" toggleGroup="$formToggleGroup">
+            <ToggleButton fx:id="line" mnemonicParsing="false" onAction="#chooseLine" prefHeight="40.0" prefWidth="100.0" toggleGroup="$formToggleGroup">
          <graphic>
             <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
             	<image>
@@ -86,7 +83,78 @@
          </graphic>
          <tooltip>
             <Tooltip text="Draw Line" />
-         </tooltip></ToggleButton>
+         </tooltip>
+      </ToggleButton>
+      <HBox prefHeight="40.0" prefWidth="200.0">
+         <children>
+               
+            <ToggleButton fx:id="triangleHorizontal" mnemonicParsing="false" onAction="#chooseTriangleHorizontal" prefHeight="40.0" prefWidth="50.0" toggleGroup="$formToggleGroup">
+               <tooltip>
+                  <Tooltip text="Draw Horizontal Triangle" />
+               </tooltip>
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                  	<image>
+                  		<Image url="@../images/TriangleHorizontal.png" />
+                  	</image>
+                  </ImageView>
+               </graphic>
+            </ToggleButton>
+            
+            <ToggleButton fx:id="triangleVertical" mnemonicParsing="false" onAction="#chooseTriangleVertical" prefHeight="40.0" prefWidth="50.0" toggleGroup="$formToggleGroup">
+               <tooltip>
+                  <Tooltip text="Draw Vertical Triangle" />
+               </tooltip>
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" >
+                  	<image>
+                  		<Image url="@../images/TriangleVertical.png" />
+                  	</image>
+                  </ImageView>
+               </graphic>
+            </ToggleButton>
+         </children>
+      </HBox>
+      <HBox prefHeight="40.0" prefWidth="200.0">
+         <children>
+            <ToggleButton fx:id="customShape1" mnemonicParsing="false" onAction="#drawCustom" prefHeight="40.0" prefWidth="50.0" toggleGroup="$formToggleGroup">
+               <toggleGroup>
+                  <ToggleGroup fx:id="formToggleGroup1" />
+               </toggleGroup>
+               <tooltip>
+                  <Tooltip fx:id="customShape1Tooltip" text="CustomShape1" />
+               </tooltip>
+            </ToggleButton>
+            <ToggleButton fx:id="customShape2" mnemonicParsing="false" onAction="#drawCustom" prefHeight="40.0" prefWidth="50.0" toggleGroup="$formToggleGroup">
+               <tooltip>
+                  <Tooltip fx:id="customShape2Tooltip" text="CustomShape2" />
+               </tooltip>
+               <graphic>
+                  <Pane prefHeight="32.0" prefWidth="50.0" />
+               </graphic>
+            </ToggleButton>
+         </children>
+      </HBox>
+      <HBox prefHeight="40.0" prefWidth="200.0">
+         <children>
+            <ToggleButton fx:id="customShape3" mnemonicParsing="false" onAction="#drawCustom" prefHeight="40.0" prefWidth="100.0" toggleGroup="$formToggleGroup">
+               <toggleGroup>
+                  <ToggleGroup fx:id="formToggleGroup3" />
+               </toggleGroup>
+               <tooltip>
+                  <Tooltip fx:id="customShape3Tooltip" text="CustomShape3" />
+               </tooltip>
+            </ToggleButton>
+            <ToggleButton fx:id="customShape4" mnemonicParsing="false" onAction="#drawCustom" prefHeight="40.0" prefWidth="100.0" toggleGroup="$formToggleGroup">
+               <toggleGroup>
+                  <ToggleGroup fx:id="formToggleGroup4" />
+               </toggleGroup>
+               <tooltip>
+                  <Tooltip fx:id="customShape4Tooltip" text="Custom Shape4" />
+               </tooltip>
+            </ToggleButton>
+         </children>
+      </HBox>
          
       <Separator prefWidth="200.0" />
       
