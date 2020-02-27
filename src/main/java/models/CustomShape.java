@@ -241,4 +241,7 @@ public abstract class CustomShape {
 	public void setScale(boolean scale) {
 		this.scale = scale;
 	}
+	public int size() {
+		return 1;
+	}
 }

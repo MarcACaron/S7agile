@@ -14,7 +14,7 @@ public class LayersGroup implements Container {
 	private List<Layer> layers;
 
 	private static LayersGroup instance = new LayersGroup();
-
+	
 	public static LayersGroup getLayersGroup( ) {
 		return instance;
 	}
@@ -87,10 +87,17 @@ public class LayersGroup implements Container {
 		return layers.indexOf(layer);
 	}
 
-	public int downShapeList(int shapeIndex) {
+	public boolean downShapeList(int shapeIndex_) {
 
-		ObservableList<Node> a = layers.get(0).getPane().getChildren();
+		
+		int shapeIndex = shapeIndex_;
+		int layerIndex=0;
+		while(shapeIndex-LayersGroup.getLayersGroup().getLayers().get(layerIndex).getDrawnShapes().size()>=0) {
+			shapeIndex = shapeIndex-LayersGroup.getLayersGroup().getLayers().get(layerIndex).getDrawnShapes().size();
+			layerIndex++;
+		}
 
+		ObservableList<Node> a = layers.get(layerIndex).getPane().getChildren();
 		if (shapeIndex < a.size() - 1) {
 
 			int realIndex = a.size() - 1 - shapeIndex;
@@ -98,33 +105,42 @@ public class LayersGroup implements Container {
 			a.remove(shape);
 			a.add(realIndex - 1, shape);
 			
+			int index = LayersGroup.getLayersGroup().getLayers().get(layerIndex).getDrawnShapes().size()-shapeIndex-1;
+			Collections.swap(LayersGroup.getLayersGroup().getLayers().get(layerIndex).getDrawnShapes(), index, index-1);
 
-			Collections.swap(DrawnShapes.getDrawnShapes(), DrawnShapes.getDrawnShapes().size()-shapeIndex-1, DrawnShapes.getDrawnShapes().size()-shapeIndex-2);
-
-			return shapeIndex + 1;
+			return shapeIndex + 1<layers.get(layerIndex).getDrawnShapes().size();
 		}
 
-		return -1;
+		return false;
 	}
 
-	public int upShapeList(int shapeIndex) {
+	public boolean upShapeList(int shapeIndex_) {
+		
+		int shapeIndex = shapeIndex_;
+		int layerIndex=0;
+		while(shapeIndex-layers.get(layerIndex).getDrawnShapes().size()>=0) {
+			shapeIndex = shapeIndex-layers.get(layerIndex).getDrawnShapes().size();
+			layerIndex++;
+		}
 
-		ObservableList<Node> a = layers.get(0).getPane().getChildren();
-
+		ObservableList<Node> a = layers.get(layerIndex).getPane().getChildren();
 		if (shapeIndex != 0) {
 
 			int realIndex = a.size() - 1 - shapeIndex;
 			Node shape = a.get(realIndex);
 			a.remove(shape);
 			a.add(realIndex + 1, shape);
+			int index1 = layers.get(layerIndex).getDrawnShapes().size()-shapeIndex-1;
+			int index2 = layers.get(layerIndex).getDrawnShapes().size()-shapeIndex;
+			int collectionLength2 = layers.get(layerIndex).getDrawnShapes().get(index2).size();
+			//LayersGroup.getLayersGroup().getDrawnShapes().get(index1).up(collectionLength2, index1);
+			ArrayList<CustomShape> buffer = layers.get(layerIndex).getDrawnShapes();
+			Collections.swap(buffer, index1, index2);
 			
-
-			Collections.swap(DrawnShapes.getDrawnShapes(), DrawnShapes.getDrawnShapes().size()-shapeIndex-1, DrawnShapes.getDrawnShapes().size()-shapeIndex);
-			
-			return shapeIndex - 1;
+			return shapeIndex - 1>=0;
 		}
 
-		return -1;
+		return false;
 	}
 
 	public void replaceLayers(List<Layer> newLayers) {

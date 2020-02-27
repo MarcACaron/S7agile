@@ -16,8 +16,6 @@ import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import models.CustomShape;
-import models.DrawnShapes;
 import models.LayersGroup;
 
 
@@ -53,7 +51,7 @@ public class MenuController {
 	@FXML
 	private void clear() {
 		this.mainApp.getDrawingZoneController().clearDrawing();
-		DrawnShapes.getDrawnShapes().clear();
+		LayersGroup.getLayersGroup().getCurrentLayer().getDrawnShapes().clear();
 	}
 	
 	private MainApp mainApp;

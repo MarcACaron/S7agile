@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.shape.Shape;
 
 public class CustomUnionShape extends CustomShape {
 	ArrayList<CustomShape> listOfShape;
@@ -169,9 +170,14 @@ public class CustomUnionShape extends CustomShape {
 	
 	public void group(String name) {
 		listOfShape.forEach(sh->{
-			System.out.println(DrawnShapes.getDrawnShapes().indexOf(sh));
-			System.out.println(LayersGroup.getLayersGroup().getCurrentLayer().getPane().getChildren().indexOf(sh.getDraw()));
+			int index = LayersGroup.getLayersGroup().getCurrentLayer().getDrawnShapes().indexOf(sh);
+			/*DrawnShapes.getDrawnShapes().remove(index);
+			*/
+
+
+			
 		});
+		LayersGroup.getLayersGroup().getCurrentLayer().getDrawnShapes().add(this);
 	}
 	@Override
 	public void ajustOnDragFromCorner(double posXStart, double posYStart, double posXEnd, double posYEnd) {
@@ -189,5 +195,10 @@ public class CustomUnionShape extends CustomShape {
 	public void setType(String type) {
 		super.setType(type);
 		group(type);
+	}
+	
+	@Override
+	public int size() {
+		return this.listOfShape.size();
 	}
 }
