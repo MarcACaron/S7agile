@@ -6,7 +6,6 @@ import javafx.collections.ObservableList;
 import javafx.scene.Node;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
-import javafx.scene.shape.Shape;
 
 public class CustomUnionShape extends CustomShape {
 	ArrayList<CustomShape> listOfShape;
@@ -205,7 +204,7 @@ public class CustomUnionShape extends CustomShape {
 	@Override
 	public void up(int collectionLength2, int index1, ObservableList<Node> a) {
 		for(int i=0; i<size(); i++) {
-			listOfShape.get(i).up(collectionLength2, index1+i+listOfShape.size()-1, a);
+			listOfShape.get(i).up(collectionLength2, index1+listOfShape.size()-1, a);
 		}	
 	}
 	
