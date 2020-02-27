@@ -259,7 +259,7 @@ public abstract class CustomShape {
 	}
 	@Override
 	public String toString() {
-		return "L: "+this.getLayer()+"; "+this.getDraw().getId()+": "+this.getType();
+		return this.getLayer()+": "+this.getType()+" ( "+this.getXPos()+" ; "+this.getYPos()+" )";
 	}
 	public void draw(Layer layer) {
 		layer.getPane().getChildren().add(shape);

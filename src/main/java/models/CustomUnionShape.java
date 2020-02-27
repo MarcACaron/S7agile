@@ -253,11 +253,6 @@ public class CustomUnionShape extends CustomShape {
 	}
 	
 	@Override
-	public String toString() {
-		return "L: "+this.getLayer()+"; ShapeGrp: "+this.getType();
-	}
-	
-	@Override
 	public boolean isSelected(double xStart, double yStart, double xEnd, double yEnd) {
 		boolean isSelected = listOfShape.size()>0;
 		for(int i=0; i<listOfShape.size(); i++) {
