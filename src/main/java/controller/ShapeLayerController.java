@@ -75,7 +75,7 @@ public class ShapeLayerController {
 			ArrayList<CustomShape> drawnShapes = LayersGroup.getLayersGroup().getLayers().get(layerIndex).getDrawnShapes();
 			for(int index = drawnShapes.size()-1; index>=0;index--) {
 				
-				shapeListView.getItems().add(new Label("L: "+drawnShapes.get(index).getLayer()+"; "+drawnShapes.get(index).getDraw().getId()+": "+drawnShapes.get(index).getType()));
+				shapeListView.getItems().add(new Label(drawnShapes.get(index).toString()));
 			}
 		}
 

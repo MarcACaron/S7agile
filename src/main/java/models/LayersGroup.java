@@ -100,13 +100,16 @@ public class LayersGroup implements Container {
 		ObservableList<Node> a = layers.get(layerIndex).getPane().getChildren();
 		if (shapeIndex < a.size() - 1) {
 
-			int realIndex = a.size() - 1 - shapeIndex;
+			/*int realIndex = a.size() - 1 - shapeIndex;
 			Node shape = a.get(realIndex);
 			a.remove(shape);
-			a.add(realIndex - 1, shape);
+			a.add(realIndex - 1, shape);*/
+			int index1 = layers.get(layerIndex).getDrawnShapes().size()-shapeIndex-1;
+			int index2 = layers.get(layerIndex).getDrawnShapes().size()-shapeIndex-2;
+			int collectionLength2 = layers.get(layerIndex).getDrawnShapes().get(index2).size();
 			
-			int index = LayersGroup.getLayersGroup().getLayers().get(layerIndex).getDrawnShapes().size()-shapeIndex-1;
-			Collections.swap(LayersGroup.getLayersGroup().getLayers().get(layerIndex).getDrawnShapes(), index, index-1);
+			layers.get(layerIndex).getDrawnShapes().get(index1).down(collectionLength2, index1, a);
+			Collections.swap(LayersGroup.getLayersGroup().getLayers().get(layerIndex).getDrawnShapes(), index1, index2);
 
 			return shapeIndex + 1<layers.get(layerIndex).getDrawnShapes().size();
 		}
@@ -126,16 +129,12 @@ public class LayersGroup implements Container {
 		ObservableList<Node> a = layers.get(layerIndex).getPane().getChildren();
 		if (shapeIndex != 0) {
 
-			int realIndex = a.size() - 1 - shapeIndex;
-			Node shape = a.get(realIndex);
-			a.remove(shape);
-			a.add(realIndex + 1, shape);
 			int index1 = layers.get(layerIndex).getDrawnShapes().size()-shapeIndex-1;
 			int index2 = layers.get(layerIndex).getDrawnShapes().size()-shapeIndex;
 			int collectionLength2 = layers.get(layerIndex).getDrawnShapes().get(index2).size();
-			//LayersGroup.getLayersGroup().getDrawnShapes().get(index1).up(collectionLength2, index1);
-			ArrayList<CustomShape> buffer = layers.get(layerIndex).getDrawnShapes();
-			Collections.swap(buffer, index1, index2);
+			
+			layers.get(layerIndex).getDrawnShapes().get(index1).up(collectionLength2, index1, a);
+			Collections.swap(layers.get(layerIndex).getDrawnShapes(), index1, index2);
 			
 			return shapeIndex - 1>=0;
 		}

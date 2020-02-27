@@ -4,6 +4,8 @@ import adraw4us.MainApp;
 import adraw4us.Tool;
 import controller.DetailPaletteController;
 import controller.PaletteCouleurController;
+import javafx.collections.ObservableList;
+import javafx.scene.Node;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -93,4 +95,6 @@ public class MultiSelectionTool extends Tool {
 	public String getToolType() {
 		return "multiSelection";
 	}
+	
+	
 }
