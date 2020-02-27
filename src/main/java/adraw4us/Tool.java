@@ -15,7 +15,7 @@ import models.LayersGroup;
 import models.ShapeName;
 
 public abstract class Tool {
-
+	public static MainApp mainApp;
 	protected static Paint fill;
 	protected static String fillName;
 	protected static Paint stroke;
@@ -51,7 +51,7 @@ public abstract class Tool {
 		this.shape = shape;
 	}
 
-	public Function<Object, Object> fillDetails(DetailPaletteController dp, CustomShape nd, MainApp mainApp){
+	public Function<Object, Object> fillDetails(DetailPaletteController dp, CustomShape nd){
 		return y -> {
 			if(nd == null) {
 				dp.paletteDisable(true);
@@ -69,7 +69,7 @@ public abstract class Tool {
 	}
 	
 	
-	public int mousePressed(DetailPaletteController detailPaletteController, Layer layer, MainApp mainApp) {
+	public int mousePressed(DetailPaletteController detailPaletteController, Layer layer) {
 		int index = layer.getPane().getChildren().size();
 		this.reset();
 		shape.setLayer(layer.getId());
@@ -82,35 +82,21 @@ public abstract class Tool {
 		this.ajustOnDrag(posXStart, posYStart, posXEnd, posYEnd);
 	}
 	
-	public void mouseReleased(MainApp mainApp, Pane pane, PaletteCouleurController pc, DetailPaletteController dp) {
+	public void mouseReleased(Pane pane, PaletteCouleurController pc, DetailPaletteController dp) {
 		CustomShape shape2 = this.shape;
 		for(int i=0; i<shape.size(); i++)
 			pane.getChildren().remove(pane.getChildren().size()-1);
 
 		Pane currentPane = layerGroup.getCurrentLayer().getPane();
 		int sizePane = currentPane.getChildren().size();
-
-		shape2.getDraw().setId(shape2.getType() + sizePane + " " + shape2.getLayer() );
+		System.out.println(shape2);
+		System.out.println(shape2.getType());
+		System.out.println(shape2.getLayer());
+		//shape2.getDraw().setId(shape2.getType() + sizePane + " " + shape2.getLayer() );
 		shape2.draw(layerGroup.getCurrentLayer());
-		shape2.getDraw().setOnMouseClicked(t2 -> {
-			MouseButton button = t2.getButton();
-			if ( button == MouseButton.PRIMARY ) {
-				mainApp.getTool().setShape(shape2);
-				pc.setLineWidth(shape2.getStrokeWidth());
-				pc.setStroke((Color) (shape2.getStroke()));
+		shape2.setOnMouseClicked(shape2, mainApp);
 
-				mainApp.getTool().fillDetails(dp, shape2, mainApp).apply(null);
-			}
-			else if ( button == MouseButton.SECONDARY ) {
-				CustomContextMenu contextMenu = new CustomContextMenu(mainApp, shape2);
-
-				contextMenu.setItems();	
-				contextMenu.setY(t2.getScreenY()); contextMenu.setX(t2.getScreenX()); contextMenu.show(shape2.getDraw().getScene().getWindow());
-			}
-
-		});
-
-		fillDetails(dp, shape2, mainApp).apply(null);
+		fillDetails(dp, shape2).apply(null);
 	}
 	
 	public static Paint getFill() {

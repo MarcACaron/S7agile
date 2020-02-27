@@ -1,5 +1,6 @@
 package models;
 
+import adraw4us.MainApp;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
 
@@ -13,10 +14,10 @@ public class CustomTriangleVertical extends CustomShape {
 	}
 	
 	@Override
-	public CustomShape duplicate(int offsetX, int offsetY) {
-		CustomTriangleVertical newTriangleVertical = new CustomTriangleVertical();//TODO: REPARER
-		
-		return newTriangleVertical;
+	public CustomShape duplicate(int offsetX, int offsetY, MainApp mainApp) {
+		CustomTriangleVertical newTriangle = new CustomTriangleVertical();
+		applyValues(newTriangle, offsetX, offsetY, mainApp);
+		return newTriangle;
 	}
 	
 	public void ajustOnDragFromCorner(double posXStart, double posYStart, double posXEnd, double posYEnd) {

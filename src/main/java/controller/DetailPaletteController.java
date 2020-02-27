@@ -41,31 +41,31 @@ public class DetailPaletteController {
 	@FXML 
 	private void onXPosChange(){
 		this.mainApp.getTool().getShape().setXPosition(Double.valueOf(xPosText.getText()));
-		this.mainApp.getTool().fillDetails(this, this.mainApp.getTool().getShape(), mainApp).apply(null);
+		this.mainApp.getTool().fillDetails(this, this.mainApp.getTool().getShape()).apply(null);
 	}
 
 	@FXML 
 	private void onYPosChange(){
 		this.mainApp.getTool().getShape().setYPosition(Double.valueOf(yPosText.getText()));
-		this.mainApp.getTool().fillDetails(this, this.mainApp.getTool().getShape(), mainApp).apply(null);
+		this.mainApp.getTool().fillDetails(this, this.mainApp.getTool().getShape()).apply(null);
 	}
 
 	@FXML 
 	private void onWidthChange(){
 		this.mainApp.getTool().getShape().setWidth(Double.valueOf(widthText.getText()));
-		this.mainApp.getTool().fillDetails(this, this.mainApp.getTool().getShape(), mainApp).apply(null);
+		this.mainApp.getTool().fillDetails(this, this.mainApp.getTool().getShape()).apply(null);
 	}
 
 	@FXML 
 	private void onHeightChange(){
 		this.mainApp.getTool().getShape().setHeight(Double.valueOf(heightText.getText()));
-		this.mainApp.getTool().fillDetails(this, this.mainApp.getTool().getShape(), mainApp).apply(null);
+		this.mainApp.getTool().fillDetails(this, this.mainApp.getTool().getShape()).apply(null);
 	}
 
 	@FXML 
 	private void onRotateChange(){
 		this.mainApp.getTool().getShape().setRotate(Double.valueOf(angleText.getText()));
-		this.mainApp.getTool().fillDetails(this, this.mainApp.getTool().getShape(), mainApp).apply(null);
+		this.mainApp.getTool().fillDetails(this, this.mainApp.getTool().getShape()).apply(null);
 	}
 	
 	public void setMainApp(MainApp inputMain){mainApp = inputMain;}

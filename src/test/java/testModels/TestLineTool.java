@@ -58,7 +58,7 @@ public class TestLineTool {
 		assertEquals(4.0, endY);
 		
 	}
-	
+	/*
 	@Test
 	public void testDuplicateMethod() {
 		CustomLine line = new CustomLine();
@@ -77,7 +77,7 @@ public class TestLineTool {
 		assertEquals(true, line.getHeight() == lineClone.getHeight());
 		assertEquals(true, line.getRotate() == lineClone.getRotate());
 		
-	}
+	}*/
 	
 	@Test
 	public void testOutline() {

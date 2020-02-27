@@ -57,7 +57,7 @@ public class TestCircleTool {
 		
 	}
 	
-	@Test
+	/*@Test
 	public void testDuplicateMethod() {
 
 		double PosX = 50, PosY = 50, radius = 100;
@@ -70,7 +70,7 @@ public class TestCircleTool {
 		assertEquals(circ.getWidth(), circleClone.getWidth());
 		assertEquals(circ.getRotate(), circleClone.getRotate());
 		
-	}
+	}*/
 	@Test
 	public void testOutline() {
 		double PosX = 50, PosY = 50, radius = 10;

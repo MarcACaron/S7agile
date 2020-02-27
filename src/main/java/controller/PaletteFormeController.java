@@ -9,6 +9,8 @@ import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import models.CircleTool;
+import models.CustomDrawTool;
+import models.CustomShape;
 import models.LineTool;
 import models.MultiSelectionTool;
 import models.RectangleTool;
@@ -145,7 +147,7 @@ public class PaletteFormeController {
 			if(tg.getUserData()==null) {
 				if(mainApp.getTool().getShape()!=null) {
 					customShape1Tooltip.setText(mainApp.getTool().getShape().getType());
-					tg.setUserData(mainApp.getTool().getShape());
+					tg.setUserData(mainApp.getTool().getShape().duplicate(0, 0, mainApp));
 					System.out.println("Enregistrement");
 				}else {
 					System.out.println("Pas de Shape");
@@ -153,11 +155,40 @@ public class PaletteFormeController {
 				tg.setSelected(false);
 			}else {
 				System.out.println("Préparation de la shape custom: +customShape1Tooltip.getText()");
+				this.mainApp.setTool(new CustomDrawTool((CustomShape) tg.getUserData()));
+				System.out.println(mainApp.getTool().getToolType());
+				System.out.println(mainApp.getTool().getShape().getType());
 			}
 		}else if(tg.getId().contentEquals("customShape2")) {
 			if(tg.getUserData()==null) {
 				if(mainApp.getTool().getShape()!=null) {
 					customShape2Tooltip.setText(mainApp.getTool().getShape().getType());
+					tg.setUserData(mainApp.getTool().getShape());
+					System.out.println("Enregistrement");
+				}else {
+					System.out.println("Pas de Shape");
+				}
+				tg.setSelected(false);
+			}else {
+				System.out.println("Préparation de la shape custom: +customShape2Tooltip.getText()");
+			}
+		}else if(tg.getId().contentEquals("customShape3")) {
+			if(tg.getUserData()==null) {
+				if(mainApp.getTool().getShape()!=null) {
+					customShape3Tooltip.setText(mainApp.getTool().getShape().getType());
+					tg.setUserData(mainApp.getTool().getShape());
+					System.out.println("Enregistrement");
+				}else {
+					System.out.println("Pas de Shape");
+				}
+				tg.setSelected(false);
+			}else {
+				System.out.println("Préparation de la shape custom: +customShape2Tooltip.getText()");
+			}
+		}else if(tg.getId().contentEquals("customShape4")) {
+			if(tg.getUserData()==null) {
+				if(mainApp.getTool().getShape()!=null) {
+					customShape4Tooltip.setText(mainApp.getTool().getShape().getType());
 					tg.setUserData(mainApp.getTool().getShape());
 					System.out.println("Enregistrement");
 				}else {

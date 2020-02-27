@@ -126,7 +126,7 @@ public class DrawingZoneController {
 					orgY = (int)orgY/50 *50;
 				}
 				childIndex = anchorPane.getChildren().size();
-				childIndex = this.mainApp.getTool().mousePressed(this.mainApp.getPaletteDetailController(), layersGroup.getCurrentLayer(), mainApp);
+				childIndex = this.mainApp.getTool().mousePressed(this.mainApp.getPaletteDetailController(), layersGroup.getCurrentLayer());
 			}
 		});
 
@@ -154,7 +154,7 @@ public class DrawingZoneController {
 		anchorPane.setOnMouseReleased(t -> {
 			MouseButton button = t.getButton();
 			if ( button == MouseButton.PRIMARY ) {
-				this.mainApp.getTool().mouseReleased(mainApp, layersGroup.getCurrentLayer().getPane(), this.mainApp.getPaletteCouleurController(), this.mainApp.getPaletteDetailController());
+				this.mainApp.getTool().mouseReleased(layersGroup.getCurrentLayer().getPane(), this.mainApp.getPaletteCouleurController(), this.mainApp.getPaletteDetailController());
 			}
 			
 		});
@@ -218,28 +218,22 @@ public class DrawingZoneController {
 		selectionLayoutPane.getChildren().clear();
 	}
 
-	public void applyToCurrentPane(Shape shape) {
-		Pane currentPane = layersGroup.getCurrentLayer().getPane();
-
-		currentPane.getChildren().add(shape);
-		layersGroup.getCurrentLayer().setPane(currentPane);
-
-		updateLayers(true);
-	}
-
 	public void setMainApp(MainApp mainApp) {
 		this.mainApp = mainApp;
 	}
 
 	public void saveShape() {
 		//TODO: reparer
-		shapeCopy = mainApp.getTool().getShape().duplicate(10, 10);
+		shapeCopy = mainApp.getTool().getShape().duplicate(10, 10, mainApp);
 
 	}
 
 	public void pasteShape() {
 		if (shapeCopy != null) {
-			this.applyToCurrentPane(shapeCopy.getDraw());
+
+			shapeCopy.setLayer(LayersGroup.getLayersGroup().getCurrentLayer().getId());
+			shapeCopy.draw(LayersGroup.getLayersGroup().getCurrentLayer());
+			System.out.println(shapeCopy.getType());
 			LayersGroup.getLayersGroup().getCurrentLayer().getDrawnShapes().add(shapeCopy);
 		}
 	}

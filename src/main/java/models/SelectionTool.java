@@ -28,11 +28,11 @@ public class SelectionTool extends Tool {
 		//Intended to be empty
 	}
 	@Override
-	public int mousePressed(DetailPaletteController detailPaletteController, Layer layer, MainApp mainApp) {
+	public int mousePressed(DetailPaletteController detailPaletteController, Layer layer) {
 		int index = layer.getPane().getChildren().size()-1;
 		if(index<0)
 			index=0;
-		this.fillDetails(detailPaletteController, null, mainApp).apply(null);
+		this.fillDetails(detailPaletteController, null).apply(null);
 		this.reset();
 		return index;
 	}
@@ -43,7 +43,7 @@ public class SelectionTool extends Tool {
 	}
 
 	@Override
-	public void mouseReleased(MainApp mainApp, Pane pane, PaletteCouleurController pc, DetailPaletteController dp) {
+	public void mouseReleased(Pane pane, PaletteCouleurController pc, DetailPaletteController dp) {
 		mainApp.getDrawingZoneController().clearSelectionLayer();
 		//showSelectedShape(mainApp, inputShape);
 	}

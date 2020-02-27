@@ -59,13 +59,7 @@ public class XmlDecoder {
 				drawnShape.add(sh);
 				sh.read(reader);
 				CustomShape sh2 = sh;
-				sh.getDraw().setOnMouseClicked(t2 -> {
-					mainApp.getTool().setShape(sh2);
-					mainApp.getPaletteCouleurController().setLineWidth(sh2.getStrokeWidth());
-					mainApp.getPaletteCouleurController().setStroke((Color) (sh2.getStroke()));
-					
-					mainApp.getTool().fillDetails(mainApp.getPaletteDetailController(), sh2, mainApp).apply(null);
-				});
+				sh.setOnMouseClicked(sh, mainApp);
 			}				
 		}
 	    mainApp.getDrawingZoneController().updateLayers(true);

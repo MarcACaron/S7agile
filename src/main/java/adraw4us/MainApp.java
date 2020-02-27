@@ -66,6 +66,7 @@ public class MainApp extends Application {
         //setTool(persi.readState()); TODO: réparer
         
         persi.setOnClosedEvent(primaryStage);
+        Tool.mainApp=this;
         
     }
     

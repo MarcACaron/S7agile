@@ -9,6 +9,7 @@ import adraw4us.MainApp;
 import javafx.collections.ObservableList;
 import javafx.geometry.Point2D;
 import javafx.scene.Node;
+import javafx.scene.input.MouseButton;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
@@ -103,7 +104,40 @@ public abstract class CustomShape {
 	public String getLayer() {
 		return layer;
 	}
-	public abstract CustomShape duplicate(int offsetX, int offsetY);
+	public abstract CustomShape duplicate(int offsetX, int offsetY, MainApp mainApp);
+	protected CustomShape applyValues(CustomShape newShape, int offsetX, int offsetY, MainApp mainApp) {
+		newShape.setFill(this.getFill(), this.getFillName());
+		newShape.setXPosition(this.getXPos() + offsetX);
+		newShape.setYPosition(this.getYPos() + offsetY);
+		newShape.setHeight(this.getHeight());
+		newShape.setWidth(this.getWidth());
+		newShape.setStroke(this.getStroke());
+		newShape.setStrokeWidth(this.getStrokeWidth());
+		newShape.hFlip=this.hFlip;
+		newShape.vFlip=this.vFlip;
+		newShape.setOnMouseClicked(newShape, mainApp);
+		
+		return newShape;
+		
+	}
+	
+	public void setOnMouseClicked(CustomShape shapeToSelect, MainApp mainApp) {
+		this.getDraw().setOnMouseClicked(t2 -> {
+			MouseButton button = t2.getButton();
+			if ( button == MouseButton.PRIMARY ) {
+				mainApp.getTool().setShape(shapeToSelect);
+
+				mainApp.getTool().fillDetails(mainApp.getPaletteDetailController(), shapeToSelect).apply(null);
+			}
+			else if ( button == MouseButton.SECONDARY ) {
+				CustomContextMenu contextMenu = new CustomContextMenu(mainApp, shapeToSelect);
+
+				contextMenu.setItems();	
+				contextMenu.setY(t2.getScreenY()); contextMenu.setX(t2.getScreenX()); contextMenu.show(this.getDraw().getScene().getWindow());
+			}
+
+		});
+	}
 	public boolean isSelected(double xStart, double yStart, double xEnd, double yEnd) {
 
 		if(this.boundingBox.getY()+this.getHeight()>yEnd || this.boundingBox.getX()+this.getWidth()>xEnd
