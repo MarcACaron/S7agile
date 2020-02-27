@@ -2,8 +2,11 @@ package models;
 
 import java.util.ArrayList;
 
+import adraw4us.MainApp;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
+import javafx.scene.input.MouseButton;
+import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
 
@@ -185,12 +188,30 @@ public class CustomUnionShape extends CustomShape {
 		return ok;
 	}
 	
-	public void group(String name) {
+	public void group(String name, MainApp mainApp) {
 		listOfShape.forEach(sh->{
 			int index = LayersGroup.getLayersGroup().getCurrentLayer().getDrawnShapes().indexOf(sh);
 			LayersGroup.getLayersGroup().getCurrentLayer().getDrawnShapes().remove(index);
 			LayersGroup.getLayersGroup().getCurrentLayer().getPane().getChildren().remove(index);
 			LayersGroup.getLayersGroup().getCurrentLayer().getPane().getChildren().add(sh.getDraw());
+			CustomShape thisGroup = this;
+			sh.getDraw().setOnMouseClicked(t2 -> {
+				MouseButton button = t2.getButton();
+				if ( button == MouseButton.PRIMARY ) {
+					mainApp.getTool().setShape(thisGroup);
+
+					mainApp.getTool().fillDetails(mainApp.getPaletteDetailController(), thisGroup, mainApp).apply(null);
+				}
+				else if ( button == MouseButton.SECONDARY ) {
+					CustomContextMenu contextMenu = new CustomContextMenu(mainApp, thisGroup);
+
+					contextMenu.setItems();	
+					contextMenu.setY(t2.getScreenY()); contextMenu.setX(t2.getScreenX()); contextMenu.show(sh.getDraw().getScene().getWindow());
+				}
+
+			});
+			
+			
 		});
 		LayersGroup.getLayersGroup().getCurrentLayer().getDrawnShapes().add(this);
 		setLayer(LayersGroup.getLayersGroup().getCurrentLayer().getId());
@@ -208,9 +229,9 @@ public class CustomUnionShape extends CustomShape {
 	}
 	
 	@Override
-	public void setType(String type) {
-		super.setType(type);
-		group(type);
+	public void setType(String type, MainApp mainApp) {
+		super.setType(type, mainApp);
+		group(type, mainApp);
 	}
 	
 	@Override
@@ -234,5 +255,14 @@ public class CustomUnionShape extends CustomShape {
 	@Override
 	public String toString() {
 		return "L: "+this.getLayer()+"; ShapeGrp: "+this.getType();
+	}
+	
+	@Override
+	public boolean isSelected(double xStart, double yStart, double xEnd, double yEnd) {
+		boolean isSelected = listOfShape.size()>0;
+		for(int i=0; i<listOfShape.size(); i++) {
+			isSelected = listOfShape.get(i).isSelected(xStart, yStart, xEnd, yEnd) && isSelected;
+		}
+		return super.isSelected(xStart, yStart, xEnd, yEnd);
 	}
 }
