@@ -113,9 +113,25 @@ public class CustomUnionShape extends CustomShape {
 	
 	@Override
 	public void setRotate(double value) {
-		listOfShape.forEach(sh -> 
-			sh.setRotate(value)
+		listOfShape.forEach(sh -> {
+			double diff =  value- this.getRotate();
+			sh.setRotate(sh.getRotate()+diff);
+			double xCenter = this.getXPos()+this.getWidth()/2;
+			double yCenter = this.getYPos()+this.getHeight()/2;
+			double x1 = sh.getXPos() - xCenter;
+			double y1 = sh.getYPos()- yCenter;
+			double x2 = sh.getXPos() + sh.getWidth() - xCenter;
+			double y2 = sh.getYPos() + sh.getHeight() - yCenter;
+			
+			double x1Trans = x1*Math.cos(Math.toRadians(diff)) + y1*Math.sin(Math.toRadians(diff)) + xCenter;
+			double y1Trans = -x1*Math.sin(Math.toRadians(diff)) + y1*Math.cos(Math.toRadians(diff)) + yCenter;
+			double x2Trans = x2*Math.cos(Math.toRadians(diff)) + y2*Math.sin(Math.toRadians(diff)) + xCenter;
+			double y2Trans = -x2*Math.sin(Math.toRadians(diff)) + y2*Math.cos(Math.toRadians(diff)) + yCenter;
+			sh.setXPos(Math.min(x1Trans, x2Trans));
+			sh.setYPos(Math.min(y1Trans, y2Trans));
+		}
 		);
+		this.boundingBox.setRotate(value);
 	}
 	
 	@Override

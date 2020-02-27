@@ -57,7 +57,7 @@ public abstract class CustomShape {
 		this.shape.setAccessibleText(fillName);
 	}
 	public void setRotate(double value) {
-		this.shape.setRotate(value);
+		this.shape.setRotate(-value);
 		this.boundingBox.setRotate(value);
 	}
 	
@@ -259,6 +259,10 @@ public abstract class CustomShape {
 	@Override
 	public String toString() {
 		return "L: "+this.getLayer()+"; "+this.getDraw().getId()+": "+this.getType();
+	}
+	public void draw(Layer layer) {
+		layer.getPane().getChildren().add(shape);
+		
 	}
 	
 }

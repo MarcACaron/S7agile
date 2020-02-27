@@ -73,8 +73,8 @@ public abstract class Tool {
 		int index = layer.getPane().getChildren().size();
 		this.reset();
 		shape.setLayer(layer.getId());
-		LayersGroup.getLayersGroup().getCurrentLayer().getDrawnShapes().add(shape);
-		layer.getPane().getChildren().add(shape.getDraw());
+		layer.getDrawnShapes().add(shape);
+		shape.draw(layer);
 		return index;
 	}
 
