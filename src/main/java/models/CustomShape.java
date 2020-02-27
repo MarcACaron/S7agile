@@ -5,6 +5,7 @@ import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamWriter;
 import javax.xml.stream.events.XMLEvent;
 
+import adraw4us.MainApp;
 import javafx.collections.ObservableList;
 import javafx.geometry.Point2D;
 import javafx.scene.Node;
@@ -91,7 +92,7 @@ public abstract class CustomShape {
 	public Shape getDraw() {
 		return this.shape;
 	}
-	public void setType(String type) {
+	public void setType(String type, MainApp mainApp) {
 		if(type!=null) {
 			this.type = type;
 		}

@@ -17,7 +17,7 @@ public class ShapeName {
 		shapeName = new ShapeName(mainApp);
 	}
 	public void submitName() {
-		mainApp.getTool().getShape().setType(name);
+		mainApp.getTool().getShape().setType(name, mainApp);
 	}
 	
 

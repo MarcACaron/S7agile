@@ -84,15 +84,14 @@ public abstract class Tool {
 	
 	public void mouseReleased(MainApp mainApp, Pane pane, PaletteCouleurController pc, DetailPaletteController dp) {
 		CustomShape shape2 = this.shape;
-		pane.getChildren().remove(pane.getChildren().size()-1);
+		for(int i=0; i<shape.size(); i++)
+			pane.getChildren().remove(pane.getChildren().size()-1);
 
 		Pane currentPane = layerGroup.getCurrentLayer().getPane();
 		int sizePane = currentPane.getChildren().size();
 
 		shape2.getDraw().setId(shape2.getType() + sizePane + " " + shape2.getLayer() );
-
-		mainApp.getDrawingZoneController().applyToCurrentPane(shape2.getDraw());
-
+		shape2.draw(layerGroup.getCurrentLayer());
 		shape2.getDraw().setOnMouseClicked(t2 -> {
 			MouseButton button = t2.getButton();
 			if ( button == MouseButton.PRIMARY ) {
@@ -113,6 +112,7 @@ public abstract class Tool {
 
 		fillDetails(dp, shape2, mainApp).apply(null);
 	}
+	
 	public static Paint getFill() {
 		return fill;
 	}
