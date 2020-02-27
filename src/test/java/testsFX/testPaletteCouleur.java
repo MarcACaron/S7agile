@@ -9,6 +9,7 @@ import adraw4us.Tool;
 import javafx.fxml.FXML;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 
@@ -66,8 +67,10 @@ public class testPaletteCouleur extends testApplicationUI{
 	
 	@Test
 	public void testZoom() {
+		Pane pane = this.mainApp.getDrawingZoneController().getAnchorPane();
 		clickOn("#zoomOut");
 		clickOn("#zoomIn");
-		//TODO:tester qu'on a le bon zoom
+		
+		assertEquals(true, pane.getTransforms().size() > 1);
 	}
 }
