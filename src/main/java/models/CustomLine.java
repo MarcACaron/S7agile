@@ -16,8 +16,8 @@ public class CustomLine extends CustomShape{
 	public CustomLine(double startX, double startY, double endX, double endY) {
 		this.shape = new Line();
 		this.boundingBox = new Rectangle();
-		this.setXPosition(startX);
-		this.setYPosition(startY);
+		this.setXPos(startX);
+		this.setYPos(startY);
 		this.setWidth(endX - startX);
 		this.setHeight(endY - startY);
 		this.scale=false;
@@ -26,19 +26,29 @@ public class CustomLine extends CustomShape{
 	
 	@Override
 	public void setXPos(double value) {
+    	this.getDraw().getTransforms().clear();
 		this.boundingBox.setX(value);
 		double decalageStart = ((Line)this.shape).getStartX()-this.boundingBox.getX();
 		double decalageEnd = ((Line)this.shape).getEndX()-this.boundingBox.getX();
 		((Line)this.shape).setStartX(value+decalageStart);
 		((Line)this.shape).setEndX(value+decalageEnd);
+		if (this.getHFlip())
+			this.flipShape(0, true);
+    	if (this.getVFlip())
+    		this.flipShape(1, true);
 	}
 	@Override
 	public void setYPos(double value) {
+    	this.getDraw().getTransforms().clear();
 		this.boundingBox.setY(value);
 		double decalageStart = ((Line)this.shape).getStartY()-this.boundingBox.getY();
 		double decalageEnd = ((Line)this.shape).getEndY()-this.boundingBox.getY();
 		((Line)this.shape).setStartY(value+decalageStart);
 		((Line)this.shape).setEndY(value+decalageEnd);
+		if (this.getHFlip())
+			this.flipShape(0, true);
+    	if (this.getVFlip())
+    		this.flipShape(1, true);
 	}
 
 	@Override
@@ -107,8 +117,8 @@ public class CustomLine extends CustomShape{
 			startY=posYEnd;
 			height = posYStart-posYEnd;
 		}
-		this.setXPosition(startX);
-		this.setYPosition(startY);
+		this.setXPos(startX);
+		this.setYPos(startY);
 		this.setWidth(width*2);
 		this.setHeight(height*2);
 		((Line)shape).setStartX(2*posXStart-posXEnd);

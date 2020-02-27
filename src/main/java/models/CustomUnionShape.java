@@ -6,7 +6,6 @@ import adraw4us.MainApp;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
 import javafx.scene.input.MouseButton;
-import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
 
@@ -32,7 +31,7 @@ public class CustomUnionShape extends CustomShape {
 				this.scale=true;
 			}
 		});
-		this.type = "CustomShape";
+		this.type = "CustomUnionShape";
 	}
 
 	@Override
@@ -155,6 +154,7 @@ public class CustomUnionShape extends CustomShape {
 			sh.setOnMouseClicked(newUnion, mainApp);
 			newUnion.add(sh);
 		}
+		newUnion.type=this.type;
 		newUnion.updateBoudingBox();
 		return newUnion;
 	}
@@ -207,14 +207,55 @@ public class CustomUnionShape extends CustomShape {
 	}
 	@Override
 	public void ajustOnDragFromCorner(double posXStart, double posYStart, double posXEnd, double posYEnd) {
-		// TODO Auto-generated method stub
+		double startX;
+		double startY;
+		double width;
+		double height;
+		if(posXStart<posXEnd) {
+			startX=posXStart;
+			width = posXEnd-posXStart;
+		}else {
+			startX=posXEnd;
+			width = posXStart-posXEnd;
+		}
+		if(posYStart<posYEnd) {
+			startY=posYStart;
+			height = posYEnd-posYStart;
+		}else {
+			startY=posYEnd;
+			height = posYStart-posYEnd;
+		}
+		this.setXPos(startX);
+		this.setYPos(startY);
+		this.setWidth(width);
+		this.setHeight(height);
 		
 	}
 
 	@Override
 	public void ajustOnDragFromCenter(double posXStart, double posYStart, double posXEnd, double posYEnd) {
-		// TODO Auto-generated method stub
-		
+		double startX;
+		double startY;
+		double width;
+		double height;
+		if(posXStart<posXEnd) {
+			width = posXEnd-posXStart;
+			startX=posXStart-width;
+		}else {
+			startX=posXEnd;
+			width = posXStart-posXEnd;
+		}
+		if(posYStart<posYEnd) {
+			height = posYEnd-posYStart;
+			startY=posYStart-height;
+		}else {
+			startY=posYEnd;
+			height = posYStart-posYEnd;
+		}
+		this.setXPos(startX);
+		this.setYPos(startY);
+		this.setWidth(width*2);
+		this.setHeight(height*2);
 	}
 	
 	@Override
@@ -255,5 +296,13 @@ public class CustomUnionShape extends CustomShape {
 		listOfShape.forEach(sg->{
 			sg.draw(layer);
 		});
+	}
+	
+	@Override
+	public void setOnMouseClicked(CustomShape shapeToSelect, MainApp mainApp) {
+		listOfShape.forEach(sh->{
+			sh.setOnMouseClicked(shapeToSelect, mainApp);
+		});
+		
 	}
 }

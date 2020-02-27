@@ -79,8 +79,8 @@ class TestCustomShape {
 	
 	@Test
 	public void testPosition() {
-		shape.setXPosition(20);
-		shape.setYPosition(30);
+		shape.setXPos(20);
+		shape.setYPos(30);
 		
 		assertEquals(20, shape.getXPos());
 		assertEquals(30, shape.getYPos());
