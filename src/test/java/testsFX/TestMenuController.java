@@ -1,22 +1,30 @@
 package testsFX;
 
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.BeforeEach;
+
+import controller.FileController;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import java.io.File;
+
 import org.junit.jupiter.api.Order;
 import javafx.scene.input.KeyCode;
+import models.LayersGroup;
 
 
 public class TestMenuController extends testApplicationUI{
-	@BeforeEach
-	public void supprime() {
-		this.delPersistance();
-	}
+	
+	LayersGroup layersGroup = LayersGroup.getLayersGroup();
+	
+	FileController fileCont = FileController.getInstance();
+	
 	@Test
 	public void testFileNew() {
 		clickOn("#MenuBarFile");
 		clickOn("#menuItemNew");
 		clickOn("No");
-		//TODO: Tester si on a bien un truc neuf
+		assertEquals(1, layersGroup.getLayers().size());
 	}	
 	@Test
 	@Order(1)
@@ -30,7 +38,10 @@ public class TestMenuController extends testApplicationUI{
 		type(KeyCode.ENTER);
 		type(KeyCode.LEFT);
 		type(KeyCode.ENTER);
-		//TODO: Tester si on a bien le fichier voulu
+		
+		File f = new File("test.xml");
+		
+		assertEquals(false, f.exists());
 	}
 	@Test
 	@Order(2)
@@ -55,7 +66,9 @@ public class TestMenuController extends testApplicationUI{
 		type(KeyCode.S);
 		type(KeyCode.T);
 		type(KeyCode.ENTER);
-		//TODO: Tester si on a bien la même chose qu'avant la sauvegarde
+		
+		assertEquals(true, fileCont.getCurrentFile().length() > 0);
+		
 	}
 	@Test
 	public void testLayoutGrid() {
@@ -63,23 +76,57 @@ public class TestMenuController extends testApplicationUI{
 		clickOn("#menuShowGridLines");
 		clickOn("#MenuBarLayout");
 		clickOn("#menuShowGridLines");
-		//TODO: Verifier qu'on a bien les grilles
+		assertEquals(true,this.mainApp.getDrawingZoneController().getLineGridPaneVisibility());
 	}
 	@Test
 	public void testLayoutLayers() {
 		clickOn("#MenuBarLayout");
 		clickOn("#menuItemLayers");
 		clickOn("#newButton");
+		assertEquals(2, layersGroup.getLayers().size());
 		clickOn("Layer 0");
 		clickOn("Up");
+		assertEquals("Layer 0", layersGroup.getLayers().get(0).getId());
 		clickOn("Layer 0");
 		clickOn("Down");
 		clickOn("Layer 0");
 		clickOn("#hideButton");
 		clickOn("Layer 0");
 		clickOn("#hideButton");
-		clickOn("Layer 0");
-		//clickOn("Delete"); NE MARCHE PAS
+		clickOn("Layer 1");
+		clickOn("Delete");
+		
+		assertEquals(1, layersGroup.getLayers().size());
+	}
+	
+	@Test
+	public void testShapeHistory() {
+		clickOn("#rectangle");
+		moveBy(150, 50);
+		drag();
+		moveBy(150, 150);
+		drop();
+		
+		moveBy(-150, -50);
+		drag();
+		moveBy(150, 150);
+		drop();
+		
+		clickOn("#MenuBarLayout");
+		clickOn("#menuItemShapeOrder");
+		
+		String a = layersGroup.getCurrentLayer().getDrawnShapes().get(0).toString();
+		
+		clickOn(layersGroup.getCurrentLayer().getDrawnShapes().get(0).toString());
+		
+		clickOn("Up");
+		
+		clickOn(a);
+		
+		clickOn("Down");
+		
+		assertEquals(a, layersGroup.getCurrentLayer().getDrawnShapes().get(0).toString());
+		
 	}
 	
 	private void pause(int times) {

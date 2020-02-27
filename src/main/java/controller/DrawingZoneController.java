@@ -260,5 +260,9 @@ public class DrawingZoneController {
 	public void clearSelectionLayer() {
 		selectionLayoutPane.getChildren().clear();
 	}
+	
+	public Pane getAnchorPane() {
+		return this.anchorPane;
+	}
 
 }
