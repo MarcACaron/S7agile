@@ -49,8 +49,8 @@ public class testPaletteFormController extends testApplicationUI {
 		moveBy(150, 150);
 		drop();
 		assertEquals("rectangle", this.mainApp.getTool().getToolType());
-		assertTrue(299.999<this.mainApp.getTool().getShape().getWidth() && 301>this.mainApp.getTool().getShape().getWidth());
-		assertTrue(299.999<this.mainApp.getTool().getShape().getWidth() && 301>this.mainApp.getTool().getShape().getHeight());
+		assertTrue(398<this.mainApp.getTool().getShape().getWidth() && 399>this.mainApp.getTool().getShape().getWidth());
+		assertTrue(398<this.mainApp.getTool().getShape().getWidth() && 399>this.mainApp.getTool().getShape().getHeight());
 
 	}
 	@Test
@@ -61,8 +61,8 @@ public class testPaletteFormController extends testApplicationUI {
 		moveBy(150, 150);
 		drop();
 		assertEquals("circle", this.mainApp.getTool().getToolType());
-		assertTrue(299.999<this.mainApp.getTool().getShape().getWidth() && 301>this.mainApp.getTool().getShape().getWidth());
-		assertTrue(299.999<this.mainApp.getTool().getShape().getWidth() && 301>this.mainApp.getTool().getShape().getHeight());
+		assertTrue(398<this.mainApp.getTool().getShape().getWidth() && 399>this.mainApp.getTool().getShape().getWidth());
+		assertTrue(398<this.mainApp.getTool().getShape().getWidth() && 399>this.mainApp.getTool().getShape().getHeight());
 	}
 	@Test
 	public void testLine() {
@@ -72,8 +72,8 @@ public class testPaletteFormController extends testApplicationUI {
 		moveBy(150, 150);
 		drop();
 		assertEquals("line", this.mainApp.getTool().getToolType());
-		assertTrue(299.999<this.mainApp.getTool().getShape().getWidth() && 301>this.mainApp.getTool().getShape().getWidth());
-		assertTrue(299.999<this.mainApp.getTool().getShape().getWidth() && 301>this.mainApp.getTool().getShape().getHeight());
+		assertTrue(398<this.mainApp.getTool().getShape().getWidth() && 399>this.mainApp.getTool().getShape().getWidth());
+		assertTrue(398<this.mainApp.getTool().getShape().getWidth() && 399>this.mainApp.getTool().getShape().getHeight());
 	}
 	@Test
 	public void testTriangleHorizontal() {
@@ -83,19 +83,20 @@ public class testPaletteFormController extends testApplicationUI {
 		moveBy(100, 100);
 		drop();
 		assertEquals("triangleHorizontal", this.mainApp.getTool().getToolType());
-		assertTrue(199.999<this.mainApp.getTool().getShape().getWidth() && 201>this.mainApp.getTool().getShape().getWidth());
-		assertTrue(199.999<this.mainApp.getTool().getShape().getWidth() && 201>this.mainApp.getTool().getShape().getHeight());
+		assertEquals(298, this.mainApp.getTool().getShape().getWidth());
+		assertTrue(250 < this.mainApp.getTool().getShape().getHeight() && 260 > this.mainApp.getTool().getShape().getHeight());
+
 	}
 	@Test
 	public void testTriangleVertical() {
 		clickOn("#triangleVertical");
-		moveBy(150, 0);
+		moveBy(200, 0);
 		drag();
 		moveBy(100, 100);
 		drop();
 		assertEquals("triangleVertical", this.mainApp.getTool().getToolType());
-		assertTrue(199.999<this.mainApp.getTool().getShape().getWidth() && 201>this.mainApp.getTool().getShape().getWidth());
-		assertTrue(199.999<this.mainApp.getTool().getShape().getWidth() && 201>this.mainApp.getTool().getShape().getHeight());
+		assertTrue(295 < this.mainApp.getTool().getShape().getWidth() && 300 > this.mainApp.getTool().getShape().getWidth());
+		assertTrue(235 < this.mainApp.getTool().getShape().getHeight() && 240 > this.mainApp.getTool().getShape().getHeight());
 	}
 	@Test
 	public void testStartPoint() {
