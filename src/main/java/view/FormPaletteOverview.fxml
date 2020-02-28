@@ -104,36 +104,45 @@
                   <ToggleGroup fx:id="formToggleGroup1" />
                </toggleGroup>
                <tooltip>
-                  <Tooltip fx:id="customShape1Tooltip" text="CustomShape1" />
+                  <Tooltip fx:id="customShape1Tooltip" text="No shape" />
                </tooltip>
+               <graphic>
+                  <Pane fx:id="paneCS1" prefHeight="200.0" prefWidth="200.0" />
+               </graphic>
             </ToggleButton>
             <ToggleButton fx:id="customShape2" mnemonicParsing="false" onAction="#drawCustom" prefHeight="40.0" prefWidth="50.0" toggleGroup="$formToggleGroup">
                <tooltip>
-                  <Tooltip fx:id="customShape2Tooltip" text="CustomShape2" />
+                  <Tooltip fx:id="customShape2Tooltip" text="No shape" />
                </tooltip>
                <graphic>
-                  <Pane prefHeight="32.0" prefWidth="50.0" />
+                  <Pane fx:id="paneCS2" prefHeight="32.0" prefWidth="50.0" />
                </graphic>
             </ToggleButton>
          </children>
       </HBox>
       <HBox prefHeight="40.0" prefWidth="200.0">
          <children>
-            <ToggleButton fx:id="customShape3" mnemonicParsing="false" onAction="#drawCustom" prefHeight="40.0" prefWidth="100.0" toggleGroup="$formToggleGroup">
+            <ToggleButton fx:id="customShape3" mnemonicParsing="false" onAction="#drawCustom" prefHeight="40.0" prefWidth="50.0" toggleGroup="$formToggleGroup">
                <toggleGroup>
                   <ToggleGroup fx:id="formToggleGroup3" />
                </toggleGroup>
                <tooltip>
-                  <Tooltip fx:id="customShape3Tooltip" text="CustomShape3" />
+                  <Tooltip fx:id="customShape3Tooltip" text="No shape" />
                </tooltip>
+               <graphic>
+                  <Pane fx:id="paneCS3" prefHeight="32.0" prefWidth="100.0" />
+               </graphic>
             </ToggleButton>
-            <ToggleButton fx:id="customShape4" mnemonicParsing="false" onAction="#drawCustom" prefHeight="40.0" prefWidth="100.0" toggleGroup="$formToggleGroup">
+            <ToggleButton fx:id="customShape4" mnemonicParsing="false" onAction="#drawCustom" prefHeight="40.0" prefWidth="50.0" toggleGroup="$formToggleGroup">
                <toggleGroup>
                   <ToggleGroup fx:id="formToggleGroup4" />
                </toggleGroup>
                <tooltip>
-                  <Tooltip fx:id="customShape4Tooltip" text="Custom Shape4" />
+                  <Tooltip fx:id="customShape4Tooltip" text="No shape" />
                </tooltip>
+               <graphic>
+                  <Pane fx:id="paneCS4" prefHeight="50.0" prefWidth="55.0" />
+               </graphic>
             </ToggleButton>
          </children>
       </HBox>

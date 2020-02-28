@@ -2,15 +2,24 @@ package models;
 
 import java.util.ArrayList;
 
+import javax.xml.namespace.QName;
+import javax.xml.stream.XMLEventReader;
+import javax.xml.stream.XMLStreamException;
+import javax.xml.stream.XMLStreamWriter;
+import javax.xml.stream.events.StartElement;
+import javax.xml.stream.events.XMLEvent;
+
 import adraw4us.MainApp;
+import adraw4us.ShapeFactory;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
-import javafx.scene.input.MouseButton;
+import javafx.scene.layout.Pane;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
 
 public class CustomUnionShape extends CustomShape {
 	ArrayList<CustomShape> listOfShape;
+	private boolean grouped = false;
 	public CustomUnionShape(ArrayList<CustomShape> listOfShape) {
 		this.boundingBox = new Rectangle();
 		this.listOfShape = listOfShape;
@@ -20,7 +29,7 @@ public class CustomUnionShape extends CustomShape {
 				this.scale=true;
 			}
 		});
-		this.type = "CustomShape";
+		this.type = "CustomUnionShape";
 	}
 
 	public CustomUnionShape() {
@@ -54,19 +63,26 @@ public class CustomUnionShape extends CustomShape {
 
 	@Override
 	public void setWidth(double value) {
+		if(value<0.5)
+			value=0.5;
 		double rapportWidth = value/this.boundingBox.getWidth();
+		for(int i=0; i<listOfShape.size(); i++) {
+			double rapportDeplacement = (listOfShape.get(i).getXPos()-this.boundingBox.getX())/this.boundingBox.getWidth();
+			listOfShape.get(i).setXPos(this.boundingBox.getX() + rapportDeplacement*value);
+			listOfShape.get(i).setWidth(rapportWidth*listOfShape.get(i).getWidth());
+		}/*
 		listOfShape.forEach(sh -> {
 			double rapportDeplacement = (sh.getXPos()-this.boundingBox.getX())/this.boundingBox.getWidth();
 			sh.setXPos(this.boundingBox.getX() + rapportDeplacement*value);
 			sh.setWidth(rapportWidth*sh.getWidth());
-			
-		});
+
+		});*/
 		if(scale) {
 			setHeight(value * getHeight()/getWidth(), true);
 		}
 		this.boundingBox.setWidth(value);
 	}
-	
+
 	private void setWidth(double value, boolean stop) {
 		double rapportWidth = value/this.boundingBox.getWidth();
 		listOfShape.forEach(sh -> {
@@ -81,19 +97,26 @@ public class CustomUnionShape extends CustomShape {
 
 	@Override
 	public void setHeight(double value) {
+		if(value<0.5)
+			value=0.5;
 		double rapportWidth= value/this.boundingBox.getHeight();
+		for(int i=0; i<listOfShape.size(); i++) {
+			double rapportDeplacement = (listOfShape.get(i).getYPos()-this.boundingBox.getY())/this.boundingBox.getHeight();
+			listOfShape.get(i).setYPos(this.boundingBox.getY() + rapportDeplacement*value);
+			listOfShape.get(i).setHeight(rapportWidth*listOfShape.get(i).getHeight());
+		}/*
 		listOfShape.forEach(sh -> {
 			double rapportDeplacement = (sh.getYPos()-this.boundingBox.getY())/this.boundingBox.getHeight();
 			sh.setYPos(this.boundingBox.getY() + rapportDeplacement*value);
 			sh.setHeight(rapportWidth*sh.getHeight());
-		});
+		});*/
 		if(scale) {
 			System.out.println("hhhh");
 			setWidth(value * getWidth()/getHeight(), true);
 		}
 		this.boundingBox.setHeight(value);
 	}
-	
+
 	public void setHeight(double value, boolean stop) {
 		double rapportWidth= value/this.boundingBox.getHeight();
 		listOfShape.forEach(sh -> {
@@ -105,14 +128,14 @@ public class CustomUnionShape extends CustomShape {
 		});
 		this.boundingBox.setHeight(value);
 	}
-	
+
 	@Override
 	public void setFill(Paint value, String fillName) {
 		listOfShape.forEach(sh -> 
-			sh.setFill(value, fillName)
-		);
+		sh.setFill(value, fillName)
+				);
 	}
-	
+
 	@Override
 	public void setRotate(double value) {
 		listOfShape.forEach(sh -> {
@@ -126,26 +149,26 @@ public class CustomUnionShape extends CustomShape {
 			sh.setXPos(xTrans-sh.getWidth()/2);
 			sh.setYPos(yTrans-sh.getHeight()/2);
 			sh.setRotate(sh.getRotate()+diff);
-			
+
 		}
-		);
+				);
 		this.boundingBox.setRotate(value);
 	}
-	
+
 	@Override
 	public void setStroke(Paint value) {
 		listOfShape.forEach(sh -> 
-			sh.setStroke(value)
-		);
+		sh.setStroke(value)
+				);
 	}
-	
+
 	@Override
 	public void setStrokeWidth(double strokeWidth) {
 		listOfShape.forEach(sh -> 
-			sh.setStrokeWidth(strokeWidth)
-		);
+		sh.setStrokeWidth(strokeWidth)
+				);
 	} 
-	
+
 	@Override
 	public CustomShape duplicate(int offsetX, int offsetY, MainApp mainApp) {
 		CustomUnionShape newUnion = new CustomUnionShape();
@@ -165,7 +188,7 @@ public class CustomUnionShape extends CustomShape {
 			scale=true;
 		}
 	}
-	
+
 	public boolean updateBoudingBox() {//TODO: Conserver pour la suite
 		double xMin = 0;
 		double yMin = 0;
@@ -190,21 +213,29 @@ public class CustomUnionShape extends CustomShape {
 		this.boundingBox.setHeight(yMax-yMin);
 		return ok;
 	}
-	
+
 	public void group(String name, MainApp mainApp) {
+		grouped=true;
 		listOfShape.forEach(sh->{
 			int index = LayersGroup.getLayersGroup().getCurrentLayer().getDrawnShapes().indexOf(sh);
 			LayersGroup.getLayersGroup().getCurrentLayer().getDrawnShapes().remove(index);
-			LayersGroup.getLayersGroup().getCurrentLayer().getPane().getChildren().remove(index);
-			LayersGroup.getLayersGroup().getCurrentLayer().getPane().getChildren().add(sh.getDraw());
+			sh.remove();
+			sh.draw(LayersGroup.getLayersGroup().getCurrentLayer().getPane());
 			CustomShape thisGroup = this;
 			sh.setOnMouseClicked(thisGroup, mainApp);
-			
-			
+
+
 		});
 		LayersGroup.getLayersGroup().getCurrentLayer().getDrawnShapes().add(this);
 		setLayer(LayersGroup.getLayersGroup().getCurrentLayer().getId());
 	}
+	@Override
+	protected void remove() {
+		listOfShape.forEach(sh->{
+			sh.remove();
+		});
+	}
+	
 	@Override
 	public void ajustOnDragFromCorner(double posXStart, double posYStart, double posXEnd, double posYEnd) {
 		double startX;
@@ -229,7 +260,7 @@ public class CustomUnionShape extends CustomShape {
 		this.setYPos(startY);
 		this.setWidth(width);
 		this.setHeight(height);
-		
+
 	}
 
 	@Override
@@ -256,14 +287,16 @@ public class CustomUnionShape extends CustomShape {
 		this.setYPos(startY);
 		this.setWidth(width*2);
 		this.setHeight(height*2);
+		System.out.println("...");
 	}
-	
+
 	@Override
 	public void setType(String type, MainApp mainApp) {
 		super.setType(type, mainApp);
-		group(type, mainApp);
+		if(!grouped)
+			group(type, mainApp);
 	}
-	
+
 	@Override
 	public int size() {
 		return this.listOfShape.size();
@@ -274,14 +307,14 @@ public class CustomUnionShape extends CustomShape {
 			listOfShape.get(i).up(collectionLength2, index1+listOfShape.size()-1, a);
 		}	
 	}
-	
+
 	@Override
 	public void down(int collectionLength2, int index1, ObservableList<Node> a) {
 		for(int i=0; i<size(); i++) {
 			listOfShape.get(i).down(collectionLength2, index1+i, a);
 		}	
 	}
-	
+
 	@Override
 	public boolean isSelected(double xStart, double yStart, double xEnd, double yEnd) {
 		boolean isSelected = listOfShape.size()>0;
@@ -290,19 +323,63 @@ public class CustomUnionShape extends CustomShape {
 		}
 		return super.isSelected(xStart, yStart, xEnd, yEnd);
 	}
-	
+
 	@Override
-	public void draw(Layer layer) {
+	public void draw(Pane p) {
 		listOfShape.forEach(sg->{
-			sg.draw(layer);
+			sg.draw(p);
 		});
 	}
-	
+
 	@Override
 	public void setOnMouseClicked(CustomShape shapeToSelect, MainApp mainApp) {
 		listOfShape.forEach(sh->{
 			sh.setOnMouseClicked(shapeToSelect, mainApp);
 		});
-		
+
+	}
+	@Override
+	protected void write(XMLStreamWriter writer) throws XMLStreamException {
+		for(int i=0; i<listOfShape.size(); i++) {
+			writer.writeStartElement("Shape");
+			writer.writeAttribute("shapeType", listOfShape.get(i).getType());
+			writer.writeAttribute("shapeConstructor", listOfShape.get(i).getContructorName());
+			listOfShape.get(i).write(writer);
+			writer.writeEndElement();
+		}
+	}
+	@Override
+	public void read(XMLEventReader reader, Layer _layer, MainApp mainApp) throws XMLStreamException {
+		XMLEvent event;
+		while (reader.hasNext()) {
+	    	CustomShape sh = null;
+
+			event = reader.nextEvent();
+			if (!event.isStartElement()) {
+				continue;
+			}
+			StartElement se = event.asStartElement();
+			if(!se.getName().getLocalPart().equals("Shape")) {
+				continue;
+			}
+			System.out.println(se.getAttributeByName(new QName("shapeConstructor")));
+			sh = ShapeFactory.build(se.getAttributeByName(new QName("shapeConstructor")).getValue());
+			if(sh != null) {
+				grouped=true;
+				//sh.getDraw().setAccessibleText(se.getAttributeByName(new QName("shapeType")).getValue());//TODO:verifier
+				sh.setType(se.getAttributeByName(new QName("shapeType")).getValue(), mainApp);
+				sh.setLayer(_layer.getId());
+				reader.nextEvent();
+				sh.read(reader, _layer, mainApp);
+				add(sh);
+				sh.setOnMouseClicked(this, mainApp);
+			}				
+		}
+		updateBoudingBox();
+	}
+
+	@Override
+	protected String getContructorName() {
+		return "CustomUnionShape";
 	}
 }

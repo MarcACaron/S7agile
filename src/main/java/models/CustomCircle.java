@@ -97,4 +97,9 @@ public class CustomCircle extends CustomShape {
 		this.setXPos(startX);
 		this.setYPos(startY);
 	}
+
+	@Override
+	protected String getContructorName() {
+		return "CustomCircle";
+	}
 }

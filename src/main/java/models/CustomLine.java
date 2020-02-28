@@ -126,4 +126,8 @@ public class CustomLine extends CustomShape{
 		((Line)shape).setEndX(posXEnd);
 		((Line)shape).setEndY(posYEnd);
 	}
+	@Override
+	protected String getContructorName() {
+		return "CustomLine";
+	}
 }

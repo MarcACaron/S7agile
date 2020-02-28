@@ -10,6 +10,7 @@ import javafx.collections.ObservableList;
 import javafx.geometry.Point2D;
 import javafx.scene.Node;
 import javafx.scene.input.MouseButton;
+import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
@@ -172,12 +173,15 @@ public abstract class CustomShape {
 		writer.writeCharacters(String.valueOf(getStrokeWidth()));
 		writer.writeEndElement();
 	}
-	public void read(XMLEventReader reader) throws XMLStreamException {
+	public void read(XMLEventReader reader, Layer _layer, MainApp mainApp) throws XMLStreamException {
 		PatternApplier patternApplier = new PatternApplier();
 		XMLEvent event;
 		//reader.nextEvent();
 		//reader.nextEvent();
 		event = reader.nextEvent();
+		while(reader.hasNext() && !event.isCharacters()) {
+			event = reader.nextEvent();
+		}
 		this.setXPos(Double.valueOf(event.asCharacters().getData()));
 		reader.nextEvent();
 		reader.nextEvent();
@@ -276,9 +280,11 @@ public abstract class CustomShape {
 	public String toString() {
 		return this.getLayer()+": "+this.getType()+" ( "+this.getXPos()+" ; "+this.getYPos()+" )";
 	}
-	public void draw(Layer layer) {
-		layer.getPane().getChildren().add(shape);
-		
+	public void draw(Pane p) {
+		p.getChildren().add(shape);
 	}
-	
+	protected abstract String getContructorName();
+	protected void remove() {
+		LayersGroup.getLayersGroup().getCurrentLayer().getPane().getChildren().remove(this.getDraw());
+	}
 }

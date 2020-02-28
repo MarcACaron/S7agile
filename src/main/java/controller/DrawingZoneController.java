@@ -232,8 +232,7 @@ public class DrawingZoneController {
 		if (shapeCopy != null) {
 
 			shapeCopy.setLayer(LayersGroup.getLayersGroup().getCurrentLayer().getId());
-			shapeCopy.draw(LayersGroup.getLayersGroup().getCurrentLayer());
-			System.out.println(shapeCopy.getType());
+			shapeCopy.draw(LayersGroup.getLayersGroup().getCurrentLayer().getPane());
 			LayersGroup.getLayersGroup().getCurrentLayer().getDrawnShapes().add(shapeCopy);
 		}
 	}

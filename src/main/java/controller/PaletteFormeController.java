@@ -1,5 +1,9 @@
 package controller;
 
+import java.io.FileNotFoundException;
+
+import javax.xml.stream.XMLStreamException;
+
 import adraw4us.MainApp;
 import adraw4us.Tool;
 import javafx.event.ActionEvent;
@@ -8,6 +12,7 @@ import javafx.scene.control.ToggleButton;
 import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Pane;
 import models.CircleTool;
 import models.CustomDrawTool;
 import models.CustomShape;
@@ -16,10 +21,12 @@ import models.MultiSelectionTool;
 import models.RectangleTool;
 import models.TriangleHorizontalTool;
 import models.TriangleVerticalTool;
+import models.XmlEncoder;
 import models.SelectionTool;
 
 public class PaletteFormeController {
-	
+
+	private MainApp mainApp;
 	@FXML
     private ToggleButton pointeur;
 	@FXML
@@ -56,6 +63,14 @@ public class PaletteFormeController {
     private ToggleButton customShape4;
 	@FXML
 	private Tooltip customShape4Tooltip;
+	@FXML
+    private Pane paneCS1;
+	@FXML
+    private Pane paneCS2;
+	@FXML
+    private Pane paneCS3;
+	@FXML
+    private Pane paneCS4;
 	
 	@FXML
 	private void choosePointer() {
@@ -143,76 +158,72 @@ public class PaletteFormeController {
 	
 	@FXML private void drawCustom(ActionEvent event) {
 		ToggleButton tg = (ToggleButton) event.getSource();
+		String fileName=null;
+		Tooltip toolTip = null;
+		int nb = 0;
 		if(tg.getId().contentEquals("customShape1")) {
-			if(tg.getUserData()==null) {
-				if(mainApp.getTool().getShape()!=null) {
-					customShape1Tooltip.setText(mainApp.getTool().getShape().getType());
-					tg.setUserData(mainApp.getTool().getShape().duplicate(0, 0, mainApp));
-					System.out.println("Enregistrement");
-				}else {
-					System.out.println("Pas de Shape");
-				}
-				tg.setSelected(false);
-			}else {
-				System.out.println("Préparation de la shape custom: +customShape1Tooltip.getText()");
-				this.mainApp.setTool(new CustomDrawTool((CustomShape) tg.getUserData()));
-				System.out.println(mainApp.getTool().getToolType());
-				System.out.println(mainApp.getTool().getShape().getType());
-			}
+			 nb=1;
+			 toolTip= customShape1Tooltip;
+			 fileName = "shape1.xml";
 		}else if(tg.getId().contentEquals("customShape2")) {
-			if(tg.getUserData()==null) {
-				if(mainApp.getTool().getShape()!=null) {
-					customShape2Tooltip.setText(mainApp.getTool().getShape().getType());
-					tg.setUserData(mainApp.getTool().getShape().duplicate(0, 0, mainApp));
-					System.out.println("Enregistrement");
-				}else {
-					System.out.println("Pas de Shape");
-				}
-				tg.setSelected(false);
-			}else {
-				System.out.println("Préparation de la shape custom: +customShape1Tooltip.getText()");
-				this.mainApp.setTool(new CustomDrawTool((CustomShape) tg.getUserData()));
-				System.out.println(mainApp.getTool().getToolType());
-				System.out.println(mainApp.getTool().getShape().getType());
-			}
+			 nb=2;
+			 toolTip= customShape2Tooltip;
+			 fileName = "shape2.xml";
 		}else if(tg.getId().contentEquals("customShape3")) {
-			if(tg.getUserData()==null) {
-				if(mainApp.getTool().getShape()!=null) {
-					customShape3Tooltip.setText(mainApp.getTool().getShape().getType());
-					tg.setUserData(mainApp.getTool().getShape().duplicate(0, 0, mainApp));
-					System.out.println("Enregistrement");
-				}else {
-					System.out.println("Pas de Shape");
-				}
-				tg.setSelected(false);
-			}else {
-				System.out.println("Préparation de la shape custom: +customShape1Tooltip.getText()");
-				this.mainApp.setTool(new CustomDrawTool((CustomShape) tg.getUserData()));
-				System.out.println(mainApp.getTool().getToolType());
-				System.out.println(mainApp.getTool().getShape().getType());
-			}
+			 nb=3;
+			 toolTip= customShape3Tooltip;
+			 fileName = "shape3.xml";
 		}else if(tg.getId().contentEquals("customShape4")) {
-			if(tg.getUserData()==null) {
-				if(mainApp.getTool().getShape()!=null) {
-					customShape4Tooltip.setText(mainApp.getTool().getShape().getType());
-					tg.setUserData(mainApp.getTool().getShape().duplicate(0, 0, mainApp));
-					System.out.println("Enregistrement");
-				}else {
-					System.out.println("Pas de Shape");
-				}
-				tg.setSelected(false);
-			}else {
-				System.out.println("Préparation de la shape custom: +customShape1Tooltip.getText()");
-				this.mainApp.setTool(new CustomDrawTool((CustomShape) tg.getUserData()));
-				System.out.println(mainApp.getTool().getToolType());
-				System.out.println(mainApp.getTool().getShape().getType());
+			 nb=4;
+			 toolTip= customShape4Tooltip;
+			 fileName = "shape4.xml";
+		}
+		if(tg.getUserData()==null) {
+			if(mainApp.getTool().getShape()!=null) {
+				toolTip.setText(mainApp.getTool().getShape().getType());
+				tg.setUserData(mainApp.getTool().getShape().duplicate(0, 0, mainApp));
+				fillCustomShape(nb, mainApp.getTool().getShape().duplicate(0, 0, mainApp));
+				register(fileName, mainApp.getTool().getShape().duplicate(0, 0, mainApp));
 			}
+			tg.setSelected(false);
+		}else {
+			this.mainApp.setTool(new CustomDrawTool((CustomShape) tg.getUserData()));
 		}
 				
 	}
-	private MainApp mainApp;
 	
 	
+	private void register(String string, CustomShape duplicate) {
+		try {
+			XmlEncoder.customShapeEncoder(duplicate, string);
+		} catch (FileNotFoundException | XMLStreamException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	private void fillCustomShape(int nb, CustomShape sh) {
+		Pane p=null;
+		if(nb==1)
+			p=paneCS1;
+		if(nb==2)
+			p=paneCS2;
+		if(nb==3)
+			p=paneCS3;
+		if(nb==4)
+			p=paneCS4;
+		resize(sh);
+		sh.draw(p);
+	}
+	
+	private CustomShape resize(CustomShape sh) {
+		sh.setXPos(0);
+		sh.setYPos(0);
+		if(sh.getWidth()>34)
+			sh.setWidth(34);
+		if(sh.getHeight()>32)
+			sh.setHeight(32);
+		return sh;
+	}
 	@FXML
     private void initialize() {
 		// Put stuff to initialise here
@@ -221,6 +232,7 @@ public class PaletteFormeController {
 	public void setMainApp(MainApp mainApp) {
         this.mainApp = mainApp;
 		this.mainApp.setTool(new SelectionTool());
+		
 		Tool.setStartFromCenter(true);
     }
 }

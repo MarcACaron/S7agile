@@ -4,7 +4,9 @@ import models.CustomCircle;
 import models.CustomLine; 
 import models.CustomRectangle;
 import models.CustomShape;
-import models.CustomTriangleHorizontal; 
+import models.CustomTriangleHorizontal;
+import models.CustomTriangleVertical;
+import models.CustomUnionShape; 
  
 public class ShapeFactory { 
 	private ShapeFactory() {
@@ -12,14 +14,19 @@ public class ShapeFactory {
 	
 	public static CustomShape build(String shapeName) { 
 		switch (shapeName) { 
-		case "rectangle": 
+		case "CustomRectangle": 
 			return new CustomRectangle(); 
-		case "line": 
+		case "CustomLine": 
 			return new CustomLine(); 
-		case "circle": 
+		case "CustomCircle": 
+			System.out.println("cercle");
 			return new CustomCircle(); 
-		case "triangleHorizontal" :
+		case "CustomTriangleHorizontal" :
 			return new CustomTriangleHorizontal();
+		case "CustomTriangleVertical" :
+			return new CustomTriangleVertical();
+		case "CustomUnionShape" :
+			return new CustomUnionShape();
 		default: 
 			return null; 
 		} 

@@ -33,7 +33,6 @@ public class XmlDecoder {
 		XMLEventReader  reader = xif.createXMLEventReader(new FileInputStream(file));
 	    XMLEvent event;
 		ArrayList<String> layerNames = new ArrayList<>();
-		ArrayList<CustomShape> drawnShape = new ArrayList<>();
 	    while (reader.hasNext()) {
 	    	CustomShape sh = null;
 			event = reader.nextEvent();
@@ -44,25 +43,59 @@ public class XmlDecoder {
 			if(!se.getName().getLocalPart().equals("Shape")) {
 				continue;
 			}
-			sh = ShapeFactory.build(se.getAttributeByName(new QName("shapeType")).getValue());
+			sh = ShapeFactory.build(se.getAttributeByName(new QName("shapeConstructor")).getValue());
 			if(sh != null) {
-				sh.getDraw().setAccessibleText(se.getAttributeByName(new QName("shapeType")).getValue());
+				sh.setType(se.getAttributeByName(new QName("shapeType")).getValue(), mainApp);
 				String name = se.getAttributeByName(new QName("layer")).getValue();
 				if(!layerNames.contains(name)) {
 					Layer a = new GridLayer(name);
 					layerNames.add(name);
 					layersGroup.createNewLayer(a);
 				}
-				layersGroup.getLayers().get(layerNames.indexOf(name)).getPane().getChildren().add(sh.getDraw());
+				sh.setLayer(layersGroup.getLayers().get(layerNames.indexOf(name)).getId());
+				//reader.nextEvent();
+				sh.read(reader, layersGroup.getLayers().get(layerNames.indexOf(name)), mainApp);
+				sh.draw(layersGroup.getLayers().get(layerNames.indexOf(name)).getPane());
 				LayersGroup.getLayersGroup().getCurrentLayer().getDrawnShapes().add(sh);
-				reader.nextEvent();
-				drawnShape.add(sh);
-				sh.read(reader);
-				CustomShape sh2 = sh;
 				sh.setOnMouseClicked(sh, mainApp);
 			}				
 		}
 	    mainApp.getDrawingZoneController().updateLayers(true);
+	}
+	
+	public static CustomShape customShapeEncoder(File file, MainApp mainApp) throws FileNotFoundException, XMLStreamException {
+		layersGroup.clear();
+		XMLInputFactory xif = XMLInputFactory.newInstance();
+		xif.setProperty(XMLInputFactory.IS_SUPPORTING_EXTERNAL_ENTITIES, Boolean.FALSE);
+		XMLEventReader  reader = xif.createXMLEventReader(new FileInputStream(file));
+	    XMLEvent event;
+		ArrayList<String> layerNames = new ArrayList<>();
+    	CustomShape sh = null;
+	    while (reader.hasNext()) {
+			event = reader.nextEvent();
+			if (!event.isStartElement()) {
+				continue;
+			}
+			StartElement se = event.asStartElement();
+			if(!se.getName().getLocalPart().equals("Shape")) {
+				continue;
+			}
+			
+			sh = ShapeFactory.build(se.getAttributeByName(new QName("shapeConstructor")).getValue());
+			if(sh != null) {
+				sh.setType(se.getAttributeByName(new QName("shapeType")).getValue(), mainApp);
+				String name = se.getAttributeByName(new QName("layer")).getValue();
+				if(!layerNames.contains(name)) {
+					Layer a = new GridLayer(name);
+					layerNames.add(name);
+					layersGroup.createNewLayer(a);
+				}
+				sh.setLayer(layersGroup.getLayers().get(layerNames.indexOf(name)).getId());
+				sh.read(reader, layersGroup.getLayers().get(layerNames.indexOf(name)), mainApp);
+			}
+			break;
+		}
+	    return sh;
 	}
 
 }
