@@ -146,6 +146,9 @@ public class MainApp extends Application {
             
             paletteDetailController = detailPaletteLoader.getController();
             paletteDetailController.setMainApp(this);
+            
+            drawingZoneController.clearDrawing();
+            drawingZoneController.updateLayers(true);
         } catch (IOException e) {
         	logger.log(Level.SEVERE, "Exeption: "+e.getMessage()+"; Fonction: showMainOverview();");
         }
