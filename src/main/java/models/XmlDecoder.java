@@ -87,6 +87,7 @@ public class XmlDecoder {
 			}
 			break;
 		}
+	    System.out.println(sh.size());
 	    return sh;
 	}
 

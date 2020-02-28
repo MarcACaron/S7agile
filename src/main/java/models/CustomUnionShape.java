@@ -378,26 +378,27 @@ public class CustomUnionShape extends CustomShape {
 		while (reader.hasNext() && search) {
 
 			event = reader.nextEvent();
+			if (event.isCharacters()) {
+				search=false;
+				System.out.println("break");
+				break;
+			}
 			if (!event.isStartElement()) {
 				continue;
 			}
 			se = event.asStartElement();
-			if(!se.getName().getLocalPart().equals("Shape")) {
-				continue;
-			}else {
-				search=false;
+			if(se.getName().getLocalPart().equals("Shape")) {
+				System.out.println("hl");
+				sh = ShapeFactory.build(se.getAttributeByName(new QName("shapeConstructor")).getValue());
+				if(sh != null) {
+					grouped=true;
+					sh.setType(se.getAttributeByName(new QName("shapeType")).getValue(), mainApp);
+					reader.nextEvent();
+					sh.read(reader, mainApp);
+					add(sh);
+					sh.setOnMouseClicked(this, mainApp);
+				}
 			}
-		}
-		System.out.println();
-		System.out.println(se.getAttributeByName(new QName("shapeConstructor")));
-		sh = ShapeFactory.build(se.getAttributeByName(new QName("shapeConstructor")).getValue());
-		if(sh != null) {
-			grouped=true;
-			sh.setType(se.getAttributeByName(new QName("shapeType")).getValue(), mainApp);
-			reader.nextEvent();
-			sh.read(reader, mainApp);
-			add(sh);
-			sh.setOnMouseClicked(this, mainApp);
 		}
 		updateBoudingBox();
 		event = reader.nextEvent();
@@ -405,10 +406,11 @@ public class CustomUnionShape extends CustomShape {
 			event = reader.nextEvent();
 		}
 		this.flipShape(0, !Boolean.valueOf(event.asCharacters().getData()));//1 is VFlip, 0 is HFlip
-		reader.nextEvent();
-		reader.nextEvent();
-		event = reader.nextEvent();
+		while(!event.isCharacters() && reader.hasNext()) {
+			event = reader.nextEvent();
+		}
 		this.flipShape(1, !Boolean.valueOf(event.asCharacters().getData()));//1 is VFlip, 0 is HFlip
+
 	}
 
 	@Override
