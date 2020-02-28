@@ -284,7 +284,7 @@ public abstract class CustomShape {
 		p.getChildren().add(shape);
 	}
 	protected abstract String getContructorName();
-	protected void remove() {
-		LayersGroup.getLayersGroup().getCurrentLayer().getPane().getChildren().remove(this.getDraw());
+	public void remove(Pane p) {
+		p.getChildren().remove(this.getDraw());
 	}
 }

@@ -21,6 +21,9 @@ public class LayersGroup implements Container {
 
 
 	public Layer getCurrentLayer() {
+		if(layers.size()==0) {
+			reset();
+		}
 		return layers.get(0);
 	}
 

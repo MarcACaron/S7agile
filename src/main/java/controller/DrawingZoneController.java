@@ -39,7 +39,7 @@ public class DrawingZoneController {
 	private AnchorPane selectionLayoutPane;
 
 	private MainApp mainApp;
-	
+
 	private CustomShape shapeCopy;
 	ApplicationHistory history = ApplicationHistory.getInstance();
 
@@ -55,7 +55,7 @@ public class DrawingZoneController {
 	int childIndex;
 	boolean gridPaneBoolean;
 	boolean magnetismState = false;
-	
+
 	public void redo() {
 		clearDrawing();
 
@@ -122,8 +122,8 @@ public class DrawingZoneController {
 				orgX = t.getX();
 				orgY = t.getY();
 				if(magnetismState) {
-					orgX = orgX/50.0 *50;
-					orgY = orgY/50.0 *50;
+					orgX = (int)orgX/50 *50;//C'EST VOULU
+					orgY = (int)orgY/50 *50;//C'EST VOULU
 				}
 				childIndex = anchorPane.getChildren().size();
 				childIndex = this.mainApp.getTool().mousePressed(this.mainApp.getPaletteDetailController(), layersGroup.getCurrentLayer());
@@ -137,16 +137,16 @@ public class DrawingZoneController {
 				double yEnd=t.getY();
 				if (magnetismState) {
 					if(orgX<xEnd) {
-					xEnd+=50;
+						xEnd+=50;
 					}
 					if(orgY<yEnd) {
 						yEnd+=50;
 					}
-					xEnd = xEnd/50.0 *50;
-					yEnd = yEnd/50.0 *50;
-					
+					xEnd =(int)xEnd/50 *50;//C'EST VOULU
+					yEnd = (int)yEnd/50 *50;//C'EST VOULU
+
 				}
-				
+
 				this.mainApp.getTool().mouseDragged(orgX, orgY, xEnd, yEnd);
 			}
 		});
@@ -156,7 +156,7 @@ public class DrawingZoneController {
 			if ( button == MouseButton.PRIMARY ) {
 				this.mainApp.getTool().mouseReleased(layersGroup.getCurrentLayer().getPane(), this.mainApp.getPaletteCouleurController(), this.mainApp.getPaletteDetailController());
 			}
-			
+
 		});
 		updateLayers(true);
 	}
@@ -259,7 +259,7 @@ public class DrawingZoneController {
 	public void clearSelectionLayer() {
 		selectionLayoutPane.getChildren().clear();
 	}
-	
+
 	public Pane getAnchorPane() {
 		return this.anchorPane;
 	}

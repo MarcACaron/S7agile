@@ -77,7 +77,10 @@ public class PaletteFormeController {
 	@FXML
 	private void choosePointer() {
 		if(pointeur.isSelected()) {
-			this.mainApp.setTool(new SelectionTool(this.mainApp.getTool().getShape()));
+			if(this.mainApp.getTool()==null)
+				this.mainApp.setTool(new SelectionTool());
+			else
+				this.mainApp.setTool(new SelectionTool(this.mainApp.getTool().getShape()));
 		}else {
 			pointeur.setSelected(true);
 		}
@@ -180,15 +183,31 @@ public class PaletteFormeController {
 	}
 	
 	private void fillCustomShape(int nb, CustomShape sh) {
+		Tooltip toolTip=null;
+		ToggleButton tg = null;;
 		Pane p=null;
-		if(nb==1)
-			p=paneCS1;
-		if(nb==2)
+		if(nb==1) {
+			p = paneCS1;
+			toolTip = customShape1Tooltip;
+			tg = customShape1;
+		}
+		if(nb==2) {
 			p=paneCS2;
-		if(nb==3)
+			toolTip = customShape2Tooltip;
+			tg = customShape2;
+		}
+		if(nb==3) {
 			p=paneCS3;
-		if(nb==4)
+			toolTip = customShape3Tooltip;
+			tg = customShape3;
+		}
+		if(nb==4) {
 			p=paneCS4;
+			toolTip = customShape4Tooltip;
+			tg = customShape4;
+		}
+		toolTip.setText(sh.getType());
+		tg.setUserData(sh.duplicate(0, 0, mainApp));
 		resize(sh);
 		sh.draw(p);
 	}
@@ -221,9 +240,69 @@ public class PaletteFormeController {
 	
 	public void setMainApp(MainApp mainApp) {
         this.mainApp = mainApp;
-		this.mainApp.setTool(new SelectionTool());
+        pointeur.fire();
+		//this.mainApp.setTool(new SelectionTool());
 		
 		loadCustomShapes();
 		Tool.setStartFromCenter(true);
     }
+	public boolean isDeletable(int nb) {
+		ToggleButton tg = null;
+		if(nb==1)
+			tg=customShape1;
+		if(nb==2)
+			tg=customShape2;
+		if(nb==3)
+			tg=customShape3;
+		if(nb==4)
+			tg=customShape4;
+		return tg.getUserData()!=null;
+	}
+	
+	public String getDescription(int nb) {
+		Tooltip toolTip = null;
+		if(nb==1)
+			toolTip= customShape1Tooltip;
+		if(nb==2)
+			toolTip= customShape2Tooltip;
+		if(nb==3)
+			toolTip= customShape3Tooltip;
+		if(nb==4)
+			toolTip= customShape4Tooltip;
+		return toolTip.getText();
+	}
+	public void remove(int nb) {
+		Tooltip toolTip=null;
+		ToggleButton tg = null;;
+		Pane p=null;
+		File file = new File("shape"+nb+".xml");
+		if(nb==1) {
+			System.out.println("suppr1");
+			p = paneCS1;
+			toolTip = customShape1Tooltip;
+			tg = customShape1;
+		}
+		if(nb==2) {
+			p=paneCS2;
+			toolTip = customShape2Tooltip;
+			tg = customShape2;
+		}
+		if(nb==3) {
+			p=paneCS3;
+			toolTip = customShape3Tooltip;
+			tg = customShape3;
+		}
+		if(nb==4) {
+			p=paneCS4;
+			toolTip = customShape4Tooltip;
+			tg = customShape4;
+		}
+		if(file.exists()) {
+			file.delete();
+		}
+		toolTip.setText("No shape");
+		p.getChildren().clear();
+		tg.setUserData(null);
+		System.out.println(tg.getUserData()==null);
+	}
 }
