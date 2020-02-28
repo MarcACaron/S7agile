@@ -1,5 +1,6 @@
 package controller;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 
 import javax.xml.stream.XMLStreamException;
@@ -21,6 +22,7 @@ import models.MultiSelectionTool;
 import models.RectangleTool;
 import models.TriangleHorizontalTool;
 import models.TriangleVerticalTool;
+import models.XmlDecoder;
 import models.XmlEncoder;
 import models.SelectionTool;
 
@@ -224,6 +226,18 @@ public class PaletteFormeController {
 			sh.setHeight(32);
 		return sh;
 	}
+	private void loadCustomShapes() {
+		for(int i=1; i<=4; i++) {
+			File file = new File("shape"+i+".xml");
+			if(file.exists()) {
+				try {
+					fillCustomShape(i, XmlDecoder.customShapeDecoder(file, mainApp));
+				} catch (FileNotFoundException | XMLStreamException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+	}
 	@FXML
     private void initialize() {
 		// Put stuff to initialise here
@@ -233,6 +247,7 @@ public class PaletteFormeController {
         this.mainApp = mainApp;
 		this.mainApp.setTool(new SelectionTool());
 		
+		loadCustomShapes();
 		Tool.setStartFromCenter(true);
     }
 }

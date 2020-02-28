@@ -349,7 +349,7 @@ public class CustomUnionShape extends CustomShape {
 		}
 	}
 	@Override
-	public void read(XMLEventReader reader, Layer _layer, MainApp mainApp) throws XMLStreamException {
+	public void read(XMLEventReader reader, MainApp mainApp) throws XMLStreamException {
 		XMLEvent event;
 		while (reader.hasNext()) {
 	    	CustomShape sh = null;
@@ -366,18 +366,23 @@ public class CustomUnionShape extends CustomShape {
 			sh = ShapeFactory.build(se.getAttributeByName(new QName("shapeConstructor")).getValue());
 			if(sh != null) {
 				grouped=true;
-				//sh.getDraw().setAccessibleText(se.getAttributeByName(new QName("shapeType")).getValue());//TODO:verifier
 				sh.setType(se.getAttributeByName(new QName("shapeType")).getValue(), mainApp);
-				sh.setLayer(_layer.getId());
 				reader.nextEvent();
-				sh.read(reader, _layer, mainApp);
+				sh.read(reader, mainApp);
 				add(sh);
 				sh.setOnMouseClicked(this, mainApp);
 			}				
 		}
 		updateBoudingBox();
 	}
-
+	
+	@Override
+	public void setLayer(String id) {
+		super.setLayer(id);
+		listOfShape.forEach(sh->{
+			sh.setLayer(id);
+		});
+	}
 	@Override
 	protected String getContructorName() {
 		return "CustomUnionShape";

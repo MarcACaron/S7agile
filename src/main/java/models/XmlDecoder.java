@@ -45,16 +45,17 @@ public class XmlDecoder {
 			}
 			sh = ShapeFactory.build(se.getAttributeByName(new QName("shapeConstructor")).getValue());
 			if(sh != null) {
-				sh.setType(se.getAttributeByName(new QName("shapeType")).getValue(), mainApp);
+				String type = se.getAttributeByName(new QName("shapeType")).getValue();
 				String name = se.getAttributeByName(new QName("layer")).getValue();
 				if(!layerNames.contains(name)) {
 					Layer a = new GridLayer(name);
 					layerNames.add(name);
 					layersGroup.createNewLayer(a);
 				}
-				sh.setLayer(layersGroup.getLayers().get(layerNames.indexOf(name)).getId());
 				//reader.nextEvent();
-				sh.read(reader, layersGroup.getLayers().get(layerNames.indexOf(name)), mainApp);
+				sh.read(reader, mainApp);
+				sh.setType(type, mainApp);
+				sh.setLayer(layersGroup.getLayers().get(layerNames.indexOf(name)).getId());
 				sh.draw(layersGroup.getLayers().get(layerNames.indexOf(name)).getPane());
 				LayersGroup.getLayersGroup().getCurrentLayer().getDrawnShapes().add(sh);
 				sh.setOnMouseClicked(sh, mainApp);
@@ -63,13 +64,12 @@ public class XmlDecoder {
 	    mainApp.getDrawingZoneController().updateLayers(true);
 	}
 	
-	public static CustomShape customShapeEncoder(File file, MainApp mainApp) throws FileNotFoundException, XMLStreamException {
+	public static CustomShape customShapeDecoder(File file, MainApp mainApp) throws FileNotFoundException, XMLStreamException {
 		layersGroup.clear();
 		XMLInputFactory xif = XMLInputFactory.newInstance();
 		xif.setProperty(XMLInputFactory.IS_SUPPORTING_EXTERNAL_ENTITIES, Boolean.FALSE);
 		XMLEventReader  reader = xif.createXMLEventReader(new FileInputStream(file));
 	    XMLEvent event;
-		ArrayList<String> layerNames = new ArrayList<>();
     	CustomShape sh = null;
 	    while (reader.hasNext()) {
 			event = reader.nextEvent();
@@ -83,15 +83,8 @@ public class XmlDecoder {
 			
 			sh = ShapeFactory.build(se.getAttributeByName(new QName("shapeConstructor")).getValue());
 			if(sh != null) {
+				sh.read(reader, mainApp);
 				sh.setType(se.getAttributeByName(new QName("shapeType")).getValue(), mainApp);
-				String name = se.getAttributeByName(new QName("layer")).getValue();
-				if(!layerNames.contains(name)) {
-					Layer a = new GridLayer(name);
-					layerNames.add(name);
-					layersGroup.createNewLayer(a);
-				}
-				sh.setLayer(layersGroup.getLayers().get(layerNames.indexOf(name)).getId());
-				sh.read(reader, layersGroup.getLayers().get(layerNames.indexOf(name)), mainApp);
 			}
 			break;
 		}

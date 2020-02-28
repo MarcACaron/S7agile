@@ -173,7 +173,7 @@ public abstract class CustomShape {
 		writer.writeCharacters(String.valueOf(getStrokeWidth()));
 		writer.writeEndElement();
 	}
-	public void read(XMLEventReader reader, Layer _layer, MainApp mainApp) throws XMLStreamException {
+	public void read(XMLEventReader reader, MainApp mainApp) throws XMLStreamException {
 		PatternApplier patternApplier = new PatternApplier();
 		XMLEvent event;
 		//reader.nextEvent();
