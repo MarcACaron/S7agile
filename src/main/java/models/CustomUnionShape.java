@@ -17,7 +17,6 @@ import javafx.scene.Node;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
-import javafx.scene.transform.Transform;
 
 public class CustomUnionShape extends CustomShape {
 	ArrayList<CustomShape> listOfShape;
@@ -55,7 +54,7 @@ public class CustomUnionShape extends CustomShape {
 		});
 		this.boundingBox.setX(value);
 
-
+		
 		listOfShape.forEach(sh->{
 			sh.loadTransform();
 		});
@@ -66,13 +65,14 @@ public class CustomUnionShape extends CustomShape {
 	@Override
 	public void setYPos(double value) {
 		clearTransfrom();
+		
 		double deplacement= value-this.boundingBox.getY();
 
 		listOfShape.forEach(sh -> {
 			sh.setYPos(deplacement+sh.getYPos());
 		});
 		this.boundingBox.setY(value);
-
+		
 		listOfShape.forEach(sh->{
 			sh.loadTransform();
 		});
@@ -254,6 +254,13 @@ public class CustomUnionShape extends CustomShape {
 
 	@Override
 	public void ajustOnDragFromCorner(double posXStart, double posYStart, double posXEnd, double posYEnd) {
+		if(!scale) {
+			ajustOnDragFromCornerNotScalable(posXStart, posYStart, posXEnd, posYEnd);
+		}else
+			ajustOnDragFromCornerScalable(posXStart, posYStart, posXEnd, posYEnd);
+
+	}
+	private void ajustOnDragFromCornerNotScalable(double posXStart, double posYStart, double posXEnd, double posYEnd) {
 		double startX;
 		double startY;
 		double width;
@@ -272,11 +279,34 @@ public class CustomUnionShape extends CustomShape {
 			startY=posYEnd;
 			height = posYStart-posYEnd;
 		}
-		this.setXPos(startX);
-		this.setYPos(startY);
 		this.setWidth(width);
 		this.setHeight(height);
+		this.setXPos(startX);
+		this.setYPos(startY);
 
+	}
+	private void ajustOnDragFromCornerScalable(double posXStart, double posYStart, double posXEnd, double posYEnd) {
+		double width = Math.abs(posXStart-posXEnd);
+		double height = Math.abs(posYStart-posYEnd);
+		double startX=posXStart;
+		double startY=posYStart;
+		double rapport =this.getWidth()/this.getHeight();
+		if(height*this.getWidth()/this.getHeight()<width) {
+			width=height*rapport; 
+		}else {
+			height=width/rapport; 
+		}
+		if(posXStart>posXEnd) {
+			startX=posXStart-width;
+		}
+		if(posYStart>posYEnd) {
+			startY=posYStart-height;
+		}
+		this.setWidth(width);
+		this.setHeight(height);
+		this.setXPos(startX);
+		this.setYPos(startY);
+		
 	}
 
 	@Override
@@ -380,7 +410,6 @@ public class CustomUnionShape extends CustomShape {
 			event = reader.nextEvent();
 			if (event.isCharacters()) {
 				search=false;
-				System.out.println("break");
 				break;
 			}
 			if (!event.isStartElement()) {
@@ -388,7 +417,6 @@ public class CustomUnionShape extends CustomShape {
 			}
 			se = event.asStartElement();
 			if(se.getName().getLocalPart().equals("Shape")) {
-				System.out.println("hl");
 				sh = ShapeFactory.build(se.getAttributeByName(new QName("shapeConstructor")).getValue());
 				if(sh != null) {
 					grouped=true;
