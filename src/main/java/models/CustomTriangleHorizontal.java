@@ -111,4 +111,10 @@ public class CustomTriangleHorizontal extends CustomShape {
 		setYPos(this.boundingBox.getY());
 	}
 
+
+	@Override
+	protected String getContructorName() {
+		return "CustomTriangleHorizontal";
+	}
+
 }

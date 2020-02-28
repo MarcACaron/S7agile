@@ -1,6 +1,5 @@
 package models;
 
-import adraw4us.MainApp;
 import adraw4us.Tool;
 import controller.DetailPaletteController;
 import controller.PaletteCouleurController;

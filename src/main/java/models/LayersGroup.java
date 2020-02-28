@@ -21,6 +21,9 @@ public class LayersGroup implements Container {
 
 
 	public Layer getCurrentLayer() {
+		if(layers.size()==0) {
+			reset();
+		}
 		return layers.get(0);
 	}
 
@@ -87,56 +90,50 @@ public class LayersGroup implements Container {
 		return layers.indexOf(layer);
 	}
 
-	public boolean downShapeList(int shapeIndex_) {
-
-		
-		int shapeIndex = shapeIndex_;
+	public boolean downShapeList(int shapeIndex) {
+		int shapeIndexTemp = shapeIndex;
 		int layerIndex=0;
-		while(shapeIndex-LayersGroup.getLayersGroup().getLayers().get(layerIndex).getDrawnShapes().size()>=0) {
-			shapeIndex = shapeIndex-LayersGroup.getLayersGroup().getLayers().get(layerIndex).getDrawnShapes().size();
+		while(shapeIndexTemp-LayersGroup.getLayersGroup().getLayers().get(layerIndex).getDrawnShapes().size()>=0) {
+			shapeIndexTemp = shapeIndexTemp-LayersGroup.getLayersGroup().getLayers().get(layerIndex).getDrawnShapes().size();
 			layerIndex++;
 		}
 
 		ObservableList<Node> a = layers.get(layerIndex).getPane().getChildren();
-		if (shapeIndex < a.size() - 1) {
+		if (shapeIndexTemp < a.size() - 1) {
 
-			/*int realIndex = a.size() - 1 - shapeIndex;
-			Node shape = a.get(realIndex);
-			a.remove(shape);
-			a.add(realIndex - 1, shape);*/
-			int index1 = layers.get(layerIndex).getDrawnShapes().size()-shapeIndex-1;
-			int index2 = layers.get(layerIndex).getDrawnShapes().size()-shapeIndex-2;
+			int index1 = layers.get(layerIndex).getDrawnShapes().size()-shapeIndexTemp-1;
+			int index2 = layers.get(layerIndex).getDrawnShapes().size()-shapeIndexTemp-2;
 			int collectionLength2 = layers.get(layerIndex).getDrawnShapes().get(index2).size();
 			
 			layers.get(layerIndex).getDrawnShapes().get(index1).down(collectionLength2, index1, a);
 			Collections.swap(LayersGroup.getLayersGroup().getLayers().get(layerIndex).getDrawnShapes(), index1, index2);
 
-			return shapeIndex + 1<layers.get(layerIndex).getDrawnShapes().size();
+			return shapeIndexTemp + 1<layers.get(layerIndex).getDrawnShapes().size();
 		}
 
 		return false;
 	}
 
-	public boolean upShapeList(int shapeIndex_) {
+	public boolean upShapeList(int shapeIndex) {
 		
-		int shapeIndex = shapeIndex_;
+		int shapeIndexTemp = shapeIndex;
 		int layerIndex=0;
-		while(shapeIndex-layers.get(layerIndex).getDrawnShapes().size()>=0) {
-			shapeIndex = shapeIndex-layers.get(layerIndex).getDrawnShapes().size();
+		while(shapeIndexTemp-layers.get(layerIndex).getDrawnShapes().size()>=0) {
+			shapeIndexTemp = shapeIndexTemp-layers.get(layerIndex).getDrawnShapes().size();
 			layerIndex++;
 		}
 
 		ObservableList<Node> a = layers.get(layerIndex).getPane().getChildren();
-		if (shapeIndex != 0) {
+		if (shapeIndexTemp != 0) {
 
-			int index1 = layers.get(layerIndex).getDrawnShapes().size()-shapeIndex-1;
-			int index2 = layers.get(layerIndex).getDrawnShapes().size()-shapeIndex;
+			int index1 = layers.get(layerIndex).getDrawnShapes().size()-shapeIndexTemp-1;
+			int index2 = layers.get(layerIndex).getDrawnShapes().size()-shapeIndexTemp;
 			int collectionLength2 = layers.get(layerIndex).getDrawnShapes().get(index2).size();
 			
 			layers.get(layerIndex).getDrawnShapes().get(index1).up(collectionLength2, index1, a);
 			Collections.swap(layers.get(layerIndex).getDrawnShapes(), index1, index2);
 			
-			return shapeIndex - 1>=0;
+			return shapeIndexTemp - 1>=0;
 		}
 
 		return false;

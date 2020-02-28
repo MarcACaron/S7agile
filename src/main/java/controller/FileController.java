@@ -53,7 +53,7 @@ public class FileController {
 	}
 
 	public void saveDrawing(LayersGroup layersGroupe) throws FileNotFoundException, XMLStreamException {
-		XmlEncoder.createXML(layersGroupe, currentFile);
+		XmlEncoder.createXML(currentFile);
 	}
 	
 	public File getCurrentFile() {

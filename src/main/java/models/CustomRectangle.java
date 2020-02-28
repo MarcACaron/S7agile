@@ -116,4 +116,9 @@ public class CustomRectangle extends CustomShape {
 		this.boundingBox.setHeight(value);
 	}
 
+	@Override
+	protected String getContructorName() {
+		return "CustomRectangle";
+	}
+
 }

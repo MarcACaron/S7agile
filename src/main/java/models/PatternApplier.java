@@ -13,7 +13,9 @@ public class PatternApplier {
 		if(!value.equals("")) {
 			if(value.equals("rouge")) {
 			    fill = (Color.RED);
-			}else {
+			}else if(value.equals("noir")) {
+				fill = (Color.BLACK);
+			}else{
 				String imagePath = "images/" + value + ".png";
 				Image image = new Image(imagePath); 
 			    fill = new ImagePattern(image, 50, 50, 200, 200, false);

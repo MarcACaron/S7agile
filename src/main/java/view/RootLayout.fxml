@@ -35,7 +35,7 @@
 			</items>
             
           </Menu>
-          <Menu fx:id="MenuBarGroup" mnemonicParsing="false" text="Layout">
+          <Menu fx:id="MenuBarLayout" mnemonicParsing="false" text="Layout">
             <items>
               <MenuItem fx:id="menuItemMagnetism" mnemonicParsing="false" text="Turn Autogrid off" />
               <MenuItem mnemonicParsing="false" text="Show rules" />
@@ -44,9 +44,14 @@
               <MenuItem fx:id="menuItemShapeOrder" mnemonicParsing="false" text="Shape Order" />           
 			</items>
           </Menu>
-            <Menu fx:id="MenuBarLayout1" mnemonicParsing="false" text="Group">
+            <Menu fx:id="MenuBarGroup" mnemonicParsing="false" text="Group">
                <items>
                   <MenuItem fx:id="menuItemGroupShapes" mnemonicParsing="false" text="Group shapes" />
+                  <Menu fx:id="DeleteOne" mnemonicParsing="false" onShowing="#loadDeletable" text="Delete one">
+                     <items>
+                        <MenuItem fx:id="menuItemGroupShapes111" mnemonicParsing="false" text="Delte" />
+                     </items>
+                  </Menu>
                </items>
             </Menu>
           

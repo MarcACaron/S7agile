@@ -4,11 +4,8 @@ import java.util.function.Function;
 
 import controller.DetailPaletteController;
 import controller.PaletteCouleurController;
-import javafx.scene.input.MouseButton;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
-import models.CustomContextMenu;
 import models.CustomShape;
 import models.Layer;
 import models.LayersGroup;
@@ -74,7 +71,7 @@ public abstract class Tool {
 		this.reset();
 		shape.setLayer(layer.getId());
 		layer.getDrawnShapes().add(shape);
-		shape.draw(layer);
+		shape.draw(layer.getPane());
 		return index;
 	}
 
@@ -87,13 +84,7 @@ public abstract class Tool {
 		for(int i=0; i<shape.size(); i++)
 			pane.getChildren().remove(pane.getChildren().size()-1);
 
-		Pane currentPane = layerGroup.getCurrentLayer().getPane();
-		int sizePane = currentPane.getChildren().size();
-		System.out.println(shape2);
-		System.out.println(shape2.getType());
-		System.out.println(shape2.getLayer());
-		//shape2.getDraw().setId(shape2.getType() + sizePane + " " + shape2.getLayer() );
-		shape2.draw(layerGroup.getCurrentLayer());
+		shape2.draw(layerGroup.getCurrentLayer().getPane());
 		shape2.setOnMouseClicked(shape2, mainApp);
 
 		fillDetails(dp, shape2).apply(null);

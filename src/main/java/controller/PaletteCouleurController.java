@@ -29,6 +29,8 @@ public class PaletteCouleurController {
     private Button fillDirt;
 	@FXML
     private Button fillRed;	
+	@FXML
+    private Button fillBlack;	
 	@FXML 
 	private Button gridButton;
 	@FXML
@@ -91,11 +93,17 @@ public class PaletteCouleurController {
 	private void red() {
 		fillShape("rouge");
 	}
+	@FXML
+	private void black() {
+		fillShape("black");
+	}
 	
 	public void fillShape(String value) {
 		if(!value.equals("")) {
 			if(value.equals("rouge")) {
 			    Tool.setFill(Color.RED);
+			}else if(value.equals("black")){
+				Tool.setFill(Color.BLACK);
 			}else {
 				String imagePath = "images/" + value + ".png";
 				Image image = new Image(imagePath); 
@@ -152,5 +160,6 @@ public class PaletteCouleurController {
 		this.fillAnanas.setBackground(new Background(new BackgroundFill(new ImagePattern(new Image("images/ananas.png"), 45, 55, 100, 100, false), null, null)));
 		this.fillDirt.setBackground(new Background(new BackgroundFill(new ImagePattern(new Image("images/dirt.png"), 0, 0, 200, 200, false), null, null)));
 		this.fillRed.setBackground(new Background(new BackgroundFill(Color.RED, null, null)));
+		this.fillBlack.setBackground(new Background(new BackgroundFill(Color.BLACK, null, null)));
     }
 }

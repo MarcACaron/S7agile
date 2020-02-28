@@ -17,7 +17,6 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import models.Persistance;
 import models.ShapeName;
 
 public class MainApp extends Application {
@@ -28,6 +27,7 @@ public class MainApp extends Application {
     private DrawingZoneController drawingZoneController;
     private PaletteCouleurController paletteCouleurController;
     private DetailPaletteController paletteDetailController;
+    private PaletteFormeController paletteFormeController;
     private Tool toolApp;
     private Logger logger = Logger.getLogger(MainApp.class.getName());
     
@@ -46,6 +46,9 @@ public class MainApp extends Application {
 	public DetailPaletteController getPaletteDetailController() {
 		return paletteDetailController;
 	}
+	public PaletteFormeController getPaletteFormeController() {
+		return paletteFormeController;
+	}
 	public Tool getTool() {
 		return toolApp;
 	}
@@ -62,11 +65,9 @@ public class MainApp extends Application {
         initRootLayout();
         ShapeName.init(this);
         showMainOverview();
-        Persistance persi = new Persistance(toolApp);
-        //setTool(persi.readState()); TODO: réparer
-        
-        persi.setOnClosedEvent(primaryStage);
+
         Tool.mainApp=this;
+        showMainOverview();
         
     }
     
@@ -137,8 +138,8 @@ public class MainApp extends Application {
             
             drawingZoneController = loader2.getController();
             drawingZoneController.setMainApp(this);
-            PaletteFormeController controller3 = loader3.getController();
-            controller3.setMainApp(this);
+            this.paletteFormeController = loader3.getController();
+            this.paletteFormeController.setMainApp(this);
             this.paletteCouleurController = loader4.getController();
             this.paletteCouleurController.setMainApp(this);
             

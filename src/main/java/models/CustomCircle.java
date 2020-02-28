@@ -65,7 +65,7 @@ public class CustomCircle extends CustomShape {
 	}
 	
 	@Override
-	public void ajustOnDragFromCorner(double posXStart, double posYStart, double posXEnd, double posYEnd) {//TODO: refaire
+	public void ajustOnDragFromCorner(double posXStart, double posYStart, double posXEnd, double posYEnd) {
 		double cote = Math.min(Math.abs(posXEnd-posXStart), Math.abs(posYEnd-posYStart));
 		double startX;
 		double startY;
@@ -96,5 +96,10 @@ public class CustomCircle extends CustomShape {
 		this.setWidth(cote*2);
 		this.setXPos(startX);
 		this.setYPos(startY);
+	}
+
+	@Override
+	protected String getContructorName() {
+		return "CustomCircle";
 	}
 }
