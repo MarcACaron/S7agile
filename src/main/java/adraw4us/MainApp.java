@@ -27,6 +27,7 @@ public class MainApp extends Application {
     private DrawingZoneController drawingZoneController;
     private PaletteCouleurController paletteCouleurController;
     private DetailPaletteController paletteDetailController;
+    private PaletteFormeController paletteFormeController;
     private Tool toolApp;
     private Logger logger = Logger.getLogger(MainApp.class.getName());
     
@@ -44,6 +45,9 @@ public class MainApp extends Application {
 	}
 	public DetailPaletteController getPaletteDetailController() {
 		return paletteDetailController;
+	}
+	public PaletteFormeController getPaletteFormeController() {
+		return paletteFormeController;
 	}
 	public Tool getTool() {
 		return toolApp;
@@ -134,8 +138,8 @@ public class MainApp extends Application {
             
             drawingZoneController = loader2.getController();
             drawingZoneController.setMainApp(this);
-            PaletteFormeController controller3 = loader3.getController();
-            controller3.setMainApp(this);
+            this.paletteFormeController = loader3.getController();
+            this.paletteFormeController.setMainApp(this);
             this.paletteCouleurController = loader4.getController();
             this.paletteCouleurController.setMainApp(this);
             

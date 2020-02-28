@@ -2,6 +2,7 @@ package controller;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.function.Function;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -12,6 +13,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.stage.Modality;
@@ -24,6 +26,7 @@ public class MenuController {
 	@FXML
 	private MenuBar menuBar;
 	
+	@FXML private Menu MenuBarGroup;
 	@FXML private MenuItem menuItemNew;
 	
 	@FXML private MenuItem menuItemSave;
@@ -46,6 +49,8 @@ public class MenuController {
 	
 	@FXML private MenuItem menuItemGroupShapes;
 	
+	@FXML private Menu DeleteOne;
+	
 	private Logger loggerMenuController = Logger.getLogger("MenuController");
 	
 	@FXML
@@ -56,6 +61,34 @@ public class MenuController {
 	
 	private MainApp mainApp;
 	
+	@FXML
+	private void loadDeletable() {
+		DeleteOne.getItems().clear();
+		System.out.println("c");
+		for(int i=1; i<=4; i++) {
+			if(mainApp.getPaletteFormeController().isDeletable(i)) {
+				MenuItem mn = new MenuItem();
+				mn.setText(mainApp.getPaletteFormeController().getDescription(i));
+				DeleteOne.getItems().add(mn);
+				if(i==1)
+					mn.setOnAction(t->{
+						mainApp.getPaletteFormeController().remove(1);
+					});
+				if(i==2)
+					mn.setOnAction(t->{
+						mainApp.getPaletteFormeController().remove(2);
+					});
+				if(i==3)
+					mn.setOnAction(t->{
+						mainApp.getPaletteFormeController().remove(3);
+					});
+				if(i==4)
+					mn.setOnAction(t->{
+						mainApp.getPaletteFormeController().remove(4);
+					});
+			}
+		}
+	}
 	
 	@FXML
     private void initialize() {	

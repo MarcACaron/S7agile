@@ -218,7 +218,7 @@ public class CustomUnionShape extends CustomShape {
 		listOfShape.forEach(sh->{
 			int index = LayersGroup.getLayersGroup().getCurrentLayer().getDrawnShapes().indexOf(sh);
 			LayersGroup.getLayersGroup().getCurrentLayer().getDrawnShapes().remove(index);
-			sh.remove();
+			sh.remove(LayersGroup.getLayersGroup().getCurrentLayer().getPane());
 			sh.draw(LayersGroup.getLayersGroup().getCurrentLayer().getPane());
 			CustomShape thisGroup = this;
 			sh.setOnMouseClicked(thisGroup, mainApp);
@@ -229,9 +229,9 @@ public class CustomUnionShape extends CustomShape {
 		setLayer(LayersGroup.getLayersGroup().getCurrentLayer().getId());
 	}
 	@Override
-	protected void remove() {
+	public void remove(Pane p) {
 		listOfShape.forEach(sh->{
-			sh.remove();
+			sh.remove(p);
 		});
 	}
 	

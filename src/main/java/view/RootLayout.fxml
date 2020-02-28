@@ -47,6 +47,11 @@
             <Menu fx:id="MenuBarGroup" mnemonicParsing="false" text="Group">
                <items>
                   <MenuItem fx:id="menuItemGroupShapes" mnemonicParsing="false" text="Group shapes" />
+                  <Menu fx:id="DeleteOne" mnemonicParsing="false" onShowing="#loadDeletable" text="Delete one">
+                     <items>
+                        <MenuItem fx:id="menuItemGroupShapes111" mnemonicParsing="false" text="Delte" />
+                     </items>
+                  </Menu>
                </items>
             </Menu>
           
