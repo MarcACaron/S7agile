@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import adraw4us.MainApp;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
-import javafx.scene.input.MouseButton;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
 
@@ -88,7 +87,6 @@ public class CustomUnionShape extends CustomShape {
 			sh.setHeight(rapportWidth*sh.getHeight());
 		});
 		if(scale) {
-			System.out.println("hhhh");
 			setWidth(value * getWidth()/getHeight(), true);
 		}
 		this.boundingBox.setHeight(value);
@@ -166,7 +164,7 @@ public class CustomUnionShape extends CustomShape {
 		}
 	}
 	
-	public boolean updateBoudingBox() {//TODO: Conserver pour la suite
+	public boolean updateBoudingBox() {
 		double xMin = 0;
 		double yMin = 0;
 		double xMax = 0;

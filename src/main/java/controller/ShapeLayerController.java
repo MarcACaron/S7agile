@@ -33,7 +33,6 @@ public class ShapeLayerController {
 			
 			if(hasPrevious) {
 				shapeListView.getSelectionModel().select(index-1);
-				System.out.println("gneu");
 			}else {
 				shapeListView.getSelectionModel().select(index);
 			}
