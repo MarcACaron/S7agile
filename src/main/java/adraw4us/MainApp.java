@@ -17,6 +17,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import models.LayersGroup;
 import models.ShapeName;
 
 public class MainApp extends Application {
@@ -145,7 +146,6 @@ public class MainApp extends Application {
             
             paletteDetailController = detailPaletteLoader.getController();
             paletteDetailController.setMainApp(this);
-
         } catch (IOException e) {
         	logger.log(Level.SEVERE, "Exeption: "+e.getMessage()+"; Fonction: showMainOverview();");
         }

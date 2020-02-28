@@ -158,7 +158,6 @@ public class MenuController {
 		menuItemGroupShapes.setOnAction(e -> 
 			group()
 		);
-		
     }
 
 	public void setMainApp(MainApp mainApp) {
