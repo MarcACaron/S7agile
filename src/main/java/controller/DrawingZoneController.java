@@ -122,8 +122,8 @@ public class DrawingZoneController {
 				orgX = t.getX();
 				orgY = t.getY();
 				if(magnetismState) {
-					orgX = (int)orgX/50 *50;
-					orgY = (int)orgY/50 *50;
+					orgX = orgX/50.0 *50;
+					orgY = orgY/50.0 *50;
 				}
 				childIndex = anchorPane.getChildren().size();
 				childIndex = this.mainApp.getTool().mousePressed(this.mainApp.getPaletteDetailController(), layersGroup.getCurrentLayer());
@@ -142,8 +142,8 @@ public class DrawingZoneController {
 					if(orgY<yEnd) {
 						yEnd+=50;
 					}
-					xEnd = (int)xEnd/50 *50;
-					yEnd = (int)yEnd/50 *50;
+					xEnd = xEnd/50.0 *50;
+					yEnd = yEnd/50.0 *50;
 					
 				}
 				
@@ -258,6 +258,10 @@ public class DrawingZoneController {
 
 	public void clearSelectionLayer() {
 		selectionLayoutPane.getChildren().clear();
+	}
+	
+	public Pane getAnchorPane() {
+		return this.anchorPane;
 	}
 
 }

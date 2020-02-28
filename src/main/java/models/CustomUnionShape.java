@@ -34,7 +34,7 @@ public class CustomUnionShape extends CustomShape {
 
 	public CustomUnionShape() {
 		this.boundingBox = new Rectangle();
-		this.listOfShape = new ArrayList<CustomShape>();
+		this.listOfShape = new ArrayList<>();
 		this.listOfShape.forEach(customShape->{
 			if(customShape.isScale()) {
 				this.scale=true;
@@ -111,7 +111,6 @@ public class CustomUnionShape extends CustomShape {
 			sh.setHeight(rapportWidth*sh.getHeight());
 		});*/
 		if(scale) {
-			System.out.println("hhhh");
 			setWidth(value * getWidth()/getHeight(), true);
 		}
 		this.boundingBox.setHeight(value);
@@ -188,8 +187,8 @@ public class CustomUnionShape extends CustomShape {
 			scale=true;
 		}
 	}
-
-	public boolean updateBoudingBox() {//TODO: Conserver pour la suite
+	
+	public boolean updateBoudingBox() {
 		double xMin = 0;
 		double yMin = 0;
 		double xMax = 0;

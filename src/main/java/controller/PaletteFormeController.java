@@ -87,63 +87,39 @@ public class PaletteFormeController {
 	private void chooseMultiSelection() {
 		if(multiSelection.isSelected()) {
 			this.mainApp.setTool(new MultiSelectionTool());
-		}else {
-			this.mainApp.setTool(new SelectionTool());
-			pointeur.setSelected(true);
 		}
-		
 	}
 	@FXML
 	private void chooseRectangle() {
 		if(rectangle.isSelected()) {
 			this.mainApp.setTool(new RectangleTool());
-		}else {
-			this.mainApp.setTool(new SelectionTool(this.mainApp.getTool().getShape()));
-			pointeur.setSelected(true);
 		}
-		
 	}
 	@FXML
 	private void chooseCircle() {
 		if(circle.isSelected()) {
 			this.mainApp.setTool(new CircleTool());
-		}else {
-			this.mainApp.setTool(new SelectionTool(this.mainApp.getTool().getShape()));
-			pointeur.setSelected(true);
 		}
-		
 	}
 	
 	@FXML
 	private void chooseTriangleHorizontal() {
 		if(triangleHorizontal.isSelected()) {
 			this.mainApp.setTool(new TriangleHorizontalTool());
-		}else {
-			this.mainApp.setTool(new SelectionTool(this.mainApp.getTool().getShape()));
-			pointeur.setSelected(true);
 		}
-		
 	}
 	
 	@FXML
 	private void chooseTriangleVertical() {
 		if(triangleVertical.isSelected()) {
 			this.mainApp.setTool(new TriangleVerticalTool());
-		}else {
-			this.mainApp.setTool(new SelectionTool(this.mainApp.getTool().getShape()));
-			pointeur.setSelected(true);
 		}
-		
 	}	
 	@FXML
 	private void chooseLine() {
 		if(line.isSelected()) {
 			this.mainApp.setTool(new LineTool());
-		}else {
-			this.mainApp.setTool(new SelectionTool(this.mainApp.getTool().getShape()));
-			pointeur.setSelected(true);
 		}
-		
 	}
 	@FXML
 	private void choosePtDepart() {

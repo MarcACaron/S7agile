@@ -1,6 +1,7 @@
 package models;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javafx.scene.layout.Pane;
 
@@ -10,11 +11,11 @@ public abstract class Layer {
 	
 	protected Pane pane = new Pane();
 	
-	private ArrayList<CustomShape> drawnShapes = new ArrayList<CustomShape>();
+	private ArrayList<CustomShape> drawnShapes = new ArrayList<>();
 	
-	public ArrayList<CustomShape> getDrawnShapes() {
+	public List<CustomShape> getDrawnShapes() {
 		if(drawnShapes==null)
-			drawnShapes = new ArrayList<CustomShape>();
+			drawnShapes = new ArrayList<>();
 		return drawnShapes;
 	}
 	public abstract void setVisibility(Boolean visibility);

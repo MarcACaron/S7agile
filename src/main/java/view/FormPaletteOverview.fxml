@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.control.ToggleGroup?>
@@ -10,7 +14,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox prefWidth="100.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.PaletteFormeController">
+<VBox prefWidth="100.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.PaletteFormeController">
    <children>
       <HBox prefHeight="40.0" prefWidth="200.0">
          <children>
@@ -84,16 +88,30 @@
       <HBox prefHeight="40.0" prefWidth="200.0">
          <children>
                
-            <ToggleButton fx:id="triangleHorizontal" mnemonicParsing="false" onAction="#chooseTriangleHorizontal" prefHeight="40.0" prefWidth="50.0" text="TH" toggleGroup="$formToggleGroup">
+            <ToggleButton fx:id="triangleHorizontal" mnemonicParsing="false" onAction="#chooseTriangleHorizontal" prefHeight="40.0" prefWidth="50.0" toggleGroup="$formToggleGroup">
                <tooltip>
                   <Tooltip text="Draw Horizontal Triangle" />
                </tooltip>
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                  	<image>
+                  		<Image url="@../images/TriangleHorizontal.png" />
+                  	</image>
+                  </ImageView>
+               </graphic>
             </ToggleButton>
             
-            <ToggleButton fx:id="triangleVertical" mnemonicParsing="false" onAction="#chooseTriangleVertical" prefHeight="40.0" prefWidth="50.0" text="TV" toggleGroup="$formToggleGroup">
+            <ToggleButton fx:id="triangleVertical" mnemonicParsing="false" onAction="#chooseTriangleVertical" prefHeight="40.0" prefWidth="50.0" toggleGroup="$formToggleGroup">
                <tooltip>
                   <Tooltip text="Draw Vertical Triangle" />
                </tooltip>
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" >
+                  	<image>
+                  		<Image url="@../images/TriangleVertical.png" />
+                  	</image>
+                  </ImageView>
+               </graphic>
             </ToggleButton>
          </children>
       </HBox>

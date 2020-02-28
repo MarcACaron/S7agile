@@ -3,8 +3,6 @@ package models;
 import java.util.ArrayList;
 import java.util.List;
 
-import javafx.collections.ObservableList;
-import javafx.scene.Node;
 import javafx.scene.layout.Pane;
 
 public class ApplicationHistory {
@@ -60,16 +58,8 @@ public class ApplicationHistory {
 		ArrayList<Layer> newHistoryLayers = new ArrayList<>();
 		
 		for (int i = 0; i < newLayers.size(); ++i) {
-			Layer layer = newLayers.get(i);
 			
-			ObservableList<Node> paneChilds = layer.getPane().getChildrenUnmodifiable();
 			Pane newPane = new Pane();
-			/*
-			for (int j = 0; j < paneChilds.size(); ++j) {
-				CustomShape shape = (CustomShape)paneChilds.get(j);
-				Shape newShape = shape.duplicate();
-				newPane.getChildren().add(newShape);
-			}*///TODO: Reparer...
 			
 			Layer newLayer = new GridLayer("Layer " + i);
 			newLayer.setPane(newPane);
