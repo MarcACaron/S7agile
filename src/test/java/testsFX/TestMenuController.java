@@ -153,10 +153,13 @@ public class TestMenuController extends testApplicationUI{
 		clickOn("#MenuBarLayout");
 		clickOn("#menuItemMagnetism");
 		clickOn("#rectangle");
-		moveBy(140, 65);
+		moveBy(240, 165);
 		drag();
-		moveBy(89, 89);
+		moveBy(39, 39);
 		drop();
+		assertEquals(200, this.mainApp.getTool().getShape().getWidth());
+		assertEquals(200, this.mainApp.getTool().getShape().getHeight());
+
 	}
 	
 	private void pause(int times) {
