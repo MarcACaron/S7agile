@@ -311,6 +311,13 @@ public class CustomUnionShape extends CustomShape {
 
 	@Override
 	public void ajustOnDragFromCenter(double posXStart, double posYStart, double posXEnd, double posYEnd) {
+		if(!scale) {
+			ajustOnDragFromCenterNotScalable(posXStart, posYStart, posXEnd, posYEnd);
+		}else
+			ajustOnDragFromCenterScalable(posXStart, posYStart, posXEnd, posYEnd);
+
+	}
+	private void ajustOnDragFromCenterNotScalable(double posXStart, double posYStart, double posXEnd, double posYEnd) {
 		double startX;
 		double startY;
 		double width;
@@ -333,6 +340,24 @@ public class CustomUnionShape extends CustomShape {
 		this.setYPos(startY);
 		this.setWidth(width*2);
 		this.setHeight(height*2);
+
+	}
+	private void ajustOnDragFromCenterScalable(double posXStart, double posYStart, double posXEnd, double posYEnd) {
+		double width = Math.abs(posXStart-posXEnd);
+		double height = Math.abs(posYStart-posYEnd);
+		double rapport =this.getWidth()/this.getHeight();
+		if(height*this.getWidth()/this.getHeight()<width) {
+			width=height*rapport; 
+		}else {
+			height=width/rapport; 
+		}
+		double startX=posXStart-width;
+		double startY=posYStart-height;
+		this.setWidth(width*2);
+		this.setHeight(height*2);
+		this.setXPos(startX);
+		this.setYPos(startY);
+		
 	}
 
 	@Override
