@@ -8,7 +8,6 @@ import org.junit.jupiter.api.Test;
 import adraw4us.Tool;
 import javafx.geometry.Point2D;
 import javafx.scene.shape.Rectangle;
-import models.CircleTool;
 import models.CustomRectangle;
 import models.RectangleTool;
 

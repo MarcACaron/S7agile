@@ -8,11 +8,15 @@ import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 
 import controller.FileController;
+import javafx.fxml.FXML;
 import javafx.scene.input.KeyCode;
+import javafx.scene.layout.GridPane;
 import models.LayersGroup;
 
 
 public class TestMenuController extends testApplicationUI{
+	@FXML
+	private GridPane gridPane;
 	
 	LayersGroup layersGroup = LayersGroup.getLayersGroup();
 	
@@ -128,10 +132,38 @@ public class TestMenuController extends testApplicationUI{
 		
 	}
 	
+	@Test
+	public void testGridLinesVisible() {
+		boolean gridPaneVisible;
+		gridPaneVisible = this.mainApp.getDrawingZoneController().getLineGridPaneVisibility();
+		assertEquals(true,gridPaneVisible);
+	}
+	
+	@Test
+	public void testInversionGridLaneVisible() {
+		boolean gridPaneVisible;
+		clickOn("#MenuBarLayout");
+		clickOn("#menuShowGridLines");
+		gridPaneVisible = this.mainApp.getDrawingZoneController().getLineGridPaneVisibility();
+		assertEquals(false,gridPaneVisible);
+	}
+	
+	@Test
+	public void testMagnetism() {
+		clickOn("#MenuBarLayout");
+		clickOn("#menuItemMagnetism");
+		clickOn("#rectangle");
+		moveBy(140, 65);
+		drag();
+		moveBy(89, 89);
+		drop();
+	}
+	
 	private void pause(int times) {
 		for(int i=0; i<times; i++) {
 			moveBy(150, 150);
 			moveBy(-150, -150);
 		}
 	}
+	
 }
