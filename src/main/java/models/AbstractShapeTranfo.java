@@ -2,8 +2,8 @@ package models;
 
 
 public abstract class AbstractShapeTranfo {
-	public final static int FLIPH = 0;
-	public final static int FLIPV = 1;
+	public static final int FLIPH = 0;
+	public static final int FLIPV = 1;
 
 	protected int level;
 
@@ -26,5 +26,5 @@ public abstract class AbstractShapeTranfo {
 		
 	}
 
-	abstract protected void applyTransfo(CustomShape shape);
+	protected abstract void applyTransfo(CustomShape shape);
 }

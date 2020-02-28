@@ -24,7 +24,7 @@ public class CustomUnionShape extends CustomShape {
 
 	public CustomUnionShape() {
 		this.boundingBox = new Rectangle();
-		this.listOfShape = new ArrayList<CustomShape>();
+		this.listOfShape = new ArrayList<>();
 		this.listOfShape.forEach(customShape->{
 			if(customShape.isScale()) {
 				this.scale=true;
