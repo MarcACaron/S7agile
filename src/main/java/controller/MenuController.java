@@ -64,7 +64,6 @@ public class MenuController {
 	@FXML
 	private void loadDeletable() {
 		DeleteOne.getItems().clear();
-		System.out.println("c");
 		for(int i=1; i<=4; i++) {
 			if(mainApp.getPaletteFormeController().isDeletable(i)) {
 				MenuItem mn = new MenuItem();

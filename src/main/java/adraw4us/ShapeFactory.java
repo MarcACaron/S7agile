@@ -19,7 +19,6 @@ public class ShapeFactory {
 		case "CustomLine": 
 			return new CustomLine(); 
 		case "CustomCircle": 
-			System.out.println("cercle");
 			return new CustomCircle(); 
 		case "CustomTriangleHorizontal" :
 			return new CustomTriangleHorizontal();

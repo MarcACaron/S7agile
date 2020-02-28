@@ -163,6 +163,12 @@ public abstract class CustomShape {
 		writer.writeStartElement("rotation");
 		writer.writeCharacters(String.valueOf(getRotate()));
 		writer.writeEndElement();
+		writer.writeStartElement("hFlip");
+		writer.writeCharacters(String.valueOf(hFlip));
+		writer.writeEndElement();
+		writer.writeStartElement("vFlip");
+		writer.writeCharacters(String.valueOf(vFlip));
+		writer.writeEndElement();
 		writer.writeStartElement("fill");
 		writer.writeCharacters(shape.getAccessibleText());
 		writer.writeEndElement();
@@ -202,6 +208,14 @@ public abstract class CustomShape {
 		reader.nextEvent();
 		reader.nextEvent();
 		event = reader.nextEvent();
+	    this.flipShape(0, !Boolean.valueOf(event.asCharacters().getData()));//1 is VFlip, 0 is HFlip
+		reader.nextEvent();
+		reader.nextEvent();
+		event = reader.nextEvent();
+	    this.flipShape(1, !Boolean.valueOf(event.asCharacters().getData()));//1 is VFlip, 0 is HFlip
+		reader.nextEvent();
+		reader.nextEvent();
+		event = reader.nextEvent();
 		patternApplier.fillShape(this.getDraw(), event.asCharacters().getData());
 		reader.nextEvent();
 		reader.nextEvent();
@@ -232,7 +246,7 @@ public abstract class CustomShape {
         return (new Point2D(this.getXPos()+this.getWidth()/2, this.getYPos()+this.getHeight()/2));
     }
     
-    private Transform transformIntoReflection(Point2D p1, int flipXorY) {
+    protected Transform transformIntoReflection(Point2D p1, int flipXorY) {
 		//flipXorY = 1 is Y-Flip, 0 is X-Flip
 	    Translate translation = new Translate(-p1.getX(), -p1.getY());
 	    Scale scale;
@@ -248,6 +262,9 @@ public abstract class CustomShape {
 	    return reflection ;
 	}
     
+    public void transform(Point2D p1, int flipVorH) {
+    	this.getDraw().getTransforms().add(transformIntoReflection(p1, flipVorH));
+    }
     public void flipShape(int flipVorH, boolean cleared) {
 		//flipVorH = 1 is VFlip, 0 is HFlip
 		if (flipVorH == 1 && !cleared) {
@@ -255,7 +272,8 @@ public abstract class CustomShape {
 		}else if (flipVorH == 0 && !cleared){
 			setHFlip(!getHFlip());
 		}
-		this.getDraw().getTransforms().add(transformIntoReflection(this.getCenterCoord(), flipVorH));
+		this.transform(this.getCenterCoord(), flipVorH);
+		//this.getDraw().getTransforms().add(transformIntoReflection(this.getCenterCoord(), flipVorH));
 	}
 	public boolean isScale() {
 		return scale;
@@ -268,12 +286,10 @@ public abstract class CustomShape {
 	}
 	public void up(int collectionLength2, int index1, ObservableList<Node> a) {
 		a.remove(shape);
-		System.out.println(index1+"+"+collectionLength2);
 		a.add(index1 + (collectionLength2), shape);
 	}
 	public void down(int collectionLength2, int index1, ObservableList<Node> a) {
 		a.remove(shape);
-		System.out.println(index1+"-"+collectionLength2);
 		a.add(index1 - (collectionLength2), shape);
 	}
 	@Override
@@ -286,5 +302,14 @@ public abstract class CustomShape {
 	protected abstract String getContructorName();
 	public void remove(Pane p) {
 		p.getChildren().remove(this.getDraw());
+	}
+	public void clearTransfrom() {
+		this.getDraw().getTransforms().clear();
+	}
+	public void loadTransform() {
+		if (this.getHFlip())
+			this.flipShape(0, true);
+    	if (this.getVFlip())
+    		this.flipShape(1, true);
 	}
 }

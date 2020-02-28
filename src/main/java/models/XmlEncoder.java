@@ -25,7 +25,6 @@ public class XmlEncoder {
 			writer.writeAttribute("shapeType", LayersGroup.getLayersGroup().getCurrentLayer().getDrawnShapes().get(shapeIndex).getType());
 			writer.writeAttribute("layer", LayersGroup.getLayersGroup().getCurrentLayer().getDrawnShapes().get(shapeIndex).getLayer());
 			writer.writeAttribute("shapeConstructor", LayersGroup.getLayersGroup().getCurrentLayer().getDrawnShapes().get(shapeIndex).getContructorName());
-			System.out.println(LayersGroup.getLayersGroup().getCurrentLayer().getDrawnShapes().get(shapeIndex).getContructorName());
 			LayersGroup.getLayersGroup().getCurrentLayer().getDrawnShapes().get(shapeIndex).write(writer);
 			writer.writeEndElement();
 		}
@@ -37,7 +36,6 @@ public class XmlEncoder {
 	public static void customShapeEncoder(CustomShape sh, String fileName) throws FileNotFoundException, XMLStreamException {
 		XMLOutputFactory factory = XMLOutputFactory.newInstance();
 		File file = new File(fileName);
-		System.out.println(file.getAbsolutePath());
 		XMLStreamWriter writer = factory.createXMLStreamWriter(new FileOutputStream(file));
 		writer.writeStartDocument();
 		writer.writeStartElement("Save");

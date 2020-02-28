@@ -12,10 +12,12 @@ import javax.xml.stream.events.XMLEvent;
 import adraw4us.MainApp;
 import adraw4us.ShapeFactory;
 import javafx.collections.ObservableList;
+import javafx.geometry.Point2D;
 import javafx.scene.Node;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.transform.Transform;
 
 public class CustomUnionShape extends CustomShape {
 	ArrayList<CustomShape> listOfShape;
@@ -45,20 +47,35 @@ public class CustomUnionShape extends CustomShape {
 
 	@Override
 	public void setXPos(double value) {
+		clearTransfrom();
+
 		double deplacement= value-this.boundingBox.getX();
 		listOfShape.forEach(sh -> {
 			sh.setXPos(deplacement+sh.getXPos());
 		});
 		this.boundingBox.setX(value);
+
+
+		listOfShape.forEach(sh->{
+			sh.loadTransform();
+		});
+
+
 	}
 
 	@Override
 	public void setYPos(double value) {
+		clearTransfrom();
 		double deplacement= value-this.boundingBox.getY();
+
 		listOfShape.forEach(sh -> {
 			sh.setYPos(deplacement+sh.getYPos());
 		});
 		this.boundingBox.setY(value);
+
+		listOfShape.forEach(sh->{
+			sh.loadTransform();
+		});
 	}
 
 	@Override
@@ -187,7 +204,7 @@ public class CustomUnionShape extends CustomShape {
 			scale=true;
 		}
 	}
-	
+
 	public boolean updateBoudingBox() {
 		double xMin = 0;
 		double yMin = 0;
@@ -234,7 +251,7 @@ public class CustomUnionShape extends CustomShape {
 			sh.remove(p);
 		});
 	}
-	
+
 	@Override
 	public void ajustOnDragFromCorner(double posXStart, double posYStart, double posXEnd, double posYEnd) {
 		double startX;
@@ -286,7 +303,6 @@ public class CustomUnionShape extends CustomShape {
 		this.setYPos(startY);
 		this.setWidth(width*2);
 		this.setHeight(height*2);
-		System.out.println("...");
 	}
 
 	@Override
@@ -346,35 +362,55 @@ public class CustomUnionShape extends CustomShape {
 			listOfShape.get(i).write(writer);
 			writer.writeEndElement();
 		}
+		writer.writeStartElement("hFlip");
+		writer.writeCharacters(String.valueOf(hFlip));
+		writer.writeEndElement();
+		writer.writeStartElement("vFlip");
+		writer.writeCharacters(String.valueOf(vFlip));
+		writer.writeEndElement();
 	}
 	@Override
 	public void read(XMLEventReader reader, MainApp mainApp) throws XMLStreamException {
 		XMLEvent event;
-		while (reader.hasNext()) {
-	    	CustomShape sh = null;
+		StartElement se = null;
+		CustomShape sh = null;
+		boolean search = true;
+		while (reader.hasNext() && search) {
 
 			event = reader.nextEvent();
 			if (!event.isStartElement()) {
 				continue;
 			}
-			StartElement se = event.asStartElement();
+			se = event.asStartElement();
 			if(!se.getName().getLocalPart().equals("Shape")) {
 				continue;
+			}else {
+				search=false;
 			}
-			System.out.println(se.getAttributeByName(new QName("shapeConstructor")));
-			sh = ShapeFactory.build(se.getAttributeByName(new QName("shapeConstructor")).getValue());
-			if(sh != null) {
-				grouped=true;
-				sh.setType(se.getAttributeByName(new QName("shapeType")).getValue(), mainApp);
-				reader.nextEvent();
-				sh.read(reader, mainApp);
-				add(sh);
-				sh.setOnMouseClicked(this, mainApp);
-			}				
+		}
+		System.out.println();
+		System.out.println(se.getAttributeByName(new QName("shapeConstructor")));
+		sh = ShapeFactory.build(se.getAttributeByName(new QName("shapeConstructor")).getValue());
+		if(sh != null) {
+			grouped=true;
+			sh.setType(se.getAttributeByName(new QName("shapeType")).getValue(), mainApp);
+			reader.nextEvent();
+			sh.read(reader, mainApp);
+			add(sh);
+			sh.setOnMouseClicked(this, mainApp);
 		}
 		updateBoudingBox();
+		event = reader.nextEvent();
+		while(!event.isCharacters() && reader.hasNext()) {
+			event = reader.nextEvent();
+		}
+		this.flipShape(0, !Boolean.valueOf(event.asCharacters().getData()));//1 is VFlip, 0 is HFlip
+		reader.nextEvent();
+		reader.nextEvent();
+		event = reader.nextEvent();
+		this.flipShape(1, !Boolean.valueOf(event.asCharacters().getData()));//1 is VFlip, 0 is HFlip
 	}
-	
+
 	@Override
 	public void setLayer(String id) {
 		super.setLayer(id);
@@ -385,5 +421,65 @@ public class CustomUnionShape extends CustomShape {
 	@Override
 	protected String getContructorName() {
 		return "CustomUnionShape";
+	}
+	@Override
+	public void clearTransfrom() {
+		listOfShape.forEach(sh->{
+			sh.clearTransfrom();
+		});
+	}
+	@Override
+	public void loadTransform() {
+		listOfShape.forEach(sh->{
+			sh.loadTransform();
+		});
+		if (this.getHFlip())
+			this.flipShape(0, true);
+		if (this.getVFlip())
+			this.flipShape(1, true);
+	}
+	@Override
+	public void transform(Point2D p1, int flipVorH) {
+		clearTransfrom();
+		if (flipVorH == 1) {
+			if(hFlip) {
+				listOfShape.forEach(sh->{
+					sh.transform(p1, 0);
+				});
+			}
+			if(!vFlip) {
+				listOfShape.forEach(sh->{
+					sh.transform(p1, 1);
+				});
+			}
+		}else if (flipVorH == 0){
+			if(!hFlip) {
+				listOfShape.forEach(sh->{
+					sh.transform(p1, 0);
+				});
+			}
+			if(vFlip) {
+				listOfShape.forEach(sh->{
+					sh.transform(p1, 1);
+				});
+			}
+		}
+		listOfShape.forEach(sh->{
+			sh.loadTransform();
+		});
+
+
+	}
+	@Override
+	public void flipShape(int flipVorH, boolean cleared) {
+
+		this.transform(this.getCenterCoord(), flipVorH);
+		//flipVorH = 1 is VFlip, 0 is HFlip
+		if (flipVorH == 1 && !cleared) {
+			setVFlip(!getVFlip());
+		}else if (flipVorH == 0 && !cleared){
+			setHFlip(!getHFlip());
+		}
+		//this.getDraw().getTransforms().add(transformIntoReflection(this.getCenterCoord(), flipVorH));
 	}
 }

@@ -277,7 +277,6 @@ public class PaletteFormeController {
 		Pane p=null;
 		File file = new File("shape"+nb+".xml");
 		if(nb==1) {
-			System.out.println("suppr1");
 			p = paneCS1;
 			toolTip = customShape1Tooltip;
 			tg = customShape1;
@@ -303,6 +302,5 @@ public class PaletteFormeController {
 		toolTip.setText("No shape");
 		p.getChildren().clear();
 		tg.setUserData(null);
-		System.out.println(tg.getUserData()==null);
 	}
 }
